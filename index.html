@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="ms" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jom Content — Social Media Manager</title>
+<style>
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f4f6fa;--surface:#fff;--surface2:#f8f9fc;--text:#1a1d23;--text2:#5f6779;--border:#e2e6ef;--primary:#1E3A8A;--primary-light:#3b5fbf;--primary-bg:#eef1ff;--shadow:0 1px 3px rgba(0,0,0,.08);--radius:12px;--radius-sm:8px;--nav-h:60px}
+[data-theme="dark"]{--bg:#0f1117;--surface:#1a1d28;--surface2:#222640;--text:#e8eaf0;--text2:#989fba;--border:#2a2e40;--primary:#4f7cff;--primary-light:#7a9eff;--primary-bg:#1a2244;--shadow:0 1px 3px rgba(0,0,0,.3)}
+body{font-family:'Segoe UI','Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:var(--shadow)}
+.header-inner{max-width:1400px;margin:0 auto;padding:0 20px;display:flex;align-items:center;height:var(--nav-h);gap:16px}
+header h1{font-size:18px;font-weight:700;display:flex;align-items:center;gap:8px;white-space:nowrap}
+header h1 span.logo{color:var(--primary)}
+.header-right{display:flex;align-items:center;gap:12px;margin-left:auto}
+.header-stats{display:flex;gap:20px;font-size:13px;color:var(--text2)}
+.header-stats strong{color:var(--text);font-weight:600}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:var(--radius-sm);padding:6px 12px;cursor:pointer;font-size:16px;color:var(--text);transition:all .2s}
+.theme-btn:hover{background:var(--surface2)}
+.nav-wrap{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:var(--nav-h);z-index:99}
+.nav-inner{max-width:1400px;margin:0 auto;display:flex;gap:4px;padding:0 20px;overflow-x:auto}
+.nav-tab{padding:12px 20px;font-size:13px;font-weight:500;border:none;background:none;cursor:pointer;color:var(--text2);border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s}
+.nav-tab:hover{color:var(--text);background:var(--surface2)}
+.nav-tab.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:600}
+main{max-width:1400px;margin:0 auto;padding:20px;animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.section{margin-bottom:24px}
+.section-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.section-hdr h2{font-size:16px;font-weight:600}
+.section-hdr .badge{background:var(--primary-bg);color:var(--primary);padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600}
+.card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);padding:20px;box-shadow:var(--shadow)}
+.card-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.card-stat{text-align:center;padding:24px 16px}
+.card-stat .num{font-size:32px;font-weight:700;color:var(--primary);line-height:1}
+.card-stat .label{font-size:12px;color:var(--text2);margin-top:4px}
+.card-stat .sub{font-size:11px;color:var(--text2);margin-top:2px}
+.platform-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+.dot-tiktok{background:#fe2c55}
+.dot-facebook{background:#1877f2}
+.dot-instagram{background:#e4405f}
+.dot-threads{background:#101010}
+[data-theme="dark"] .dot-threads{background:#ccc}
+.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.cal-nav h3{font-size:15px;font-weight:600}
+.cal-nav button{background:var(--surface2);border:1px solid var(--border);padding:6px 14px;border-radius:var(--radius-sm);cursor:pointer;font-size:13px;color:var(--text);transition:all .2s}
+.cal-nav button:hover{background:var(--primary-bg);color:var(--primary)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-day-header{text-align:center;font-size:11px;font-weight:600;color:var(--text2);padding:6px 0}
+.cal-day{background:var(--surface2);border-radius:var(--radius-sm);min-height:90px;padding:6px;cursor:pointer;transition:all .2s;position:relative;border:1px solid transparent}
+.cal-day:hover{background:var(--primary-bg);border-color:var(--primary-light)}
+.cal-day.other-month{opacity:.35}
+.cal-day.today{border-color:var(--primary);border-width:2px}
+.cal-day .day-num{font-size:12px;font-weight:600;margin-bottom:3px}
+.cal-day .post-chip{font-size:10px;padding:2px 5px;border-radius:4px;margin-bottom:2px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}
+.cal-day .post-chip:hover{opacity:.85}
+.cal-day .more-chip{font-size:10px;color:var(--text2);padding:2px 5px}
+.pillar-bar{display:flex;align-items:center;gap:8px;margin:8px 0;flex-wrap:wrap}
+.pillar-tag{font-size:11px;padding:4px 12px;border-radius:12px;color:#fff;font-weight:500;display:flex;align-items:center;gap:6px}
+.pillar-tag .del-pillar{background:rgba(0,0,0,.2);border:none;color:#fff;border-radius:50%;width:16px;height:16px;font-size:10px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pillar-tag .del-pillar:hover{background:rgba(0,0,0,.4)}
+.pillar-select{display:flex;gap:6px;flex-wrap:wrap}
+.pillar-select input{width:140px}
+.pillar-select button{white-space:nowrap}
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:768px){.chart-row{grid-template-columns:1fr}}
+canvas{max-width:100%;height:auto}
+@media(max-width:768px){
+  header h1{font-size:15px}
+  .header-stats{gap:10px;font-size:11px}
+  .header-stats span{display:none}
+  .cal-day{min-height:60px;padding:4px}
+  .cal-day .post-chip{font-size:9px;padding:1px 3px}
+  .modal{padding:16px;margin:10px}
+  .form-row{grid-template-columns:1fr}
+  .card-grid{grid-template-columns:repeat(2,1fr)}
+}
+.empty-state{text-align:center;padding:40px 20px;color:var(--text2)}
+.empty-state .icon{font-size:40px;margin-bottom:8px}
+.empty-state p{font-size:13px}
+.filter-bar{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.filter-bar .pill-filter{font-size:11px;padding:4px 12px;border-radius:12px;border:1px solid var(--border);background:transparent;cursor:pointer;color:var(--text);transition:all .2s}
+.filter-bar .pill-filter:hover{background:var(--surface2)}
+.filter-bar .pill-filter.active{color:#fff;border-color:transparent}
+.approval-badge{font-size:10px;padding:2px 7px;border-radius:8px;font-weight:500}
+.approval-approved{background:#dcfce7;color:#15803d}
+.approval-pending{background:#fef3c7;color:#b45309}
+[data-theme="dark"] .approval-approved{background:#1a2e1a;color:#4ade80}
+[data-theme="dark"] .approval-pending{background:#2e2a1a;color:#fbbf24}
+/*====== Pillar target bar ======*/
+.pillar-dist-row{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.pillar-dist-item{display:flex;flex-direction:column;gap:3px}
+.pillar-dist-header{display:flex;justify-content:space-between;font-size:12px}
+.pillar-dist-header .name{font-weight:500}
+.pillar-dist-header .pct{font-weight:600}
+.pillar-bar-actual{height:20px;border-radius:6px;overflow:hidden;background:var(--surface2);display:flex}
+.pillar-bar-actual .fill{height:100%;border-radius:6px;transition:width .4s ease;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:#fff;min-width:24px}
+.pillar-bar-target{height:4px;border-radius:2px;overflow:hidden;background:var(--surface2);margin-top:1px}
+.pillar-bar-target .fill{height:100%;border-radius:2px;opacity:.4}
+.pillar-target-label{font-size:9px;color:var(--text2);text-align:right;margin-top:0}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+<div class="header-inner">
+  <h1><span class="logo">📱</span> Jom Content</h1>
+  <div class="header-right">
+    <div class="header-stats">
+      <span>📅 Bulan Ni: <strong id="hdrMonthPosts">0</strong></span>
+      <span>✅ Siap: <strong id="hdrPosted">0</strong></span>
+    </div>
+    <button class="theme-btn" id="themeToggle" title="Tukar tema">🌙</button>
+  </div>
+</div>
+</header>
+
+<!-- NAV -->
+<div class="nav-wrap">
+<div class="nav-inner" id="tabNav">
+  <button class="nav-tab active" data-tab="dashboard">📊 Dashboard</button>
+  <button class="nav-tab" data-tab="tiktok">🎵 TikTok</button>
+  <button class="nav-tab" data-tab="facebook">📘 Facebook</button>
+  <button class="nav-tab" data-tab="instagram">📸 Instagram</button>
+  <button class="nav-tab" data-tab="threads">🧵 Threads</button>
+</div>
+</div>
+
+<!-- MAIN -->
+<main>
+
+<!-- DASHBOARD TAB -->
+<div class="tab-content active" id="tab-dashboard">
+  <div class="section">
+    <div class="section-hdr"><h2>📊 Ringkasan Bulan Ini</h2><span class="badge" id="dashPeriod">Bulan</span></div>
+    <div class="card-grid" id="dashStats"></div>
+  </div>
+  <div class="section">
+    <div class="section-hdr"><h2>📈 Pengedaran</h2></div>
+    <div class="chart-row">
+      <div class="card"><h3 style="font-size:13px;font-weight:600;margin-bottom:12px">Mengikut Platform</h3><canvas id="chartPlatform" height="200"></canvas></div>
+      <div class="card"><h3 style="font-size:13px;font-weight:600;margin-bottom:12px">Mengikut Content Pillar</h3><canvas id="chartPillar" height="200"></canvas></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-hdr"><h2>📋 Timeline Semua Post</h2><span class="badge" id="dashTotalPosts">0</span></div>
+    <div id="dashTimeline" class="post-list"></div>
+  </div>
+</div>
+
+<!-- PLATFORM TABS (generated by JS) -->
+<div class="tab-content" id="tab-tiktok"></div>
+<div class="tab-content" id="tab-facebook"></div>
+<div class="tab-content" id="tab-instagram"></div>
+<div class="tab-content" id="tab-threads"></div>
+
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="postModal">
+<div class="modal">
+  <h3 id="modalTitle">📝 Tambah Post</h3>
+  <input type="hidden" id="mPostId">
+  <input type="hidden" id="mPlatform">
+  <div class="form-group">
+    <label>Tajuk / Content Idea</label>
+    <input type="text" id="mTitle" placeholder="cth: Info rawatan jerawat">
+  </div>
+  <div class="form-group">
+    <label>Script / Caption</label>
+    <textarea id="mCaption" placeholder="Tulis caption penuh..."></textarea>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label>Tarikh</label>
+      <input type="date" id="mDate">
+    </div>
+    <div class="form-group">
+      <label>Masa</label>
+      <input type="time" id="mTime">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label>Content Pillar</label>
+      <select id="mPillar"></select>
+    </div>
+    <div class="form-group">
+      <label>Status</label>
+      <select id="mStatus">
+        <option value="draft">Draft</option>
+        <option value="scheduled">Scheduled</option>
+        <option value="posted">Posted</option>
+        <option value="failed">Failed</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Internal Notes</label>
+    <textarea id="mNotes" placeholder="Apa-apa nota..." style="min-height:50px"></textarea>
+  </div>
+  <div class="form-group" style="display:flex;align-items:center;gap:8px">
+    <input type="checkbox" id="mApproved" style="width:auto">
+    <label for="mApproved" style="margin:0;font-size:13px">Approved ✅</label>
+  </div>
+  <div class="modal-actions">
+    <button class="btn btn-danger btn-sm" id="mDeleteBtn" onclick="deletePost()" style="display:none">🗑️ Padam</button>
+    <div style="flex:1"></div>
+    <button class="btn btn-outline" onclick="closeModal()">Batal</button>
+    <button class="btn btn-primary" onclick="savePost()">💾 Simpan</button>
+  </div>
+</div>
+</div>
+
+<script>
+const PLATFORMS = ['tiktok','facebook','instagram','threads'];
+const PLATFORM_NAMES = {tiktok:'TikTok',facebook:'Facebook',instagram:'Instagram',threads:'Threads'};
+const PLATFORM_COLORS = {tiktok:'#fe2c55',facebook:'#1877f2',instagram:'#e4405f',threads:'#101010'};
+const PLATFORM_ICONS = {tiktok:'🎵',facebook:'📘',instagram:'📸',threads:'🧵'};
+const DEFAULT_PILLARS = ['Kulit','Weight Loss','General Care'];
+const DEFAULT_TARGETS = {'Kulit':50,'Weight Loss':30,'General Care':20};
+const PILLAR_COLORS = ['#6366f1','#f59e0b','#06b6d4','#ec4899','#8b5cf6','#14b8a6','#f97316','#a855f7'];
+
+let state = { posts: [], pillars: {}, calDates: {}, pillarTargets: {}, currentTab: 'dashboard' };
+
+function getPillarColor(name) {
+  if (!name) return PILLAR_COLORS[0];
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  return PILLAR_COLORS[Math.abs(hash) % PILLAR_COLORS.length];
+}
+
+// ===== DATA =====
+function loadState() {
+  try {
+    const raw = localStorage.getItem('jomContent');
+    if (raw) {
+      const saved = JSON.parse(raw);
+      state.posts = saved.posts || [];
+      state.pillars = saved.pillars || {};
+      state.calDates = saved.calDates || {};
+      state.pillarTargets = saved.pillarTargets || {};
+    }
+  } catch(e){}
+  PLATFORMS.forEach(p => {
+    if (!state.pillars[p]) state.pillars[p] = [...DEFAULT_PILLARS];
+    if (!state.calDates[p]) state.calDates[p] = getDateKey(new Date());
+    if (!state.pillarTargets[p]) state.pillarTargets[p] = {...DEFAULT_TARGETS};
+  });
+}
+function getTargets(platform) {
+  return (state.pillarTargets && state.pillarTargets[platform]) || DEFAULT_TARGETS;
+}
+function saveState() {
+  localStorage.setItem('jomContent', JSON.stringify({
+    posts: state.posts, pillars: state.pillars,
+    calDates: state.calDates, pillarTargets: state.pillarTargets
+  }));
+}
+function getDateKey(d) { return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'); }
+function parseDateKey(key) { const p = key.split('-'); return {year:+p[0],month:+p[1]-1}; }
+
+// ===== PLATFORM TAB RENDERER =====
+function renderPlatformTab(platform) {
+  const tab = document.getElementById('tab-'+platform);
+  const icon = PLATFORM_ICONS[platform]||'📱';
+  const name = PLATFORM_NAMES[platform]||platform;
+
+  tab.innerHTML = `
+  <div class="section">
+    <div class="section-hdr"><h2>${icon} ${name} — Content Calendar</h2>
+      <button class="btn btn-primary btn-sm" onclick="openModal('${platform}')">+ Tambah Post</button>
+    </div>
+    <div class="cal-nav">
+      <button onclick="calPrev('${platform}')">‹ Sebelum</button>
+      <h3 id="calTitle-${platform}"></h3>
+      <button onclick="calNext('${platform}')">Seterusnya ›</button>
+    </div>
+    <div id="calGrid-${platform}" class="cal-grid"></div>
+  </div>
+  <div class="section">
+    <div class="section-hdr"><h2>🏷️ Content Pillars</h2><span class="badge" id="pillarCount-${platform}">0</span></div>
+    <div id="pillarArea-${platform}"></div>
+    <div class="pillar-select" style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+      <input type="text" id="newPillar-${platform}" placeholder="Nama pillar..." style="padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;background:var(--surface);color:var(--text);width:150px">
+      <input type="number" id="newPillarTarget-${platform}" placeholder="Target %" min="1" max="100" style="padding:8px 8px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;background:var(--surface);color:var(--text);width:80px">
+      <button class="btn btn-outline btn-sm" onclick="addPillar('${platform}')">+ Tambah</button>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-hdr"><h2>📄 Post Bulan Ini</h2><span class="badge" id="postCount-${platform}">0</span></div>
+    <div id="postList-${platform}" class="post-list"></div>
+  </div>`;
+}
+
+// ===== PILLARS =====
+function addPillar(platform) {
+  const inp = document.getElementById('newPillar-'+platform);
+  const tinp = document.getElementById('newPillarTarget-'+platform);
+  const name = inp.value.trim();
+  if (!name) { alert('Sila masukkan nama pillar.'); return; }
+  if (!state.pillars[platform]) state.pillars[platform] = [...DEFAULT_PILLARS];
+  if (state.pillars[platform].includes(name)) { alert('Pillar dah ada.'); return; }
+  state.pillars[platform].push(name);
+  const tv = parseInt(tinp.value);
+  if (tv > 0 && tv <= 100) {
+    if (!state.pillarTargets[platform]) state.pillarTargets[platform] = {...DEFAULT_TARGETS};
+    state.pillarTargets[platform][name] = tv;
+  }
+  saveState();
+  inp.value = ''; tinp.value = '';
+  renderAll();
+}
+
+function removePillar(platform, name) {
+  if (!confirm(`Padam pillar "${name}"?`)) return;
+  state.pillars[platform] = state.pillars[platform].filter(p => p !== name);
+  saveState();
+  renderAll();
+}
+
+// ===== MODAL =====
+function openModal(platform, postId) {
+  document.getElementById('postModal').classList.add('open');
+  document.getElementById('mPlatform').value = platform || state.currentTab;
+  const p = document.getElementById('mPlatform').value;
+  const sel = document.getElementById('mPillar');
+  sel.innerHTML = '';
+  (state.pillars[p] || DEFAULT_PILLARS).forEach(x => {
+    const o = document.createElement('option'); o.value = x; o.textContent = x; sel.appendChild(o);
+  });
+
+  if (postId) {
+    const post = state.posts.find(x => x.id === postId);
+    if (!post) return;
+    document.getElementById('modalTitle').textContent = '✏️ Edit Post';
+    document.getElementById('mPostId').value = postId;
+    document.getElementById('mTitle').value = post.title||'';
+    document.getElementById('mCaption').value = post.caption||'';
+    document.getElementById('mDate').value = post.date;
+    document.getElementById('mTime').value = post.time||'';
+    document.getElementById('mPillar').value = post.pillar||'';
+    document.getElementById('mStatus').value = post.status||'draft';
+    document.getElementById('mNotes').value = post.notes||'';
+    document.getElementById('mApproved').checked = post.approved||false;
+    document.getElementById('mDeleteBtn').style.display = 'block';
+  } else {
+    document.getElementById('modalTitle').textContent = '📝 Tambah Post';
+    document.getElementById('mPostId').value = '';
+    document.getElementById('mTitle').value = '';
+    document.getElementById('mCaption').value = '';
+    document.getElementById('mDate').value = new Date().toISOString().slice(0,10);
+    document.getElementById('mTime').value = '12:00';
+    document.getElementById('mPillar').value = (state.pillars[p]||DEFAULT_PILLARS)[0]||'';
+    document.getElementById('mStatus').value = 'draft';
+    document.getElementById('mNotes').value = '';
+    document.getElementById('mApproved').checked = false;
+    document.getElementById('mDeleteBtn').style.display = 'none';
+  }
+}
+
+function closeModal() { document.getElementById('postModal').classList.remove('open'); }
+
+function savePost() {
+  const id = document.getElementById('mPostId').value;
+  const platform = document.getElementById('mPlatform').value;
+  const data = {
+    title: document.getElementById('mTitle').value.trim(),
+    caption: document.getElementById('mCaption').value.trim(),
+    date: document.getElementById('mDate').value,
+    time: document.getElementById('mTime').value,
+    pillar: document.getElementById('mPillar').value,
+    status: document.getElementById('mStatus').value,
+    notes: document.getElementById('mNotes').value.trim(),
+    approved: document.getElementById('mApproved').checked,
+  };
+  if (!data.title) { alert('Sila isi tajuk post.'); return; }
+  if (!data.date) { alert('Sila pilih tarikh.'); return; }
+  if (id) {
+    const idx = state.posts.findIndex(x => x.id === id);
+    if (idx >= 0) state.posts[idx] = {...state.posts[idx], ...data};
+  } else {
+    data.id = Date.now()+'_'+Math.random().toString(36).slice(2,6);
+    data.platform = platform;
+    state.posts.push(data);
+  }
+  saveState(); closeModal(); renderAll();
+}
+
+function deletePost() {
+  const id = document.getElementById('mPostId').value;
+  if (!id || !confirm('Padam post ni?')) return;
+  state.posts = state.posts.filter(x => x.id !== id);
+  saveState(); closeModal(); renderAll();
+}
+
+// ===== CALENDAR =====
+function getMonthDays(year, month) {
+  const first = new Date(year,month,1).getDay();
+  const last = new Date(year,month+1,0).getDate();
+  const prevLast = new Date(year,month,0).getDate();
+  const days = [];
+  for (let i=first-1; i>=0; i--) days.push({day:prevLast-i, other:true, date:new Date(year,month-1,prevLast-i)});
+  for (let i=1; i<=last; i++) days.push({day:i, other:false, date:new Date(year,month,i)});
+  for (let i=days.length; i<42; i++) days.push({day:i-last+1, other:true, date:new Date(year,month+1,i-last+1)});
+  return days;
+}
+
+function renderCalendar(platform) {
+  const key = state.calDates[platform] || getDateKey(new Date());
+  const {year,month} = parseDateKey(key);
+  const days = getMonthDays(year, month);
+  const grid = document.getElementById('calGrid-'+platform);
+  document.getElementById('calTitle-'+platform).textContent = new Date(year,month).toLocaleString('ms-MY',{month:'long',year:'numeric'});
+
+  const today = new Date().toISOString().slice(0,10);
+  const platformPosts = state.posts.filter(p => p.platform === platform);
+  const filterBar = document.querySelector(`#tab-${platform} .filter-bar`);
+  const activeFilter = filterBar ? filterBar.querySelector('.pill-filter.active') : null;
+  const filterPillar = activeFilter ? activeFilter.dataset.pillar : 'all';
+
+  let html = '<div class="cal-day-header">Ah</div><div class="cal-day-header">Is</div><div class="cal-day-header">Se</div><div class="cal-day-header">Ra</div><div class="cal-day-header">Kh</div><div class="cal-day-header">Ju</div><div class="cal-day-header">Sa</div>';
+  const todayIdx = days.findIndex(d => !d.other && d.date.toISOString().slice(0,10) === today);
+
+  days.forEach((d, idx) => {
+    const dateStr = d.date.toISOString().slice(0,10);
+    let dayPosts = platformPosts.filter(p => p.date === dateStr && (filterPillar==='all'||p.pillar===filterPillar));
+    const shown = dayPosts.slice(0,3);
+    const more = dayPosts.length-3;
+    let cls = 'cal-day' + (d.other?' other-month':'') + (idx===todayIdx?' today':'');
+    let chips = shown.map(p => `<div class="post-chip" style="background:${getPillarColor(p.pillar)}" onclick="event.stopPropagation();openModal('${platform}','${p.id}')">${p.title||'Post'}</div>`).join('');
+    if (more>0) chips += `<div class="more-chip">+${more} lagi</div>`;
+    html += `<div class="${cls}" onclick="openModal('${platform}')"><div class="day-num">${d.day}</div>${chips}</div>`;
+  });
+  grid.innerHTML = html;
+}
+
+function calPrev(platform) {
+  const {year,month} = parseDateKey(state.calDates[platform]||getDateKey(new Date()));
+  state.calDates[platform] = getDateKey(new Date(year,month-1,1));
+  saveState(); renderAll();
+}
+function calNext(platform) {
+  const {year,month} = parseDateKey(state.calDates[platform]||getDateKey(new Date()));
+  state.calDates[platform] = getDateKey(new Date(year,month+1,1));
+  saveState(); renderAll();
+}
+
+// ===== PILLARS RENDER =====
+function renderPillars(platform) {
+  const area = document.getElementById('pillarArea-'+platform);
+  const countEl = document.getElementById('pillarCount-'+platform);
+  const pillars = state.pillars[platform] || DEFAULT_PILLARS;
+  countEl.textContent = pillars.length;
+
+  if (pillars.length === 0) {
+    area.innerHTML = '<p style="font-size:13px;color:var(--text2)">Tiada pillar.</p>';
+    return;
+  }
+
+  const {year,month} = parseDateKey(state.calDates[platform]||getDateKey(new Date()));
+  const monthPosts = state.posts.filter(p => {
+    if (p.platform !== platform) return false;
+    const pd = new Date(p.date);
+    return pd.getFullYear()===year && pd.getMonth()===month;
+  });
+  const total = monthPosts.length || 1;
+  const targets = getTargets(platform);
+
+  // Pillar tags
+  let html = '<div class="pillar-bar" style="margin-bottom:8px">';
+  pillars.forEach(p => {
+    const color = getPillarColor(p);
+    const count = monthPosts.filter(x=>x.pillar===p).length;
+    html += `<span class="pillar-tag" style="background:${color}">${p} (${count}) <button class="del-pillar" onclick="event.stopPropagation();removePillar('${platform}','${p}')">×</button></span>`;
+  });
+  html += '</div>';
+
+  // Target vs actual bars
+  html += '<div class="pillar-dist-row">';
+  pillars.forEach(p => {
+    const color = getPillarColor(p);
+    const count = monthPosts.filter(x=>x.pillar===p).length;
+    const actualPct = Math.round((count/total)*100);
+    const target = targets[p]||0;
+    const gap = actualPct - target;
+    const gapStr = gap>0?'+'+gap+'%':gap<0?gap+'%':'0%';
+    const gapColor = gap>0?'#4ade80':gap<0?'#f87171':'var(--text2)';
+
+    html += `<div class="pillar-dist-item">
+      <div class="pillar-dist-header">
+        <span class="name">${p}</span>
+        <span class="pct" style="color:${gapColor}">${actualPct}% (sasaran ${target}%) <span style="font-size:11px">${gapStr}</span></span>
+      </div>
+      <div class="pillar-bar-actual">
+        <div class="fill" style="width:${Math.min(actualPct,100)}%;background:${color}">${count}</div>
+      </div>
+      <div class="pillar-bar-target">
+        <div class="fill" style="width:${Math.min(target,100)}%;background:${color}"></div>
+      </div>
+      <div class="pillar-target-label">▸ sasaran ${target}%</div>
+    </div>`;
+  });
+  html += '</div>';
+  area.innerHTML = html;
+
+  // Pillar filter
+  let filterHtml = `<button class="pill-filter active" data-pillar="all" onclick="setPillarFilter('${platform}','all',this)">Semua</button>`;
+  pillars.forEach(p => {
+    filterHtml += `<button class="pill-filter" data-pillar="${p}" onclick="setPillarFilter('${platform}','${p}',this)">${p}</button>`;
+  });
+  let fb = area.parentElement.querySelector('.filter-bar');
+  if (fb) fb.outerHTML = `<div class="filter-bar">${filterHtml}</div>`;
+}
+
+function setPillarFilter(platform, pillar, btn) {
+  btn.parentElement.querySelectorAll('.pill-filter').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCalendar(platform);
+}
+
+// ===== POST LIST =====
+function renderPostList(platform) {
+  const container = document.getElementById('postList-'+platform);
+  const countEl = document.getElementById('postCount-'+platform);
+  const {year,month} = parseDateKey(state.calDates[platform]||getDateKey(new Date()));
+
+  let posts = state.posts.filter(p => {
+    if (p.platform !== platform) return false;
+    const pd = new Date(p.date);
+    return pd.getFullYear()===year && pd.getMonth()===month;
+  });
+  posts.sort((a,b)=>a.date.localeCompare(b.date)||(a.time||'').localeCompare(b.time||''));
+  countEl.textContent = posts.length;
+
+  if (posts.length === 0) {
+    container.innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>Belum ada post bulan ni.</p></div>';
+    return;
+  }
+
+  let html = '';
+  posts.forEach(p => {
+    const sc = 'status-'+(p.status||'draft');
+    const sl = {draft:'Draft',scheduled:'Scheduled',posted:'Posted',failed:'Failed'}[p.status||'draft'];
+    const ap = p.approved
+      ? '<span class="approval-badge approval-approved">✅ Approved</span>'
+      : '<span class="approval-badge approval-pending">⏳ Pending</span>';
+    html += `<div class="post-item" onclick="openModal('${platform}','${p.id}')">
+      <div class="p-date">${p.date} ${p.time||''}</div>
+      <div class="p-title">${p.title}</div>
+      <span class="p-pillar" style="background:${getPillarColor(p.pillar)}">${p.pillar||'-'}</span>
+      ${ap}
+      <span class="p-status ${sc}">${sl}</span>
+    </div>`;
+  });
+  container.innerHTML = html;
+}
+
+// ===== DASHBOARD =====
+function renderDashboard() {
+  const now = new Date(), year = now.getFullYear(), month = now.getMonth();
+  document.getElementById('dashPeriod').textContent = now.toLocaleString('ms-MY',{month:'long',year:'numeric'});
+
+  const mp = state.posts.filter(p => {
+    const pd = new Date(p.date);
+    return pd.getFullYear()===year && pd.getMonth()===month;
+  });
+
+  const total = mp.length, posted = mp.filter(p=>p.status==='posted').length;
+  const scheduled = mp.filter(p=>p.status==='scheduled').length;
+  const draft = mp.filter(p=>p.status==='draft').length;
+  const approved = mp.filter(p=>p.approved).length;
+
+  document.getElementById('hdrMonthPosts').textContent = total;
+  document.getElementById('hdrPosted').textContent = posted;
+
+  let statsHtml = `
+    <div class="card card-stat"><div class="num">${total}</div><div class="label">Jumlah Post</div></div>
+    <div class="card card-stat"><div class="num">${posted}</div><div class="label">Siap Posted</div><div class="sub">${total?Math.round(posted/total*100):0}%</div></div>
+    <div class="card card-stat"><div class="num">${scheduled}</div><div class="label">Scheduled</div></div>
+    <div class="card card-stat"><div class="num">${draft}</div><div class="label">Draft</div></div>
+    <div class="card card-stat"><div class="num">${approved}</div><div class="label">Approved</div></div>`;
+
+  PLATFORMS.forEach(p => {
+    const c = mp.filter(x=>x.platform===p).length;
+    statsHtml += `<div class="card card-stat"><div class="num" style="color:${PLATFORM_COLORS[p]}">${c}</div><div class="label"><span class="platform-dot" style="background:${PLATFORM_COLORS[p]}"></span>${PLATFORM_NAMES[p]}</div></div>`;
+  });
+  document.getElementById('dashStats').innerHTML = statsHtml;
+  drawChart('chartPlatform', mp, 'platform');
+  drawChart('chartPillar', mp, 'pillar');
+  renderDashTimeline(mp);
+}
+
+function drawChart(canvasId, posts, groupBy) {
+  const canvas = document.getElementById(canvasId);
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio||1;
+  const w = canvas.parentElement.getBoundingClientRect().width - 40;
+  const h = 200;
+  canvas.width = w*dpr; canvas.height = h*dpr;
+  canvas.style.width = w+'px'; canvas.style.height = h+'px';
+  ctx.scale(dpr,dpr);
+  ctx.clearRect(0,0,w,h);
+
+  const counts = {};
+  posts.forEach(p => {
+    const key = groupBy==='platform' ? p.platform : p.pillar;
+    if (key) counts[key] = (counts[key]||0)+1;
+  });
+  const entries = Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+  const total = entries.reduce((s,e)=>s+e[1],0)||1;
+
+  if (entries.length === 0) {
+    ctx.fillStyle = 'var(--text2)'; ctx.font = '13px sans-serif';
+    ctx.textAlign = 'center'; ctx.fillText('Tiada data', w/2, h/2);
+    return;
+  }
+
+  if (groupBy === 'platform') {
+    // Donut chart
+    const cx=w/2, cy=h/2, r=Math.min(cx,cy)-10;
+    let startAngle = -Math.PI/2;
+    entries.forEach(([key,val])=>{
+      const slice = (val/total)*2*Math.PI;
+      ctx.beginPath(); ctx.moveTo(cx,cy);
+      ctx.arc(cx,cy,r,startAngle,startAngle+slice);
+      ctx.closePath();
+      ctx.fillStyle = PLATFORM_COLORS[key]||'#888';
+      ctx.fill();
+      const mid = startAngle+slice/2;
+      ctx.fillStyle = '#fff'; ctx.font = 'bold 12px sans-serif';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(val, cx+Math.cos(mid)*(r*0.65), cy+Math.sin(mid)*(r*0.65));
+      startAngle += slice;
+    });
+    ctx.beginPath(); ctx.arc(cx,cy,r*0.4,0,Math.PI*2);
+    ctx.fillStyle = 'var(--surface)'; ctx.fill();
+  } else {
+    // Bar chart
+    const maxVal = Math.max(...entries.map(e=>e[1]),1);
+    const chartH = h-60;
+    const barW = (w-20)/Math.max(entries.length,1);
+    entries.forEach(([key,val],i)=>{
+      const barH = (val/maxVal)*chartH;
+      const x = 10+i*barW+barW*0.15;
+      ctx.fillStyle = getPillarColor(key);
+      ctx.beginPath();
+      ctx.roundRect(x, chartH-barH+10, barW*0.7, barH, [4,4,0,0]);
+      ctx.fill();
+      ctx.fillStyle = 'var(--text)'; ctx.font = 'bold 11px sans-serif';
+      ctx.textAlign = 'center'; ctx.fillText(val, x+barW*0.35, chartH-barH+6);
+      ctx.fillStyle = 'var(--text2)'; ctx.font = '10px sans-serif';
+      const label = key.length>8?key.slice(0,8)+'...':key;
+      ctx.fillText(label, x+barW*0.35, chartH+24);
+    });
+  }
+}
+
+function renderDashTimeline(posts) {
+  const container = document.getElementById('dashTimeline');
+  document.getElementById('dashTotalPosts').textContent = posts.length;
+  const sorted = [...posts].sort((a,b)=>a.date.localeCompare(b.date)||(a.time||'').localeCompare(b.time||''));
+  if (!sorted.length) {
+    container.innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>Tiada post — tambah di mana-mana platform!</p></div>';
+    return;
+  }
+  let html = '';
+  sorted.forEach(p => {
+    const sc = 'status-'+(p.status||'draft');
+    const sl = {draft:'Draft',scheduled:'Scheduled',posted:'Posted',failed:'Failed'}[p.status||'draft'];
+    html += `<div class="post-item" onclick="openModal('${p.platform}','${p.id}')">
+      <div class="p-date">${p.date} ${p.time||''}</div>
+      <div class="p-title"><span class="platform-dot" style="background:${PLATFORM_COLORS[p.platform]||'#999'}"></span>${PLATFORM_NAMES[p.platform]||p.platform} — ${p.title}</div>
+      <span class="p-pillar" style="background:${getPillarColor(p.pillar)}">${p.pillar||'-'}</span>
+      <span class="p-status ${sc}">${sl}</span>
+    </div>`;
+  });
+  container.innerHTML = html;
+}
+
+// ===== NAV & THEME =====
+function initNav() {
+  document.querySelectorAll('.nav-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+      btn.classList.add('active');
+      state.currentTab = btn.dataset.tab;
+      document.getElementById('tab-'+state.currentTab).classList.add('active');
+      renderAll();
+    });
+  });
+}
+
+function initTheme() {
+  const btn = document.getElementById('themeToggle');
+  const saved = localStorage.getItem('jomContentTheme')||'light';
+  document.documentElement.setAttribute('data-theme',saved);
+  btn.textContent = saved==='dark'?'☀️':'🌙';
+  btn.addEventListener('click', ()=>{
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur==='dark'?'light':'dark';
+    document.documentElement.setAttribute('data-theme',next);
+    localStorage.setItem('jomContentTheme',next);
+    btn.textContent = next==='dark'?'☀️':'🌙';
+    renderDashboard();
+  });
+}
+
+// ===== RENDER ALL =====
+function renderAll() {
+  if (state.currentTab === 'dashboard') {
+    renderDashboard();
+  } else if (PLATFORMS.includes(state.currentTab)) {
+    renderCalendar(state.currentTab);
+    renderPillars(state.currentTab);
+    renderPostList(state.currentTab);
+  }
+}
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', () => {
+  loadState();
+  initTheme();
+  initNav();
+
+  // Render platform tabs dynamically
+  PLATFORMS.forEach(p => renderPlatformTab(p));
+
+  document.getElementById('postModal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('postModal')) closeModal();
+  });
+
+  renderAll();
+
+  let rt;
+  window.addEventListener('resize', ()=>{clearTimeout(rt); rt=setTimeout(()=>renderDashboard(), 200);});
+});
+</script>
+</body>
+</html>
