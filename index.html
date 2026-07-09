@@ -194,7 +194,12 @@ canvas{display:block;max-width:100%}
 @media(max-width:480px){
   .header-stats{display:none}
   main{padding:12px}
-  .card-grid{grid-template-columns:1fr}
+  .card-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .card-stat{padding:12px 10px}
+  .card-stat .num{font-size:24px}
+  .card-stat .label{font-size:11px}
+  .card-stat .sub{font-size:10px}
+  .section-hdr h2{font-size:15px}
   .hdr-btn span{display:none}
   #toastWrap{bottom:12px;right:12px}
 }
