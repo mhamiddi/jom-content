@@ -394,6 +394,38 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
 /* ===== STATE ===== */
 let state = {posts:[],pillars:{},calDates:{},pillarTargets:{},currentTab:'dashboard',pillarFilters:{}};
 
+/* ===== API ===== */
+const API_BASE = '/api/posts';
+async function apiFetch(method, body, id) {
+  const url = id ? API_BASE+'/'+id : API_BASE;
+  try {
+    const res = await fetch(url, {
+      method,
+      headers: {'Content-Type':'application/json'},
+      body: body ? JSON.stringify(body) : undefined
+    });
+    return await res.json();
+  } catch(e) {
+    return {success:false,error:e.message};
+  }
+}
+async function apiSyncPost(post, method) {
+  if (method==='DELETE') return apiFetch('DELETE',null,post.id);
+  if (post.id && (method==='PUT'||!method)) return apiFetch('PUT',post,post.id);
+  return apiFetch('POST',post);
+}
+async function apiFetchAll() {
+  const res = await apiFetch('GET');
+  if (res.success && Array.isArray(res.data)) {
+    // Merge API posts with local — API is authoritative for existing IDs
+    const apiIds = new Set(res.data.map(p=>p.id));
+    state.posts = state.posts.filter(p => !apiIds.has(p.id) || p._localOnly);
+    state.posts = [...res.data, ...state.posts];
+    saveState();
+    renderAll();
+  }
+}
+
 /* ===== DATE HELPERS ===== */
 function localDateStr(d) {
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
@@ -646,12 +678,16 @@ function savePost() {
   };
   if (id) {
     const idx = state.posts.findIndex(x => x.id === id);
-    if (idx >= 0) state.posts[idx] = {...state.posts[idx], ...data};
+    if (idx >= 0) {
+      state.posts[idx] = {...state.posts[idx], ...data};
+      apiSyncPost(state.posts[idx], 'PUT');
+    }
     showToast('Post disimpan!','success');
   } else {
     data.id = Date.now()+'_'+Math.random().toString(36).slice(2,7);
     data.platform = platform;
     state.posts.push(data);
+    apiSyncPost(data, 'POST');
     showToast('Post ditambah!','success');
   }
   saveState(); closeModal(); renderAll();
@@ -660,8 +696,10 @@ function savePost() {
 function deletePost() {
   const id = document.getElementById('mPostId').value;
   if (!id || !confirm('Padam post ini?')) return;
+  const post = state.posts.find(x => x.id === id);
   state.posts = state.posts.filter(x => x.id !== id);
   saveState(); closeModal(); renderAll();
+  apiSyncPost(post||{id}, 'DELETE');
   showToast('Post dipadam.','info');
 }
 
@@ -1060,6 +1098,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   initKeyboard();
   renderAll();
+  // Sync from API (silent fallback if KV not bound yet)
+  setTimeout(apiFetchAll, 500);
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
