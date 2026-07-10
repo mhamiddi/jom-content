@@ -358,11 +358,21 @@ canvas{display:block;max-width:100%}
     <label for="mApproved" style="margin:0;font-size:13px;cursor:pointer">Approved</label>
   </div>
   <div class="form-group">
-    <label>Gambar / Media</label>
+    <label>Media</label>
     <div class="media-upload-row">
-      <button class="btn btn-sm btn-outline" onclick="document.getElementById('mFileInput').click()">📁 Upload</button>
-      <input type="text" id="mImgUrl" placeholder="Atau tampal URL gambar..." style="flex:1;min-width:0">
-      <button class="btn btn-sm btn-primary" onclick="addImageUrl()">Tambah</button>
+      <select id="mMediaType" onchange="toggleMediaInput()" style="width:auto;min-width:100px">
+        <option value="image">🖼️ Image</option>
+        <option value="video">🎬 Video</option>
+      </select>
+      <div id="mImageUploadArea" style="display:flex;gap:8px;flex:1">
+        <button class="btn btn-sm btn-outline" onclick="document.getElementById('mFileInput').click()">📁 Upload</button>
+        <input type="text" id="mImgUrl" placeholder="Atau tampal URL gambar..." style="flex:1;min-width:0">
+        <button class="btn btn-sm btn-primary" onclick="addImageUrl()">Tambah</button>
+      </div>
+      <div id="mVideoUrlArea" style="display:none;flex:1">
+        <input type="text" id="mVideoUrl" placeholder="Tampal link video (Google Drive, YouTube, etc)..." style="flex:1;min-width:0">
+        <button class="btn btn-sm btn-primary" onclick="addVideoUrl()">Tambah</button>
+      </div>
     </div>
     <input type="file" id="mFileInput" accept="image/*" multiple style="display:none" onchange="handleImageUpload(event)">
     <div class="media-preview" id="mMediaPreview"></div>
@@ -459,6 +469,19 @@ function esc(s) {
   return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 function getPillarColor(name) {
+  const colors = PILLAR_COLORS;
+  let hash = 0;
+  for (let i=0;i<(name||'').length;i++) hash = name.charCodeAt(i)+((hash<<5)-hash);
+  return colors[Math.abs(hash)%colors.length];
+}
+function mediaIndicator(images) {
+  if (!images || !images.length) return '';
+  const hasVideo = images.some(i => i.type === 'video');
+  const hasImage = images.some(i => i.type === 'image');
+  if (hasVideo && hasImage) return '<span class="p-img-indicator" title="Ada video & gambar">📷🎬</span>';
+  if (hasVideo) return '<span class="p-img-indicator" title="Ada video">🎬</span>';
+  return '<span class="p-img-indicator" title="Ada gambar">📷</span>';
+}
   if (!name) return PILLAR_COLORS[0];
   let h=0; for(let i=0;i<name.length;i++) h=name.charCodeAt(i)+((h<<5)-h);
   return PILLAR_COLORS[Math.abs(h)%PILLAR_COLORS.length];
@@ -736,6 +759,7 @@ function duplicatePost() {
 
 /* ===== IMAGE / MEDIA ===== */
 let _modalImages = [];
+let _origRenderPreview = null;
 
 function renderMediaPreview(images) {
   const container = document.getElementById('mMediaPreview');
@@ -753,7 +777,7 @@ function handleImageUpload(event) {
   if (!files.length) return;
   const promises = Array.from(files).map(f => new Promise(resolve => {
     const r = new FileReader();
-    r.onload = e => resolve({src: e.target.result, name: f.name, type: 'upload'});
+    r.onload = e => resolve({src: e.target.result, name: f.name, type: 'image'});
     r.readAsDataURL(f);
   }));
   Promise.all(promises).then(results => {
@@ -767,7 +791,7 @@ function addImageUrl() {
   const inp = document.getElementById('mImgUrl');
   const url = inp.value.trim();
   if (!url) return;
-  _modalImages = [...(_modalImages||[]), {src: url, type: 'url'}];
+  _modalImages = [...(_modalImages||[]), {src: url, type: 'image'}];
   renderMediaPreview(_modalImages);
   inp.value = '';
 }
@@ -776,6 +800,40 @@ function removeMedia(idx) {
   _modalImages = _modalImages.filter((_,i) => i !== idx);
   renderMediaPreview(_modalImages);
 }
+
+function toggleMediaInput() {
+  const type = document.getElementById('mMediaType').value;
+  document.getElementById('mImageUploadArea').style.display = type === 'image' ? 'flex' : 'none';
+  document.getElementById('mVideoUrlArea').style.display = type === 'video' ? 'flex' : 'none';
+}
+
+function addVideoUrl() {
+  const inp = document.getElementById('mVideoUrl');
+  const url = inp.value.trim();
+  if (!url) return;
+  _modalImages = [...(_modalImages||[]), {src: url, type: 'video'}];
+  renderMediaPreview(_modalImages);
+  inp.value = '';
+}
+
+/* Update renderMediaPreview to support videos */
+const _origRenderPreview = renderMediaPreview;
+renderMediaPreview = function(images) {
+  const container = document.getElementById('mMediaPreview');
+  if (!images || !images.length) { container.innerHTML = ''; return; }
+  container.innerHTML = images.map((img,i) => {
+    if (img.type === 'video') {
+      return `<div class="media-thumb" onclick="window.open('${esc(img.src)}','_blank')" title="Klik untuk buka video" style="background:#1e1e2e;display:flex;align-items:center;justify-content:center">
+        <span style="font-size:28px">🎬</span>
+        <button class="del-media" onclick="event.stopPropagation();removeMedia(${i})">&times;</button>
+      </div>`;
+    }
+    return `<div class="media-thumb" onclick="window.open('${esc(img.src)}','_blank')" title="Klik untuk besarkan">
+      <img src="${esc(img.src)}" alt="media" onerror="this.parentElement.style.display='none'">
+      <button class="del-media" onclick="event.stopPropagation();removeMedia(${i})">&times;</button>
+    </div>`;
+  }).join('');
+};
 
 /* ===== CALENDAR ===== */
 function getMonthDays(year, month) {
@@ -939,7 +997,7 @@ function renderPostList(platform) {
       : '<span class="approval-badge approval-pending">Pending</span>';
     return `<div class="post-item" onclick="openModal('${platform}','${p.id}')">
       <div class="p-date">${esc(p.date)}${p.time?' '+esc(p.time):''}</div>
-      <div class="p-title">${p.images&&p.images.length?'<span class="p-img-indicator" title="Ada gambar">📷</span>':''}${esc(p.title||'Untitled')}</div>
+      <div class="p-title">${mediaIndicator(p.images)}${esc(p.title||'Untitled')}</div>
       <span class="p-pillar" style="background:${getPillarColor(p.pillar)}">${esc(p.pillar||'-')}</span>
       ${ap}
       <span class="p-status status-${p.status||'draft'}">${STATUS_LABEL[p.status||'draft']}</span>
@@ -1078,7 +1136,7 @@ function renderDashTimeline() {
   container.innerHTML=sorted.map(p=>`
     <div class="post-item" onclick="openModal('${p.platform}','${p.id}')">
       <div class="p-date">${esc(p.date)}${p.time?' '+esc(p.time):''}</div>
-      <div class="p-title"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${PLATFORM_COLORS[p.platform]||'#999'};margin-right:5px;vertical-align:middle"></span>${p.images&&p.images.length?'📷 ':''}${PLATFORM_NAMES[p.platform]||esc(p.platform)} — ${esc(p.title||'Untitled')}</div>
+      <div class="p-title"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${PLATFORM_COLORS[p.platform]||'#999'};margin-right:5px;vertical-align:middle"></span>${mediaIndicator(p.images)}${PLATFORM_NAMES[p.platform]||esc(p.platform)} — ${esc(p.title||'Untitled')}</div>
       <span class="p-pillar" style="background:${getPillarColor(p.pillar)}">${esc(p.pillar||'-')}</span>
       <span class="p-status status-${p.status||'draft'}">${STATUS_LABEL[p.status||'draft']}</span>
     </div>`).join('');
