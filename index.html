@@ -155,6 +155,12 @@ canvas{display:block;max-width:100%}
 .form-group textarea{min-height:80px;resize:vertical}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .modal-actions{display:flex;align-items:center;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
+.media-upload-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.media-upload-row input[type="text"]{padding:7px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;background:var(--surface);color:var(--text)}
+.media-preview{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.media-thumb{position:relative;width:80px;height:80px;border-radius:6px;overflow:hidden;border:1px solid var(--border);cursor:pointer}
+.media-thumb img{width:100%;height:100%;object-fit:cover}
+.media-thumb .del-media{position:absolute;top:-4px;right:-4px;width:18px;height:18px;border-radius:50%;background:#ef4444;color:#fff;font-size:12px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
 
 /* BUTTONS */
 .btn{padding:8px 16px;border-radius:var(--radius-sm);font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all .2s;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
@@ -188,7 +194,6 @@ canvas{display:block;max-width:100%}
   .cal-day{min-height:60px;padding:4px}
   .post-chip{font-size:9px;padding:1px 3px}
   .modal{padding:16px}
-  .form-row{grid-template-columns:1fr}
   .card-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:480px){
@@ -351,6 +356,16 @@ canvas{display:block;max-width:100%}
   <div class="form-group" style="display:flex;align-items:center;gap:8px">
     <input type="checkbox" id="mApproved" style="width:auto;margin:0">
     <label for="mApproved" style="margin:0;font-size:13px;cursor:pointer">Approved</label>
+  </div>
+  <div class="form-group">
+    <label>Gambar / Media</label>
+    <div class="media-upload-row">
+      <button class="btn btn-sm btn-outline" onclick="document.getElementById('mFileInput').click()">📁 Upload</button>
+      <input type="text" id="mImgUrl" placeholder="Atau tampal URL gambar..." style="flex:1;min-width:0">
+      <button class="btn btn-sm btn-primary" onclick="addImageUrl()">Tambah</button>
+    </div>
+    <input type="file" id="mFileInput" accept="image/*" multiple style="display:none" onchange="handleImageUpload(event)">
+    <div class="media-preview" id="mMediaPreview"></div>
   </div>
   <div class="modal-actions">
     <button class="btn btn-danger btn-sm" id="mDeleteBtn" onclick="deletePost()" style="display:none">Padam</button>
@@ -641,6 +656,8 @@ function openModal(platform, postId, prefillDate) {
     document.getElementById('mApproved').checked = !!post.approved;
     document.getElementById('mDeleteBtn').style.display = 'block';
     document.getElementById('mDupeBtn').style.display = 'block';
+    _modalImages = post.images ? JSON.parse(JSON.stringify(post.images)) : [];
+    renderMediaPreview(_modalImages);
   } else {
     document.getElementById('modalTitle').textContent = 'Tambah Post';
     document.getElementById('mPostId').value = '';
@@ -654,6 +671,8 @@ function openModal(platform, postId, prefillDate) {
     document.getElementById('mApproved').checked = false;
     document.getElementById('mDeleteBtn').style.display = 'none';
     document.getElementById('mDupeBtn').style.display = 'none';
+    _modalImages = [];
+    renderMediaPreview([]);
   }
   setTimeout(() => document.getElementById('mTitle').focus(), 50);
 }
@@ -675,6 +694,7 @@ function savePost() {
     status: document.getElementById('mStatus').value,
     notes: document.getElementById('mNotes').value.trim(),
     approved: document.getElementById('mApproved').checked,
+    images: window._modalImages || [],
   };
   if (id) {
     const idx = state.posts.findIndex(x => x.id === id);
@@ -712,6 +732,49 @@ function duplicatePost() {
   state.posts.push(dupe);
   saveState(); closeModal(); renderAll();
   showToast('Post diduplikat!','success');
+}
+
+/* ===== IMAGE / MEDIA ===== */
+let _modalImages = [];
+
+function renderMediaPreview(images) {
+  const container = document.getElementById('mMediaPreview');
+  if (!images || !images.length) { container.innerHTML = ''; return; }
+  container.innerHTML = images.map((img,i) =>
+    `<div class="media-thumb" onclick="window.open('${esc(img.src)}','_blank')" title="Klik untuk besarkan">
+      <img src="${esc(img.src)}" alt="media" onerror="this.parentElement.style.display='none'">
+      <button class="del-media" onclick="event.stopPropagation();removeMedia(${i})">&times;</button>
+    </div>`
+  ).join('');
+}
+
+function handleImageUpload(event) {
+  const files = event.target.files;
+  if (!files.length) return;
+  const promises = Array.from(files).map(f => new Promise(resolve => {
+    const r = new FileReader();
+    r.onload = e => resolve({src: e.target.result, name: f.name, type: 'upload'});
+    r.readAsDataURL(f);
+  }));
+  Promise.all(promises).then(results => {
+    _modalImages = [...(_modalImages||[]), ...results];
+    renderMediaPreview(_modalImages);
+    event.target.value = '';
+  });
+}
+
+function addImageUrl() {
+  const inp = document.getElementById('mImgUrl');
+  const url = inp.value.trim();
+  if (!url) return;
+  _modalImages = [...(_modalImages||[]), {src: url, type: 'url'}];
+  renderMediaPreview(_modalImages);
+  inp.value = '';
+}
+
+function removeMedia(idx) {
+  _modalImages = _modalImages.filter((_,i) => i !== idx);
+  renderMediaPreview(_modalImages);
 }
 
 /* ===== CALENDAR ===== */
@@ -876,7 +939,7 @@ function renderPostList(platform) {
       : '<span class="approval-badge approval-pending">Pending</span>';
     return `<div class="post-item" onclick="openModal('${platform}','${p.id}')">
       <div class="p-date">${esc(p.date)}${p.time?' '+esc(p.time):''}</div>
-      <div class="p-title">${esc(p.title||'Untitled')}</div>
+      <div class="p-title">${p.images&&p.images.length?'<span class="p-img-indicator" title="Ada gambar">📷</span>':''}${esc(p.title||'Untitled')}</div>
       <span class="p-pillar" style="background:${getPillarColor(p.pillar)}">${esc(p.pillar||'-')}</span>
       ${ap}
       <span class="p-status status-${p.status||'draft'}">${STATUS_LABEL[p.status||'draft']}</span>
@@ -1015,7 +1078,7 @@ function renderDashTimeline() {
   container.innerHTML=sorted.map(p=>`
     <div class="post-item" onclick="openModal('${p.platform}','${p.id}')">
       <div class="p-date">${esc(p.date)}${p.time?' '+esc(p.time):''}</div>
-      <div class="p-title"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${PLATFORM_COLORS[p.platform]||'#999'};margin-right:5px;vertical-align:middle"></span>${PLATFORM_NAMES[p.platform]||esc(p.platform)} — ${esc(p.title||'Untitled')}</div>
+      <div class="p-title"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${PLATFORM_COLORS[p.platform]||'#999'};margin-right:5px;vertical-align:middle"></span>${p.images&&p.images.length?'📷 ':''}${PLATFORM_NAMES[p.platform]||esc(p.platform)} — ${esc(p.title||'Untitled')}</div>
       <span class="p-pillar" style="background:${getPillarColor(p.pillar)}">${esc(p.pillar||'-')}</span>
       <span class="p-status status-${p.status||'draft'}">${STATUS_LABEL[p.status||'draft']}</span>
     </div>`).join('');

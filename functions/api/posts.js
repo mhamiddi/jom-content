@@ -89,6 +89,7 @@ export async function onRequest(context) {
         status: body.status || 'draft',
         approved: body.approved || false,
         notes: body.notes || '',
+        images: body.images || [],
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
       };
@@ -122,7 +123,7 @@ export async function onRequest(context) {
         });
       }
 
-      const updatable = ['title', 'caption', 'platform', 'pillar', 'date', 'time', 'status', 'approved', 'notes'];
+      const updatable = ['title', 'caption', 'platform', 'pillar', 'date', 'time', 'status', 'approved', 'notes', 'images'];
       for (const key of updatable) {
         if (body[key] !== undefined) {
           posts[index][key] = body[key];
