@@ -625,6 +625,13 @@ function parseDateKey(k) { const p=k.split('-'); return {year:+p[0],month:+p[1]-
 function esc(s) {
   return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+function formatDate(d) {
+  if (!d) return '';
+  var p = d.split('-');
+  if (p.length!==3) return d;
+  var m = ['Jan','Feb','Mac','Apr','Mei','Jun','Jul','Ogos','Sep','Okt','Nov','Dis'];
+  return parseInt(p[2],10)+' '+(m[parseInt(p[1],10)-1]||p[1]);
+}
 function getPillarColor(name) {
   if (state.pillarColors && state.pillarColors[name]) return state.pillarColors[name];
   const colors = PILLAR_COLORS;
