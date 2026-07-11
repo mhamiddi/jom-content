@@ -411,7 +411,12 @@ canvas{display:block;max-width:100%}
     <!-- DASHBOARD -->
     <div class="tab-content active" id="tab-dashboard">
       <div class="section">
-        <div class="section-hdr"><h2>Ringkasan Bulan Ini</h2><span class="badge" id="dashPeriod"></span></div>
+        <div class="section-hdr"><h2>Ringkasan Bulan Ini</h2>
+          <div style="display:flex;align-items:center;gap:6px">
+            <button class="btn btn-sm" onclick="dashPrevMonth()" style="padding:2px 8px;font-size:16px;line-height:1">‹</button>
+            <span class="badge" id="dashPeriod" style="min-width:100px;text-align:center"></span>
+            <button class="btn btn-sm" onclick="dashNextMonth()" style="padding:2px 8px;font-size:16px;line-height:1">›</button>
+          </div></div>
         <div class="card-grid" id="dashStats"></div>
       </div>
       <div class="section">
@@ -458,8 +463,8 @@ canvas{display:block;max-width:100%}
     <textarea id="mCaption" placeholder="Tulis caption penuh..."></textarea>
   </div>
   <div class="form-row">
-    <div class="form-group"><label>Tarikh</label><input type="date" id="mDate"><div class="field-error-message" id="mDateError">Sila pilih tarikh.</div></div>
-    <div class="form-group"><label>Masa</label><input type="time" id="mTime"></div>
+    <div class="form-group"><label>Tarikh</label><input type="date" id="mDate" style="max-width:170px"><div class="field-error-message" id="mDateError">Sila pilih tarikh.</div></div>
+    <div class="form-group"><label>Masa</label><input type="time" id="mTime" style="max-width:150px"></div>
   </div>
   <div class="form-row">
     <div class="form-group"><label>Content Pillar</label><select id="mPillar"></select></div>
@@ -554,7 +559,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
 }
 
 /* ===== STATE ===== */
-let state = {posts:[],pillars:{},pillarColors:{},calDates:{},pillarTargets:{},currentTab:'dashboard',pillarFilters:{}};
+let state = {posts:[],pillars:{},pillarColors:{},calDates:{},pillarTargets:{},currentTab:'dashboard',pillarFilters:{},dashMonth:null};
 
 /* ===== API ===== */
 const API_BASE = '/api/posts';
@@ -670,6 +675,7 @@ function loadState() {
       state.pillarColors = s.pillarColors || {};
       state.calDates = s.calDates || {};
       state.pillarTargets = s.pillarTargets || {};
+      state.dashMonth = s.dashMonth || null;
     }
   } catch(e) { console.warn('loadState:', e); }
   PLATFORMS.forEach(p => {
@@ -678,10 +684,14 @@ function loadState() {
     if (!state.pillarTargets[p]) state.pillarTargets[p] = {...DEFAULT_TARGETS};
     if (!state.pillarFilters[p]) state.pillarFilters[p] = 'all';
   });
+  if (!state.dashMonth) {
+    const n = new Date();
+    state.dashMonth = {year: n.getFullYear(), month: n.getMonth()};
+  }
 }
 
 function saveState() {
-  const data = JSON.stringify({posts:state.posts,pillars:state.pillars,pillarColors:state.pillarColors,calDates:state.calDates,pillarTargets:state.pillarTargets});
+  const data = JSON.stringify({posts:state.posts,pillars:state.pillars,pillarColors:state.pillarColors,calDates:state.calDates,pillarTargets:state.pillarTargets,dashMonth:state.dashMonth});
   try { localStorage.setItem('jomContent', data); } catch(e) { showToast('Storan penuh!','error'); return; }
   try { localStorage.setItem('jomContent_bak'+(Math.floor(Date.now()/60000)%3+1), data); } catch(e) {}
 }
@@ -782,11 +792,13 @@ function handleImport(e) {
       state.pillarColors = d.pillarColors||{};
       state.calDates = d.calDates||{};
       state.pillarTargets = d.pillarTargets||{};
+      state.dashMonth = d.dashMonth || null;
       PLATFORMS.forEach(p=>{
         if(!state.pillars[p]) state.pillars[p]=[...DEFAULT_PILLARS];
         if(!state.calDates[p]) state.calDates[p]=getDateKey(new Date());
         if(!state.pillarTargets[p]) state.pillarTargets[p]={...DEFAULT_TARGETS};
       });
+      if (!state.dashMonth) { const n = new Date(); state.dashMonth = {year:n.getFullYear(),month:n.getMonth()}; }
       saveState(); renderAll();
       showToast(d.posts.length+' posts diimport!','success');
     } catch(err) { showToast('Format fail tidak sah.','error'); }
@@ -1294,9 +1306,10 @@ function renderPostList(platform) {
 
 /* ===== DASHBOARD ===== */
 function renderDashboard() {
-  const now = new Date(), year=now.getFullYear(), month=now.getMonth();
+  const {year,month} = state.dashMonth;
   const periodEl = document.getElementById('dashPeriod');
-  if (periodEl) periodEl.textContent = now.toLocaleString('ms-MY',{month:'long',year:'numeric'});
+  const d = new Date(year, month, 1);
+  if (periodEl) periodEl.textContent = d.toLocaleString('ms-MY',{month:'long',year:'numeric'});
   const mp = state.posts.filter(p => {
     const pd = parseLocalDate(p.date);
     return pd.getFullYear()===year && pd.getMonth()===month;
@@ -1418,7 +1431,7 @@ function drawChart(canvasId, posts, groupBy) {
 function renderDashTimeline() {
   const container=document.getElementById('dashTimeline');
   if (!container) return;
-  const now=new Date(), y=now.getFullYear(), m=now.getMonth();
+  const {year:y,month:m} = state.dashMonth;
   const q=(document.getElementById('dashSearch')||{value:''}).value.trim().toLowerCase();
   let posts=state.posts.filter(p=>{const pd=parseLocalDate(p.date);return pd.getFullYear()===y&&pd.getMonth()===m;});
   if (q) posts=posts.filter(p=>(p.title||'').toLowerCase().includes(q)||(PLATFORM_NAMES[p.platform]||'').toLowerCase().includes(q)||(p.pillar||'').toLowerCase().includes(q));
@@ -1443,6 +1456,18 @@ function renderDashTimeline() {
 function toggleSidebar() {
   document.getElementById('sidebar').classList.toggle('open');
   document.getElementById('sidebarOverlay').classList.toggle('open');
+}
+
+/* ===== DASHBOARD MONTH NAV ===== */
+function dashPrevMonth() {
+  state.dashMonth.month--;
+  if (state.dashMonth.month < 0) { state.dashMonth.month = 11; state.dashMonth.year--; }
+  renderDashboard();
+}
+function dashNextMonth() {
+  state.dashMonth.month++;
+  if (state.dashMonth.month > 11) { state.dashMonth.month = 0; state.dashMonth.year++; }
+  renderDashboard();
 }
 
 /* ===== NAV & THEME ===== */
