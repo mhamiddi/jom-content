@@ -7,9 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#f8fafc;--surface:#fff;--surface2:#f1f5f9;--surface3:#e8ecf4;--text:#1a1d23;--text2:#5f6779;--text3:#9ca3af;--border:#e2e6ef;--border-light:#edeff5;--primary:#1E3A8A;--primary-light:#3b5fbf;--primary-lighter:#6b8fd4;--primary-bg:#eef1ff;--primary-soft:#eef1ff;--primary-glow:rgba(30,58,138,0.15);--success:#16a34a;--success-bg:#dcfce7;--danger:#dc2626;--danger-bg:#fee2e2;--warning:#d97706;--warning-bg:#fef3c7;--shadow-sm:0 1px 2px rgba(0,0,0,.05);--shadow:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 12px rgba(0,0,0,.1);--shadow-lg:0 8px 24px rgba(0,0,0,.12);--shadow-xl:0 12px 40px rgba(0,0,0,.15);--radius:12px;--radius-sm:8px;--radius-xs:6px;--radius-lg:16px;--radius-full:999px;--sidebar-w:220px;--trans:.25s cubic-bezier(0.22,1,0.36,1);--trans-fast:.15s ease;--trans-slow:.4s cubic-bezier(0.22,1,0.36,1);--font:Inter,Segoe\ UI,system-ui,-apple-system,sans-serif;--space-xs:4px;--space-sm:8px;--space-md:16px;--space-lg:24px;--space-xl:32px;--space-2xl:40px;--space-3xl:48px}
@@ -50,6 +47,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .hdr-btn{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:7px 12px;cursor:pointer;font-size:12px;font-weight:500;color:var(--text);transition:all var(--trans);white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
 .hdr-btn:hover{background:var(--primary-soft);border-color:var(--primary-light);color:var(--primary);transform:translateY(-1px)}.hdr-btn:active{transform:translateY(0)}
 .theme-btn{font-size:16px;padding:7px 11px;border-radius:var(--radius-full)}
+.theme-btn.spinning{animation:spinTheme .45s ease}
+@keyframes spinTheme{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 
 /* LAYOUT */
 main{padding:var(--space-2xl);flex:1}
@@ -68,6 +67,7 @@ main{padding:var(--space-2xl);flex:1}
 .card-stat .num{font-size:34px;font-weight:800;color:var(--primary);line-height:1;letter-spacing:-1px;transition:transform var(--trans)}.card-stat:hover .num{transform:scale(1.05)}
 .card-stat .label{font-size:12px;color:var(--text2);margin-top:5px;font-weight:500}
 .card-stat .sub{font-size:11px;color:var(--text3);margin-top:2px}
+.stat-change{font-size:12px;font-weight:700;letter-spacing:0;margin-left:5px;vertical-align:middle}.stat-change.up{color:var(--success)}.stat-change.down{color:var(--danger)}.stat-change.same{color:var(--text3)}
 
 /* PLATFORM DOTS */
 .platform-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
@@ -77,20 +77,24 @@ main{padding:var(--space-2xl);flex:1}
 .cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .cal-nav h3{font-size:15px;font-weight:600}
 .cal-nav button{background:var(--surface2);border:1px solid var(--border);padding:6px 14px;border-radius:var(--radius-sm);cursor:pointer;font-size:13px;color:var(--text);transition:all var(--trans);font-weight:500}.cal-nav button:hover{background:var(--primary-bg);color:var(--primary);border-color:var(--primary-light)}.cal-nav button:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;transition:opacity .22s ease,transform .22s ease}
+.cal-grid.cal-slide{opacity:0;transform:translateX(var(--cal-slide-x,18px))}
 .cal-day-header{text-align:center;font-size:10px;font-weight:600;color:var(--text3);padding:6px 0;text-transform:uppercase;letter-spacing:.5px}
 .cal-day{background:var(--surface2);border-radius:var(--radius-sm);min-height:88px;padding:6px;cursor:pointer;transition:all var(--trans);border:2px solid transparent}
 .cal-day:hover{background:var(--primary-soft);border-color:var(--primary-light);box-shadow:var(--shadow-md);transform:translateY(-2px);z-index:1}
 .cal-day.other-month{opacity:.3}
 .cal-day.today{border-color:var(--primary);background:var(--primary-bg);box-shadow:0 0 0 3px rgba(30,58,138,.1)}
 .cal-day .day-num{font-size:12px;font-weight:700;margin-bottom:3px;color:var(--text)}.cal-day.today .day-num{color:var(--primary)}
-.post-chip{font-size:10px;padding:3px 6px;border-radius:4px;margin-bottom:2px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;display:block;font-weight:500;transition:opacity var(--trans-fast),transform var(--trans-fast)}
+.post-chip{font-size:10px;padding:3px 6px;border-radius:4px;margin-bottom:2px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;display:block;font-weight:500;border-left:4px solid var(--status-accent,#94a3b8);transition:opacity var(--trans-fast),transform var(--trans-fast)}
+.post-chip.status-draft{--status-accent:#94a3b8}.post-chip.status-scheduled{--status-accent:#3b82f6}.post-chip.status-posted{--status-accent:#22c55e}.post-chip.status-failed{--status-accent:#ef4444}
 .post-chip:hover{opacity:.85;transform:translateX(2px)}
 .more-chip{font-size:10px;color:var(--text2);padding:2px 6px;font-weight:500}
 
 /* PILLARS */
 .pillar-bar-wrap{display:flex;align-items:center;gap:var(--space-sm);margin:var(--space-sm) 0;flex-wrap:wrap}
 .pillar-tag{font-size:11px;padding:4px 10px;border-radius:var(--radius-full);color:#fff;font-weight:500;display:inline-flex;align-items:center;gap:5px;transition:transform var(--trans-fast)}.pillar-tag:hover{transform:scale(1.03)}
+.pillar-tag[draggable="true"]{cursor:grab}.pillar-tag.dragging{opacity:.45}.pillar-tag.drag-over{outline:2px solid var(--primary);outline-offset:2px}
+.pillar-color{width:18px;height:18px;padding:0;border:2px solid rgba(255,255,255,.7);border-radius:50%;overflow:hidden;background:transparent;cursor:pointer}.pillar-color::-webkit-color-swatch-wrapper{padding:0}.pillar-color::-webkit-color-swatch{border:0;border-radius:50%}.pillar-color::-moz-color-swatch{border:0;border-radius:50%}
 .del-pillar{background:rgba(255,255,255,.25);border:none;color:#fff;border-radius:50%;width:16px;height:16px;font-size:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;flex-shrink:0;transition:background var(--trans-fast)}
 .del-pillar:hover{background:rgba(255,255,255,.45)}
 .pillar-dist-row{display:flex;flex-direction:column;gap:var(--space-md);margin-bottom:var(--space-md)}
@@ -145,6 +149,7 @@ main{padding:var(--space-2xl);flex:1}
 .empty-state .icon{margin-bottom:var(--space-md);opacity:.6}
 .empty-state .icon svg{width:56px;height:56px}
 .empty-state p{font-size:13px;line-height:1.5}
+.empty-state .btn{margin-top:var(--space-md)}
 
 /* CHART */
 .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-lg)}
@@ -171,6 +176,8 @@ canvas{display:block;max-width:100%}
 .form-group label{font-size:12px;font-weight:600;color:var(--text2);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
 .form-group input[type="text"],.form-group input[type="date"],.form-group input[type="time"],.form-group input[type="number"],.form-group select,.form-group textarea{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;background:var(--surface);color:var(--text);font-family:inherit;transition:all var(--trans)}
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(30,58,138,.08)}
+.form-group input.field-error{border-color:var(--danger);box-shadow:0 0 0 3px rgba(220,38,38,.1)}
+.field-error-message{display:none;margin-top:5px;color:var(--danger);font-size:11px;font-weight:500}.field-error-message.visible{display:block}
 .form-group textarea{min-height:80px;resize:vertical}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md)}
 .modal-actions{display:flex;align-items:center;gap:var(--space-sm);margin-top:var(--space-xl);padding-top:var(--space-lg);border-top:1px solid var(--border-light)}
@@ -195,6 +202,11 @@ canvas{display:block;max-width:100%}
 @keyframes toastIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
 @keyframes toastOut{to{opacity:0;transform:translateX(16px)}}
 .toast.out{animation:toastOut .25s ease forwards}
+.toast-action{margin-left:auto;border:0;background:transparent;color:var(--primary);font:inherit;font-weight:700;cursor:pointer;padding:3px 5px}
+
+/* POST PREVIEW */
+.preview-overlay{position:fixed;inset:0;background:rgba(8,10,18,.78);z-index:500;display:none;align-items:center;justify-content:center;padding:var(--space-xl);backdrop-filter:blur(5px)}.preview-overlay.open{display:flex;animation:fadeIn .2s ease}
+.social-preview{background:var(--surface);color:var(--text);width:min(520px,100%);max-height:90vh;overflow:auto;border-radius:18px;padding:var(--space-xl);box-shadow:var(--shadow-xl);position:relative}.preview-close{position:absolute;right:14px;top:12px;border:0;background:var(--surface2);color:var(--text);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:18px}.preview-meta{font-size:12px;color:var(--text2);margin:8px 0 14px}.preview-caption{font-size:14px;line-height:1.55;white-space:pre-wrap;margin:12px 0}.preview-media{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:14px}.preview-media img,.preview-media video{width:100%;height:190px;object-fit:cover;border-radius:10px;background:var(--surface3)}
 
 /* PILLAR ADD */
 .pillar-add-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px}
@@ -204,6 +216,7 @@ canvas{display:block;max-width:100%}
 
 /* KBD HINT */
 .kbd-hint{position:fixed;bottom:var(--space-lg);left:calc(var(--sidebar-w) + var(--space-lg));z-index:50;background:var(--surface);border:1px solid var(--border);padding:6px 12px;border-radius:var(--radius-full);font-size:11px;color:var(--text3);box-shadow:var(--shadow-sm);transition:opacity .3s;display:flex;align-items:center;gap:6px;opacity:.7}.kbd-hint:hover{opacity:1}.kbd-hint kbd{background:var(--surface2);border:1px solid var(--border);border-radius:3px;padding:1px 5px;font-family:inherit;font-size:10px;font-weight:600;color:var(--text)}
+.api-loading{position:fixed;top:0;left:0;right:0;height:3px;z-index:700;opacity:0;pointer-events:none;background:linear-gradient(90deg,transparent,var(--primary),transparent);background-size:200% 100%;transition:opacity .15s}.api-loading.active{opacity:1;animation:apiLoading 1s linear infinite}@keyframes apiLoading{to{background-position:-200% 0}}
 
 /* RESPONSIVE */
 @media(max-width:768px){
@@ -220,6 +233,7 @@ canvas{display:block;max-width:100%}
   .modal{padding:var(--space-lg);border-radius:var(--radius)}
   .card-grid{grid-template-columns:repeat(2,1fr)}
   .post-item{gap:var(--space-xs)}
+  .post-item,.cal-day,.nav-tab{min-height:44px}
   .p-date{min-width:60px;font-size:10px}
   .p-title{font-size:12px}
   .kbd-hint{display:none}
@@ -248,6 +262,7 @@ canvas{display:block;max-width:100%}
 <body>
 
 <div id="toastWrap"></div>
+<div class="api-loading" id="apiLoading" role="progressbar" aria-label="Menyegerakkan data" aria-hidden="true"></div>
 
 <!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
@@ -340,7 +355,7 @@ canvas{display:block;max-width:100%}
       </div>
       <div class="section">
         <div class="section-hdr"><h2>Timeline Semua Post</h2><span class="badge" id="dashTotalPosts">0</span></div>
-        <div class="search-wrap"><input class="search-input" id="dashSearch" placeholder="🔍 Cari post..." oninput="renderDashTimeline()"></div>
+        <div class="search-wrap"><input class="search-input" id="dashSearch" placeholder="🔍 Cari post..." oninput="debounceSearch('dashboard')"></div>
         <div id="dashTimeline" class="post-list"></div>
       </div>
     </div>
@@ -359,11 +374,6 @@ canvas{display:block;max-width:100%}
   <kbd>Ctrl+N</kbd> Tambah post baru
 </div>
 
-<!-- KBD HINT -->
-<div class="kbd-hint" id="kbdHint">
-  <kbd>Ctrl+N</kbd> Tambah post baru
-</div>
-
 <!-- MODAL -->
 <div class="modal-overlay" id="postModal">
 <div class="modal">
@@ -373,13 +383,14 @@ canvas{display:block;max-width:100%}
   <div class="form-group">
     <label>Tajuk / Content Idea</label>
     <input type="text" id="mTitle" placeholder="cth: Info rawatan jerawat">
+    <div class="field-error-message" id="mTitleError">Sila isi tajuk post.</div>
   </div>
   <div class="form-group">
     <label>Script / Caption</label>
     <textarea id="mCaption" placeholder="Tulis caption penuh..."></textarea>
   </div>
   <div class="form-row">
-    <div class="form-group"><label>Tarikh</label><input type="date" id="mDate"></div>
+    <div class="form-group"><label>Tarikh</label><input type="date" id="mDate"><div class="field-error-message" id="mDateError">Sila pilih tarikh.</div></div>
     <div class="form-group"><label>Masa</label><input type="time" id="mTime"></div>
   </div>
   <div class="form-row">
@@ -427,9 +438,14 @@ canvas{display:block;max-width:100%}
     <button class="btn btn-outline btn-sm" id="mDupeBtn" onclick="duplicatePost()" style="display:none">Duplikat</button>
     <div style="flex:1"></div>
     <button class="btn btn-outline" onclick="closeModal()">Batal</button>
+    <button class="btn btn-outline" onclick="showPostPreview()">Pratonton</button>
     <button class="btn btn-primary" onclick="savePost()">Simpan</button>
   </div>
 </div>
+</div>
+
+<div class="preview-overlay" id="previewOverlay" onclick="if(event.target===this)closePostPreview()">
+  <div class="social-preview" id="previewCard"></div>
 </div>
 
 <script>
@@ -462,21 +478,41 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
 }
 
 /* ===== STATE ===== */
-let state = {posts:[],pillars:{},calDates:{},pillarTargets:{},currentTab:'dashboard',pillarFilters:{}};
+let state = {posts:[],pillars:{},pillarColors:{},calDates:{},pillarTargets:{},currentTab:'dashboard',pillarFilters:{}};
 
 /* ===== API ===== */
 const API_BASE = '/api/posts';
+let apiRequestsInFlight = 0;
+function setApiLoading(loading) {
+  apiRequestsInFlight = Math.max(0, apiRequestsInFlight + (loading ? 1 : -1));
+  const indicator = document.getElementById('apiLoading');
+  if (indicator) {
+    indicator.classList.toggle('active', apiRequestsInFlight > 0);
+    indicator.setAttribute('aria-hidden', apiRequestsInFlight > 0 ? 'false' : 'true');
+  }
+}
 async function apiFetch(method, body, id) {
   const url = id ? API_BASE+'/'+id : API_BASE;
+  setApiLoading(true);
   try {
-    const res = await fetch(url, {
-      method,
-      headers: {'Content-Type':'application/json'},
-      body: body ? JSON.stringify(body) : undefined
-    });
-    return await res.json();
-  } catch(e) {
-    return {success:false,error:e.message};
+    let lastError;
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        const res = await fetch(url, {
+          method,
+          headers: {'Content-Type':'application/json'},
+          body: body ? JSON.stringify(body) : undefined
+        });
+        if (!res.ok) throw new Error('HTTP '+res.status);
+        return await res.json();
+      } catch (e) {
+        lastError = e;
+        if (attempt < 3) await new Promise(resolve => setTimeout(resolve, 250 * attempt));
+      }
+    }
+    return {success:false,error:lastError ? lastError.message : 'API request failed'};
+  } finally {
+    setApiLoading(false);
   }
 }
 async function apiSyncPost(post, method) {
@@ -514,6 +550,7 @@ function esc(s) {
   return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 function getPillarColor(name) {
+  if (state.pillarColors && state.pillarColors[name]) return state.pillarColors[name];
   const colors = PILLAR_COLORS;
   let hash = 0;
   for (let i=0;i<(name||'').length;i++) hash = name.charCodeAt(i)+((hash<<5)-hash);
@@ -530,6 +567,14 @@ function mediaIndicator(images) {
 function cssVar(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
+const searchTimers = {};
+function debounceSearch(scope) {
+  clearTimeout(searchTimers[scope]);
+  searchTimers[scope] = setTimeout(() => {
+    if (scope === 'dashboard') renderDashTimeline();
+    else renderPostList(scope);
+  }, 200);
+}
 
 /* ===== STORAGE ===== */
 function loadState() {
@@ -539,6 +584,7 @@ function loadState() {
       const s = JSON.parse(raw);
       state.posts = Array.isArray(s.posts) ? s.posts : [];
       state.pillars = s.pillars || {};
+      state.pillarColors = s.pillarColors || {};
       state.calDates = s.calDates || {};
       state.pillarTargets = s.pillarTargets || {};
     }
@@ -552,7 +598,7 @@ function loadState() {
 }
 
 function saveState() {
-  const data = JSON.stringify({posts:state.posts,pillars:state.pillars,calDates:state.calDates,pillarTargets:state.pillarTargets});
+  const data = JSON.stringify({posts:state.posts,pillars:state.pillars,pillarColors:state.pillarColors,calDates:state.calDates,pillarTargets:state.pillarTargets});
   try { localStorage.setItem('jomContent', data); } catch(e) { showToast('Storan penuh!','error'); return; }
   try { localStorage.setItem('jomContent_bak'+(Math.floor(Date.now()/60000)%3+1), data); } catch(e) {}
 }
@@ -577,6 +623,18 @@ function showToast(msg, type) {
   }, 2800);
 }
 
+function showUndoToast(msg, onUndo) {
+  const wrap = document.getElementById('toastWrap');
+  const t = document.createElement('div');
+  t.className = 'toast info';
+  t.innerHTML = '<span style="font-size:16px;flex-shrink:0">ℹ</span><span>'+esc(msg)+'</span><button class="toast-action" type="button">Batal</button>';
+  wrap.appendChild(t);
+  let active = true;
+  const timer = setTimeout(remove, 3000);
+  function remove() { active=false; t.classList.add('out'); setTimeout(()=>t.remove(),260); }
+  t.querySelector('button').addEventListener('click',()=>{ if(!active)return; clearTimeout(timer); active=false; onUndo(); t.remove(); });
+}
+
 /* ===== EXPORT / IMPORT ===== */
 function exportCSV() {
   const hdrs = ['ID','Platform','Tajuk','Caption','Tarikh','Masa','Pillar','Status','Approved','Notes'];
@@ -594,7 +652,7 @@ function exportCSV() {
 }
 
 function exportJSON() {
-  const data = JSON.stringify({posts:state.posts,pillars:state.pillars,calDates:state.calDates,pillarTargets:state.pillarTargets},null,2);
+  const data = JSON.stringify({posts:state.posts,pillars:state.pillars,pillarColors:state.pillarColors,calDates:state.calDates,pillarTargets:state.pillarTargets},null,2);
   dlBlob(data, 'application/json', 'jomcontent-backup-'+todayStr()+'.json');
   showToast('Backup disimpan!','success');
 }
@@ -617,6 +675,7 @@ function handleImport(e) {
       if (!confirm('Import '+d.posts.length+' posts? Data sedia ada akan digantikan.')) return;
       state.posts = d.posts;
       state.pillars = d.pillars||{};
+      state.pillarColors = d.pillarColors||{};
       state.calDates = d.calDates||{};
       state.pillarTargets = d.pillarTargets||{};
       PLATFORMS.forEach(p=>{
@@ -640,7 +699,7 @@ function renderPlatformTab(platform) {
     <div class="section-hdr">
       <h2>${name} — Content Calendar</h2>
       <div class="section-hdr-right">
-        <div class="search-wrap" style="margin:0"><input class="search-input" id="search-${platform}" placeholder="🔍 Cari post..." oninput="renderPostList('${platform}')"></div>
+        <div class="search-wrap" style="margin:0"><input class="search-input" id="search-${platform}" placeholder="🔍 Cari post..." oninput="debounceSearch('${platform}')"></div>
         <button class="btn btn-primary btn-sm" onclick="openModal('${platform}')">+ Tambah Post</button>
       </div>
     </div>
@@ -696,9 +755,31 @@ function removePillar(platform, name) {
   renderAll();
 }
 
+function changePillarColor(name, color) {
+  state.pillarColors[name] = color;
+  saveState(); renderAll();
+}
+
+let draggedPillar = null;
+function pillarDragStart(event, platform, name) {
+  draggedPillar = {platform,name}; event.currentTarget.classList.add('dragging');
+  event.dataTransfer.effectAllowed = 'move'; event.dataTransfer.setData('text/plain',name);
+}
+function pillarDragOver(event) { event.preventDefault(); event.dataTransfer.dropEffect='move'; event.currentTarget.classList.add('drag-over'); }
+function pillarDragEnd(event) { event.currentTarget.classList.remove('dragging'); document.querySelectorAll('.pillar-tag.drag-over').forEach(el=>el.classList.remove('drag-over')); }
+function pillarDrop(event, platform, targetName) {
+  event.preventDefault();
+  if (!draggedPillar || draggedPillar.platform!==platform || draggedPillar.name===targetName) return pillarDragEnd(event);
+  const list=state.pillars[platform], from=list.indexOf(draggedPillar.name), to=list.indexOf(targetName);
+  if(from<0||to<0)return;
+  const [item]=list.splice(from,1); list.splice(to,0,item); draggedPillar=null; saveState(); renderAll();
+}
+
 /* ===== MODAL ===== */
 function openModal(platform, postId, prefillDate) {
   const overlay = document.getElementById('postModal');
+  setFieldError('mTitle','mTitleError',false);
+  setFieldError('mDate','mDateError',false);
   overlay.classList.add('open');
   document.getElementById('mPlatform').value = platform || state.currentTab;
   const p = document.getElementById('mPlatform').value;
@@ -746,13 +827,26 @@ function openModal(platform, postId, prefillDate) {
 
 function closeModal() { document.getElementById('postModal').classList.remove('open'); }
 
+function setFieldError(inputId, messageId, hasError) {
+  const input = document.getElementById(inputId);
+  const message = document.getElementById(messageId);
+  input.classList.toggle('field-error', hasError);
+  input.setAttribute('aria-invalid', hasError ? 'true' : 'false');
+  message.classList.toggle('visible', hasError);
+}
+
 function savePost() {
   const id = document.getElementById('mPostId').value;
   const platform = document.getElementById('mPlatform').value;
   const title = document.getElementById('mTitle').value.trim();
   const date = document.getElementById('mDate').value;
-  if (!title) { showToast('Sila isi tajuk post.','error'); document.getElementById('mTitle').focus(); return; }
-  if (!date) { showToast('Sila pilih tarikh.','error'); document.getElementById('mDate').focus(); return; }
+  setFieldError('mTitle','mTitleError',!title);
+  setFieldError('mDate','mDateError',!date);
+  if (!title || !date) {
+    (!title ? document.getElementById('mTitle') : document.getElementById('mDate')).focus();
+    showToast('Sila lengkapkan medan wajib.','error');
+    return;
+  }
   const data = {
     title, date,
     caption: document.getElementById('mCaption').value.trim(),
@@ -783,12 +877,33 @@ function savePost() {
 function deletePost() {
   const id = document.getElementById('mPostId').value;
   if (!id || !confirm('Padam post ini?')) return;
-  const post = state.posts.find(x => x.id === id);
+  const index = state.posts.findIndex(x => x.id === id);
+  const post = state.posts[index];
+  if (!post) return;
   state.posts = state.posts.filter(x => x.id !== id);
   saveState(); closeModal(); renderAll();
-  apiSyncPost(post||{id}, 'DELETE');
-  showToast('Post dipadam.','info');
+  let undone = false;
+  const deleteTimer = setTimeout(()=>{ if(!undone) apiSyncPost(post, 'DELETE'); },3000);
+  showUndoToast('Post dipadam.',()=>{
+    undone=true; clearTimeout(deleteTimer); state.posts.splice(Math.min(index,state.posts.length),0,post);
+    saveState(); renderAll(); showToast('Post dipulihkan.','success');
+  });
 }
+
+function showPostPreview() {
+  const title=document.getElementById('mTitle').value.trim()||'Tanpa tajuk';
+  const caption=document.getElementById('mCaption').value.trim()||'Tiada caption.';
+  const pillar=document.getElementById('mPillar').value||'-';
+  const status=document.getElementById('mStatus').value||'draft';
+  const labels={draft:'Draft',scheduled:'Scheduled',posted:'Posted',failed:'Failed'};
+  const date=document.getElementById('mDate').value||'-', time=document.getElementById('mTime').value||'';
+  const media=(_modalImages||[]).map(m=>m.type==='video'
+    ? `<video src="${esc(m.src)}" controls preload="metadata"></video>`
+    : `<img src="${esc(m.src)}" alt="Media post">`).join('');
+  document.getElementById('previewCard').innerHTML=`<button class="preview-close" onclick="closePostPreview()" aria-label="Tutup">×</button><h3>${esc(title)}</h3><div><span class="p-status status-${esc(status)}">${labels[status]||esc(status)}</span> <span class="p-pillar" style="background:${getPillarColor(pillar)}">${esc(pillar)}</span></div><div class="preview-meta">${esc(date)}${time?' · '+esc(time):''}</div><div class="preview-caption">${esc(caption)}</div>${media?'<div class="preview-media">'+media+'</div>':''}`;
+  document.getElementById('previewOverlay').classList.add('open');
+}
+function closePostPreview(){document.getElementById('previewOverlay').classList.remove('open')}
 
 function duplicatePost() {
   const id = document.getElementById('mPostId').value;
@@ -912,20 +1027,34 @@ function renderCalendar(platform) {
     const more = dayPosts.length - 3;
     let cls = 'cal-day'+(d.other?' other-month':'')+(isToday?' today':'');
     let chips = shown.map(p =>
-      `<span class="post-chip" style="background:${getPillarColor(p.pillar)}" onclick="event.stopPropagation();openModal('${platform}','${p.id}')">${esc(p.title||'Post')}</span>`
+      `<span class="post-chip status-${p.status||'draft'}" style="background:${getPillarColor(p.pillar)}" onclick="event.stopPropagation();openModal('${platform}','${p.id}')">${esc(p.title||'Post')}</span>`
     ).join('');
     if (more > 0) chips += `<div class="more-chip">+${more} lagi</div>`;
     html += `<div class="${cls}" onclick="openModal('${platform}',null,'${ds}')"><div class="day-num">${d.day}</div>${chips}</div>`;
   });
   grid.innerHTML = html;
+  if (grid.dataset.slidePending === 'true') {
+    grid.dataset.slidePending = 'false';
+    requestAnimationFrame(() => grid.classList.remove('cal-slide'));
+  }
+}
+
+function startCalendarSlide(platform, direction) {
+  const grid = document.getElementById('calGrid-'+platform);
+  if (!grid) return;
+  grid.style.setProperty('--cal-slide-x', direction * 18 + 'px');
+  grid.classList.add('cal-slide');
+  grid.dataset.slidePending = 'true';
 }
 
 function calPrev(platform) {
+  startCalendarSlide(platform, -1);
   const {year,month} = parseDateKey(state.calDates[platform]||getDateKey(new Date()));
   state.calDates[platform] = getDateKey(new Date(year,month-1,1));
   saveState(); renderAll();
 }
 function calNext(platform) {
+  startCalendarSlide(platform, 1);
   const {year,month} = parseDateKey(state.calDates[platform]||getDateKey(new Date()));
   state.calDates[platform] = getDateKey(new Date(year,month+1,1));
   saveState(); renderAll();
@@ -955,7 +1084,9 @@ function renderPillars(platform) {
   pillars.forEach(p => {
     const color = getPillarColor(p);
     const count = monthPosts.filter(x=>x.pillar===p).length;
-    html += `<span class="pillar-tag" style="background:${color}">${esc(p)} (${count})
+    html += `<span class="pillar-tag" draggable="true" style="background:${color}" data-platform="${esc(platform)}" data-name="${esc(p)}"
+      ondragstart="pillarDragStart(event,this.dataset.platform,this.dataset.name)" ondragover="pillarDragOver(event)" ondragleave="this.classList.remove('drag-over')" ondragend="pillarDragEnd(event)" ondrop="pillarDrop(event,this.dataset.platform,this.dataset.name)">${esc(p)} (${count})
+      <input class="pillar-color" type="color" value="${color}" title="Tukar warna" aria-label="Warna ${esc(p)}" onclick="event.stopPropagation()" oninput="changePillarColor(this.closest('.pillar-tag').dataset.name,this.value)">
       <button class="del-pillar" data-platform="${esc(platform)}" data-name="${esc(p)}"
         onclick="event.stopPropagation();removePillar(this.dataset.platform,this.dataset.name)">&#215;</button></span>`;
   });
@@ -1031,7 +1162,7 @@ function renderPostList(platform) {
   if (countEl) countEl.textContent = posts.length;
   if (!posts.length) {
     container.innerHTML = '<div class="empty-state">'+'<div class="icon"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><rect x="12" y="8" width="40" height="30" rx="4" stroke="#c4c4d4" stroke-width="2" fill="#f0f0f8"/><rect x="18" y="16" width="8" height="8" rx="4" fill="#d0d0e0"/><rect x="30" y="16" width="16" height="4" rx="2" fill="#d0d0e0"/><rect x="30" y="22" width="12" height="4" rx="2" fill="#d0d0e0"/><rect x="18" y="30" width="28" height="3" rx="1.5" fill="#d0d0e0"/><circle cx="32" cy="50" r="12" stroke="#c4c4d4" stroke-width="2" fill="#f0f0f8"/><path d="M28 52l3 3 5-7" stroke="#a0a0c0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p>'+
-      (searchVal?'Tiada post sepadan dengan "'+esc(searchVal)+'".':'Belum ada post bulan ni.')+'</p></div>';
+      (searchVal?'Tiada post sepadan dengan "'+esc(searchVal)+'".':'Belum ada post bulan ni.')+'</p><button class="btn btn-primary btn-sm" onclick="openModal(\''+platform+'\')">+ Tambah Post</button></div>';
     return;
   }
   const STATUS_LABEL = {draft:'Draft',scheduled:'Scheduled',posted:'Posted',failed:'Failed'};
@@ -1062,20 +1193,23 @@ function renderDashboard() {
   const scheduled=mp.filter(p=>p.status==='scheduled').length;
   const draft=mp.filter(p=>p.status==='draft').length;
   const approved=mp.filter(p=>p.approved).length;
+  const prevDate=new Date(year,month-1,1), py=prevDate.getFullYear(), pm=prevDate.getMonth();
+  const previous=state.posts.filter(p=>{const d=parseLocalDate(p.date);return d.getFullYear()===py&&d.getMonth()===pm});
+  const trend=(current,prior)=>{const d=current-prior, cls=d>0?'up':d<0?'down':'same', arrow=d>0?'↑':d<0?'↓':'→';return `<span class="stat-change ${cls}">${d>0?'+':''}${d} ${arrow}</span>`};
   const hdrM=document.getElementById('hdrMonthPosts');
   const hdrP=document.getElementById('hdrPosted');
   if(hdrM) hdrM.textContent=total;
   if(hdrP) hdrP.textContent=posted;
   const statsEl=document.getElementById('dashStats');
   if (statsEl) statsEl.innerHTML =
-    `<div class="card card-stat"><div class="num">${total}</div><div class="label">Jumlah Post</div></div>
-     <div class="card card-stat"><div class="num">${posted}</div><div class="label">Siap Posted</div><div class="sub">${total?Math.round(posted/total*100):0}%</div></div>
-     <div class="card card-stat"><div class="num">${scheduled}</div><div class="label">Scheduled</div></div>
-     <div class="card card-stat"><div class="num">${draft}</div><div class="label">Draft</div></div>
-     <div class="card card-stat"><div class="num">${approved}</div><div class="label">Approved</div></div>`+
+    `<div class="card card-stat"><div class="num">${total}${trend(total,previous.length)}</div><div class="label">Jumlah Post</div></div>
+     <div class="card card-stat"><div class="num">${posted}${trend(posted,previous.filter(p=>p.status==='posted').length)}</div><div class="label">Siap Posted</div><div class="sub">${total?Math.round(posted/total*100):0}%</div></div>
+     <div class="card card-stat"><div class="num">${scheduled}${trend(scheduled,previous.filter(p=>p.status==='scheduled').length)}</div><div class="label">Scheduled</div></div>
+     <div class="card card-stat"><div class="num">${draft}${trend(draft,previous.filter(p=>p.status==='draft').length)}</div><div class="label">Draft</div></div>
+     <div class="card card-stat"><div class="num">${approved}${trend(approved,previous.filter(p=>p.approved).length)}</div><div class="label">Approved</div></div>`+
     PLATFORMS.map(p=>{
       const c=mp.filter(x=>x.platform===p).length;
-      return `<div class="card card-stat"><div class="num" style="color:${PLATFORM_COLORS[p]}">${c}</div>
+      return `<div class="card card-stat"><div class="num" style="color:${PLATFORM_COLORS[p]}">${c}${trend(c,previous.filter(x=>x.platform===p).length)}</div>
         <div class="label"><span class="platform-dot" style="background:${PLATFORM_COLORS[p]};display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px"></span>${PLATFORM_NAMES[p]}</div></div>`;
     }).join('');
   updateNavBadges();
@@ -1173,7 +1307,7 @@ function renderDashTimeline() {
   if (totalEl) totalEl.textContent=posts.length;
   const sorted=[...posts].sort((a,b)=>a.date.localeCompare(b.date)||(a.time||'').localeCompare(b.time||''));
   if (!sorted.length) {
-    container.innerHTML='<div class="empty-state">'+'<div class="icon"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><rect x="12" y="8" width="40" height="30" rx="4" stroke="#c4c4d4" stroke-width="2" fill="#f0f0f8"/><rect x="18" y="16" width="8" height="8" rx="4" fill="#d0d0e0"/><rect x="30" y="16" width="16" height="4" rx="2" fill="#d0d0e0"/><rect x="30" y="22" width="12" height="4" rx="2" fill="#d0d0e0"/><rect x="18" y="30" width="28" height="3" rx="1.5" fill="#d0d0e0"/><circle cx="32" cy="50" r="12" stroke="#c4c4d4" stroke-width="2" fill="#f0f0f8"/><path d="M28 52l3 3 5-7" stroke="#a0a0c0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p>'+(q?'Tiada post sepadan.':'Tiada post — tambah di mana-mana platform!')+'</p></div>';
+    container.innerHTML='<div class="empty-state">'+'<div class="icon"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><rect x="12" y="8" width="40" height="30" rx="4" stroke="#c4c4d4" stroke-width="2" fill="#f0f0f8"/><rect x="18" y="16" width="8" height="8" rx="4" fill="#d0d0e0"/><rect x="30" y="16" width="16" height="4" rx="2" fill="#d0d0e0"/><rect x="30" y="22" width="12" height="4" rx="2" fill="#d0d0e0"/><rect x="18" y="30" width="28" height="3" rx="1.5" fill="#d0d0e0"/><circle cx="32" cy="50" r="12" stroke="#c4c4d4" stroke-width="2" fill="#f0f0f8"/><path d="M28 52l3 3 5-7" stroke="#a0a0c0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p>'+(q?'Tiada post sepadan.':'Tiada post — tambah di mana-mana platform!')+'</p><button class="btn btn-primary btn-sm" onclick="openModal(\'tiktok\')">+ Tambah Post</button></div>';
     return;
   }
   const STATUS_LABEL={draft:'Draft',scheduled:'Scheduled',posted:'Posted',failed:'Failed'};
@@ -1223,14 +1357,15 @@ function initTheme() {
     document.documentElement.setAttribute('data-theme',next);
     localStorage.setItem('jomContentTheme',next);
     btn.textContent=next==='dark'?'☀️':'🌙';
-    if(state.currentTab==='dashboard') renderDashboard();
+    btn.classList.remove('spinning'); void btn.offsetWidth; btn.classList.add('spinning');
+    renderDashboard();
   });
 }
 
 /* ===== KEYBOARD SHORTCUTS ===== */
 function initKeyboard() {
   document.addEventListener('keydown', e => {
-    if (e.key==='Escape') { closeModal(); return; }
+    if (e.key==='Escape') { closePostPreview(); closeModal(); return; }
     const inField = ['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName);
     if (inField) return;
     if ((e.ctrlKey||e.metaKey) && e.key==='n') {
@@ -1277,6 +1412,12 @@ document.addEventListener('DOMContentLoaded', () => {
   PLATFORMS.forEach(p => renderPlatformTab(p));
   document.getElementById('postModal').addEventListener('click', e => {
     if (e.target === document.getElementById('postModal')) closeModal();
+  });
+  document.getElementById('mTitle').addEventListener('input', e => {
+    if (e.target.value.trim()) setFieldError('mTitle','mTitleError',false);
+  });
+  document.getElementById('mDate').addEventListener('input', e => {
+    if (e.target.value) setFieldError('mDate','mDateError',false);
   });
   initKeyboard();
   renderAll();
