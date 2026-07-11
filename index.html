@@ -198,8 +198,8 @@ canvas{display:block;max-width:100%}
 .approved-label input:checked+.checkmark::after{content:'';width:6px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);margin-top:-2px}
 .approved-label:hover .checkmark{border-color:var(--primary-light)}
 .modal-actions{display:flex;align-items:center;gap:6px;margin-top:var(--space-xl);padding-top:var(--space-lg);border-top:1px solid var(--border-light);flex-wrap:wrap}
+.modal-actions-spacer{flex:1}
 .modal-actions-left,.modal-actions-right{display:flex;align-items:center;gap:var(--space-sm)}
-.modal-actions-right{margin-left:auto}
 
 .media-upload-row{display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
 .media-upload-row input[type="text"]{padding:7px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;background:var(--surface);color:var(--text)}
@@ -510,15 +510,12 @@ canvas{display:block;max-width:100%}
     <div class="media-preview" id="mMediaPreview"></div>
   </div>
   <div class="modal-actions">
-    <div class="modal-actions-left">
       <button class="btn btn-danger-ghost btn-sm" id="mDeleteBtn" onclick="deletePost()" style="display:none">Padam</button>
       <button class="btn btn-ghost btn-sm" id="mDupeBtn" onclick="duplicatePost()" style="display:none">Duplikat</button>
-    </div>
-    <div class="modal-actions-right">
+      <div class="modal-actions-spacer"></div>
       <button class="btn btn-ghost" onclick="closeModal()">Batal</button>
       <button class="btn btn-outline" onclick="showPostPreview()">Pratonton</button>
       <button class="btn btn-primary" onclick="savePost()">Simpan</button>
-    </div>
   </div>
 </div>
 </div>
