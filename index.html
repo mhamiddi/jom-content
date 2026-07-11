@@ -1283,7 +1283,7 @@ function renderPostList(platform) {
       ? '<span class="approval-badge approval-approved">Approved</span>'
       : '<span class="approval-badge approval-pending">Pending</span>';
     return `<div class="post-item" onclick="openModal('${platform}','${p.id}')">
-      <div class="p-date">${esc(p.date)}${p.time?' '+esc(p.time):''}</div>
+      <div class="p-date">${formatDate(p.date)}${p.time?' '+p.time.slice(0,5):''}</div>
       <div class="p-title">${mediaIndicator(p.images)}${esc(p.title||'Untitled')}</div>
       <span class="p-pillar" style="background:${getPillarColor(p.pillar)}">${esc(p.pillar||'-')}</span>
       ${ap}
@@ -1432,8 +1432,8 @@ function renderDashTimeline() {
   const STATUS_LABEL={draft:'Draft',scheduled:'Scheduled',posted:'Posted',failed:'Failed'};
   container.innerHTML=sorted.map(p=>`
     <div class="post-item" onclick="openModal('${p.platform}','${p.id}')">
-      <div class="p-date">${esc(p.date)}${p.time?' '+esc(p.time):''}</div>
-      <div class="p-title"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${PLATFORM_COLORS[p.platform]||'#999'};margin-right:5px;vertical-align:middle"></span>${mediaIndicator(p.images)}${PLATFORM_NAMES[p.platform]||esc(p.platform)} — ${esc(p.title||'Untitled')}</div>
+      <div class="p-date">${formatDate(p.date)}${p.time?' '+p.time.slice(0,5):''}</div>
+      <div class="p-title"><span class="p-dot" style="background:${PLATFORM_COLORS[p.platform]||'#999'}"></span>${mediaIndicator(p.images)}${esc(p.title||'Untitled')}</div>
       <span class="p-pillar" style="background:${getPillarColor(p.pillar)}">${esc(p.pillar||'-')}</span>
       <span class="p-status status-${p.status||'draft'}">${STATUS_LABEL[p.status||'draft']}</span>
     </div>`).join('');
