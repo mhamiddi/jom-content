@@ -80,11 +80,13 @@ main{padding:var(--space-2xl);flex:1}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;transition:opacity .22s ease,transform .22s ease}
 .cal-grid.cal-slide{opacity:0;transform:translateX(var(--cal-slide-x,18px))}
 .cal-day-header{text-align:center;font-size:10px;font-weight:600;color:var(--text3);padding:6px 0;text-transform:uppercase;letter-spacing:.5px}
-.cal-day{background:var(--surface2);border-radius:var(--radius-sm);min-height:88px;padding:6px;cursor:pointer;transition:all var(--trans);border:2px solid transparent}
+.cal-day{background:var(--surface2);border-radius:var(--radius-sm);min-height:88px;padding:6px;cursor:pointer;transition:all var(--trans);border:2px solid transparent;position:relative}
 .cal-day:hover{background:var(--primary-soft);border-color:var(--primary-light);box-shadow:var(--shadow-md);transform:translateY(-2px);z-index:1}
 .cal-day.other-month{opacity:.3}
 .cal-day.today{border-color:var(--primary);background:var(--primary-bg);box-shadow:0 0 0 3px rgba(30,58,138,.1)}
 .cal-day .day-num{font-size:12px;font-weight:700;margin-bottom:3px;color:var(--text)}.cal-day.today .day-num{color:var(--primary)}
+.cal-add-btn{display:none;position:absolute;top:2px;right:2px;width:16px;height:16px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.8);color:#1f2937;align-items:center;justify-content:center;font-size:13px;font-weight:700;line-height:1;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.16);z-index:2}
+.cal-day:hover .cal-add-btn{display:flex}
 .post-chip{font-size:10px;padding:3px 6px;border-radius:4px;margin-bottom:2px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;display:block;font-weight:500;border-left:4px solid var(--status-accent,#94a3b8);transition:opacity var(--trans-fast),transform var(--trans-fast)}
 .post-chip.status-draft{--status-accent:#94a3b8}.post-chip.status-scheduled{--status-accent:#3b82f6}.post-chip.status-posted{--status-accent:#22c55e}.post-chip.status-failed{--status-accent:#ef4444}
 .post-chip:hover{opacity:.85;transform:translateX(2px)}
@@ -229,6 +231,7 @@ canvas{display:block;max-width:100%}
   .chart-row{grid-template-columns:1fr}
   .header-stats{gap:8px;font-size:11px}
   .cal-day{min-height:60px;padding:4px}
+  .cal-add-btn{display:flex}
   .post-chip{font-size:9px;padding:2px 4px}
   .modal{padding:var(--space-lg);border-radius:var(--radius)}
   .card-grid{grid-template-columns:repeat(2,1fr)}
@@ -635,6 +638,27 @@ function showUndoToast(msg, onUndo) {
   t.querySelector('button').addEventListener('click',()=>{ if(!active)return; clearTimeout(timer); active=false; onUndo(); t.remove(); });
 }
 
+function showAddAnotherToast(onAdd, onExpire) {
+  const wrap = document.getElementById('toastWrap');
+  const t = document.createElement('div');
+  t.className = 'toast success';
+  t.innerHTML = '<span style="font-size:16px;flex-shrink:0">✓</span><span>Post disimpan! Tambah lagi?</span><button class="toast-action" type="button">Tambah Lagi</button>';
+  wrap.appendChild(t);
+  let active = true;
+  const timer = setTimeout(()=>remove(true),5000);
+  function remove(expired) {
+    if (!active) return;
+    active=false;
+    if (expired) onExpire();
+    t.classList.add('out');
+    setTimeout(()=>t.remove(),260);
+  }
+  t.querySelector('button').addEventListener('click',()=>{
+    if(!active)return;
+    clearTimeout(timer); active=false; onAdd(); t.remove();
+  });
+}
+
 /* ===== EXPORT / IMPORT ===== */
 function exportCSV() {
   const hdrs = ['ID','Platform','Tajuk','Caption','Tarikh','Masa','Pillar','Status','Approved','Notes'];
@@ -776,7 +800,9 @@ function pillarDrop(event, platform, targetName) {
 }
 
 /* ===== MODAL ===== */
+let modalSession = 0;
 function openModal(platform, postId, prefillDate) {
+  modalSession++;
   const overlay = document.getElementById('postModal');
   setFieldError('mTitle','mTitleError',false);
   setFieldError('mDate','mDateError',false);
@@ -857,21 +883,27 @@ function savePost() {
     approved: document.getElementById('mApproved').checked,
     images: window._modalImages || [],
   };
+  const addAgainValues = {platform,date,time:data.time,pillar:data.pillar,status:data.status};
+  const savedModalSession = modalSession;
   if (id) {
     const idx = state.posts.findIndex(x => x.id === id);
     if (idx >= 0) {
       state.posts[idx] = {...state.posts[idx], ...data};
       apiSyncPost(state.posts[idx], 'PUT');
     }
-    showToast('Post disimpan!','success');
   } else {
     data.id = Date.now()+'_'+Math.random().toString(36).slice(2,7);
     data.platform = platform;
     state.posts.push(data);
     apiSyncPost(data, 'POST');
-    showToast('Post ditambah!','success');
   }
-  saveState(); closeModal(); renderAll();
+  saveState(); renderAll();
+  showAddAnotherToast(()=>{
+    openModal(addAgainValues.platform,null,addAgainValues.date);
+    document.getElementById('mTime').value = addAgainValues.time;
+    document.getElementById('mPillar').value = addAgainValues.pillar;
+    document.getElementById('mStatus').value = addAgainValues.status;
+  }, ()=>{ if (modalSession === savedModalSession) closeModal(); });
 }
 
 function deletePost() {
@@ -1030,7 +1062,7 @@ function renderCalendar(platform) {
       `<span class="post-chip status-${p.status||'draft'}" style="background:${getPillarColor(p.pillar)}" onclick="event.stopPropagation();openModal('${platform}','${p.id}')">${esc(p.title||'Post')}</span>`
     ).join('');
     if (more > 0) chips += `<div class="more-chip">+${more} lagi</div>`;
-    html += `<div class="${cls}" onclick="openModal('${platform}',null,'${ds}')"><div class="day-num">${d.day}</div>${chips}</div>`;
+    html += `<div class="${cls}" onclick="openModal('${platform}',null,'${ds}')"><button class="cal-add-btn" type="button" aria-label="Tambah post pada ${ds}" onclick="event.stopPropagation();openModal('${platform}',null,'${ds}')">+</button><div class="day-num">${d.day}</div>${chips}</div>`;
   });
   grid.innerHTML = html;
   if (grid.dataset.slidePending === 'true') {
