@@ -349,7 +349,6 @@ canvas{display:block;max-width:100%}
     <p>Masuk untuk manage content calendar dalaman.</p>
     <div class="login-field"><label>Username</label><input id="loginUsername" autocomplete="username" placeholder="username"></div>
     <div class="login-field"><label>Password</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="password" onkeydown="if(event.key==='Enter')loginToDashboard()"></div>
-    <div class="login-field"><label>Dashboard</label><select id="loginWorkspace"></select></div>
     <button class="login-btn" onclick="loginToDashboard()">Masuk</button>
     <div class="login-error" id="loginError" role="status" aria-live="polite"></div>
   </div>
@@ -726,7 +725,7 @@ function closeLoginModal() { document.getElementById('loginModal')?.classList.re
 function loginToDashboard() {
   const user = (document.getElementById('loginUsername')?.value || '').trim();
   const pass = document.getElementById('loginPassword')?.value || '';
-  const ws = document.getElementById('loginWorkspace')?.value || DEFAULT_WORKSPACE;
+  const ws = DEFAULT_WORKSPACE;
   const err = document.getElementById('loginError');
   if (user !== LOGIN_USER || pass !== LOGIN_PASS) {
     if (err) err.textContent = 'Username atau password salah.';
