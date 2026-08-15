@@ -8,7 +8,7 @@ Kau guna Codex CLI dalam project ni untuk maintain dan audit content di jom-cont
 - **Platforms:** TikTok + Threads sahaja
 - **Pillars (canonical 4):** Google Ads 30% / Website Leads 20% / Digital Marketing 25% / Personal & Mindset 25%
 - **Theme:** Jom Digital brand — primary #2563EB, accent #22C55E, Montserrat (headings) + DM Sans (body)
-- **Login:** admin / jomcontent
+- **Login:** jomdigital / Hakimi.1995
 - **API Base:** https://jom-content.com/api/posts (CF Pages Functions + KV namespace `jom-content-posts`)
 - **Content source of truth:** `~/projects/jom-content/`
 
