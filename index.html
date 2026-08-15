@@ -60,6 +60,7 @@ html{overflow-x:hidden}
 main{padding:var(--space-2xl);flex:1}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .tab-content{display:none}.tab-content.active{display:block}
+#tab-analytics{padding:0;background:var(--bg)}#tab-analytics iframe{width:100%;height:calc(100vh - 96px);border:0;display:block;background:var(--bg)}
 .section{margin-bottom:var(--space-3xl)}
 .section-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-lg);gap:var(--space-sm);flex-wrap:wrap}
 .section-hdr h2{font-size:15px;font-weight:700;letter-spacing:-.2px}
@@ -256,24 +257,10 @@ canvas{display:block;max-width:100%}
 .api-loading{position:fixed;top:0;left:0;right:0;height:3px;z-index:700;opacity:0;pointer-events:none;background:linear-gradient(90deg,transparent,var(--primary),transparent);background-size:200% 100%;transition:opacity .15s}.api-loading.active{opacity:1;animation:apiLoading 1s linear infinite}@keyframes apiLoading{to{background-position:-200% 0}}
 /* LANDING / LOGIN / WORKSPACE */
 .auth-locked .sidebar,.auth-locked .app-body,.auth-locked .kbd-hint{display:none}
-.landing-page{min-height:100vh;background:radial-gradient(circle at 15% 12%,rgba(37,99,235,.20),transparent 34%),radial-gradient(circle at 80% 12%,rgba(34,197,94,.20),transparent 30%),linear-gradient(135deg,#f8fafc 0%,#eef3ff 56%,#fff7e6 100%);display:none;color:#101827;overflow-x:hidden}
-.auth-locked .landing-page{display:block}
-.landing-header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px clamp(18px,5vw,64px);background:rgba(255,255,255,.74);backdrop-filter:blur(18px);border-bottom:1px solid rgba(226,232,240,.78)}
-.public-brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:-.4px;color:#1E40AF}.brand-mark{width:36px;height:36px;border-radius:13px;background:linear-gradient(135deg,#2563EB,#22C55E);display:grid;place-items:center;color:#fff;box-shadow:0 10px 24px rgba(37,99,235,.22)}
-.people-login-btn{width:44px;height:44px;border:1px solid #DBEAFE;border-radius:999px;background:#fff;color:#2563EB;display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 28px rgba(37,99,235,.14);transition:all .2s ease}.people-login-btn:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(37,99,235,.20);background:#EFF6FF}
-.landing-shell{width:min(1180px,100%);margin:0 auto;padding:54px clamp(18px,5vw,64px) 42px;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(320px,.82fr);gap:28px;align-items:stretch}
-.landing-hero,.lead-panel{background:rgba(255,255,255,.84);border:1px solid rgba(226,232,240,.92);box-shadow:0 24px 80px rgba(37,99,235,.16);backdrop-filter:blur(18px);border-radius:30px;padding:34px;position:relative;overflow:hidden}
-.landing-hero::before{content:'';position:absolute;inset:auto -12% -34% 30%;height:220px;background:linear-gradient(90deg,rgba(37,99,235,.18),rgba(34,197,94,.18));filter:blur(32px);transform:rotate(-8deg)}
-.brand-pill{display:inline-flex;align-items:center;gap:8px;background:#EFF6FF;color:#2563EB;border:1px solid #DBEAFE;border-radius:999px;padding:7px 12px;font-weight:800;font-size:12px;margin-bottom:18px}
-.landing-hero h1{font-size:clamp(40px,6.3vw,78px);line-height:.94;letter-spacing:-3.4px;margin-bottom:20px;max-width:760px}.landing-hero p{font-size:17px;line-height:1.65;color:#475569;max-width:620px}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.hero-btn{border:0;border-radius:999px;padding:13px 18px;font-weight:900;cursor:pointer;background:#2563EB;color:#fff;box-shadow:0 12px 28px rgba(37,99,235,.24)}.hero-btn.secondary{background:#fff;color:#2563EB;border:1px solid #DBEAFE;box-shadow:none}
-.landing-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px;position:relative;z-index:1}.mini-card{background:#fff;border:1px solid #e5eaf4;border-radius:18px;padding:16px;box-shadow:0 8px 24px rgba(15,23,42,.06)}.mini-card strong{display:block;font-size:22px;color:#2563EB}.mini-card span{font-size:12px;color:#64748b;font-weight:600}
-.lead-panel{display:flex;flex-direction:column;justify-content:center}.lead-panel h2{font-size:28px;letter-spacing:-1px;margin-bottom:8px}.lead-panel p{color:#64748b;font-size:14px;line-height:1.5;margin-bottom:20px}.lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.lead-field{margin-bottom:12px}.lead-field.full{grid-column:1/-1}.lead-field label{display:block;font-size:12px;font-weight:800;color:#334155;margin-bottom:6px}.lead-field input,.lead-field select,.lead-field textarea{width:100%;border:1px solid #dbe2ef;border-radius:13px;padding:13px 14px;font:inherit;background:#fff;color:#0f172a}.lead-field textarea{min-height:88px;resize:vertical}.lead-field input:focus,.lead-field select:focus,.lead-field textarea:focus{outline:none;border-color:#2563EB;box-shadow:0 0 0 4px rgba(37,99,235,.10)}
-.lead-submit{width:auto;display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:15px;background:linear-gradient(135deg,#2563EB,#1D4ED8);color:#fff;padding:14px 18px;font-weight:900;cursor:pointer;box-shadow:0 14px 30px rgba(37,99,235,.25)}.lead-submit[disabled]{opacity:.65;cursor:wait}.lead-status{min-height:22px;margin-top:10px;font-size:13px;font-weight:700}.lead-status.success{color:#15803d}.lead-status.error{color:#dc2626}
 .login-modal{position:fixed;inset:0;z-index:800;display:none;align-items:center;justify-content:center;background:rgba(8,10,18,.62);backdrop-filter:blur(6px);padding:20px}.login-modal.open{display:flex}.login-card{width:min(420px,100%);background:#fff;border-radius:24px;padding:26px;border:1px solid #e2e8f0;box-shadow:0 30px 90px rgba(15,23,42,.28);position:relative}.login-close{position:absolute;right:14px;top:14px;border:0;background:#f1f5f9;width:32px;height:32px;border-radius:999px;cursor:pointer;font-size:18px}.login-card h2{font-size:24px;margin-bottom:6px}.login-card p{font-size:13px;color:#64748b;line-height:1.5;margin-bottom:18px}.login-field{margin-bottom:14px}.login-field label{display:block;font-size:12px;font-weight:800;color:#334155;margin-bottom:6px}.login-field input,.login-field select{width:100%;border:1px solid #dbe2ef;border-radius:13px;padding:13px 14px;font:inherit;background:#fff;color:#0f172a}.login-btn{width:100%;border:0;border-radius:14px;background:#2563EB;color:#fff;padding:13px 18px;font-weight:900;cursor:pointer;box-shadow:0 10px 24px rgba(37,99,235,.25)}.login-error{min-height:18px;color:#dc2626;font-size:12px;font-weight:700;margin-top:10px}
 .workspace-switch{padding:14px 10px;border-bottom:1px solid rgba(255,255,255,.12)}.workspace-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.52);font-weight:800;margin:0 8px 8px}.workspace-btn{width:100%;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.72);padding:10px 11px;margin-bottom:6px;text-align:left;cursor:pointer;transition:all var(--trans);font-weight:700;font-size:12px;display:flex;flex-direction:column;gap:2px}.workspace-btn small{font-size:10px;color:rgba(255,255,255,.46);font-weight:600}.workspace-btn:hover,.workspace-btn.active{background:rgba(255,255,255,.15);color:#fff;transform:translateX(2px)}
 .workspace-intro{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(220px,.8fr);gap:16px;align-items:stretch}.workspace-hero-card{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;border-radius:22px;padding:24px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}.workspace-hero-card::after{content:'';position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.12);right:-60px;top:-70px}.workspace-hero-card h1{font-size:28px;letter-spacing:-1.2px;margin-bottom:8px}.workspace-hero-card p{color:rgba(255,255,255,.82);line-height:1.55;font-size:14px}.workspace-meta-card{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:20px;box-shadow:var(--shadow)}.workspace-meta-card .label{font-size:11px;color:var(--text3);font-weight:800;text-transform:uppercase;letter-spacing:.08em}.workspace-meta-card strong{display:block;font-size:22px;margin:6px 0;color:var(--primary)}
-@media(max-width:820px){.landing-shell,.workspace-intro{grid-template-columns:1fr}.landing-cards,.lead-grid{grid-template-columns:1fr}.landing-page{padding:0}.landing-header{padding:14px 18px}.landing-shell{padding:28px 18px}.landing-hero,.lead-panel{padding:24px;border-radius:22px}.landing-hero h1{letter-spacing:-1.8px}.hero-actions .hero-btn{width:auto}}
+@media(max-width:820px){.workspace-intro{grid-template-columns:1fr}}
 
 
 /* RESPONSIVE */
@@ -355,47 +342,6 @@ canvas{display:block;max-width:100%}
 <body class="auth-locked">
 
 
-<div class="landing-page" id="landingPage">
-  <header class="landing-header">
-    <div class="public-brand"><span class="brand-mark">JC</span><span>Jom Content</span></div>
-    <button class="people-login-btn" onclick="openLoginModal()" aria-label="Login dashboard" title="Login dashboard">
-      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-    </button>
-  </header>
-  <div class="landing-shell">
-    <section class="landing-hero">
-      <div class="brand-pill">Content calendar + social management</div>
-      <h1>Content konsisten, bukan content ikut mood.</h1>
-      <p>Jom Content bantu business owner susun idea, calendar, approval dan publishing workflow dalam satu tempat. Sesuai untuk brand personal, agency, klinik dan client yang nak content keluar dengan lebih teratur.</p>
-      <div class="hero-actions">
-        <button class="hero-btn" onclick="document.getElementById('leadForm').scrollIntoView({behavior:'smooth',block:'center'})">Book demo</button>
-        <button class="hero-btn secondary" onclick="openLoginModal()">Login dashboard</button>
-      </div>
-      <div class="landing-cards">
-        <div class="mini-card"><strong>1</strong><span>Dashboard workspace</span></div>
-        <div class="mini-card"><strong>2</strong><span>Platform — TikTok &amp; Threads</span></div>
-        <div class="mini-card"><strong>30D</strong><span>Calendar view</span></div>
-      </div>
-    </section>
-    <section class="lead-panel">
-      <h2>Nak setup content calendar?</h2>
-      <p>Isi form ni. Data akan masuk database lead Jom Content untuk follow up.</p>
-      <form id="leadForm" onsubmit="submitLandingLead(event)">
-        <div class="lead-grid">
-          <div class="lead-field"><label>Nama</label><input name="name" autocomplete="name" required placeholder="Nama awak"></div>
-          <div class="lead-field"><label>No. WhatsApp</label><input name="phone" inputmode="tel" autocomplete="tel" required placeholder="60123456789"></div>
-          <div class="lead-field full"><label>Jenis business</label><select name="service" required><option value="">Pilih satu</option><option>Personal brand</option><option>Agency / marketing team</option><option>Klinik / healthcare</option><option>Local business</option><option>Lain-lain</option></select></div>
-          <div class="lead-field full"><label>Apa nak improve?</label><textarea name="message" placeholder="Contoh: nak plan content 30 hari, nak dashboard client, nak approval flow..."></textarea></div>
-        </div>
-        <input type="hidden" name="project" value="jom-content-homepage">
-        <input type="hidden" name="form_type" value="homepage-lead">
-        <button class="lead-submit" id="leadSubmitBtn" type="submit">Hantar inquiry</button>
-        <div id="leadStatus" class="lead-status" role="status" aria-live="polite"></div>
-      </form>
-    </section>
-  </div>
-</div>
-
 <div class="login-modal" id="loginModal" onclick="if(event.target===this)closeLoginModal()">
   <div class="login-card">
     <button class="login-close" onclick="closeLoginModal()" aria-label="Tutup">×</button>
@@ -440,6 +386,10 @@ canvas{display:block;max-width:100%}
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-.505-1.811-1.368-3.243-2.585-4.232-1.271-.99-2.935-1.517-4.986-1.551-2.845.027-5.007.907-6.426 2.617-1.309 1.582-1.993 3.933-2.017 6.982.024 3.05.71 5.405 2.017 6.984 1.42 1.708 3.582 2.587 6.426 2.614 2.086-.028 3.672-.565 4.891-1.628.919-.799 1.529-1.928 1.785-3.316h-5.137v-2.08h7.31c.03.326.044.647.044.964 0 2.64-.752 4.791-2.23 6.238-1.623 1.591-3.879 2.406-6.695 2.428z"/></svg>
       Threads
       <span class="tab-badge" id="badge-threads">0</span>
+    </button>
+    <button class="nav-tab" data-tab="analytics">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M8 17v-5"/><path d="M13 17V7"/><path d="M18 17v-8"/></svg>
+      Analytics
     </button>
     <div class="nav-separator"></div>
     <a class="nav-external" id="navTeleprompter" href="https://teleprompter-jomdigital.pages.dev" target="_blank" rel="noopener" title="Buka PromptFlow Studio Teleprompter">
@@ -522,6 +472,7 @@ canvas{display:block;max-width:100%}
     <!-- PLATFORM TABS (JS-rendered) -->
     <div class="tab-content" id="tab-tiktok"></div>
     <div class="tab-content" id="tab-threads"></div>
+    <div class="tab-content" id="tab-analytics"><iframe src="/analytics.html" title="Threads Analytics"></iframe></div>
 
   </main>
 </div>
@@ -623,7 +574,7 @@ const WORKSPACES = {
   'jom-digital': {name:'Jom Digital', short:'Jom Digital', type:'Content OS', tagline:'Dashboard content TikTok & Threads untuk Jom Digital: Google Ads, website, digital marketing dan mindset.', pillars:['Google Ads','Website Leads','Digital Marketing','Personal & Mindset'], targets:{'Google Ads':30,'Website Leads':20,'Digital Marketing':25,'Personal & Mindset':25}}
 };
 const DEFAULT_WORKSPACE = 'jom-digital';
-const PAGE_TITLES = {dashboard:'Dashboard',tiktok:'TikTok',threads:'Threads'};
+const PAGE_TITLES = {dashboard:'Dashboard',tiktok:'TikTok',threads:'Threads',analytics:'Analytics'};
 const DEFAULT_PILLARS = WORKSPACES[DEFAULT_WORKSPACE].pillars;
 const DEFAULT_TARGETS = WORKSPACES[DEFAULT_WORKSPACE].targets;
 const PILLAR_COLORS = ['#6366f1','#22C55E','#06b6d4','#ec4899','#8b5cf6','#14b8a6','#f97316','#a855f7'];
@@ -761,7 +712,6 @@ function workspaceTargets(platform) {
   if (!state.pillarTargets[key]) state.pillarTargets[key] = {...currentWorkspace().targets};
   return state.pillarTargets[key];
 }
-const LANDING_LEAD_ENDPOINT = 'https://api.funnelcraft.my/api/v1/submit/jom-content-homepage';
 const LOGIN_USER = 'admin';
 const LOGIN_PASS = 'jomcontent';
 function openLoginModal() {
@@ -790,33 +740,6 @@ function loginToDashboard() {
   apiFetchAll();
 }
 function logoutDashboard() { localStorage.removeItem('jomContentSession'); document.body.classList.add('auth-locked'); closeLoginModal(); }
-async function submitLandingLead(event) {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const btn = document.getElementById('leadSubmitBtn');
-  const status = document.getElementById('leadStatus');
-  const data = Object.fromEntries(new FormData(form).entries());
-  data._referer = location.href;
-  data.source = 'jom-content-homepage';
-  if (btn) { btn.disabled = true; btn.textContent = 'Menghantar...'; }
-  if (status) { status.className = 'lead-status'; status.textContent = ''; }
-  try {
-    const res = await fetch(LANDING_LEAD_ENDPOINT, {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(data)
-    });
-    const json = await res.json().catch(()=>({}));
-    if (!res.ok || json.success === false) throw new Error(json.error || 'Submission failed');
-    form.reset();
-    if (status) { status.className = 'lead-status success'; status.textContent = 'Dah masuk database. Team akan follow up.'; }
-  } catch (err) {
-    if (status) { status.className = 'lead-status error'; status.textContent = 'Tak berjaya hantar. Cuba lagi atau WhatsApp terus.'; }
-    console.warn('lead submit failed', err);
-  } finally {
-    if (btn) { btn.disabled = false; btn.textContent = 'Hantar inquiry'; }
-  }
-}
 function setWorkspace(ws) {
   if (!WORKSPACES[ws]) ws = DEFAULT_WORKSPACE;
   state.workspace = ws;
@@ -1767,7 +1690,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   renderWorkspaceLoginOptions();
   renderWorkspaceButtons();
-  if (localStorage.getItem('jomContentSession') === '1') document.body.classList.remove('auth-locked');
+  if (localStorage.getItem('jomContentSession') === '1') { document.body.classList.remove('auth-locked'); } else { openLoginModal(); }
   initKeyboard();
   renderAll();
   // Sync from API only after dashboard login
