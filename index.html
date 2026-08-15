@@ -3,19 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jom Content — Social Media Manager</title>
+<title>Jom Content — TikTok &amp; Threads Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#f8fafc;--surface:#fff;--surface2:#f1f5f9;--surface3:#e8ecf4;--text:#1a1d23;--text2:#5f6779;--text3:#9ca3af;--border:#e2e6ef;--border-light:#edeff5;--primary:#1E3A8A;--primary-light:#3b5fbf;--primary-lighter:#6b8fd4;--primary-bg:#eef1ff;--primary-soft:#eef1ff;--primary-glow:rgba(30,58,138,0.15);--success:#16a34a;--success-bg:#dcfce7;--danger:#dc2626;--danger-bg:#fee2e2;--warning:#d97706;--warning-bg:#fef3c7;--shadow-sm:0 1px 2px rgba(0,0,0,.05);--shadow:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 12px rgba(0,0,0,.1);--shadow-lg:0 8px 24px rgba(0,0,0,.12);--shadow-xl:0 12px 40px rgba(0,0,0,.15);--radius:12px;--radius-sm:8px;--radius-xs:6px;--radius-lg:16px;--radius-full:999px;--sidebar-w:220px;--trans:.25s cubic-bezier(0.22,1,0.36,1);--trans-fast:.15s ease;--trans-slow:.4s cubic-bezier(0.22,1,0.36,1);--font:Inter,Segoe\ UI,system-ui,-apple-system,sans-serif;--space-xs:4px;--space-sm:8px;--space-md:16px;--space-lg:24px;--space-xl:32px;--space-2xl:40px;--space-3xl:48px}
+:root{--bg:#f8fafc;--surface:#fff;--surface2:#f1f5f9;--surface3:#e8ecf4;--text:#1a1d23;--text2:#5f6779;--text3:#9ca3af;--border:#e2e6ef;--border-light:#edeff5;--primary:#2563EB;--primary-light:#1D4ED8;--primary-lighter:#60A5FA;--primary-bg:#EFF6FF;--primary-soft:#EFF6FF;--primary-glow:rgba(37,99,235,0.15);--success:#16a34a;--success-bg:#dcfce7;--danger:#dc2626;--danger-bg:#fee2e2;--warning:#d97706;--warning-bg:#fef3c7;--shadow-sm:0 1px 2px rgba(0,0,0,.05);--shadow:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 12px rgba(0,0,0,.1);--shadow-lg:0 8px 24px rgba(0,0,0,.12);--shadow-xl:0 12px 40px rgba(0,0,0,.15);--radius:12px;--radius-sm:8px;--radius-xs:6px;--radius-lg:16px;--radius-full:999px;--sidebar-w:220px;--trans:.25s cubic-bezier(0.22,1,0.36,1);--trans-fast:.15s ease;--trans-slow:.4s cubic-bezier(0.22,1,0.36,1);--font:'DM Sans',Segoe\ UI,system-ui,-apple-system,sans-serif;--space-xs:4px;--space-sm:8px;--space-md:16px;--space-lg:24px;--space-xl:32px;--space-2xl:40px;--space-3xl:48px}
 [data-theme="dark"]{--bg:#0f1117;--surface:#1a1d28;--surface2:#222640;--text:#e8eaf0;--text2:#989fba;--border:#2a2e40;--primary:#4f7cff;--primary-light:#7a9eff;--primary-bg:#1a2244;--shadow:0 1px 3px rgba(0,0,0,.3);--surface3:#2a2e42;--text3:#6b7280;--border-light:#2a2e40;--primary-lighter:#a3baff;--primary-soft:#1a2244;--primary-glow:rgba(79,124,255,0.2);--success:#4ade80;--success-bg:#1a2e1a;--danger:#f87171;--danger-bg:#2e1a1a;--warning:#fbbf24;--warning-bg:#2e2a1a;--shadow-sm:0 1px 2px rgba(0,0,0,.2);--shadow-md:0 4px 12px rgba(0,0,0,.4);--shadow-lg:0 8px 24px rgba(0,0,0,.45);--shadow-xl:0 12px 40px rgba(0,0,0,.5)}
 body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;transition:background var(--trans),color var(--trans);overflow-x:hidden;width:100%}
+h1,h2,h3,h4,h5,h6{font-family:'Montserrat',var(--font);letter-spacing:-.02em}
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 
 /* SIDEBAR */
-.sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:linear-gradient(180deg,#1E3A8A 0%,#162a6b 100%);color:#fff;z-index:200;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;transition:transform var(--trans),width var(--trans);box-shadow:2px 0 20px rgba(30,58,138,.25)}
+.sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:linear-gradient(180deg,#2563EB 0%,#1E40AF 100%);color:#fff;z-index:200;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;transition:transform var(--trans),width var(--trans);box-shadow:2px 0 20px rgba(37,99,235,.25)}
 [data-theme="dark"] .sidebar{background:linear-gradient(180deg,#121830 0%,#0d1225 100%)}
 .sidebar-logo{padding:var(--space-xl) var(--space-xl) var(--space-lg);display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;letter-spacing:-.3px;border-bottom:1px solid rgba(255,255,255,.12);flex-shrink:0}
 .sidebar-logo svg{width:28px;height:28px;flex-shrink:0}
@@ -26,9 +27,12 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .nav-tab svg{width:16px;height:16px;flex-shrink:0;opacity:.7;transition:opacity var(--trans)}
 .nav-tab.active svg{opacity:1}
 .nav-tab[data-tab="tiktok"].active{border-left-color:#fe2c55}
-.nav-tab[data-tab="facebook"].active{border-left-color:#1877f2}
-.nav-tab[data-tab="instagram"].active{border-left-color:#e4405f}
 .nav-tab[data-tab="threads"].active{border-left-color:#aaa}
+.nav-separator{border-top:1px solid rgba(255,255,255,.12);margin:8px 12px}
+.nav-external{display:flex;align-items:center;gap:var(--space-sm);padding:var(--space-sm) var(--space-md);margin:2px var(--space-sm);border:none;border-radius:var(--radius-sm);background:rgba(255,255,255,.06);color:rgba(255,255,255,.75);font-size:13px;font-weight:500;cursor:pointer;text-align:left;transition:all var(--trans);white-space:nowrap;text-decoration:none}
+.nav-external:hover{background:rgba(255,255,255,.14);color:#fff;transform:translateX(2px)}
+.nav-external svg{width:16px;height:16px;flex-shrink:0;opacity:.8}
+.nav-external .ext-arrow{margin-left:auto;opacity:.5;font-size:11px}
 .tab-badge{margin-left:auto;background:rgba(255,255,255,.15);color:#fff;border-radius:var(--radius-full);padding:1px 7px;font-size:10px;font-weight:700;min-width:20px;text-align:center;transition:all var(--trans)}
 .nav-tab.active .tab-badge{background:rgba(255,255,255,.28);transform:scale(1.05)}
 
@@ -85,7 +89,7 @@ main{padding:var(--space-2xl);flex:1}
 .cal-day{background:var(--surface2);border-radius:var(--radius-sm);min-height:88px;padding:6px;cursor:pointer;transition:all var(--trans);border:2px solid transparent;position:relative;overflow:hidden}
 .cal-day:hover{background:var(--primary-soft);border-color:var(--primary-light);box-shadow:var(--shadow-md);transform:translateY(-2px);z-index:1}
 .cal-day.other-month{opacity:.3}
-.cal-day.today{border-color:var(--primary);background:var(--primary-bg);box-shadow:0 0 0 3px rgba(30,58,138,.1)}
+.cal-day.today{border-color:var(--primary);background:var(--primary-bg);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
 .cal-day .day-num{font-size:12px;font-weight:700;margin-bottom:3px;color:var(--text)}.cal-day.today .day-num{color:var(--primary)}
 .cal-add-btn{display:none;position:absolute;top:2px;right:2px;width:16px;height:16px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.8);color:#1f2937;align-items:center;justify-content:center;font-size:13px;font-weight:700;line-height:1;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.16);z-index:2}
 .cal-day:hover .cal-add-btn{display:flex}
@@ -121,7 +125,7 @@ main{padding:var(--space-2xl);flex:1}
 .search-wrap{margin-bottom:var(--space-md)}
 .search-wrap.inline{max-width:100%;flex:1;min-width:0}.search-input-wrap{position:relative;max-width:340px}.search-input-wrap .search-icon{position:absolute;left:var(--space-md);top:50%;transform:translateY(-50%);color:var(--text3);font-size:14px;pointer-events:none}
 .search-input{width:100%;max-width:340px;padding:9px 12px 9px 36px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;background:var(--surface);color:var(--text);font-family:inherit;transition:all var(--trans)}
-.search-input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(30,58,138,.1)}
+.search-input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
 
 /* APPROVAL BADGES */
 .approval-badge{font-size:9px;padding:2px 6px;border-radius:var(--radius-full);font-weight:600;white-space:nowrap}
@@ -184,7 +188,7 @@ canvas{display:block;max-width:100%}
 .form-group{margin-bottom:var(--space-lg)}
 .form-group label{font-size:12px;font-weight:600;color:var(--text2);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
 .form-group input[type="text"],.form-group input[type="date"],.form-group input[type="time"],.form-group input[type="number"],.form-group select,.form-group textarea{width:100%;min-width:0;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;background:var(--surface);color:var(--text);font-family:inherit;transition:all var(--trans)}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(30,58,138,.08)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.08)}
 .form-group input.field-error{border-color:var(--danger);box-shadow:0 0 0 3px rgba(220,38,38,.1)}
 .field-error-message{display:none;margin-top:5px;color:var(--danger);font-size:11px;font-weight:500}.field-error-message.visible{display:block}
 .form-group textarea{min-height:80px;resize:vertical}
@@ -205,11 +209,11 @@ canvas{display:block;max-width:100%}
 .media-upload-row input[type="text"]{padding:7px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;background:var(--surface);color:var(--text)}
 
 .media-type-select{width:auto;min-width:100px;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;background:var(--surface);color:var(--text);font-family:inherit;cursor:pointer;transition:border-color var(--trans)}
-.media-type-select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(30,58,138,.08)}
+.media-type-select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.08)}
 .media-input-area{display:flex;gap:8px;flex:1;min-width:0;flex-wrap:wrap;align-items:center;overflow:hidden}
 .media-url-row{display:flex;gap:8px;flex:1;min-width:0}
 .media-url-row input[type="text"]{flex:1;min-width:120px;padding:7px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;background:var(--surface);color:var(--text);font-family:inherit}
-.media-url-row input[type="text"]:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(30,58,138,.08)}
+.media-url-row input[type="text"]:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.08)}
 .media-upload-btn{display:inline-flex!important;align-items:center}
 .media-preview{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:var(--space-sm);margin-top:var(--space-sm)}
 .media-thumb{position:relative;width:90px;height:90px;border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:transform var(--trans),box-shadow var(--trans);background:var(--surface3)}
@@ -218,7 +222,7 @@ canvas{display:block;max-width:100%}
 
 /* BUTTONS */
 .btn{padding:9px 16px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all var(--trans);display:inline-flex;align-items:center;gap:6px;white-space:nowrap;letter-spacing:-.1px}.btn:hover{transform:translateY(-1px)}.btn:active{transform:translateY(0)}.btn:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
-.btn-primary{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(30,58,138,.25)}.btn-primary:hover{background:var(--primary-light);box-shadow:0 4px 16px rgba(30,58,138,.35)}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(37,99,235,.25)}.btn-primary:hover{background:var(--primary-light);box-shadow:0 4px 16px rgba(37,99,235,.35)}
 .btn-outline{background:var(--surface);border:1px solid var(--border);color:var(--text)}.btn-outline:hover{background:var(--surface2);border-color:var(--primary-light)}
 .btn-danger{background:var(--danger);color:#fff;box-shadow:0 2px 8px rgba(220,38,38,.25)}.btn-danger:hover{background:#b91c1c;box-shadow:0 4px 16px rgba(220,38,38,.35)}
 .btn-sm{padding:6px 12px;font-size:12px}
@@ -250,6 +254,27 @@ canvas{display:block;max-width:100%}
 /* KBD HINT */
 .kbd-hint{position:fixed;bottom:var(--space-lg);left:calc(var(--sidebar-w) + var(--space-lg));z-index:50;background:var(--surface);border:1px solid var(--border);padding:6px 12px;border-radius:var(--radius-full);font-size:11px;color:var(--text3);box-shadow:var(--shadow-sm);transition:opacity .3s;display:flex;align-items:center;gap:6px;opacity:.7}.kbd-hint:hover{opacity:1}.kbd-hint kbd{background:var(--surface2);border:1px solid var(--border);border-radius:3px;padding:1px 5px;font-family:inherit;font-size:10px;font-weight:600;color:var(--text)}
 .api-loading{position:fixed;top:0;left:0;right:0;height:3px;z-index:700;opacity:0;pointer-events:none;background:linear-gradient(90deg,transparent,var(--primary),transparent);background-size:200% 100%;transition:opacity .15s}.api-loading.active{opacity:1;animation:apiLoading 1s linear infinite}@keyframes apiLoading{to{background-position:-200% 0}}
+/* LANDING / LOGIN / WORKSPACE */
+.auth-locked .sidebar,.auth-locked .app-body,.auth-locked .kbd-hint{display:none}
+.landing-page{min-height:100vh;background:radial-gradient(circle at 15% 12%,rgba(37,99,235,.20),transparent 34%),radial-gradient(circle at 80% 12%,rgba(34,197,94,.20),transparent 30%),linear-gradient(135deg,#f8fafc 0%,#eef3ff 56%,#fff7e6 100%);display:none;color:#101827;overflow-x:hidden}
+.auth-locked .landing-page{display:block}
+.landing-header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px clamp(18px,5vw,64px);background:rgba(255,255,255,.74);backdrop-filter:blur(18px);border-bottom:1px solid rgba(226,232,240,.78)}
+.public-brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:-.4px;color:#1E40AF}.brand-mark{width:36px;height:36px;border-radius:13px;background:linear-gradient(135deg,#2563EB,#22C55E);display:grid;place-items:center;color:#fff;box-shadow:0 10px 24px rgba(37,99,235,.22)}
+.people-login-btn{width:44px;height:44px;border:1px solid #DBEAFE;border-radius:999px;background:#fff;color:#2563EB;display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 28px rgba(37,99,235,.14);transition:all .2s ease}.people-login-btn:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(37,99,235,.20);background:#EFF6FF}
+.landing-shell{width:min(1180px,100%);margin:0 auto;padding:54px clamp(18px,5vw,64px) 42px;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(320px,.82fr);gap:28px;align-items:stretch}
+.landing-hero,.lead-panel{background:rgba(255,255,255,.84);border:1px solid rgba(226,232,240,.92);box-shadow:0 24px 80px rgba(37,99,235,.16);backdrop-filter:blur(18px);border-radius:30px;padding:34px;position:relative;overflow:hidden}
+.landing-hero::before{content:'';position:absolute;inset:auto -12% -34% 30%;height:220px;background:linear-gradient(90deg,rgba(37,99,235,.18),rgba(34,197,94,.18));filter:blur(32px);transform:rotate(-8deg)}
+.brand-pill{display:inline-flex;align-items:center;gap:8px;background:#EFF6FF;color:#2563EB;border:1px solid #DBEAFE;border-radius:999px;padding:7px 12px;font-weight:800;font-size:12px;margin-bottom:18px}
+.landing-hero h1{font-size:clamp(40px,6.3vw,78px);line-height:.94;letter-spacing:-3.4px;margin-bottom:20px;max-width:760px}.landing-hero p{font-size:17px;line-height:1.65;color:#475569;max-width:620px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.hero-btn{border:0;border-radius:999px;padding:13px 18px;font-weight:900;cursor:pointer;background:#2563EB;color:#fff;box-shadow:0 12px 28px rgba(37,99,235,.24)}.hero-btn.secondary{background:#fff;color:#2563EB;border:1px solid #DBEAFE;box-shadow:none}
+.landing-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px;position:relative;z-index:1}.mini-card{background:#fff;border:1px solid #e5eaf4;border-radius:18px;padding:16px;box-shadow:0 8px 24px rgba(15,23,42,.06)}.mini-card strong{display:block;font-size:22px;color:#2563EB}.mini-card span{font-size:12px;color:#64748b;font-weight:600}
+.lead-panel{display:flex;flex-direction:column;justify-content:center}.lead-panel h2{font-size:28px;letter-spacing:-1px;margin-bottom:8px}.lead-panel p{color:#64748b;font-size:14px;line-height:1.5;margin-bottom:20px}.lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.lead-field{margin-bottom:12px}.lead-field.full{grid-column:1/-1}.lead-field label{display:block;font-size:12px;font-weight:800;color:#334155;margin-bottom:6px}.lead-field input,.lead-field select,.lead-field textarea{width:100%;border:1px solid #dbe2ef;border-radius:13px;padding:13px 14px;font:inherit;background:#fff;color:#0f172a}.lead-field textarea{min-height:88px;resize:vertical}.lead-field input:focus,.lead-field select:focus,.lead-field textarea:focus{outline:none;border-color:#2563EB;box-shadow:0 0 0 4px rgba(37,99,235,.10)}
+.lead-submit{width:auto;display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:15px;background:linear-gradient(135deg,#2563EB,#1D4ED8);color:#fff;padding:14px 18px;font-weight:900;cursor:pointer;box-shadow:0 14px 30px rgba(37,99,235,.25)}.lead-submit[disabled]{opacity:.65;cursor:wait}.lead-status{min-height:22px;margin-top:10px;font-size:13px;font-weight:700}.lead-status.success{color:#15803d}.lead-status.error{color:#dc2626}
+.login-modal{position:fixed;inset:0;z-index:800;display:none;align-items:center;justify-content:center;background:rgba(8,10,18,.62);backdrop-filter:blur(6px);padding:20px}.login-modal.open{display:flex}.login-card{width:min(420px,100%);background:#fff;border-radius:24px;padding:26px;border:1px solid #e2e8f0;box-shadow:0 30px 90px rgba(15,23,42,.28);position:relative}.login-close{position:absolute;right:14px;top:14px;border:0;background:#f1f5f9;width:32px;height:32px;border-radius:999px;cursor:pointer;font-size:18px}.login-card h2{font-size:24px;margin-bottom:6px}.login-card p{font-size:13px;color:#64748b;line-height:1.5;margin-bottom:18px}.login-field{margin-bottom:14px}.login-field label{display:block;font-size:12px;font-weight:800;color:#334155;margin-bottom:6px}.login-field input,.login-field select{width:100%;border:1px solid #dbe2ef;border-radius:13px;padding:13px 14px;font:inherit;background:#fff;color:#0f172a}.login-btn{width:100%;border:0;border-radius:14px;background:#2563EB;color:#fff;padding:13px 18px;font-weight:900;cursor:pointer;box-shadow:0 10px 24px rgba(37,99,235,.25)}.login-error{min-height:18px;color:#dc2626;font-size:12px;font-weight:700;margin-top:10px}
+.workspace-switch{padding:14px 10px;border-bottom:1px solid rgba(255,255,255,.12)}.workspace-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.52);font-weight:800;margin:0 8px 8px}.workspace-btn{width:100%;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.72);padding:10px 11px;margin-bottom:6px;text-align:left;cursor:pointer;transition:all var(--trans);font-weight:700;font-size:12px;display:flex;flex-direction:column;gap:2px}.workspace-btn small{font-size:10px;color:rgba(255,255,255,.46);font-weight:600}.workspace-btn:hover,.workspace-btn.active{background:rgba(255,255,255,.15);color:#fff;transform:translateX(2px)}
+.workspace-intro{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(220px,.8fr);gap:16px;align-items:stretch}.workspace-hero-card{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;border-radius:22px;padding:24px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}.workspace-hero-card::after{content:'';position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.12);right:-60px;top:-70px}.workspace-hero-card h1{font-size:28px;letter-spacing:-1.2px;margin-bottom:8px}.workspace-hero-card p{color:rgba(255,255,255,.82);line-height:1.55;font-size:14px}.workspace-meta-card{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:20px;box-shadow:var(--shadow)}.workspace-meta-card .label{font-size:11px;color:var(--text3);font-weight:800;text-transform:uppercase;letter-spacing:.08em}.workspace-meta-card strong{display:block;font-size:22px;margin:6px 0;color:var(--primary)}
+@media(max-width:820px){.landing-shell,.workspace-intro{grid-template-columns:1fr}.landing-cards,.lead-grid{grid-template-columns:1fr}.landing-page{padding:0}.landing-header{padding:14px 18px}.landing-shell{padding:28px 18px}.landing-hero,.lead-panel{padding:24px;border-radius:22px}.landing-hero h1{letter-spacing:-1.8px}.hero-actions .hero-btn{width:auto}}
+
 
 /* RESPONSIVE */
 @media(max-width:768px){
@@ -327,7 +352,62 @@ canvas{display:block;max-width:100%}
   }
 </style>
 </head>
-<body>
+<body class="auth-locked">
+
+
+<div class="landing-page" id="landingPage">
+  <header class="landing-header">
+    <div class="public-brand"><span class="brand-mark">JC</span><span>Jom Content</span></div>
+    <button class="people-login-btn" onclick="openLoginModal()" aria-label="Login dashboard" title="Login dashboard">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </button>
+  </header>
+  <div class="landing-shell">
+    <section class="landing-hero">
+      <div class="brand-pill">Content calendar + social management</div>
+      <h1>Content konsisten, bukan content ikut mood.</h1>
+      <p>Jom Content bantu business owner susun idea, calendar, approval dan publishing workflow dalam satu tempat. Sesuai untuk brand personal, agency, klinik dan client yang nak content keluar dengan lebih teratur.</p>
+      <div class="hero-actions">
+        <button class="hero-btn" onclick="document.getElementById('leadForm').scrollIntoView({behavior:'smooth',block:'center'})">Book demo</button>
+        <button class="hero-btn secondary" onclick="openLoginModal()">Login dashboard</button>
+      </div>
+      <div class="landing-cards">
+        <div class="mini-card"><strong>3</strong><span>Workspace/page</span></div>
+        <div class="mini-card"><strong>4</strong><span>Platform sosial</span></div>
+        <div class="mini-card"><strong>30D</strong><span>Calendar view</span></div>
+      </div>
+    </section>
+    <section class="lead-panel">
+      <h2>Nak setup content calendar?</h2>
+      <p>Isi form ni. Data akan masuk database lead Jom Content untuk follow up.</p>
+      <form id="leadForm" onsubmit="submitLandingLead(event)">
+        <div class="lead-grid">
+          <div class="lead-field"><label>Nama</label><input name="name" autocomplete="name" required placeholder="Nama awak"></div>
+          <div class="lead-field"><label>No. WhatsApp</label><input name="phone" inputmode="tel" autocomplete="tel" required placeholder="60123456789"></div>
+          <div class="lead-field full"><label>Jenis business</label><select name="service" required><option value="">Pilih satu</option><option>Personal brand</option><option>Agency / marketing team</option><option>Klinik / healthcare</option><option>Local business</option><option>Lain-lain</option></select></div>
+          <div class="lead-field full"><label>Apa nak improve?</label><textarea name="message" placeholder="Contoh: nak plan content 30 hari, nak dashboard client, nak approval flow..."></textarea></div>
+        </div>
+        <input type="hidden" name="project" value="jom-content-homepage">
+        <input type="hidden" name="form_type" value="homepage-lead">
+        <button class="lead-submit" id="leadSubmitBtn" type="submit">Hantar inquiry</button>
+        <div id="leadStatus" class="lead-status" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+  </div>
+</div>
+
+<div class="login-modal" id="loginModal" onclick="if(event.target===this)closeLoginModal()">
+  <div class="login-card">
+    <button class="login-close" onclick="closeLoginModal()" aria-label="Tutup">×</button>
+    <h2>Login dashboard</h2>
+    <p>Masuk untuk manage content calendar dalaman.</p>
+    <div class="login-field"><label>Username</label><input id="loginUsername" autocomplete="username" placeholder="username"></div>
+    <div class="login-field"><label>Password</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="password" onkeydown="if(event.key==='Enter')loginToDashboard()"></div>
+    <div class="login-field"><label>Dashboard</label><select id="loginWorkspace"></select></div>
+    <button class="login-btn" onclick="loginToDashboard()">Masuk</button>
+    <div class="login-error" id="loginError" role="status" aria-live="polite"></div>
+  </div>
+</div>
 
 <div id="toastWrap"></div>
 <div class="api-loading" id="apiLoading" role="progressbar" aria-label="Menyegerakkan data" aria-hidden="true"></div>
@@ -341,6 +421,11 @@ canvas{display:block;max-width:100%}
     </svg>
     Jom Content
   </div>
+  <div class="workspace-switch" id="workspaceSwitch">
+    <div class="workspace-label">Dashboard</div>
+    <div id="workspaceButtons"></div>
+  </div>
+
   <nav class="sidebar-nav">
     <button class="nav-tab active" data-tab="dashboard">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
@@ -351,21 +436,17 @@ canvas{display:block;max-width:100%}
       TikTok
       <span class="tab-badge" id="badge-tiktok">0</span>
     </button>
-    <button class="nav-tab" data-tab="facebook">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.26h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
-      Facebook
-      <span class="tab-badge" id="badge-facebook">0</span>
-    </button>
-    <button class="nav-tab" data-tab="instagram">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      Instagram
-      <span class="tab-badge" id="badge-instagram">0</span>
-    </button>
     <button class="nav-tab" data-tab="threads">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-.505-1.811-1.368-3.243-2.585-4.232-1.271-.99-2.935-1.517-4.986-1.551-2.845.027-5.007.907-6.426 2.617-1.309 1.582-1.993 3.933-2.017 6.982.024 3.05.71 5.405 2.017 6.984 1.42 1.708 3.582 2.587 6.426 2.614 2.086-.028 3.672-.565 4.891-1.628.919-.799 1.529-1.928 1.785-3.316h-5.137v-2.08h7.31c.03.326.044.647.044.964 0 2.64-.752 4.791-2.23 6.238-1.623 1.591-3.879 2.406-6.695 2.428z"/></svg>
       Threads
       <span class="tab-badge" id="badge-threads">0</span>
     </button>
+    <div class="nav-separator"></div>
+    <a class="nav-external" id="navTeleprompter" href="https://teleprompter-jomdigital.pages.dev" target="_blank" rel="noopener" title="Buka PromptFlow Studio Teleprompter">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      🎬 Teleprompter
+      <span class="ext-arrow">↗</span>
+    </a>
   </nav>
 </aside>
 
@@ -400,6 +481,10 @@ canvas{display:block;max-width:100%}
           <span>Import</span>
         </button>
         <input type="file" id="importFile" accept=".json" style="display:none" onchange="handleImport(event)">
+        <button class="hdr-btn" id="hdrTeleprompter" title="Buka PromptFlow Studio Teleprompter" style="background:var(--primary-bg);color:var(--primary);border-color:var(--primary-light)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <span>🎬 Teleprompter</span>
+        </button>
         <button class="hdr-btn theme-btn" id="themeToggle" title="Tukar tema">🌙</button>
       </div>
     </div>
@@ -410,6 +495,7 @@ canvas{display:block;max-width:100%}
 
     <!-- DASHBOARD -->
     <div class="tab-content active" id="tab-dashboard">
+      <div class="section" id="workspaceIntro"></div>
       <div class="section">
         <div class="section-hdr"><h2>Ringkasan Bulan Ini</h2>
           <div style="display:flex;align-items:center;gap:6px">
@@ -435,8 +521,6 @@ canvas{display:block;max-width:100%}
 
     <!-- PLATFORM TABS (JS-rendered) -->
     <div class="tab-content" id="tab-tiktok"></div>
-    <div class="tab-content" id="tab-facebook"></div>
-    <div class="tab-content" id="tab-instagram"></div>
     <div class="tab-content" id="tab-threads"></div>
 
   </main>
@@ -531,14 +615,18 @@ canvas{display:block;max-width:100%}
 
 <script>
 /* ===== CONSTANTS ===== */
-const PLATFORMS = ['tiktok','facebook','instagram','threads'];
-const PLATFORM_NAMES = {tiktok:'TikTok',facebook:'Facebook',instagram:'Instagram',threads:'Threads'};
-const PLATFORM_COLORS = {tiktok:'#fe2c55',facebook:'#1877f2',instagram:'#e4405f',threads:'#888'};
-const PLATFORM_ICONS = {tiktok:'TikTok',facebook:'Facebook',instagram:'Instagram',threads:'Threads'};
-const PAGE_TITLES = {dashboard:'Dashboard',tiktok:'TikTok',facebook:'Facebook',instagram:'Instagram',threads:'Threads'};
-const DEFAULT_PILLARS = ['Kulit','Weight Loss','General Care'];
-const DEFAULT_TARGETS = {'Kulit':50,'Weight Loss':30,'General Care':20};
-const PILLAR_COLORS = ['#6366f1','#f59e0b','#06b6d4','#ec4899','#8b5cf6','#14b8a6','#f97316','#a855f7'];
+const PLATFORMS = ['tiktok','threads'];
+const PLATFORM_NAMES = {tiktok:'TikTok',threads:'Threads'};
+const PLATFORM_COLORS = {tiktok:'#fe2c55',threads:'#888'};
+const PLATFORM_ICONS = {tiktok:'TikTok',threads:'Threads'};
+const WORKSPACES = {
+  'jom-digital': {name:'Jom Digital', short:'Jom Digital', type:'Content OS', tagline:'Dashboard content TikTok & Threads untuk Jom Digital: Google Ads, website, digital marketing dan mindset.', pillars:['Google Ads','Website Leads','Digital Marketing','Personal & Mindset'], targets:{'Google Ads':30,'Website Leads':20,'Digital Marketing':25,'Personal & Mindset':25}}
+};
+const DEFAULT_WORKSPACE = 'jom-digital';
+const PAGE_TITLES = {dashboard:'Dashboard',tiktok:'TikTok',threads:'Threads'};
+const DEFAULT_PILLARS = WORKSPACES[DEFAULT_WORKSPACE].pillars;
+const DEFAULT_TARGETS = WORKSPACES[DEFAULT_WORKSPACE].targets;
+const PILLAR_COLORS = ['#6366f1','#22C55E','#06b6d4','#ec4899','#8b5cf6','#14b8a6','#f97316','#a855f7'];
 
 /* ===== CANVAS POLYFILL ===== */
 if (!CanvasRenderingContext2D.prototype.roundRect) {
@@ -559,7 +647,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
 }
 
 /* ===== STATE ===== */
-let state = {posts:[],pillars:{},pillarColors:{},calDates:{},pillarTargets:{},currentTab:'dashboard',pillarFilters:{},dashMonth:null};
+let state = {posts:[],pillars:{},pillarColors:{},calDates:{},pillarTargets:{},currentTab:'dashboard',pillarFilters:{},dashMonth:null,workspace:DEFAULT_WORKSPACE};
 
 /* ===== API ===== */
 const API_BASE = '/api/posts';
@@ -573,7 +661,10 @@ function setApiLoading(loading) {
   }
 }
 async function apiFetch(method, body, id) {
-  const url = id ? API_BASE+'/'+id : API_BASE;
+  const params = new URLSearchParams();
+  if (id) params.set('id', id);
+  if (state.workspace) params.set('workspace', state.workspace);
+  const url = API_BASE + (params.toString() ? '?' + params.toString() : '');
   setApiLoading(true);
   try {
     let lastError;
@@ -607,7 +698,7 @@ async function apiFetchAll() {
     // Merge API posts with local — API is authoritative for existing IDs
     const apiIds = new Set(res.data.map(p=>p.id));
     state.posts = state.posts.filter(p => !apiIds.has(p.id) || p._localOnly);
-    state.posts = [...res.data, ...state.posts];
+    state.posts = [...res.data.map(p => ({...p, workspace: postWorkspace(p), client: p.client || postWorkspace(p)})), ...state.posts];
     saveState();
     renderAll();
   }
@@ -655,6 +746,106 @@ function mediaIndicator(images) {
 function cssVar(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
+
+function currentWorkspace() { return WORKSPACES[state.workspace] || WORKSPACES[DEFAULT_WORKSPACE]; }
+function postWorkspace(post) { return post.workspace || post.client || DEFAULT_WORKSPACE; }
+function scopedPosts() { return state.posts.filter(p => postWorkspace(p) === state.workspace); }
+function workspacePlatforms(posts) { return posts || scopedPosts(); }
+function workspacePillars(platform) {
+  const key = state.workspace + ':' + platform;
+  if (!state.pillars[key]) state.pillars[key] = [...currentWorkspace().pillars];
+  return state.pillars[key];
+}
+function workspaceTargets(platform) {
+  const key = state.workspace + ':' + platform;
+  if (!state.pillarTargets[key]) state.pillarTargets[key] = {...currentWorkspace().targets};
+  return state.pillarTargets[key];
+}
+const LANDING_LEAD_ENDPOINT = 'https://api.funnelcraft.my/api/v1/submit/jom-content-homepage';
+const LOGIN_USER = 'admin';
+const LOGIN_PASS = 'jomcontent';
+function openLoginModal() {
+  const modal = document.getElementById('loginModal');
+  if (!modal) return;
+  modal.classList.add('open');
+  const err = document.getElementById('loginError');
+  if (err) err.textContent = '';
+  setTimeout(()=>document.getElementById('loginUsername')?.focus(),40);
+}
+function closeLoginModal() { document.getElementById('loginModal')?.classList.remove('open'); }
+function loginToDashboard() {
+  const user = (document.getElementById('loginUsername')?.value || '').trim();
+  const pass = document.getElementById('loginPassword')?.value || '';
+  const ws = document.getElementById('loginWorkspace')?.value || DEFAULT_WORKSPACE;
+  const err = document.getElementById('loginError');
+  if (user !== LOGIN_USER || pass !== LOGIN_PASS) {
+    if (err) err.textContent = 'Username atau password salah.';
+    return;
+  }
+  setWorkspace(ws);
+  localStorage.setItem('jomContentSession','1');
+  document.body.classList.remove('auth-locked');
+  closeLoginModal();
+  renderAll();
+  apiFetchAll();
+}
+function logoutDashboard() { localStorage.removeItem('jomContentSession'); document.body.classList.add('auth-locked'); closeLoginModal(); }
+async function submitLandingLead(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const btn = document.getElementById('leadSubmitBtn');
+  const status = document.getElementById('leadStatus');
+  const data = Object.fromEntries(new FormData(form).entries());
+  data._referer = location.href;
+  data.source = 'jom-content-homepage';
+  if (btn) { btn.disabled = true; btn.textContent = 'Menghantar...'; }
+  if (status) { status.className = 'lead-status'; status.textContent = ''; }
+  try {
+    const res = await fetch(LANDING_LEAD_ENDPOINT, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(data)
+    });
+    const json = await res.json().catch(()=>({}));
+    if (!res.ok || json.success === false) throw new Error(json.error || 'Submission failed');
+    form.reset();
+    if (status) { status.className = 'lead-status success'; status.textContent = 'Dah masuk database. Team akan follow up.'; }
+  } catch (err) {
+    if (status) { status.className = 'lead-status error'; status.textContent = 'Tak berjaya hantar. Cuba lagi atau WhatsApp terus.'; }
+    console.warn('lead submit failed', err);
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = 'Hantar inquiry'; }
+  }
+}
+function setWorkspace(ws) {
+  if (!WORKSPACES[ws]) ws = DEFAULT_WORKSPACE;
+  state.workspace = ws;
+  localStorage.setItem('jomContentWorkspace', ws);
+  renderWorkspaceButtons();
+  renderWorkspaceLoginOptions();
+  saveState();
+  renderAll();
+  if (localStorage.getItem('jomContentSession') === '1') setTimeout(apiFetchAll, 0);
+}
+function renderWorkspaceLoginOptions() {
+  const sel = document.getElementById('loginWorkspace');
+  if (!sel) return;
+  sel.innerHTML = Object.entries(WORKSPACES).map(([id,w]) => `<option value="${esc(id)}" ${id===state.workspace?'selected':''}>${esc(w.name)}</option>`).join('');
+}
+function renderWorkspaceButtons() {
+  const wrap = document.getElementById('workspaceButtons');
+  if (!wrap) return;
+  wrap.innerHTML = Object.entries(WORKSPACES).map(([id,w]) => `<button class="workspace-btn ${id===state.workspace?'active':''}" onclick="setWorkspace('${esc(id)}')"><span>${esc(w.short)}</span><small>${esc(w.type)}</small></button>`).join('');
+}
+function renderWorkspaceIntro() {
+  const el = document.getElementById('workspaceIntro');
+  if (!el) return;
+  const w = currentWorkspace();
+  const posts = scopedPosts();
+  const pending = posts.filter(p=>p.status!=='posted').length;
+  el.innerHTML = `<div class="workspace-intro"><div class="workspace-hero-card"><h1>${esc(w.name)}</h1><p>${esc(w.tagline)}</p></div><div class="workspace-meta-card"><div class="label">Active Page</div><strong>${esc(w.type)}</strong><p style="font-size:13px;color:var(--text2);line-height:1.5">${posts.length} total posts · ${pending} belum posted · ${Object.keys(WORKSPACES).length} workspace tersedia.</p><button class="btn btn-outline btn-sm" style="margin-top:12px" onclick="logoutDashboard()">Logout</button></div></div>`;
+}
+
 const searchTimers = {};
 function debounceSearch(scope) {
   clearTimeout(searchTimers[scope]);
@@ -676,14 +867,20 @@ function loadState() {
       state.calDates = s.calDates || {};
       state.pillarTargets = s.pillarTargets || {};
       state.dashMonth = s.dashMonth || null;
+      state.workspace = s.workspace || localStorage.getItem('jomContentWorkspace') || DEFAULT_WORKSPACE;
     }
   } catch(e) { console.warn('loadState:', e); }
+  state.workspace = localStorage.getItem('jomContentWorkspace') || state.workspace || DEFAULT_WORKSPACE;
+  Object.keys(WORKSPACES).forEach(ws => PLATFORMS.forEach(p => {
+    const key = ws + ':' + p;
+    if (!state.pillars[key]) state.pillars[key] = [...WORKSPACES[ws].pillars];
+    if (!state.pillarTargets[key]) state.pillarTargets[key] = {...WORKSPACES[ws].targets};
+    if (!state.pillarFilters[key]) state.pillarFilters[key] = 'all';
+  }));
   PLATFORMS.forEach(p => {
-    if (!state.pillars[p]) state.pillars[p] = [...DEFAULT_PILLARS];
     if (!state.calDates[p]) state.calDates[p] = getDateKey(new Date());
-    if (!state.pillarTargets[p]) state.pillarTargets[p] = {...DEFAULT_TARGETS};
-    if (!state.pillarFilters[p]) state.pillarFilters[p] = 'all';
   });
+  state.posts = state.posts.map(p => ({...p, workspace: postWorkspace(p)}));
   if (!state.dashMonth) {
     const n = new Date();
     state.dashMonth = {year: n.getFullYear(), month: n.getMonth()};
@@ -691,13 +888,13 @@ function loadState() {
 }
 
 function saveState() {
-  const data = JSON.stringify({posts:state.posts,pillars:state.pillars,pillarColors:state.pillarColors,calDates:state.calDates,pillarTargets:state.pillarTargets,dashMonth:state.dashMonth});
+  const data = JSON.stringify({posts:state.posts,pillars:state.pillars,pillarColors:state.pillarColors,calDates:state.calDates,pillarTargets:state.pillarTargets,dashMonth:state.dashMonth,workspace:state.workspace});
   try { localStorage.setItem('jomContent', data); } catch(e) { showToast('Storan penuh!','error'); return; }
   try { localStorage.setItem('jomContent_bak'+(Math.floor(Date.now()/60000)%3+1), data); } catch(e) {}
 }
 
 function getTargets(platform) {
-  return (state.pillarTargets && state.pillarTargets[platform]) || DEFAULT_TARGETS;
+  return workspaceTargets(platform);
 }
 
 /* ===== TOAST ===== */
@@ -752,7 +949,7 @@ function showAddAnotherToast(onAdd, onExpire) {
 /* ===== EXPORT / IMPORT ===== */
 function exportCSV() {
   const hdrs = ['ID','Platform','Tajuk','Caption','Tarikh','Masa','Pillar','Status','Approved','Notes'];
-  const rows = state.posts.map(p => [
+  const rows = scopedPosts().map(p => [
     p.id, PLATFORM_NAMES[p.platform]||p.platform,
     (p.title||'').replace(/"/g,'""'),
     (p.caption||'').replace(/[\n\r]/g,' ').replace(/"/g,'""').slice(0,200),
@@ -766,7 +963,7 @@ function exportCSV() {
 }
 
 function exportJSON() {
-  const data = JSON.stringify({posts:state.posts,pillars:state.pillars,pillarColors:state.pillarColors,calDates:state.calDates,pillarTargets:state.pillarTargets},null,2);
+  const data = JSON.stringify({workspace:state.workspace,posts:scopedPosts(),pillars:state.pillars,pillarColors:state.pillarColors,calDates:state.calDates,pillarTargets:state.pillarTargets},null,2);
   dlBlob(data, 'application/json', 'jomcontent-backup-'+todayStr()+'.json');
   showToast('Backup disimpan!','success');
 }
@@ -793,11 +990,13 @@ function handleImport(e) {
       state.calDates = d.calDates||{};
       state.pillarTargets = d.pillarTargets||{};
       state.dashMonth = d.dashMonth || null;
-      PLATFORMS.forEach(p=>{
-        if(!state.pillars[p]) state.pillars[p]=[...DEFAULT_PILLARS];
-        if(!state.calDates[p]) state.calDates[p]=getDateKey(new Date());
-        if(!state.pillarTargets[p]) state.pillarTargets[p]={...DEFAULT_TARGETS};
-      });
+      Object.keys(WORKSPACES).forEach(ws => PLATFORMS.forEach(p=>{
+        const key = ws + ':' + p;
+        if(!state.pillars[key]) state.pillars[key]=[...WORKSPACES[ws].pillars];
+        if(!state.pillarTargets[key]) state.pillarTargets[key]={...WORKSPACES[ws].targets};
+        if(!state.pillarFilters[key]) state.pillarFilters[key]='all';
+      }));
+      PLATFORMS.forEach(p=>{ if(!state.calDates[p]) state.calDates[p]=getDateKey(new Date()); });
       if (!state.dashMonth) { const n = new Date(); state.dashMonth = {year:n.getFullYear(),month:n.getMonth()}; }
       saveState(); renderAll();
       showToast(d.posts.length+' posts diimport!','success');
@@ -848,13 +1047,13 @@ function addPillar(platform) {
   const tinp = document.getElementById('newPillarTarget-'+platform);
   const name = inp.value.trim();
   if (!name) { showToast('Sila masukkan nama pillar.','error'); return; }
-  if (!state.pillars[platform]) state.pillars[platform] = [...DEFAULT_PILLARS];
-  if (state.pillars[platform].includes(name)) { showToast('Pillar sudah ada.','error'); return; }
-  state.pillars[platform].push(name);
+  if (!state.pillars[state.workspace+':'+platform]) state.pillars[state.workspace+':'+platform] = [...currentWorkspace().pillars];
+  if (state.pillars[state.workspace+':'+platform].includes(name)) { showToast('Pillar sudah ada.','error'); return; }
+  state.pillars[state.workspace+':'+platform].push(name);
   const tv = parseInt(tinp.value);
   if (tv > 0 && tv <= 100) {
-    if (!state.pillarTargets[platform]) state.pillarTargets[platform] = {...DEFAULT_TARGETS};
-    state.pillarTargets[platform][name] = tv;
+    if (!state.pillarTargets[state.workspace+':'+platform]) state.pillarTargets[state.workspace+':'+platform] = {...currentWorkspace().targets};
+    state.pillarTargets[state.workspace+':'+platform][name] = tv;
   }
   inp.value = ''; tinp.value = '';
   saveState();
@@ -864,8 +1063,8 @@ function addPillar(platform) {
 
 function removePillar(platform, name) {
   if (!confirm('Padam pillar "'+name+'"?')) return;
-  state.pillars[platform] = state.pillars[platform].filter(p => p !== name);
-  if (state.pillarFilters[platform] === name) state.pillarFilters[platform] = 'all';
+  state.pillars[state.workspace+':'+platform] = state.pillars[state.workspace+':'+platform].filter(p => p !== name);
+  if (state.pillarFilters[state.workspace+':'+platform] === name) state.pillarFilters[state.workspace+':'+platform] = 'all';
   saveState();
   showToast('Pillar dipadam.','info');
   renderAll();
@@ -886,7 +1085,7 @@ function pillarDragEnd(event) { event.currentTarget.classList.remove('dragging')
 function pillarDrop(event, platform, targetName) {
   event.preventDefault();
   if (!draggedPillar || draggedPillar.platform!==platform || draggedPillar.name===targetName) return pillarDragEnd(event);
-  const list=state.pillars[platform], from=list.indexOf(draggedPillar.name), to=list.indexOf(targetName);
+  const list=state.pillars[state.workspace+':'+platform], from=list.indexOf(draggedPillar.name), to=list.indexOf(targetName);
   if(from<0||to<0)return;
   const [item]=list.splice(from,1); list.splice(to,0,item); draggedPillar=null; saveState(); renderAll();
 }
@@ -903,7 +1102,7 @@ function openModal(platform, postId, prefillDate) {
   const p = document.getElementById('mPlatform').value;
   const sel = document.getElementById('mPillar');
   sel.innerHTML = '';
-  (state.pillars[p] || DEFAULT_PILLARS).forEach(x => {
+  workspacePillars(p).forEach(x => {
     const o = document.createElement('option');
     o.value = x; o.textContent = x; sel.appendChild(o);
   });
@@ -931,7 +1130,7 @@ function openModal(platform, postId, prefillDate) {
     document.getElementById('mCaption').value = '';
     document.getElementById('mDate').value = prefillDate || todayStr();
     document.getElementById('mTime').value = '12:00';
-    sel.value = (state.pillars[p] || DEFAULT_PILLARS)[0] || '';
+    sel.value = workspacePillars(p)[0] || '';
     document.getElementById('mStatus').value = 'draft';
     document.getElementById('mNotes').value = '';
     document.getElementById('mApproved').checked = false;
@@ -974,6 +1173,8 @@ function savePost() {
     notes: document.getElementById('mNotes').value.trim(),
     approved: document.getElementById('mApproved').checked,
     images: window._modalImages || [],
+    workspace: state.workspace,
+    client: state.workspace,
   };
   const addAgainValues = {platform,date,time:data.time,pillar:data.pillar,status:data.status};
   const savedModalSession = modalSession;
@@ -1034,7 +1235,7 @@ function duplicatePost() {
   if (!id) return;
   const orig = state.posts.find(x => x.id === id);
   if (!orig) return;
-  const dupe = {...orig, id:Date.now()+'_'+Math.random().toString(36).slice(2,7), title:(orig.title||'')+'(Salinan)', status:'draft', approved:false};
+  const dupe = {...orig, id:Date.now()+'_'+Math.random().toString(36).slice(2,7), title:(orig.title||'')+'(Salinan)', status:'draft', approved:false, workspace:state.workspace, client:state.workspace};
   state.posts.push(dupe);
   saveState(); closeModal(); renderAll();
   showToast('Post diduplikat!','success');
@@ -1139,8 +1340,8 @@ function renderCalendar(platform) {
   if (!grid || !titleEl) return;
   titleEl.textContent = new Date(year,month).toLocaleString('ms-MY',{month:'long',year:'numeric'});
   const today = todayStr();
-  const platformPosts = state.posts.filter(p => p.platform === platform);
-  const filterPillar = state.pillarFilters[platform] || 'all';
+  const platformPosts = scopedPosts().filter(p => p.platform === platform);
+  const filterPillar = state.pillarFilters[state.workspace+':'+platform] || 'all';
   const DAYS = ['Ah','Is','Se','Ra','Kh','Ju','Sa'];
   let html = DAYS.map(d=>`<div class="cal-day-header">${d}</div>`).join('');
   days.forEach(d => {
@@ -1190,7 +1391,7 @@ function renderPillars(platform) {
   const fbar = document.getElementById('filterBar-'+platform);
   const countEl = document.getElementById('pillarCount-'+platform);
   if (!area) return;
-  const pillars = state.pillars[platform] || DEFAULT_PILLARS;
+  const pillars = workspacePillars(platform);
   if (countEl) countEl.textContent = pillars.length;
   if (pillars.length === 0) {
     area.innerHTML = '<p style="font-size:13px;color:var(--text2)">Tiada pillar.</p>';
@@ -1198,7 +1399,7 @@ function renderPillars(platform) {
     return;
   }
   const {year,month} = parseDateKey(state.calDates[platform]||getDateKey(new Date()));
-  const monthPosts = state.posts.filter(p => {
+  const monthPosts = scopedPosts().filter(p => {
     if (p.platform !== platform) return false;
     const pd = parseLocalDate(p.date);
     return pd.getFullYear()===year && pd.getMonth()===month;
@@ -1236,7 +1437,7 @@ function renderPillars(platform) {
   html += '</div>';
   area.innerHTML = html;
   if (fbar) {
-    const active = state.pillarFilters[platform] || 'all';
+    const active = state.pillarFilters[state.workspace+':'+platform] || 'all';
     let fhtml = `<button class="pill-filter${active==='all'?' active':''}" style="${active==='all'?'background:var(--primary);border-color:var(--primary)':''}"
       data-platform="${esc(platform)}" data-pillar="all"
       onclick="setPillarFilter(this.dataset.platform,this.dataset.pillar,this)">Semua</button>`;
@@ -1252,7 +1453,7 @@ function renderPillars(platform) {
 }
 
 function setPillarFilter(platform, pillar, btn) {
-  state.pillarFilters[platform] = pillar;
+  state.pillarFilters[state.workspace+':'+platform] = pillar;
   const fbar = document.getElementById('filterBar-'+platform);
   if (fbar) {
     fbar.querySelectorAll('.pill-filter').forEach(b => {
@@ -1272,7 +1473,7 @@ function renderPostList(platform) {
   if (!container) return;
   const {year,month} = parseDateKey(state.calDates[platform]||getDateKey(new Date()));
   const searchVal = (document.getElementById('search-'+platform)||{value:''}).value.trim().toLowerCase();
-  let posts = state.posts.filter(p => {
+  let posts = scopedPosts().filter(p => {
     if (p.platform !== platform) return false;
     const pd = parseLocalDate(p.date);
     return pd.getFullYear()===year && pd.getMonth()===month;
@@ -1310,7 +1511,8 @@ function renderDashboard() {
   const periodEl = document.getElementById('dashPeriod');
   const d = new Date(year, month, 1);
   if (periodEl) periodEl.textContent = d.toLocaleString('ms-MY',{month:'long',year:'numeric'});
-  const mp = state.posts.filter(p => {
+  renderWorkspaceIntro();
+  const mp = scopedPosts().filter(p => {
     const pd = parseLocalDate(p.date);
     return pd.getFullYear()===year && pd.getMonth()===month;
   });
@@ -1319,7 +1521,7 @@ function renderDashboard() {
   const draft=mp.filter(p=>p.status==='draft').length;
   const approved=mp.filter(p=>p.approved).length;
   const prevDate=new Date(year,month-1,1), py=prevDate.getFullYear(), pm=prevDate.getMonth();
-  const previous=state.posts.filter(p=>{const d=parseLocalDate(p.date);return d.getFullYear()===py&&d.getMonth()===pm});
+  const previous=scopedPosts().filter(p=>{const d=parseLocalDate(p.date);return d.getFullYear()===py&&d.getMonth()===pm});
   const trend=(current,prior)=>{const d=current-prior, cls=d>0?'up':d<0?'down':'same', arrow=d>0?'↑':d<0?'↓':'→';return `<span class="stat-change ${cls}">${d>0?'+':''}${d} ${arrow}</span>`};
   const hdrM=document.getElementById('hdrMonthPosts');
   const hdrP=document.getElementById('hdrPosted');
@@ -1348,7 +1550,7 @@ function updateNavBadges() {
   PLATFORMS.forEach(p => {
     const el=document.getElementById('badge-'+p);
     if (!el) return;
-    const n=state.posts.filter(x=>{
+    const n=scopedPosts().filter(x=>{
       if(x.platform!==p) return false;
       const pd=parseLocalDate(x.date);
       return pd.getFullYear()===y && pd.getMonth()===m && x.status!=='posted';
@@ -1433,7 +1635,7 @@ function renderDashTimeline() {
   if (!container) return;
   const {year:y,month:m} = state.dashMonth;
   const q=(document.getElementById('dashSearch')||{value:''}).value.trim().toLowerCase();
-  let posts=state.posts.filter(p=>{const pd=parseLocalDate(p.date);return pd.getFullYear()===y&&pd.getMonth()===m;});
+  let posts=scopedPosts().filter(p=>{const pd=parseLocalDate(p.date);return pd.getFullYear()===y&&pd.getMonth()===m;});
   if (q) posts=posts.filter(p=>(p.title||'').toLowerCase().includes(q)||(PLATFORM_NAMES[p.platform]||'').toLowerCase().includes(q)||(p.pillar||'').toLowerCase().includes(q));
   const totalEl=document.getElementById('dashTotalPosts');
   if (totalEl) totalEl.textContent=posts.length;
@@ -1509,7 +1711,7 @@ function initTheme() {
 /* ===== KEYBOARD SHORTCUTS ===== */
 function initKeyboard() {
   document.addEventListener('keydown', e => {
-    if (e.key==='Escape') { closePostPreview(); closeModal(); return; }
+    if (e.key==='Escape') { closeLoginModal(); closePostPreview(); closeModal(); return; }
     const inField = ['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName);
     if (inField) return;
     if ((e.ctrlKey||e.metaKey) && e.key==='n') {
@@ -1563,14 +1765,39 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('mDate').addEventListener('input', e => {
     if (e.target.value) setFieldError('mDate','mDateError',false);
   });
+  renderWorkspaceLoginOptions();
+  renderWorkspaceButtons();
+  if (localStorage.getItem('jomContentSession') === '1') document.body.classList.remove('auth-locked');
   initKeyboard();
   renderAll();
-  // Sync from API (silent fallback if KV not bound yet)
-  setTimeout(apiFetchAll, 500);
+  // Sync from API only after dashboard login
+  if (localStorage.getItem('jomContentSession') === '1') setTimeout(apiFetchAll, 500);
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => { if(state.currentTab==='dashboard') renderDashboard(); }, 200);
+  });
+
+  // Smart Teleprompter link — pass post caption as script text
+  function openTeleprompterWithContext() {
+    const caption = document.getElementById('mCaption').value.trim();
+    const title = document.getElementById('mTitle').value.trim();
+    const modal = document.getElementById('postModal');
+    if (modal.classList.contains('open') && caption) {
+      const params = new URLSearchParams();
+      params.set('text', caption);
+      if (title) params.set('title', title);
+      window.open(`https://teleprompter-jomdigital.pages.dev/?${params}`, '_blank', 'noopener');
+    } else {
+      window.open('https://teleprompter-jomdigital.pages.dev', '_blank', 'noopener');
+    }
+  }
+  document.getElementById('navTeleprompter').addEventListener('click', e => {
+    e.preventDefault();
+    openTeleprompterWithContext();
+  });
+  document.getElementById('hdrTeleprompter').addEventListener('click', () => {
+    openTeleprompterWithContext();
   });
 });
 </script>

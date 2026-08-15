@@ -44,12 +44,14 @@ export async function onRequest(context) {
     // --- GET /api/posts (list all, with filters) ---
     if (request.method === 'GET') {
       const platform = url.searchParams.get('platform');
+      const workspace = url.searchParams.get('workspace') || url.searchParams.get('client');
       const status = url.searchParams.get('status');
       const pillar = url.searchParams.get('pillar');
       const month = url.searchParams.get('month'); // YYYY-MM
 
       let filtered = [...posts];
       if (platform) filtered = filtered.filter(p => p.platform === platform);
+      if (workspace) filtered = filtered.filter(p => (p.workspace || p.client || 'jom-digital') === workspace);
       if (status) filtered = filtered.filter(p => p.status === status);
       if (pillar) filtered = filtered.filter(p => p.pillar === pillar);
       if (month) filtered = filtered.filter(p => p.date && p.date.startsWith(month));
@@ -70,7 +72,7 @@ export async function onRequest(context) {
         });
       }
 
-      const validPlatforms = ['tiktok', 'facebook', 'instagram', 'threads'];
+      const validPlatforms = ['tiktok', 'threads'];
       if (!validPlatforms.includes(body.platform)) {
         return new Response(JSON.stringify({ success: false, error: 'invalid platform' }), {
           status: 400,
@@ -79,11 +81,13 @@ export async function onRequest(context) {
       }
 
       const newPost = {
-        id: crypto.randomUUID(),
+        id: body.id || crypto.randomUUID(),
         title: body.title,
         platform: body.platform,
+        workspace: body.workspace || body.client || 'jom-digital',
+        client: body.client || body.workspace || 'jom-digital',
         caption: body.caption || '',
-        pillar: body.pillar || 'General',
+        pillar: body.pillar || 'Google Ads',
         date: body.date || '',
         time: body.time || '',
         status: body.status || 'draft',
@@ -123,7 +127,7 @@ export async function onRequest(context) {
         });
       }
 
-      const updatable = ['title', 'caption', 'platform', 'pillar', 'date', 'time', 'status', 'approved', 'notes', 'images'];
+      const updatable = ['title', 'caption', 'platform', 'workspace', 'client', 'pillar', 'date', 'time', 'status', 'approved', 'notes', 'images'];
       for (const key of updatable) {
         if (body[key] !== undefined) {
           posts[index][key] = body[key];
