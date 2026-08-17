@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-17 09:45 MYT",
+ "generated_at": "2026-08-17 14:27 MYT",
  "window": {
   "start": "2026-07-18",
   "end": "2026-08-17",
@@ -61,33 +61,40 @@
   }
  },
  "formats": {
-  "commentary": {
-   "posts": 48,
-   "inter": 188,
-   "shares": 16,
-   "views": 5343,
-   "avg_score": 52.5
-  },
   "tutorial-howto": {
-   "posts": 66,
-   "inter": 309,
+   "posts": 58,
+   "inter": 299,
    "shares": 22,
-   "views": 12172,
-   "avg_score": 51.1
+   "views": 10273,
+   "avg_score": 53.2
   },
-  "opinion-mythbust": {
-   "posts": 22,
-   "inter": 44,
-   "shares": 1,
-   "views": 5898,
-   "avg_score": 44.1
+  "commentary": {
+   "posts": 42,
+   "inter": 119,
+   "shares": 8,
+   "views": 4031,
+   "avg_score": 49.3
+  },
+  "comparison": {
+   "posts": 24,
+   "inter": 99,
+   "shares": 9,
+   "views": 4499,
+   "avg_score": 45.4
   },
   "story-experience": {
-   "posts": 88,
-   "inter": 319,
-   "shares": 9,
-   "views": 15698,
-   "avg_score": 43.4
+   "posts": 82,
+   "inter": 310,
+   "shares": 8,
+   "views": 15071,
+   "avg_score": 44.9
+  },
+  "opinion-mythbust": {
+   "posts": 18,
+   "inter": 33,
+   "shares": 1,
+   "views": 5237,
+   "avg_score": 41.4
   }
  },
  "top_week": [
@@ -104,6 +111,7 @@
    "weighted": 41,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 97.6,
    "grade": "A+"
   },
@@ -120,6 +128,7 @@
    "weighted": 37,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 97.4,
    "grade": "A+"
   },
@@ -136,6 +145,7 @@
    "weighted": 36,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": false,
    "score": 97.3,
    "grade": "A+"
   },
@@ -152,6 +162,7 @@
    "weighted": 30,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 96.8,
    "grade": "A+"
   },
@@ -168,6 +179,7 @@
    "weighted": 28,
    "pillar": "digital-marketing",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 96.6,
    "grade": "A+"
   }
@@ -186,6 +198,7 @@
    "weighted": 65,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": true,
    "score": 98.5,
    "grade": "A+"
   },
@@ -202,6 +215,7 @@
    "weighted": 53,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 98.1,
    "grade": "A+"
   },
@@ -218,6 +232,7 @@
    "weighted": 41,
    "pillar": "website-leads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 97.6,
    "grade": "A+"
   },
@@ -234,6 +249,7 @@
    "weighted": 41,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 97.6,
    "grade": "A+"
   },
@@ -250,6 +266,7 @@
    "weighted": 37,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 97.4,
    "grade": "A+"
   }
@@ -268,6 +285,7 @@
    "weighted": 65,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": true,
    "score": 98.5,
    "grade": "A+"
   },
@@ -284,6 +302,7 @@
    "weighted": 53,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 98.1,
    "grade": "A+"
   },
@@ -300,6 +319,7 @@
    "weighted": 41,
    "pillar": "website-leads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 97.6,
    "grade": "A+"
   },
@@ -316,6 +336,7 @@
    "weighted": 41,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 97.6,
    "grade": "A+"
   },
@@ -332,6 +353,7 @@
    "weighted": 37,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 97.4,
    "grade": "A+"
   },
@@ -348,6 +370,7 @@
    "weighted": 36,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": false,
    "score": 97.3,
    "grade": "A+"
   },
@@ -364,6 +387,7 @@
    "weighted": 30,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 96.8,
    "grade": "A+"
   },
@@ -380,6 +404,7 @@
    "weighted": 28,
    "pillar": "digital-marketing",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 96.6,
    "grade": "A+"
   },
@@ -396,6 +421,7 @@
    "weighted": 27,
    "pillar": "google-ads",
    "format": "commentary",
+   "bait": false,
    "score": 96.4,
    "grade": "A+"
   },
@@ -412,6 +438,7 @@
    "weighted": 26,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 96.3,
    "grade": "A+"
   }
@@ -544,6 +571,7 @@
    "weighted": 6,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 85.7,
    "grade": "A"
   },
@@ -560,6 +588,7 @@
    "weighted": 2,
    "pillar": "google-ads",
    "format": "commentary",
+   "bait": false,
    "score": 66.7,
    "grade": "B"
   },
@@ -576,6 +605,7 @@
    "weighted": 8,
    "pillar": "google-ads",
    "format": "commentary",
+   "bait": false,
    "score": 88.9,
    "grade": "A"
   },
@@ -592,6 +622,7 @@
    "weighted": 24,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 96.0,
    "grade": "A+"
   },
@@ -608,6 +639,7 @@
    "weighted": 65,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": true,
    "score": 98.5,
    "grade": "A+"
   },
@@ -624,6 +656,7 @@
    "weighted": 5,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 83.3,
    "grade": "A"
   },
@@ -640,6 +673,7 @@
    "weighted": 17,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 94.4,
    "grade": "A+"
   },
@@ -656,6 +690,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "commentary",
+   "bait": false,
    "score": 0.0,
    "grade": "E"
   },
@@ -672,6 +707,7 @@
    "weighted": 5,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 83.3,
    "grade": "A"
   },
@@ -688,6 +724,7 @@
    "weighted": 53,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 98.1,
    "grade": "A+"
   },
@@ -704,6 +741,7 @@
    "weighted": 4,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 80.0,
    "grade": "A"
   },
@@ -720,6 +758,7 @@
    "weighted": 5,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 83.3,
    "grade": "A"
   },
@@ -736,6 +775,7 @@
    "weighted": 21,
    "pillar": "digital-marketing",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 95.5,
    "grade": "A+"
   },
@@ -752,6 +792,7 @@
    "weighted": 1,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 50.0,
    "grade": "C"
   },
@@ -768,6 +809,7 @@
    "weighted": 4,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 80.0,
    "grade": "A"
   },
@@ -784,6 +826,7 @@
    "weighted": 3,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 75.0,
    "grade": "B+"
   },
@@ -799,7 +842,8 @@
    "views": 0,
    "weighted": 5,
    "pillar": "google-ads",
-   "format": "commentary",
+   "format": "comparison",
+   "bait": false,
    "score": 83.3,
    "grade": "A"
   },
@@ -816,6 +860,7 @@
    "weighted": 3,
    "pillar": "google-ads",
    "format": "commentary",
+   "bait": false,
    "score": 75.0,
    "grade": "B+"
   },
@@ -832,6 +877,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "commentary",
+   "bait": false,
    "score": 0.0,
    "grade": "E"
   },
@@ -848,6 +894,7 @@
    "weighted": 13,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": false,
    "score": 92.9,
    "grade": "A+"
   },
@@ -864,6 +911,7 @@
    "weighted": 3,
    "pillar": "digital-marketing",
    "format": "commentary",
+   "bait": false,
    "score": 75.0,
    "grade": "B+"
   },
@@ -880,6 +928,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "commentary",
+   "bait": false,
    "score": 0.0,
    "grade": "E"
   },
@@ -896,6 +945,7 @@
    "weighted": 41,
    "pillar": "website-leads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 97.6,
    "grade": "A+"
   },
@@ -912,6 +962,7 @@
    "weighted": 19,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 95.0,
    "grade": "A+"
   },
@@ -928,6 +979,7 @@
    "weighted": 3,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": false,
    "score": 75.0,
    "grade": "B+"
   },
@@ -944,6 +996,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "commentary",
+   "bait": false,
    "score": 0.0,
    "grade": "E"
   },
@@ -960,6 +1013,7 @@
    "weighted": 11,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 91.7,
    "grade": "A+"
   },
@@ -976,6 +1030,7 @@
    "weighted": 22,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 95.7,
    "grade": "A+"
   },
@@ -992,6 +1047,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": false,
    "score": 0.0,
    "grade": "E"
   },
@@ -1008,6 +1064,7 @@
    "weighted": 4,
    "pillar": "digital-marketing",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 80.0,
    "grade": "A"
   },
@@ -1024,6 +1081,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 0.0,
    "grade": "E"
   },
@@ -1040,6 +1098,7 @@
    "weighted": 5,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 83.3,
    "grade": "A"
   },
@@ -1056,6 +1115,7 @@
    "weighted": 1,
    "pillar": "google-ads",
    "format": "commentary",
+   "bait": false,
    "score": 50.0,
    "grade": "C"
   },
@@ -1072,6 +1132,7 @@
    "weighted": 26,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 96.3,
    "grade": "A+"
   },
@@ -1088,6 +1149,7 @@
    "weighted": 3,
    "pillar": "google-ads",
    "format": "story-experience",
+   "bait": false,
    "score": 67.6,
    "grade": "B"
   },
@@ -1104,6 +1166,7 @@
    "weighted": 8,
    "pillar": "personal-other",
    "format": "opinion-mythbust",
+   "bait": false,
    "score": 77.1,
    "grade": "B+"
   },
@@ -1120,6 +1183,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": true,
    "score": 23.6,
    "grade": "E"
   },
@@ -1136,6 +1200,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": true,
    "score": 15.1,
    "grade": "E"
   },
@@ -1152,6 +1217,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
+   "bait": false,
    "score": 23.6,
    "grade": "E"
   },
@@ -1168,6 +1234,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
+   "bait": false,
    "score": 12.7,
    "grade": "E"
   },
@@ -1184,6 +1251,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
+   "bait": false,
    "score": 6.4,
    "grade": "E"
   },
@@ -1200,6 +1268,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
+   "bait": false,
    "score": 6.1,
    "grade": "E"
   },
@@ -1216,6 +1285,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "opinion-mythbust",
+   "bait": false,
    "score": 21.9,
    "grade": "E"
   },
@@ -1231,7 +1301,8 @@
    "views": 107,
    "weighted": 0,
    "pillar": "google-ads",
-   "format": "tutorial-howto",
+   "format": "comparison",
+   "bait": false,
    "score": 9.7,
    "grade": "E"
   },
@@ -1247,7 +1318,8 @@
    "views": 29,
    "weighted": 1,
    "pillar": "google-ads",
-   "format": "tutorial-howto",
+   "format": "comparison",
+   "bait": false,
    "score": 38.5,
    "grade": "E"
   },
@@ -1263,7 +1335,8 @@
    "views": 29,
    "weighted": 1,
    "pillar": "google-ads",
-   "format": "tutorial-howto",
+   "format": "comparison",
+   "bait": false,
    "score": 38.5,
    "grade": "E"
   },
@@ -1280,6 +1353,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 16.5,
    "grade": "E"
   },
@@ -1296,6 +1370,7 @@
    "weighted": 7,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 74.7,
    "grade": "B+"
   },
@@ -1312,6 +1387,7 @@
    "weighted": 1,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 55.7,
    "grade": "C"
   },
@@ -1328,6 +1404,7 @@
    "weighted": 1,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 45.4,
    "grade": "D"
   },
@@ -1344,6 +1421,7 @@
    "weighted": 4,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 70.9,
    "grade": "B+"
   },
@@ -1360,6 +1438,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
+   "bait": false,
    "score": 21.3,
    "grade": "E"
   },
@@ -1376,6 +1455,7 @@
    "weighted": 0,
    "pillar": "website-leads",
    "format": "story-experience",
+   "bait": false,
    "score": 20.6,
    "grade": "E"
   },
@@ -1392,6 +1472,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
+   "bait": false,
    "score": 7.6,
    "grade": "E"
   },
@@ -1408,6 +1489,7 @@
    "weighted": 0,
    "pillar": "website-leads",
    "format": "story-experience",
+   "bait": false,
    "score": 8.8,
    "grade": "E"
   },
@@ -1424,6 +1506,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": false,
    "score": 23.7,
    "grade": "E"
   },
@@ -1440,6 +1523,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": false,
    "score": 12.6,
    "grade": "E"
   },
@@ -1456,6 +1540,7 @@
    "weighted": 1,
    "pillar": "google-ads",
    "format": "story-experience",
+   "bait": false,
    "score": 61.3,
    "grade": "B"
   },
@@ -1472,6 +1557,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
+   "bait": false,
    "score": 14.0,
    "grade": "E"
   },
@@ -1488,6 +1574,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 24.5,
    "grade": "E"
   },
@@ -1504,6 +1591,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 14.1,
    "grade": "E"
   },
@@ -1519,7 +1607,8 @@
    "views": 211,
    "weighted": 1,
    "pillar": "personal-other",
-   "format": "commentary",
+   "format": "comparison",
+   "bait": false,
    "score": 49.6,
    "grade": "D"
   },
@@ -1536,6 +1625,7 @@
    "weighted": 1,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": true,
    "score": 55.6,
    "grade": "C"
   },
@@ -1552,6 +1642,7 @@
    "weighted": 1,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": true,
    "score": 48.1,
    "grade": "D"
   },
@@ -1568,6 +1659,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 7.7,
    "grade": "E"
   },
@@ -1584,6 +1676,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 16.0,
    "grade": "E"
   },
@@ -1600,6 +1693,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 6.0,
    "grade": "E"
   },
@@ -1616,6 +1710,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 23.9,
    "grade": "E"
   },
@@ -1631,7 +1726,8 @@
    "views": 133,
    "weighted": 7,
    "pillar": "google-ads",
-   "format": "opinion-mythbust",
+   "format": "comparison",
+   "bait": false,
    "score": 72.5,
    "grade": "B+"
   },
@@ -1647,7 +1743,8 @@
    "views": 187,
    "weighted": 0,
    "pillar": "digital-marketing",
-   "format": "opinion-mythbust",
+   "format": "comparison",
+   "bait": false,
    "score": 13.7,
    "grade": "E"
   },
@@ -1664,6 +1761,7 @@
    "weighted": 125,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": false,
    "score": 74.8,
    "grade": "B+"
   },
@@ -1680,6 +1778,7 @@
    "weighted": 3,
    "pillar": "google-ads",
    "format": "opinion-mythbust",
+   "bait": false,
    "score": 72.4,
    "grade": "B+"
   },
@@ -1695,7 +1794,8 @@
    "views": 190,
    "weighted": 0,
    "pillar": "website-leads",
-   "format": "tutorial-howto",
+   "format": "comparison",
+   "bait": false,
    "score": 13.8,
    "grade": "E"
   },
@@ -1712,6 +1812,7 @@
    "weighted": 9,
    "pillar": "google-ads",
    "format": "opinion-mythbust",
+   "bait": false,
    "score": 73.4,
    "grade": "B+"
   },
@@ -1727,7 +1828,8 @@
    "views": 258,
    "weighted": 3,
    "pillar": "google-ads",
-   "format": "tutorial-howto",
+   "format": "comparison",
+   "bait": false,
    "score": 68.6,
    "grade": "B"
   },
@@ -1743,7 +1845,8 @@
    "views": 341,
    "weighted": 3,
    "pillar": "google-ads",
-   "format": "opinion-mythbust",
+   "format": "comparison",
+   "bait": true,
    "score": 70.6,
    "grade": "B+"
   },
@@ -1760,6 +1863,7 @@
    "weighted": 1,
    "pillar": "website-leads",
    "format": "opinion-mythbust",
+   "bait": false,
    "score": 46.8,
    "grade": "D"
   },
@@ -1776,6 +1880,7 @@
    "weighted": 1,
    "pillar": "google-ads",
    "format": "story-experience",
+   "bait": false,
    "score": 50.0,
    "grade": "C"
   },
@@ -1792,6 +1897,7 @@
    "weighted": 4,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": false,
    "score": 72.4,
    "grade": "B+"
   },
@@ -1808,6 +1914,7 @@
    "weighted": 12,
    "pillar": "google-ads",
    "format": "opinion-mythbust",
+   "bait": false,
    "score": 84.2,
    "grade": "A"
   },
@@ -1824,6 +1931,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 18.1,
    "grade": "E"
   },
@@ -1840,6 +1948,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "opinion-mythbust",
+   "bait": false,
    "score": 9.8,
    "grade": "E"
   },
@@ -1856,6 +1965,7 @@
    "weighted": 2,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 67.1,
    "grade": "B"
   },
@@ -1872,6 +1982,7 @@
    "weighted": 2,
    "pillar": "website-leads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 62.7,
    "grade": "B"
   },
@@ -1887,7 +1998,8 @@
    "views": 0,
    "weighted": 2,
    "pillar": "google-ads",
-   "format": "opinion-mythbust",
+   "format": "comparison",
+   "bait": false,
    "score": 66.7,
    "grade": "B"
   },
@@ -1904,6 +2016,7 @@
    "weighted": 0,
    "pillar": "website-leads",
    "format": "opinion-mythbust",
+   "bait": false,
    "score": 2.1,
    "grade": "E"
   },
@@ -1920,6 +2033,7 @@
    "weighted": 5,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": false,
    "score": 75.9,
    "grade": "B+"
   },
@@ -1936,6 +2050,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "opinion-mythbust",
+   "bait": false,
    "score": 13.8,
    "grade": "E"
   },
@@ -1952,6 +2067,7 @@
    "weighted": 1,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 48.9,
    "grade": "D"
   },
@@ -1968,6 +2084,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": false,
    "score": 7.3,
    "grade": "E"
   },
@@ -1984,6 +2101,7 @@
    "weighted": 2,
    "pillar": "google-ads",
    "format": "opinion-mythbust",
+   "bait": false,
    "score": 54.6,
    "grade": "C"
   },
@@ -2000,6 +2118,7 @@
    "weighted": 1,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": false,
    "score": 51.1,
    "grade": "C"
   },
@@ -2016,6 +2135,7 @@
    "weighted": 1,
    "pillar": "website-leads",
    "format": "story-experience",
+   "bait": false,
    "score": 46.8,
    "grade": "D"
   },
@@ -2032,6 +2152,7 @@
    "weighted": 1,
    "pillar": "personal-other",
    "format": "opinion-mythbust",
+   "bait": false,
    "score": 49.9,
    "grade": "D"
   },
@@ -2048,6 +2169,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 18.1,
    "grade": "E"
   },
@@ -2064,6 +2186,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 18.1,
    "grade": "E"
   },
@@ -2080,6 +2203,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 15.6,
    "grade": "E"
   },
@@ -2096,6 +2220,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 14.9,
    "grade": "E"
   },
@@ -2112,6 +2237,7 @@
    "weighted": 2,
    "pillar": "website-leads",
    "format": "story-experience",
+   "bait": false,
    "score": 60.0,
    "grade": "B"
   },
@@ -2128,6 +2254,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 15.9,
    "grade": "E"
   },
@@ -2144,6 +2271,7 @@
    "weighted": 1,
    "pillar": "personal-other",
    "format": "opinion-mythbust",
+   "bait": false,
    "score": 59.3,
    "grade": "C"
   },
@@ -2160,6 +2288,7 @@
    "weighted": 3,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 68.4,
    "grade": "B"
   },
@@ -2176,6 +2305,7 @@
    "weighted": 2,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 63.3,
    "grade": "B"
   },
@@ -2192,6 +2322,7 @@
    "weighted": 9,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 82.5,
    "grade": "A"
   },
@@ -2208,6 +2339,7 @@
    "weighted": 16,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 83.8,
    "grade": "A"
   },
@@ -2224,6 +2356,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
+   "bait": false,
    "score": 14.6,
    "grade": "E"
   },
@@ -2240,6 +2373,7 @@
    "weighted": 2,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 66.0,
    "grade": "B"
   },
@@ -2256,6 +2390,7 @@
    "weighted": 3,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 66.3,
    "grade": "B"
   },
@@ -2272,6 +2407,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 22.3,
    "grade": "E"
   },
@@ -2288,6 +2424,7 @@
    "weighted": 1,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 53.0,
    "grade": "C"
   },
@@ -2304,6 +2441,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 0.0,
    "grade": "E"
   },
@@ -2320,6 +2458,7 @@
    "weighted": 4,
    "pillar": "google-ads",
    "format": "commentary",
+   "bait": false,
    "score": 66.6,
    "grade": "B"
   },
@@ -2336,6 +2475,7 @@
    "weighted": 3,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 68.7,
    "grade": "B"
   },
@@ -2352,6 +2492,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 15.6,
    "grade": "E"
   },
@@ -2367,7 +2508,8 @@
    "views": 253,
    "weighted": 0,
    "pillar": "website-leads",
-   "format": "story-experience",
+   "format": "comparison",
+   "bait": false,
    "score": 15.9,
    "grade": "E"
   },
@@ -2384,6 +2526,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 23.9,
    "grade": "E"
   },
@@ -2400,6 +2543,7 @@
    "weighted": 0,
    "pillar": "website-leads",
    "format": "story-experience",
+   "bait": false,
    "score": 19.3,
    "grade": "E"
   },
@@ -2416,6 +2560,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 20.8,
    "grade": "E"
   },
@@ -2432,6 +2577,7 @@
    "weighted": 0,
    "pillar": "website-leads",
    "format": "opinion-mythbust",
+   "bait": false,
    "score": 25.6,
    "grade": "E"
   },
@@ -2448,6 +2594,7 @@
    "weighted": 1,
    "pillar": "google-ads",
    "format": "commentary",
+   "bait": false,
    "score": 54.8,
    "grade": "C"
   },
@@ -2463,7 +2610,8 @@
    "views": 262,
    "weighted": 0,
    "pillar": "personal-other",
-   "format": "story-experience",
+   "format": "comparison",
+   "bait": false,
    "score": 16.2,
    "grade": "E"
   },
@@ -2479,7 +2627,8 @@
    "views": 763,
    "weighted": 0,
    "pillar": "digital-marketing",
-   "format": "tutorial-howto",
+   "format": "comparison",
+   "bait": false,
    "score": 23.2,
    "grade": "E"
   },
@@ -2496,6 +2645,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": false,
    "score": 14.3,
    "grade": "E"
   },
@@ -2512,6 +2662,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": false,
    "score": 6.6,
    "grade": "E"
   },
@@ -2528,6 +2679,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": false,
    "score": 1.2,
    "grade": "E"
   },
@@ -2544,6 +2696,7 @@
    "weighted": 5,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 74.2,
    "grade": "B+"
   },
@@ -2560,6 +2713,7 @@
    "weighted": 0,
    "pillar": "website-leads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 10.7,
    "grade": "E"
   },
@@ -2576,6 +2730,7 @@
    "weighted": 3,
    "pillar": "website-leads",
    "format": "opinion-mythbust",
+   "bait": false,
    "score": 64.3,
    "grade": "B"
   },
@@ -2592,6 +2747,7 @@
    "weighted": 6,
    "pillar": "google-ads",
    "format": "story-experience",
+   "bait": false,
    "score": 71.0,
    "grade": "B+"
   },
@@ -2608,6 +2764,7 @@
    "weighted": 7,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": false,
    "score": 73.3,
    "grade": "B+"
   },
@@ -2624,6 +2781,7 @@
    "weighted": 1,
    "pillar": "digital-marketing",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 58.1,
    "grade": "C"
   },
@@ -2640,6 +2798,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "commentary",
+   "bait": false,
    "score": 15.7,
    "grade": "E"
   },
@@ -2656,6 +2815,7 @@
    "weighted": 3,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 68.0,
    "grade": "B"
   },
@@ -2672,6 +2832,7 @@
    "weighted": 1,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 44.7,
    "grade": "D"
   },
@@ -2687,7 +2848,8 @@
    "views": 379,
    "weighted": 0,
    "pillar": "google-ads",
-   "format": "tutorial-howto",
+   "format": "comparison",
+   "bait": false,
    "score": 18.9,
    "grade": "E"
   },
@@ -2703,7 +2865,8 @@
    "views": 144,
    "weighted": 5,
    "pillar": "digital-marketing",
-   "format": "tutorial-howto",
+   "format": "comparison",
+   "bait": false,
    "score": 70.1,
    "grade": "B+"
   },
@@ -2720,6 +2883,7 @@
    "weighted": 4,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 73.2,
    "grade": "B+"
   },
@@ -2736,6 +2900,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 18.9,
    "grade": "E"
   },
@@ -2752,6 +2917,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 12.4,
    "grade": "E"
   },
@@ -2768,6 +2934,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 2.9,
    "grade": "E"
   },
@@ -2784,6 +2951,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 2.9,
    "grade": "E"
   },
@@ -2800,6 +2968,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 21.3,
    "grade": "E"
   },
@@ -2816,6 +2985,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 19.9,
    "grade": "E"
   },
@@ -2832,6 +3002,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 16.2,
    "grade": "E"
   },
@@ -2847,7 +3018,8 @@
    "views": 101,
    "weighted": 3,
    "pillar": "personal-other",
-   "format": "commentary",
+   "format": "comparison",
+   "bait": false,
    "score": 61.9,
    "grade": "B"
   },
@@ -2864,6 +3036,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 17.9,
    "grade": "E"
   },
@@ -2880,6 +3053,7 @@
    "weighted": 1,
    "pillar": "digital-marketing",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 52.3,
    "grade": "C"
   },
@@ -2896,6 +3070,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 0.0,
    "grade": "E"
   },
@@ -2912,6 +3087,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 16.3,
    "grade": "E"
   },
@@ -2928,6 +3104,7 @@
    "weighted": 7,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 87.5,
    "grade": "A"
   },
@@ -2944,6 +3121,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 0.0,
    "grade": "E"
   },
@@ -2959,7 +3137,8 @@
    "views": 0,
    "weighted": 11,
    "pillar": "personal-other",
-   "format": "story-experience",
+   "format": "comparison",
+   "bait": false,
    "score": 91.7,
    "grade": "A+"
   },
@@ -2976,6 +3155,7 @@
    "weighted": 41,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 97.6,
    "grade": "A+"
   },
@@ -2992,6 +3172,7 @@
    "weighted": 4,
    "pillar": "google-ads",
    "format": "story-experience",
+   "bait": false,
    "score": 80.0,
    "grade": "A"
   },
@@ -3008,6 +3189,7 @@
    "weighted": 2,
    "pillar": "website-leads",
    "format": "story-experience",
+   "bait": false,
    "score": 66.7,
    "grade": "B"
   },
@@ -3024,6 +3206,7 @@
    "weighted": 5,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 83.3,
    "grade": "A"
   },
@@ -3040,6 +3223,7 @@
    "weighted": 20,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 95.2,
    "grade": "A+"
   },
@@ -3056,6 +3240,7 @@
    "weighted": 15,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 93.8,
    "grade": "A+"
   },
@@ -3072,6 +3257,7 @@
    "weighted": 2,
    "pillar": "website-leads",
    "format": "opinion-mythbust",
+   "bait": false,
    "score": 66.7,
    "grade": "B"
   },
@@ -3088,6 +3274,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "commentary",
+   "bait": false,
    "score": 0.0,
    "grade": "E"
   },
@@ -3104,6 +3291,7 @@
    "weighted": 15,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 93.8,
    "grade": "A+"
   },
@@ -3120,6 +3308,7 @@
    "weighted": 2,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 66.7,
    "grade": "B"
   },
@@ -3136,6 +3325,7 @@
    "weighted": 2,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 66.7,
    "grade": "B"
   },
@@ -3151,7 +3341,8 @@
    "views": 0,
    "weighted": 2,
    "pillar": "google-ads",
-   "format": "commentary",
+   "format": "comparison",
+   "bait": false,
    "score": 66.7,
    "grade": "B"
   },
@@ -3168,6 +3359,7 @@
    "weighted": 17,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 94.4,
    "grade": "A+"
   },
@@ -3184,6 +3376,7 @@
    "weighted": 2,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 66.7,
    "grade": "B"
   },
@@ -3200,6 +3393,7 @@
    "weighted": 2,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 66.7,
    "grade": "B"
   },
@@ -3216,6 +3410,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 0.0,
    "grade": "E"
   },
@@ -3232,6 +3427,7 @@
    "weighted": 36,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": false,
    "score": 97.3,
    "grade": "A+"
   },
@@ -3248,6 +3444,7 @@
    "weighted": 2,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 66.7,
    "grade": "B"
   },
@@ -3264,6 +3461,7 @@
    "weighted": 2,
    "pillar": "google-ads",
    "format": "story-experience",
+   "bait": false,
    "score": 66.7,
    "grade": "B"
   },
@@ -3280,6 +3478,7 @@
    "weighted": 7,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 87.5,
    "grade": "A"
   },
@@ -3296,6 +3495,7 @@
    "weighted": 14,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 93.3,
    "grade": "A+"
   },
@@ -3312,6 +3512,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 0.0,
    "grade": "E"
   },
@@ -3328,6 +3529,7 @@
    "weighted": 5,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 83.3,
    "grade": "A"
   },
@@ -3344,6 +3546,7 @@
    "weighted": 4,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 80.0,
    "grade": "A"
   },
@@ -3360,6 +3563,7 @@
    "weighted": 1,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 50.0,
    "grade": "C"
   },
@@ -3376,6 +3580,7 @@
    "weighted": 1,
    "pillar": "google-ads",
    "format": "story-experience",
+   "bait": false,
    "score": 50.0,
    "grade": "C"
   },
@@ -3391,7 +3596,8 @@
    "views": 0,
    "weighted": 16,
    "pillar": "website-leads",
-   "format": "commentary",
+   "format": "comparison",
+   "bait": false,
    "score": 94.1,
    "grade": "A+"
   },
@@ -3407,7 +3613,8 @@
    "views": 69,
    "weighted": 0,
    "pillar": "google-ads",
-   "format": "story-experience",
+   "format": "comparison",
+   "bait": false,
    "score": 7.1,
    "grade": "E"
   },
@@ -3423,7 +3630,8 @@
    "views": 21,
    "weighted": 0,
    "pillar": "google-ads",
-   "format": "story-experience",
+   "format": "comparison",
+   "bait": false,
    "score": 2.6,
    "grade": "E"
   },
@@ -3439,7 +3647,8 @@
    "views": 22,
    "weighted": 0,
    "pillar": "google-ads",
-   "format": "story-experience",
+   "format": "comparison",
+   "bait": false,
    "score": 2.7,
    "grade": "E"
   },
@@ -3456,6 +3665,7 @@
    "weighted": 0,
    "pillar": "website-leads",
    "format": "story-experience",
+   "bait": false,
    "score": 24.5,
    "grade": "E"
   },
@@ -3472,6 +3682,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
+   "bait": false,
    "score": 6.4,
    "grade": "E"
   },
@@ -3488,6 +3699,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
+   "bait": false,
    "score": 4.8,
    "grade": "E"
   },
@@ -3504,6 +3716,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "opinion-mythbust",
+   "bait": false,
    "score": 13.4,
    "grade": "E"
   },
@@ -3520,6 +3733,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "opinion-mythbust",
+   "bait": false,
    "score": 8.6,
    "grade": "E"
   },
@@ -3536,6 +3750,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "opinion-mythbust",
+   "bait": false,
    "score": 1.7,
    "grade": "E"
   },
@@ -3552,6 +3767,7 @@
    "weighted": 8,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 88.9,
    "grade": "A"
   },
@@ -3568,6 +3784,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 0.0,
    "grade": "E"
   },
@@ -3584,6 +3801,7 @@
    "weighted": 3,
    "pillar": "google-ads",
    "format": "commentary",
+   "bait": false,
    "score": 75.0,
    "grade": "B+"
   },
@@ -3600,6 +3818,7 @@
    "weighted": 28,
    "pillar": "digital-marketing",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 96.6,
    "grade": "A+"
   },
@@ -3616,6 +3835,7 @@
    "weighted": 11,
    "pillar": "google-ads",
    "format": "commentary",
+   "bait": false,
    "score": 91.7,
    "grade": "A+"
   },
@@ -3632,6 +3852,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 6.8,
    "grade": "E"
   },
@@ -3648,6 +3869,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 2.1,
    "grade": "E"
   },
@@ -3664,6 +3886,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "story-experience",
+   "bait": false,
    "score": 20.0,
    "grade": "E"
   },
@@ -3680,6 +3903,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 23.3,
    "grade": "E"
   },
@@ -3696,6 +3920,7 @@
    "weighted": 2,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 61.4,
    "grade": "B"
   },
@@ -3712,6 +3937,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 21.1,
    "grade": "E"
   },
@@ -3728,6 +3954,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 8.3,
    "grade": "E"
   },
@@ -3744,6 +3971,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 4.5,
    "grade": "E"
   },
@@ -3759,7 +3987,8 @@
    "views": 1000,
    "weighted": 65,
    "pillar": "google-ads",
-   "format": "commentary",
+   "format": "comparison",
+   "bait": false,
    "score": 93.5,
    "grade": "A+"
   },
@@ -3776,6 +4005,7 @@
    "weighted": 13,
    "pillar": "google-ads",
    "format": "commentary",
+   "bait": false,
    "score": 78.7,
    "grade": "B+"
   },
@@ -3792,6 +4022,7 @@
    "weighted": 37,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 97.4,
    "grade": "A+"
   },
@@ -3808,6 +4039,7 @@
    "weighted": 10,
    "pillar": "website-leads",
    "format": "commentary",
+   "bait": false,
    "score": 90.9,
    "grade": "A+"
   },
@@ -3824,6 +4056,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 0.0,
    "grade": "E"
   },
@@ -3840,6 +4073,7 @@
    "weighted": 8,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 88.9,
    "grade": "A"
   },
@@ -3856,6 +4090,7 @@
    "weighted": 27,
    "pillar": "google-ads",
    "format": "commentary",
+   "bait": false,
    "score": 96.4,
    "grade": "A+"
   },
@@ -3872,6 +4107,7 @@
    "weighted": 1,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 50.0,
    "grade": "C"
   },
@@ -3888,6 +4124,7 @@
    "weighted": 30,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 96.8,
    "grade": "A+"
   },
@@ -3904,6 +4141,7 @@
    "weighted": 1,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 50.0,
    "grade": "C"
   },
@@ -3920,6 +4158,7 @@
    "weighted": 1,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 50.0,
    "grade": "C"
   },
@@ -3936,6 +4175,7 @@
    "weighted": 24,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 96.0,
    "grade": "A+"
   },
@@ -3952,6 +4192,7 @@
    "weighted": 9,
    "pillar": "google-ads",
    "format": "commentary",
+   "bait": false,
    "score": 90.0,
    "grade": "A+"
   },
@@ -3968,6 +4209,7 @@
    "weighted": 2,
    "pillar": "website-leads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 66.7,
    "grade": "B"
   },
@@ -3984,6 +4226,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 0.0,
    "grade": "E"
   },
@@ -4000,6 +4243,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 0.0,
    "grade": "E"
   },
@@ -4016,6 +4260,7 @@
    "weighted": 2,
    "pillar": "personal-other",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 66.7,
    "grade": "B"
   },
@@ -4032,6 +4277,7 @@
    "weighted": 3,
    "pillar": "google-ads",
    "format": "commentary",
+   "bait": false,
    "score": 75.0,
    "grade": "B+"
   },
@@ -4048,6 +4294,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 0.0,
    "grade": "E"
   },
@@ -4064,6 +4311,7 @@
    "weighted": 2,
    "pillar": "personal-other",
    "format": "story-experience",
+   "bait": false,
    "score": 66.7,
    "grade": "B"
   },
@@ -4080,6 +4328,7 @@
    "weighted": 16,
    "pillar": "website-leads",
    "format": "tutorial-howto",
+   "bait": false,
    "score": 94.1,
    "grade": "A+"
   },
@@ -4096,6 +4345,7 @@
    "weighted": 2,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 66.7,
    "grade": "B"
   },
@@ -4112,40 +4362,59 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "commentary",
+   "bait": false,
    "score": 0.0,
    "grade": "E"
   }
  ],
  "recommendations": [
   {
-   "type": "format-scale",
-   "title": "Scale: commentary",
-   "body": "Format commentary pulang avg score 52.5 (48 posts, 16 shares). Ini enjin utama account. Target 60% kandungan bulan depan guna format ni.",
-   "metric": 52.5
+   "type": "pillar-mix",
+   "title": "Pillar mix vs target",
+   "body": "Mix 30d: google-ads 37% (target 30%) | website-leads 9% (target 20%) | digital-marketing 15% (target 25%) | personal-other 39% (target 25%). Canonical: Google Ads 30% / Website Leads 20% / Digital Marketing 25% / Personal-Mindset 25%.",
+   "metric": 224
   },
   {
-   "type": "pillar-scale",
-   "title": "Pillar terkuat: personal-other",
-   "body": "personal-other = avg 51.3 (87 posts). Kekalkan sebagai pillar utama, kongsikan breakdown teknikal yang lebih dalam.",
-   "metric": 51.3
+   "type": "pillar-under",
+   "title": "Under-served: website-leads",
+   "body": "website-leads cuma 9% (target 20%). Bila generate topik baru, prioritaskan pillar ni dulu.",
+   "metric": 9
+  },
+  {
+   "type": "angle-scale",
+   "title": "Scale: comparison/contrast",
+   "body": "24 post comparison (\"beza X vs Y\") avg score 45.4. Comparison = angle proven (Meta vs Google Ads dapat like-rate tertinggi). Cadang 2-3 post comparison minggu depan: \"Search vs Demand Gen\", \"Exact vs Broad\", \"Meta vs Google\".",
+   "metric": 45.4
+  },
+  {
+   "type": "format-scale",
+   "title": "Scale: tutorial-howto",
+   "body": "Format tutorial-howto avg score 53.2 (58 posts, 22 shares). Kekalkan format ni dalam mix minggu depan.",
+   "metric": 53.2
   },
   {
    "type": "pillar-fix",
    "title": "Tingkatkan: digital-marketing",
-   "body": "digital-marketing avg 43.5 dari 33 posts. Jangan buang pillar ni — tukar angle/hook, guna format tutorial-howto.",
+   "body": "digital-marketing avg 43.5 dari 33 posts. Jangan buang pillar ni — tukar angle guna situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
    "metric": 43.5
   },
   {
    "type": "volume",
    "title": "Konsistensi posting",
-   "body": "96 posts minggu ini (378 interactions, 10118 views). Target minimum 3-4 posts/minggu untuk kekal momentum algoritma.",
+   "body": "96 posts minggu ini (378 interactions, 10118 views). Target minimum 3-4 posts/minggu.",
    "metric": 96
   },
   {
    "type": "win-replicate",
    "title": "Replicate kemenangan terbesar",
-   "body": "\"Ada kedai, showroom, kedai makan. Nak tarik orang guna google ads?\nNak...\" score 98.5 (29 likes, 4 shares). Kaji struktur hook + format, ulang dengan topik baru minggu depan.",
-   "metric": 98.5
+   "body": "\"Nak setup hermes tak susah, nak start build pun tak susah.\nYang susah ...\" score 98.1 (37 likes, 2 shares). Kaji struktur hook + angle, ulang dengan topik baru.",
+   "metric": 98.1
+  },
+  {
+   "type": "topic-gen",
+   "title": "Cara generate topik baru",
+   "body": "Sumber topik: live 14-hari data + practical pain point (BUKAN module/feature news). Guna 7 content patterns (Reality Check, Mistake, Comparison, dll) — bukan bait \"likes dulu\". Extend pattern yang menang dari data sendiri.",
+   "metric": null
   }
  ]
 }
