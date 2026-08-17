@@ -1,128 +1,96 @@
 {
- "generated_at": "2026-08-16 09:45 MYT",
+ "generated_at": "2026-08-17 09:45 MYT",
  "window": {
-  "start": "2026-07-17",
-  "end": "2026-08-16",
-  "baseline_median_weighted": 1,
-  "baseline_median_views": 227
+  "start": "2026-07-18",
+  "end": "2026-08-17",
+  "baseline_median_weighted": 1.0,
+  "baseline_median_views": 223.0
  },
  "weekly": {
-  "posts": 87,
-  "avg_score": 53.2,
-  "median_score": 66.7,
-  "total_inter": 362,
-  "total_views": 8045,
-  "likes": 189,
-  "comments": 148,
-  "shares": 25,
-  "woW_pct": 29.8,
-  "prev_avg": 41.0
+  "posts": 96,
+  "avg_score": 49.7,
+  "median_score": 64.3,
+  "total_inter": 378,
+  "total_views": 10118,
+  "likes": 212,
+  "comments": 137,
+  "shares": 29,
+  "woW_pct": 66.2,
+  "prev_avg": 29.9
  },
  "monthly": {
-  "posts": 209,
-  "avg_score": 49.5,
-  "median_score": 55.6,
-  "total_inter": 836,
-  "total_views": 36242,
-  "likes": 515,
-  "comments": 277,
-  "shares": 44,
+  "posts": 224,
+  "avg_score": 47.7,
+  "median_score": 51.7,
+  "total_inter": 860,
+  "total_views": 39111,
+  "likes": 546,
+  "comments": 266,
+  "shares": 48,
   "MoM_pct": null,
   "prev_avg": 0
  },
  "pillars": {
   "personal-other": {
-   "posts": 76,
-   "inter": 354,
+   "posts": 87,
+   "inter": 347,
    "shares": 14,
-   "views": 12503,
-   "avg_score": 53.9
-  },
-  "google-ads": {
-   "posts": 82,
-   "inter": 258,
-   "shares": 18,
-   "views": 12443,
-   "avg_score": 48.9
-  },
-  "digital-marketing": {
-   "posts": 32,
-   "inter": 175,
-   "shares": 7,
-   "views": 6568,
-   "avg_score": 44.2
+   "views": 13493,
+   "avg_score": 51.3
   },
   "website-leads": {
-   "posts": 19,
-   "inter": 49,
-   "shares": 5,
+   "posts": 21,
+   "inter": 66,
+   "shares": 6,
    "views": 4728,
-   "avg_score": 43.6
+   "avg_score": 47.6
+  },
+  "google-ads": {
+   "posts": 83,
+   "inter": 272,
+   "shares": 21,
+   "views": 13873,
+   "avg_score": 45.5
+  },
+  "digital-marketing": {
+   "posts": 33,
+   "inter": 175,
+   "shares": 7,
+   "views": 7017,
+   "avg_score": 43.5
   }
  },
  "formats": {
   "commentary": {
-   "posts": 43,
-   "inter": 162,
-   "shares": 14,
-   "views": 3942,
-   "avg_score": 57.9
+   "posts": 48,
+   "inter": 188,
+   "shares": 16,
+   "views": 5343,
+   "avg_score": 52.5
   },
   "tutorial-howto": {
-   "posts": 59,
-   "inter": 299,
-   "shares": 21,
-   "views": 11153,
-   "avg_score": 54.3
+   "posts": 66,
+   "inter": 309,
+   "shares": 22,
+   "views": 12172,
+   "avg_score": 51.1
   },
   "opinion-mythbust": {
    "posts": 22,
    "inter": 44,
    "shares": 1,
    "views": 5898,
-   "avg_score": 44.0
+   "avg_score": 44.1
   },
   "story-experience": {
-   "posts": 85,
-   "inter": 331,
-   "shares": 8,
-   "views": 15249,
-   "avg_score": 43.5
+   "posts": 88,
+   "inter": 319,
+   "shares": 9,
+   "views": 15698,
+   "avg_score": 43.4
   }
  },
  "top_week": [
-  {
-   "content_id": 947,
-   "post_id": "DcCiwX_gVKl",
-   "date": "2026-08-15",
-   "text": "Morning guys.\nKalau aku boleh grow dekat thread dan secure client dari sini, tak kan lah korang tak boleh. Konsisten ja.  Translate",
-   "published_at": "2026-08-14T23:55:55.000Z",
-   "likes": 13,
-   "comments": 16,
-   "shares": 1,
-   "views": 0,
-   "weighted": 48,
-   "pillar": "personal-other",
-   "format": "story-experience",
-   "score": 98.0,
-   "grade": "A+"
-  },
-  {
-   "content_id": 942,
-   "post_id": "DcDYVAWkWTf",
-   "date": "2026-08-15",
-   "text": "Benda yg kau kena tahu, beza antara Meta Ads & Google Ads.\nKalau kau run Meta ads (FB/IG) dia caj kau per impressions. Google ads search caj",
-   "published_at": "2026-08-15T07:44:02.000Z",
-   "likes": 38,
-   "comments": 0,
-   "shares": 4,
-   "views": 0,
-   "weighted": 50,
-   "pillar": "google-ads",
-   "format": "commentary",
-   "score": 98.0,
-   "grade": "A+"
-  },
   {
    "content_id": 857,
    "post_id": "Db9bvm0ARWA",
@@ -140,19 +108,19 @@
    "grade": "A+"
   },
   {
-   "content_id": 930,
-   "post_id": "DcB4FyDGC6U",
+   "content_id": 940,
+   "post_id": "DcD4iWxGPWB",
    "date": "2026-08-15",
-   "text": "Korang ada tak posisi yang produktif?\nMaksud aku, bila korang buat something dalam posisi tu auto jadi idea mencurah, buat kerja pun laju be",
-   "published_at": "2026-08-14T17:43:06.000Z",
-   "likes": 1,
-   "comments": 19,
-   "shares": 0,
+   "text": "Guys, dalam thead memang bunyi aku ni macam nerd. Tapi aku kelakar tau.\nDone self-claim.\nSantai2 ja. Segan orang panggil aku tuan 😂",
+   "published_at": "2026-08-15T12:25:29.000Z",
+   "likes": 6,
+   "comments": 14,
+   "shares": 1,
    "views": 0,
-   "weighted": 39,
+   "weighted": 37,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 97.5,
+   "score": 97.4,
    "grade": "A+"
   },
   {
@@ -169,6 +137,38 @@
    "pillar": "digital-marketing",
    "format": "story-experience",
    "score": 97.3,
+   "grade": "A+"
+  },
+  {
+   "content_id": 974,
+   "post_id": "DcFWuV5GOon",
+   "date": "2026-08-16",
+   "text": "Aku takda idea nak post apa hari ni. Mungkin sebab tak berdiri lagi. Tu idea tak mencurah. Ytjt 😂  Translate",
+   "published_at": "2026-08-16T02:08:30.000Z",
+   "likes": 5,
+   "comments": 11,
+   "shares": 1,
+   "views": 0,
+   "weighted": 30,
+   "pillar": "personal-other",
+   "format": "story-experience",
+   "score": 96.8,
+   "grade": "A+"
+  },
+  {
+   "content_id": 903,
+   "post_id": "DcBcgA5GNvV",
+   "date": "2026-08-14",
+   "text": "Ada a few tanya aku ada buat coaching tak untuk hermes. Kalau tanya bulan lepas aku ambik, tapi start bulan ni aku tak ambik dah 😂\nKalau nak",
+   "published_at": "2026-08-14T13:42:01.000Z",
+   "likes": 8,
+   "comments": 4,
+   "shares": 4,
+   "views": 0,
+   "weighted": 28,
+   "pillar": "digital-marketing",
+   "format": "tutorial-howto",
+   "score": 96.6,
    "grade": "A+"
   }
  ],
@@ -206,38 +206,6 @@
    "grade": "A+"
   },
   {
-   "content_id": 947,
-   "post_id": "DcCiwX_gVKl",
-   "date": "2026-08-15",
-   "text": "Morning guys.\nKalau aku boleh grow dekat thread dan secure client dari sini, tak kan lah korang tak boleh. Konsisten ja.  Translate",
-   "published_at": "2026-08-14T23:55:55.000Z",
-   "likes": 13,
-   "comments": 16,
-   "shares": 1,
-   "views": 0,
-   "weighted": 48,
-   "pillar": "personal-other",
-   "format": "story-experience",
-   "score": 98.0,
-   "grade": "A+"
-  },
-  {
-   "content_id": 942,
-   "post_id": "DcDYVAWkWTf",
-   "date": "2026-08-15",
-   "text": "Benda yg kau kena tahu, beza antara Meta Ads & Google Ads.\nKalau kau run Meta ads (FB/IG) dia caj kau per impressions. Google ads search caj",
-   "published_at": "2026-08-15T07:44:02.000Z",
-   "likes": 38,
-   "comments": 0,
-   "shares": 4,
-   "views": 0,
-   "weighted": 50,
-   "pillar": "google-ads",
-   "format": "commentary",
-   "score": 98.0,
-   "grade": "A+"
-  },
-  {
    "content_id": 36,
    "post_id": "DbIL5OpkR-I",
    "date": "2026-07-23",
@@ -251,6 +219,38 @@
    "pillar": "website-leads",
    "format": "tutorial-howto",
    "score": 97.6,
+   "grade": "A+"
+  },
+  {
+   "content_id": 857,
+   "post_id": "Db9bvm0ARWA",
+   "date": "2026-08-13",
+   "text": "Morning guys. Hustle apa hari ni? Cuba share sikit.  Translate",
+   "published_at": "2026-08-13T00:18:26.000Z",
+   "likes": 5,
+   "comments": 18,
+   "shares": 0,
+   "views": 0,
+   "weighted": 41,
+   "pillar": "personal-other",
+   "format": "story-experience",
+   "score": 97.6,
+   "grade": "A+"
+  },
+  {
+   "content_id": 940,
+   "post_id": "DcD4iWxGPWB",
+   "date": "2026-08-15",
+   "text": "Guys, dalam thead memang bunyi aku ni macam nerd. Tapi aku kelakar tau.\nDone self-claim.\nSantai2 ja. Segan orang panggil aku tuan 😂",
+   "published_at": "2026-08-15T12:25:29.000Z",
+   "likes": 6,
+   "comments": 14,
+   "shares": 1,
+   "views": 0,
+   "weighted": 37,
+   "pillar": "personal-other",
+   "format": "story-experience",
+   "score": 97.4,
    "grade": "A+"
   }
  ],
@@ -288,38 +288,6 @@
    "grade": "A+"
   },
   {
-   "content_id": 947,
-   "post_id": "DcCiwX_gVKl",
-   "date": "2026-08-15",
-   "text": "Morning guys.\nKalau aku boleh grow dekat thread dan secure client dari sini, tak kan lah korang tak boleh. Konsisten ja.  Translate",
-   "published_at": "2026-08-14T23:55:55.000Z",
-   "likes": 13,
-   "comments": 16,
-   "shares": 1,
-   "views": 0,
-   "weighted": 48,
-   "pillar": "personal-other",
-   "format": "story-experience",
-   "score": 98.0,
-   "grade": "A+"
-  },
-  {
-   "content_id": 942,
-   "post_id": "DcDYVAWkWTf",
-   "date": "2026-08-15",
-   "text": "Benda yg kau kena tahu, beza antara Meta Ads & Google Ads.\nKalau kau run Meta ads (FB/IG) dia caj kau per impressions. Google ads search caj",
-   "published_at": "2026-08-15T07:44:02.000Z",
-   "likes": 38,
-   "comments": 0,
-   "shares": 4,
-   "views": 0,
-   "weighted": 50,
-   "pillar": "google-ads",
-   "format": "commentary",
-   "score": 98.0,
-   "grade": "A+"
-  },
-  {
    "content_id": 36,
    "post_id": "DbIL5OpkR-I",
    "date": "2026-07-23",
@@ -352,19 +320,19 @@
    "grade": "A+"
   },
   {
-   "content_id": 930,
-   "post_id": "DcB4FyDGC6U",
+   "content_id": 940,
+   "post_id": "DcD4iWxGPWB",
    "date": "2026-08-15",
-   "text": "Korang ada tak posisi yang produktif?\nMaksud aku, bila korang buat something dalam posisi tu auto jadi idea mencurah, buat kerja pun laju be",
-   "published_at": "2026-08-14T17:43:06.000Z",
-   "likes": 1,
-   "comments": 19,
-   "shares": 0,
+   "text": "Guys, dalam thead memang bunyi aku ni macam nerd. Tapi aku kelakar tau.\nDone self-claim.\nSantai2 ja. Segan orang panggil aku tuan 😂",
+   "published_at": "2026-08-15T12:25:29.000Z",
+   "likes": 6,
+   "comments": 14,
+   "shares": 1,
    "views": 0,
-   "weighted": 39,
+   "weighted": 37,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 97.5,
+   "score": 97.4,
    "grade": "A+"
   },
   {
@@ -384,19 +352,19 @@
    "grade": "A+"
   },
   {
-   "content_id": 940,
-   "post_id": "DcD4iWxGPWB",
-   "date": "2026-08-15",
-   "text": "Guys, dalam thead memang bunyi aku ni macam nerd. Tapi aku kelakar tau.\nDone self-claim.\nSantai2 ja. Segan orang panggil aku tuan 😂",
-   "published_at": "2026-08-15T12:25:29.000Z",
-   "likes": 4,
-   "comments": 13,
+   "content_id": 974,
+   "post_id": "DcFWuV5GOon",
+   "date": "2026-08-16",
+   "text": "Aku takda idea nak post apa hari ni. Mungkin sebab tak berdiri lagi. Tu idea tak mencurah. Ytjt 😂  Translate",
+   "published_at": "2026-08-16T02:08:30.000Z",
+   "likes": 5,
+   "comments": 11,
    "shares": 1,
    "views": 0,
-   "weighted": 33,
+   "weighted": 30,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 97.1,
+   "score": 96.8,
    "grade": "A+"
   },
   {
@@ -413,6 +381,38 @@
    "pillar": "digital-marketing",
    "format": "tutorial-howto",
    "score": 96.6,
+   "grade": "A+"
+  },
+  {
+   "content_id": 936,
+   "post_id": "DcELm41GPRA",
+   "date": "2026-08-15",
+   "text": "10 video dengan value + right audience lagi bagus dari 100 video random.\nFight me 🦐  Translate",
+   "published_at": "2026-08-15T15:12:07.000Z",
+   "likes": 4,
+   "comments": 10,
+   "shares": 1,
+   "views": 0,
+   "weighted": 27,
+   "pillar": "google-ads",
+   "format": "commentary",
+   "score": 96.4,
+   "grade": "A+"
+  },
+  {
+   "content_id": 61,
+   "post_id": "DbLU86imKl4",
+   "date": "2026-07-24",
+   "text": "Sebab aku dah jelas goal aku utk Hermes, aku nak dia jadi asset, brain untuk Jom Digital. Bukan sekadar Ai assistant sahaja.\nSo, aku bagi di",
+   "published_at": "2026-07-24T13:17:04.000Z",
+   "likes": 13,
+   "comments": 5,
+   "shares": 1,
+   "views": 0,
+   "weighted": 26,
+   "pillar": "personal-other",
+   "format": "tutorial-howto",
+   "score": 96.3,
    "grade": "A+"
   }
  ],
@@ -1088,7 +1088,7 @@
    "weighted": 3,
    "pillar": "google-ads",
    "format": "story-experience",
-   "score": 67.5,
+   "score": 67.6,
    "grade": "B"
   },
   {
@@ -1104,7 +1104,7 @@
    "weighted": 8,
    "pillar": "personal-other",
    "format": "opinion-mythbust",
-   "score": 77.0,
+   "score": 77.1,
    "grade": "B+"
   },
   {
@@ -1120,7 +1120,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
-   "score": 23.5,
+   "score": 23.6,
    "grade": "E"
   },
   {
@@ -1136,7 +1136,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
-   "score": 15.0,
+   "score": 15.1,
    "grade": "E"
   },
   {
@@ -1152,7 +1152,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
-   "score": 23.5,
+   "score": 23.6,
    "grade": "E"
   },
   {
@@ -1168,7 +1168,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
-   "score": 12.6,
+   "score": 12.7,
    "grade": "E"
   },
   {
@@ -1200,7 +1200,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
-   "score": 6.0,
+   "score": 6.1,
    "grade": "E"
   },
   {
@@ -1216,7 +1216,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "opinion-mythbust",
-   "score": 21.8,
+   "score": 21.9,
    "grade": "E"
   },
   {
@@ -1232,7 +1232,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
-   "score": 9.6,
+   "score": 9.7,
    "grade": "E"
   },
   {
@@ -1248,7 +1248,7 @@
    "weighted": 1,
    "pillar": "google-ads",
    "format": "tutorial-howto",
-   "score": 38.4,
+   "score": 38.5,
    "grade": "E"
   },
   {
@@ -1264,7 +1264,7 @@
    "weighted": 1,
    "pillar": "google-ads",
    "format": "tutorial-howto",
-   "score": 38.4,
+   "score": 38.5,
    "grade": "E"
   },
   {
@@ -1280,7 +1280,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
-   "score": 16.3,
+   "score": 16.5,
    "grade": "E"
   },
   {
@@ -1296,7 +1296,7 @@
    "weighted": 7,
    "pillar": "google-ads",
    "format": "tutorial-howto",
-   "score": 74.6,
+   "score": 74.7,
    "grade": "B+"
   },
   {
@@ -1312,7 +1312,7 @@
    "weighted": 1,
    "pillar": "personal-other",
    "format": "tutorial-howto",
-   "score": 55.6,
+   "score": 55.7,
    "grade": "C"
   },
   {
@@ -1328,7 +1328,7 @@
    "weighted": 1,
    "pillar": "personal-other",
    "format": "tutorial-howto",
-   "score": 45.3,
+   "score": 45.4,
    "grade": "D"
   },
   {
@@ -1344,7 +1344,7 @@
    "weighted": 4,
    "pillar": "google-ads",
    "format": "tutorial-howto",
-   "score": 70.8,
+   "score": 70.9,
    "grade": "B+"
   },
   {
@@ -1360,7 +1360,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
-   "score": 21.2,
+   "score": 21.3,
    "grade": "E"
   },
   {
@@ -1376,7 +1376,7 @@
    "weighted": 0,
    "pillar": "website-leads",
    "format": "story-experience",
-   "score": 20.5,
+   "score": 20.6,
    "grade": "E"
   },
   {
@@ -1392,7 +1392,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
-   "score": 7.5,
+   "score": 7.6,
    "grade": "E"
   },
   {
@@ -1408,7 +1408,7 @@
    "weighted": 0,
    "pillar": "website-leads",
    "format": "story-experience",
-   "score": 8.7,
+   "score": 8.8,
    "grade": "E"
   },
   {
@@ -1424,7 +1424,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "story-experience",
-   "score": 23.6,
+   "score": 23.7,
    "grade": "E"
   },
   {
@@ -1440,7 +1440,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "story-experience",
-   "score": 12.4,
+   "score": 12.6,
    "grade": "E"
   },
   {
@@ -1472,7 +1472,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
-   "score": 13.9,
+   "score": 14.0,
    "grade": "E"
   },
   {
@@ -1488,7 +1488,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 24.4,
+   "score": 24.5,
    "grade": "E"
   },
   {
@@ -1504,7 +1504,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "commentary",
-   "score": 14.0,
+   "score": 14.1,
    "grade": "E"
   },
   {
@@ -1520,7 +1520,7 @@
    "weighted": 1,
    "pillar": "personal-other",
    "format": "commentary",
-   "score": 49.5,
+   "score": 49.6,
    "grade": "D"
   },
   {
@@ -1536,7 +1536,7 @@
    "weighted": 1,
    "pillar": "digital-marketing",
    "format": "story-experience",
-   "score": 55.5,
+   "score": 55.6,
    "grade": "C"
   },
   {
@@ -1552,7 +1552,7 @@
    "weighted": 1,
    "pillar": "digital-marketing",
    "format": "story-experience",
-   "score": 47.9,
+   "score": 48.1,
    "grade": "D"
   },
   {
@@ -1568,7 +1568,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 7.6,
+   "score": 7.7,
    "grade": "E"
   },
   {
@@ -1584,7 +1584,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "commentary",
-   "score": 15.9,
+   "score": 16.0,
    "grade": "E"
   },
   {
@@ -1600,7 +1600,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 5.9,
+   "score": 6.0,
    "grade": "E"
   },
   {
@@ -1616,7 +1616,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 23.8,
+   "score": 23.9,
    "grade": "E"
   },
   {
@@ -1632,7 +1632,7 @@
    "weighted": 7,
    "pillar": "google-ads",
    "format": "opinion-mythbust",
-   "score": 72.3,
+   "score": 72.5,
    "grade": "B+"
   },
   {
@@ -1648,7 +1648,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "opinion-mythbust",
-   "score": 13.6,
+   "score": 13.7,
    "grade": "E"
   },
   {
@@ -1664,7 +1664,7 @@
    "weighted": 125,
    "pillar": "digital-marketing",
    "format": "story-experience",
-   "score": 74.7,
+   "score": 74.8,
    "grade": "B+"
   },
   {
@@ -1680,7 +1680,7 @@
    "weighted": 3,
    "pillar": "google-ads",
    "format": "opinion-mythbust",
-   "score": 72.3,
+   "score": 72.4,
    "grade": "B+"
   },
   {
@@ -1696,7 +1696,7 @@
    "weighted": 0,
    "pillar": "website-leads",
    "format": "tutorial-howto",
-   "score": 13.7,
+   "score": 13.8,
    "grade": "E"
   },
   {
@@ -1712,7 +1712,7 @@
    "weighted": 9,
    "pillar": "google-ads",
    "format": "opinion-mythbust",
-   "score": 73.3,
+   "score": 73.4,
    "grade": "B+"
   },
   {
@@ -1728,7 +1728,7 @@
    "weighted": 3,
    "pillar": "google-ads",
    "format": "tutorial-howto",
-   "score": 68.5,
+   "score": 68.6,
    "grade": "B"
   },
   {
@@ -1744,7 +1744,7 @@
    "weighted": 3,
    "pillar": "google-ads",
    "format": "opinion-mythbust",
-   "score": 70.5,
+   "score": 70.6,
    "grade": "B+"
   },
   {
@@ -1760,7 +1760,7 @@
    "weighted": 1,
    "pillar": "website-leads",
    "format": "opinion-mythbust",
-   "score": 46.7,
+   "score": 46.8,
    "grade": "D"
   },
   {
@@ -1792,7 +1792,7 @@
    "weighted": 4,
    "pillar": "digital-marketing",
    "format": "story-experience",
-   "score": 72.2,
+   "score": 72.4,
    "grade": "B+"
   },
   {
@@ -1808,7 +1808,7 @@
    "weighted": 12,
    "pillar": "google-ads",
    "format": "opinion-mythbust",
-   "score": 84.1,
+   "score": 84.2,
    "grade": "A"
   },
   {
@@ -1824,7 +1824,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "tutorial-howto",
-   "score": 17.9,
+   "score": 18.1,
    "grade": "E"
   },
   {
@@ -1840,7 +1840,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "opinion-mythbust",
-   "score": 9.7,
+   "score": 9.8,
    "grade": "E"
   },
   {
@@ -1856,7 +1856,7 @@
    "weighted": 2,
    "pillar": "google-ads",
    "format": "tutorial-howto",
-   "score": 67.0,
+   "score": 67.1,
    "grade": "B"
   },
   {
@@ -1872,7 +1872,7 @@
    "weighted": 2,
    "pillar": "website-leads",
    "format": "tutorial-howto",
-   "score": 62.5,
+   "score": 62.7,
    "grade": "B"
   },
   {
@@ -1920,7 +1920,7 @@
    "weighted": 5,
    "pillar": "digital-marketing",
    "format": "story-experience",
-   "score": 75.8,
+   "score": 75.9,
    "grade": "B+"
   },
   {
@@ -1936,7 +1936,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "opinion-mythbust",
-   "score": 13.7,
+   "score": 13.8,
    "grade": "E"
   },
   {
@@ -1952,7 +1952,7 @@
    "weighted": 1,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 48.7,
+   "score": 48.9,
    "grade": "D"
   },
   {
@@ -1968,7 +1968,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "story-experience",
-   "score": 7.2,
+   "score": 7.3,
    "grade": "E"
   },
   {
@@ -1984,7 +1984,7 @@
    "weighted": 2,
    "pillar": "google-ads",
    "format": "opinion-mythbust",
-   "score": 54.5,
+   "score": 54.6,
    "grade": "C"
   },
   {
@@ -2000,7 +2000,7 @@
    "weighted": 1,
    "pillar": "digital-marketing",
    "format": "story-experience",
-   "score": 51.0,
+   "score": 51.1,
    "grade": "C"
   },
   {
@@ -2016,7 +2016,7 @@
    "weighted": 1,
    "pillar": "website-leads",
    "format": "story-experience",
-   "score": 46.7,
+   "score": 46.8,
    "grade": "D"
   },
   {
@@ -2032,7 +2032,7 @@
    "weighted": 1,
    "pillar": "personal-other",
    "format": "opinion-mythbust",
-   "score": 49.7,
+   "score": 49.9,
    "grade": "D"
   },
   {
@@ -2048,7 +2048,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
-   "score": 17.9,
+   "score": 18.1,
    "grade": "E"
   },
   {
@@ -2064,7 +2064,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "tutorial-howto",
-   "score": 17.9,
+   "score": 18.1,
    "grade": "E"
   },
   {
@@ -2080,7 +2080,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "commentary",
-   "score": 15.5,
+   "score": 15.6,
    "grade": "E"
   },
   {
@@ -2096,7 +2096,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 14.7,
+   "score": 14.9,
    "grade": "E"
   },
   {
@@ -2112,8 +2112,8 @@
    "weighted": 2,
    "pillar": "website-leads",
    "format": "story-experience",
-   "score": 59.9,
-   "grade": "C"
+   "score": 60.0,
+   "grade": "B"
   },
   {
    "content_id": 182,
@@ -2128,7 +2128,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 15.8,
+   "score": 15.9,
    "grade": "E"
   },
   {
@@ -2144,7 +2144,7 @@
    "weighted": 1,
    "pillar": "personal-other",
    "format": "opinion-mythbust",
-   "score": 59.2,
+   "score": 59.3,
    "grade": "C"
   },
   {
@@ -2160,7 +2160,7 @@
    "weighted": 3,
    "pillar": "personal-other",
    "format": "commentary",
-   "score": 68.3,
+   "score": 68.4,
    "grade": "B"
   },
   {
@@ -2176,7 +2176,7 @@
    "weighted": 2,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 63.1,
+   "score": 63.3,
    "grade": "B"
   },
   {
@@ -2192,7 +2192,7 @@
    "weighted": 9,
    "pillar": "personal-other",
    "format": "commentary",
-   "score": 82.4,
+   "score": 82.5,
    "grade": "A"
   },
   {
@@ -2208,7 +2208,7 @@
    "weighted": 16,
    "pillar": "personal-other",
    "format": "commentary",
-   "score": 83.7,
+   "score": 83.8,
    "grade": "A"
   },
   {
@@ -2224,7 +2224,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
-   "score": 14.5,
+   "score": 14.6,
    "grade": "E"
   },
   {
@@ -2240,7 +2240,7 @@
    "weighted": 2,
    "pillar": "google-ads",
    "format": "tutorial-howto",
-   "score": 65.8,
+   "score": 66.0,
    "grade": "B"
   },
   {
@@ -2256,7 +2256,7 @@
    "weighted": 3,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 66.1,
+   "score": 66.3,
    "grade": "B"
   },
   {
@@ -2272,7 +2272,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "tutorial-howto",
-   "score": 22.2,
+   "score": 22.3,
    "grade": "E"
   },
   {
@@ -2288,7 +2288,7 @@
    "weighted": 1,
    "pillar": "google-ads",
    "format": "tutorial-howto",
-   "score": 52.9,
+   "score": 53.0,
    "grade": "C"
   },
   {
@@ -2320,7 +2320,7 @@
    "weighted": 4,
    "pillar": "google-ads",
    "format": "commentary",
-   "score": 66.5,
+   "score": 66.6,
    "grade": "B"
   },
   {
@@ -2336,7 +2336,7 @@
    "weighted": 3,
    "pillar": "personal-other",
    "format": "commentary",
-   "score": 68.6,
+   "score": 68.7,
    "grade": "B"
   },
   {
@@ -2352,7 +2352,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "tutorial-howto",
-   "score": 15.5,
+   "score": 15.6,
    "grade": "E"
   },
   {
@@ -2368,7 +2368,7 @@
    "weighted": 0,
    "pillar": "website-leads",
    "format": "story-experience",
-   "score": 15.8,
+   "score": 15.9,
    "grade": "E"
   },
   {
@@ -2384,7 +2384,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "commentary",
-   "score": 23.8,
+   "score": 23.9,
    "grade": "E"
   },
   {
@@ -2400,7 +2400,7 @@
    "weighted": 0,
    "pillar": "website-leads",
    "format": "story-experience",
-   "score": 19.1,
+   "score": 19.3,
    "grade": "E"
   },
   {
@@ -2416,7 +2416,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
-   "score": 20.7,
+   "score": 20.8,
    "grade": "E"
   },
   {
@@ -2432,7 +2432,7 @@
    "weighted": 0,
    "pillar": "website-leads",
    "format": "opinion-mythbust",
-   "score": 25.5,
+   "score": 25.6,
    "grade": "E"
   },
   {
@@ -2448,7 +2448,7 @@
    "weighted": 1,
    "pillar": "google-ads",
    "format": "commentary",
-   "score": 54.7,
+   "score": 54.8,
    "grade": "C"
   },
   {
@@ -2464,7 +2464,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 16.1,
+   "score": 16.2,
    "grade": "E"
   },
   {
@@ -2480,7 +2480,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "tutorial-howto",
-   "score": 23.1,
+   "score": 23.2,
    "grade": "E"
   },
   {
@@ -2496,7 +2496,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "story-experience",
-   "score": 14.2,
+   "score": 14.3,
    "grade": "E"
   },
   {
@@ -2512,7 +2512,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "story-experience",
-   "score": 6.5,
+   "score": 6.6,
    "grade": "E"
   },
   {
@@ -2528,7 +2528,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "story-experience",
-   "score": 1.1,
+   "score": 1.2,
    "grade": "E"
   },
   {
@@ -2544,7 +2544,7 @@
    "weighted": 5,
    "pillar": "personal-other",
    "format": "tutorial-howto",
-   "score": 74.1,
+   "score": 74.2,
    "grade": "B+"
   },
   {
@@ -2560,7 +2560,7 @@
    "weighted": 0,
    "pillar": "website-leads",
    "format": "tutorial-howto",
-   "score": 10.5,
+   "score": 10.7,
    "grade": "E"
   },
   {
@@ -2576,7 +2576,7 @@
    "weighted": 3,
    "pillar": "website-leads",
    "format": "opinion-mythbust",
-   "score": 64.2,
+   "score": 64.3,
    "grade": "B"
   },
   {
@@ -2592,7 +2592,7 @@
    "weighted": 6,
    "pillar": "google-ads",
    "format": "story-experience",
-   "score": 70.9,
+   "score": 71.0,
    "grade": "B+"
   },
   {
@@ -2608,7 +2608,7 @@
    "weighted": 7,
    "pillar": "digital-marketing",
    "format": "story-experience",
-   "score": 73.2,
+   "score": 73.3,
    "grade": "B+"
   },
   {
@@ -2624,7 +2624,7 @@
    "weighted": 1,
    "pillar": "digital-marketing",
    "format": "tutorial-howto",
-   "score": 58.0,
+   "score": 58.1,
    "grade": "C"
   },
   {
@@ -2640,7 +2640,7 @@
    "weighted": 0,
    "pillar": "digital-marketing",
    "format": "commentary",
-   "score": 15.6,
+   "score": 15.7,
    "grade": "E"
   },
   {
@@ -2656,7 +2656,7 @@
    "weighted": 3,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 67.9,
+   "score": 68.0,
    "grade": "B"
   },
   {
@@ -2672,7 +2672,7 @@
    "weighted": 1,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 44.5,
+   "score": 44.7,
    "grade": "D"
   },
   {
@@ -2688,7 +2688,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
-   "score": 18.8,
+   "score": 18.9,
    "grade": "E"
   },
   {
@@ -2704,7 +2704,7 @@
    "weighted": 5,
    "pillar": "digital-marketing",
    "format": "tutorial-howto",
-   "score": 70.0,
+   "score": 70.1,
    "grade": "B+"
   },
   {
@@ -2720,7 +2720,7 @@
    "weighted": 4,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 73.0,
+   "score": 73.2,
    "grade": "B+"
   },
   {
@@ -2736,7 +2736,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
-   "score": 18.8,
+   "score": 18.9,
    "grade": "E"
   },
   {
@@ -2752,7 +2752,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
-   "score": 12.3,
+   "score": 12.4,
    "grade": "E"
   },
   {
@@ -2800,7 +2800,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "tutorial-howto",
-   "score": 21.2,
+   "score": 21.3,
    "grade": "E"
   },
   {
@@ -2816,7 +2816,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 19.8,
+   "score": 19.9,
    "grade": "E"
   },
   {
@@ -2832,7 +2832,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 16.0,
+   "score": 16.2,
    "grade": "E"
   },
   {
@@ -2848,7 +2848,7 @@
    "weighted": 3,
    "pillar": "personal-other",
    "format": "commentary",
-   "score": 61.7,
+   "score": 61.9,
    "grade": "B"
   },
   {
@@ -2864,7 +2864,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 17.8,
+   "score": 17.9,
    "grade": "E"
   },
   {
@@ -2880,7 +2880,7 @@
    "weighted": 1,
    "pillar": "digital-marketing",
    "format": "tutorial-howto",
-   "score": 52.1,
+   "score": 52.3,
    "grade": "C"
   },
   {
@@ -2912,7 +2912,7 @@
    "weighted": 0,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 16.2,
+   "score": 16.3,
    "grade": "E"
   },
   {
@@ -3408,7 +3408,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
-   "score": 7.0,
+   "score": 7.1,
    "grade": "E"
   },
   {
@@ -3424,7 +3424,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
-   "score": 2.5,
+   "score": 2.6,
    "grade": "E"
   },
   {
@@ -3456,24 +3456,8 @@
    "weighted": 0,
    "pillar": "website-leads",
    "format": "story-experience",
-   "score": 24.4,
+   "score": 24.5,
    "grade": "E"
-  },
-  {
-   "content_id": 911,
-   "post_id": "DcAwe4BkUXw",
-   "date": "2026-08-14",
-   "text": "Biarpun Hermes aku dah quite powerful tapi based on North Star assessment yg aku dah set dia still 30% dari apa yang aku aim.\nMcm aku cakap,",
-   "published_at": "2026-08-14T07:17:23.000Z",
-   "likes": 1,
-   "comments": 0,
-   "shares": 0,
-   "views": 488,
-   "weighted": 1,
-   "pillar": "google-ads",
-   "format": "tutorial-howto",
-   "score": 55.5,
-   "grade": "C"
   },
   {
    "content_id": 912,
@@ -3504,7 +3488,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "story-experience",
-   "score": 4.7,
+   "score": 4.8,
    "grade": "E"
   },
   {
@@ -3520,7 +3504,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "opinion-mythbust",
-   "score": 13.3,
+   "score": 13.4,
    "grade": "E"
   },
   {
@@ -3536,7 +3520,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "opinion-mythbust",
-   "score": 8.4,
+   "score": 8.6,
    "grade": "E"
   },
   {
@@ -3552,7 +3536,7 @@
    "weighted": 0,
    "pillar": "google-ads",
    "format": "opinion-mythbust",
-   "score": 1.6,
+   "score": 1.7,
    "grade": "E"
   },
   {
@@ -3639,33 +3623,33 @@
    "content_id": 932,
    "post_id": "DcB2-iKGOMf",
    "date": "2026-08-15",
-   "text": "Mostly sebab dah biasa dengan meta ads. So tak familiar nak explore google ads search. So kalau kau tak sure bisnes kau sesuai tak run googl",
+   "text": "Kau bukak google, kau taip search query, then akan keluar list of places dan website yang match dengan apa yang kau cari. -> ni lah google a",
    "published_at": "2026-08-14T17:33:22.000Z",
    "likes": 0,
-   "comments": 1,
+   "comments": 0,
    "shares": 0,
-   "views": 0,
-   "weighted": 2,
+   "views": 65,
+   "weighted": 0,
    "pillar": "google-ads",
-   "format": "story-experience",
-   "score": 66.7,
-   "grade": "B"
+   "format": "tutorial-howto",
+   "score": 6.8,
+   "grade": "E"
   },
   {
    "content_id": 933,
    "post_id": "DcB2_B1mGDF",
    "date": "2026-08-15",
-   "text": "Bengkel kereta, kedai detailing, spa kecantikkan, klinik, plumbing, tong roro, kereta sewa, skylift, crane, kedai jual barang tandas dan ban",
+   "text": "Kau bukak google, kau taip search query, then akan keluar list of places dan website yang match dengan apa yang kau cari. -> ni lah google a",
    "published_at": "2026-08-14T17:33:26.000Z",
    "likes": 0,
-   "comments": 1,
+   "comments": 0,
    "shares": 0,
-   "views": 0,
-   "weighted": 2,
+   "views": 17,
+   "weighted": 0,
    "pillar": "google-ads",
-   "format": "commentary",
-   "score": 66.7,
-   "grade": "B"
+   "format": "tutorial-howto",
+   "score": 2.1,
+   "grade": "E"
   },
   {
    "content_id": 930,
@@ -3673,31 +3657,31 @@
    "date": "2026-08-15",
    "text": "Korang ada tak posisi yang produktif?\nMaksud aku, bila korang buat something dalam posisi tu auto jadi idea mencurah, buat kerja pun laju be",
    "published_at": "2026-08-14T17:43:06.000Z",
-   "likes": 1,
-   "comments": 19,
+   "likes": 0,
+   "comments": 0,
    "shares": 0,
-   "views": 0,
-   "weighted": 39,
-   "pillar": "personal-other",
+   "views": 449,
+   "weighted": 0,
+   "pillar": "digital-marketing",
    "format": "story-experience",
-   "score": 97.5,
-   "grade": "A+"
+   "score": 20.0,
+   "grade": "E"
   },
   {
    "content_id": 947,
    "post_id": "DcCiwX_gVKl",
    "date": "2026-08-15",
-   "text": "Morning guys.\nKalau aku boleh grow dekat thread dan secure client dari sini, tak kan lah korang tak boleh. Konsisten ja.  Translate",
+   "text": "Morning guys.\nKalau aku boleh grow dekat thread dan secure client dari sini, tak kan lah korang tak boleh. Konsisten ja.  \nTranslate\nTop\nAll",
    "published_at": "2026-08-14T23:55:55.000Z",
-   "likes": 13,
-   "comments": 16,
-   "shares": 1,
-   "views": 0,
-   "weighted": 48,
+   "likes": 0,
+   "comments": 0,
+   "shares": 0,
+   "views": 776,
+   "weighted": 0,
    "pillar": "personal-other",
-   "format": "story-experience",
-   "score": 98.0,
-   "grade": "A+"
+   "format": "tutorial-howto",
+   "score": 23.3,
+   "grade": "E"
   },
   {
    "content_id": 946,
@@ -3705,15 +3689,15 @@
    "date": "2026-08-15",
    "text": "Bisnes owner yang buat servis local atau ada fizikal store,\ncuba search servis korang kat google, tengok dia keluar tak dekat google search ",
    "published_at": "2026-08-15T00:49:11.000Z",
-   "likes": 0,
+   "likes": 2,
    "comments": 0,
-   "shares": 1,
-   "views": 0,
-   "weighted": 3,
+   "shares": 0,
+   "views": 214,
+   "weighted": 2,
    "pillar": "personal-other",
    "format": "commentary",
-   "score": 75.0,
-   "grade": "B+"
+   "score": 61.4,
+   "grade": "B"
   },
   {
    "content_id": 943,
@@ -3721,47 +3705,47 @@
    "date": "2026-08-15",
    "text": "Kau perasan tak bila kau cari tempat dekat maps, akan keluar suggestion tempat lain dekat top.\nKau boleh letak bisnes kau dekat top search r",
    "published_at": "2026-08-15T02:19:00.000Z",
-   "likes": 2,
-   "comments": 5,
-   "shares": 2,
-   "views": 0,
-   "weighted": 18,
+   "likes": 0,
+   "comments": 0,
+   "shares": 0,
+   "views": 525,
+   "weighted": 0,
    "pillar": "google-ads",
-   "format": "commentary",
-   "score": 94.7,
-   "grade": "A+"
+   "format": "tutorial-howto",
+   "score": 21.1,
+   "grade": "E"
   },
   {
    "content_id": 944,
    "post_id": "DcCzIr4mI2N",
    "date": "2026-08-15",
-   "text": "Kalau kau ada homestay dekat kawasan hotspot, then sangat rekomen untuk run google ads search. Especially kalau tempat kau baru.\nSebaiknya d",
+   "text": "Kau perasan tak bila kau cari tempat dekat maps, akan keluar suggestion tempat lain dekat top.\nKau boleh letak bisnes kau dekat top search r",
    "published_at": "2026-08-15T02:19:03.000Z",
-   "likes": 1,
-   "comments": 1,
+   "likes": 0,
+   "comments": 0,
    "shares": 0,
-   "views": 0,
-   "weighted": 3,
+   "views": 85,
+   "weighted": 0,
    "pillar": "google-ads",
-   "format": "commentary",
-   "score": 75.0,
-   "grade": "B+"
+   "format": "tutorial-howto",
+   "score": 8.3,
+   "grade": "E"
   },
   {
    "content_id": 945,
    "post_id": "DcCzJEomG57",
    "date": "2026-08-15",
-   "text": "Banyak lagi cara bisnes boleh guna google ads search untuk rank dekat top search results.  Translate",
+   "text": "Kau perasan tak bila kau cari tempat dekat maps, akan keluar suggestion tempat lain dekat top.\nKau boleh letak bisnes kau dekat top search r",
    "published_at": "2026-08-15T02:19:06.000Z",
-   "likes": 1,
-   "comments": 1,
+   "likes": 0,
+   "comments": 0,
    "shares": 0,
-   "views": 0,
-   "weighted": 3,
+   "views": 39,
+   "weighted": 0,
    "pillar": "google-ads",
    "format": "tutorial-howto",
-   "score": 75.0,
-   "grade": "B+"
+   "score": 4.5,
+   "grade": "E"
   },
   {
    "content_id": 942,
@@ -3769,14 +3753,14 @@
    "date": "2026-08-15",
    "text": "Benda yg kau kena tahu, beza antara Meta Ads & Google Ads.\nKalau kau run Meta ads (FB/IG) dia caj kau per impressions. Google ads search caj",
    "published_at": "2026-08-15T07:44:02.000Z",
-   "likes": 38,
+   "likes": 47,
    "comments": 0,
-   "shares": 4,
-   "views": 0,
-   "weighted": 50,
+   "shares": 6,
+   "views": 1000,
+   "weighted": 65,
    "pillar": "google-ads",
    "format": "commentary",
-   "score": 98.0,
+   "score": 93.5,
    "grade": "A+"
   },
   {
@@ -3785,15 +3769,15 @@
    "date": "2026-08-15",
    "text": "Ilmu tu mahal. Bila kau buat sharing, kau bagi value.\nBila kau bagi value, kau tarik audience yang mencari value tu ie. Prospek kau.\nLagi ba",
    "published_at": "2026-08-15T09:26:55.000Z",
-   "likes": 3,
+   "likes": 4,
    "comments": 0,
-   "shares": 2,
-   "views": 0,
-   "weighted": 9,
+   "shares": 3,
+   "views": 187,
+   "weighted": 13,
    "pillar": "google-ads",
    "format": "commentary",
-   "score": 90.0,
-   "grade": "A+"
+   "score": 78.7,
+   "grade": "B+"
   },
   {
    "content_id": 940,
@@ -3801,14 +3785,14 @@
    "date": "2026-08-15",
    "text": "Guys, dalam thead memang bunyi aku ni macam nerd. Tapi aku kelakar tau.\nDone self-claim.\nSantai2 ja. Segan orang panggil aku tuan 😂",
    "published_at": "2026-08-15T12:25:29.000Z",
-   "likes": 4,
-   "comments": 13,
+   "likes": 6,
+   "comments": 14,
    "shares": 1,
    "views": 0,
-   "weighted": 33,
+   "weighted": 37,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 97.1,
+   "score": 97.4,
    "grade": "A+"
   },
   {
@@ -3817,15 +3801,15 @@
    "date": "2026-08-15",
    "text": "Simple mistake bila buat website leads gen.\nLetak cta button direct whatsapp, takda prefilled message. Bila tekan, masuk WhatsApp, kosong.\nT",
    "published_at": "2026-08-15T12:40:47.000Z",
-   "likes": 0,
+   "likes": 5,
    "comments": 1,
    "shares": 1,
    "views": 0,
-   "weighted": 5,
+   "weighted": 10,
    "pillar": "website-leads",
    "format": "commentary",
-   "score": 83.3,
-   "grade": "A"
+   "score": 90.9,
+   "grade": "A+"
   },
   {
    "content_id": 939,
@@ -3849,14 +3833,14 @@
    "date": "2026-08-15",
    "text": "@okmuazh what’s this behaviour 😂 aku tengah layan Hazama, tiba2 kena boost.  Translate",
    "published_at": "2026-08-15T15:07:22.000Z",
-   "likes": 2,
+   "likes": 3,
    "comments": 1,
    "shares": 1,
    "views": 0,
-   "weighted": 7,
+   "weighted": 8,
    "pillar": "personal-other",
    "format": "story-experience",
-   "score": 87.5,
+   "score": 88.9,
    "grade": "A"
   },
   {
@@ -3865,41 +3849,297 @@
    "date": "2026-08-15",
    "text": "10 video dengan value + right audience lagi bagus dari 100 video random.\nFight me 🦐  Translate",
    "published_at": "2026-08-15T15:12:07.000Z",
-   "likes": 3,
-   "comments": 4,
-   "shares": 0,
+   "likes": 4,
+   "comments": 10,
+   "shares": 1,
    "views": 0,
-   "weighted": 11,
+   "weighted": 27,
    "pillar": "google-ads",
    "format": "commentary",
-   "score": 91.7,
+   "score": 96.4,
    "grade": "A+"
+  },
+  {
+   "content_id": 976,
+   "post_id": "DcFMWDkmSfL",
+   "date": "2026-08-16",
+   "text": "Biasanya waktu ni dah panas terik kat Kuantan ni. Hari ni mendung nak hujan. Nyaman… kalau tak pagi macam ni dah rasa bahang.",
+   "published_at": "2026-08-16T00:37:48.000Z",
+   "likes": 1,
+   "comments": 0,
+   "shares": 0,
+   "views": 0,
+   "weighted": 1,
+   "pillar": "personal-other",
+   "format": "story-experience",
+   "score": 50.0,
+   "grade": "C"
+  },
+  {
+   "content_id": 974,
+   "post_id": "DcFWuV5GOon",
+   "date": "2026-08-16",
+   "text": "Aku takda idea nak post apa hari ni. Mungkin sebab tak berdiri lagi. Tu idea tak mencurah. Ytjt 😂  Translate",
+   "published_at": "2026-08-16T02:08:30.000Z",
+   "likes": 5,
+   "comments": 11,
+   "shares": 1,
+   "views": 0,
+   "weighted": 30,
+   "pillar": "personal-other",
+   "format": "story-experience",
+   "score": 96.8,
+   "grade": "A+"
+  },
+  {
+   "content_id": 973,
+   "post_id": "DcFXGNimGy1",
+   "date": "2026-08-16",
+   "text": "Tengah semangat nak basuh baju anak2 ni,\nMasuk mesin basuh, kita pun buat lah benda lain. Datang check laundry, COKLATTTTT! 😂\nSabor jelah ak",
+   "published_at": "2026-08-16T02:11:45.000Z",
+   "likes": 1,
+   "comments": 0,
+   "shares": 0,
+   "views": 0,
+   "weighted": 1,
+   "pillar": "personal-other",
+   "format": "story-experience",
+   "score": 50.0,
+   "grade": "C"
+  },
+  {
+   "content_id": 975,
+   "post_id": "DcFXL_FGPdc",
+   "date": "2026-08-16",
+   "text": "Berdiri sambil merenung ke luar jendela untuk maksimun effect!  Translate",
+   "published_at": "2026-08-16T02:12:33.000Z",
+   "likes": 1,
+   "comments": 0,
+   "shares": 0,
+   "views": 0,
+   "weighted": 1,
+   "pillar": "personal-other",
+   "format": "commentary",
+   "score": 50.0,
+   "grade": "C"
+  },
+  {
+   "content_id": 971,
+   "post_id": "DcFwccNEfno",
+   "date": "2026-08-16",
+   "text": "Macam @fazlanhassan_ cakap, weekend ni lah waktu nak farm engagement. Tapi aku takda mood hari ni 😂\nSo, aku bagi shortlist ja.  Translate",
+   "published_at": "2026-08-16T05:53:15.000Z",
+   "likes": 7,
+   "comments": 7,
+   "shares": 1,
+   "views": 0,
+   "weighted": 24,
+   "pillar": "personal-other",
+   "format": "story-experience",
+   "score": 96.0,
+   "grade": "A+"
+  },
+  {
+   "content_id": 972,
+   "post_id": "DcFwceCkZ5t",
+   "date": "2026-08-16",
+   "text": "1. Explore hermer etc. & agentic Ai\n2. Marketing ni kita deal dengan orang, yang lain semua tools.\n3. Nak buat paid ads padu, kena tahu umpa",
+   "published_at": "2026-08-16T05:53:15.000Z",
+   "likes": 6,
+   "comments": 0,
+   "shares": 1,
+   "views": 0,
+   "weighted": 9,
+   "pillar": "google-ads",
+   "format": "commentary",
+   "score": 90.0,
+   "grade": "A+"
+  },
+  {
+   "content_id": 969,
+   "post_id": "DcGVBFQGG7f",
+   "date": "2026-08-16",
+   "text": "Akan belajar\n- Cara guna cowork function.\n- Cara bina website guna Cowork.\n- Bina website yg kompetitif, ready utk ads, paling bagus website",
+   "published_at": "2026-08-16T11:12:49.000Z",
+   "likes": 0,
+   "comments": 1,
+   "shares": 0,
+   "views": 0,
+   "weighted": 2,
+   "pillar": "website-leads",
+   "format": "tutorial-howto",
+   "score": 66.7,
+   "grade": "B"
+  },
+  {
+   "content_id": 970,
+   "post_id": "DcGVBEamCuN",
+   "date": "2026-08-16",
+   "text": "Akan archive posting ni by esok tengahari 😌",
+   "published_at": "2026-08-16T11:12:49.000Z",
+   "likes": 0,
+   "comments": 0,
+   "shares": 0,
+   "views": 0,
+   "weighted": 0,
+   "pillar": "personal-other",
+   "format": "commentary",
+   "score": 0.0,
+   "grade": "E"
+  },
+  {
+   "content_id": 968,
+   "post_id": "DcGxQ16mDEz",
+   "date": "2026-08-16",
+   "text": "Sedap lah kalau ada course belajar buat terus jadi + money back guarantee.  Translate",
+   "published_at": "2026-08-16T15:19:38.000Z",
+   "likes": 0,
+   "comments": 0,
+   "shares": 0,
+   "views": 0,
+   "weighted": 0,
+   "pillar": "personal-other",
+   "format": "commentary",
+   "score": 0.0,
+   "grade": "E"
+  },
+  {
+   "content_id": 966,
+   "post_id": "DcGxQ2XGLFe",
+   "date": "2026-08-16",
+   "text": "Takda ilmu yang tak menjadi, cuma ada ilmu yang tak sesuai pada tempatnya, tak diamal dengan disiplinya, tak diguna dengan sebaiknya.\nKau me",
+   "published_at": "2026-08-16T15:19:39.000Z",
+   "likes": 0,
+   "comments": 1,
+   "shares": 0,
+   "views": 0,
+   "weighted": 2,
+   "pillar": "personal-other",
+   "format": "tutorial-howto",
+   "score": 66.7,
+   "grade": "B"
+  },
+  {
+   "content_id": 963,
+   "post_id": "DcGxz9wmE36",
+   "date": "2026-08-16",
+   "text": "6 fasa, 5 fasa prep, fasa akhir baru generate website.\nSilap orang buat website guna Ai, dia anggap Ai ni all knowing, all powerful.\nAi ni c",
+   "published_at": "2026-08-16T15:24:26.000Z",
+   "likes": 1,
+   "comments": 1,
+   "shares": 0,
+   "views": 0,
+   "weighted": 3,
+   "pillar": "google-ads",
+   "format": "commentary",
+   "score": 75.0,
+   "grade": "B+"
+  },
+  {
+   "content_id": 965,
+   "post_id": "DcGxz_XGDx7",
+   "date": "2026-08-16",
+   "text": "Lepas generate pun biasany nak buat adjustment jugak. Haha tapi atleast takda lah kau frust habis token usage utk benda menials.",
+   "published_at": "2026-08-16T15:24:26.000Z",
+   "likes": 0,
+   "comments": 0,
+   "shares": 0,
+   "views": 0,
+   "weighted": 0,
+   "pillar": "personal-other",
+   "format": "commentary",
+   "score": 0.0,
+   "grade": "E"
+  },
+  {
+   "content_id": 961,
+   "post_id": "DcG5f7EmMU9",
+   "date": "2026-08-17",
+   "text": "2. Minggle dengan circle yang bagus dan lagi better dari kau.\nTitik perubahan aku paling aignificant adalah dari zaman twitter 4 tahun lepas",
+   "published_at": "2026-08-16T16:31:36.000Z",
+   "likes": 0,
+   "comments": 1,
+   "shares": 0,
+   "views": 0,
+   "weighted": 2,
+   "pillar": "personal-other",
+   "format": "story-experience",
+   "score": 66.7,
+   "grade": "B"
+  },
+  {
+   "content_id": 960,
+   "post_id": "DcG5f8rmMk8",
+   "date": "2026-08-17",
+   "text": "Cara aku hustle dari zero ke 5 angka sebulan.\n1. Sentiasa aware. \nNi susah nak ajar. Kau kena cepat pickup any hint shifting in market, chan",
+   "published_at": "2026-08-16T16:31:37.000Z",
+   "likes": 7,
+   "comments": 3,
+   "shares": 1,
+   "views": 0,
+   "weighted": 16,
+   "pillar": "website-leads",
+   "format": "tutorial-howto",
+   "score": 94.1,
+   "grade": "A+"
+  },
+  {
+   "content_id": 962,
+   "post_id": "DcG5f8tGGbP",
+   "date": "2026-08-17",
+   "text": "3. Cukup lah tu… hahahha",
+   "published_at": "2026-08-16T16:31:37.000Z",
+   "likes": 0,
+   "comments": 1,
+   "shares": 0,
+   "views": 0,
+   "weighted": 2,
+   "pillar": "personal-other",
+   "format": "commentary",
+   "score": 66.7,
+   "grade": "B"
+  },
+  {
+   "content_id": 959,
+   "post_id": "DcHIxD2gdKD",
+   "date": "2026-08-17",
+   "text": "Tak putus train. Kita ajar lah sampai dia reti. 😂",
+   "published_at": "2026-08-16T18:45:01.000Z",
+   "likes": 0,
+   "comments": 0,
+   "shares": 0,
+   "views": 0,
+   "weighted": 0,
+   "pillar": "personal-other",
+   "format": "commentary",
+   "score": 0.0,
+   "grade": "E"
   }
  ],
  "recommendations": [
   {
    "type": "format-scale",
    "title": "Scale: commentary",
-   "body": "Format commentary pulang avg score 57.9 (43 posts, 14 shares). Ini enjin utama account. Target 60% kandungan bulan depan guna format ni.",
-   "metric": 57.9
+   "body": "Format commentary pulang avg score 52.5 (48 posts, 16 shares). Ini enjin utama account. Target 60% kandungan bulan depan guna format ni.",
+   "metric": 52.5
   },
   {
    "type": "pillar-scale",
    "title": "Pillar terkuat: personal-other",
-   "body": "personal-other = avg 53.9 (76 posts). Kekalkan sebagai pillar utama, kongsikan breakdown teknikal yang lebih dalam.",
-   "metric": 53.9
+   "body": "personal-other = avg 51.3 (87 posts). Kekalkan sebagai pillar utama, kongsikan breakdown teknikal yang lebih dalam.",
+   "metric": 51.3
   },
   {
    "type": "pillar-fix",
-   "title": "Tingkatkan: website-leads",
-   "body": "website-leads avg 43.6 dari 19 posts. Jangan buang pillar ni — tukar angle/hook, guna format tutorial-howto.",
-   "metric": 43.6
+   "title": "Tingkatkan: digital-marketing",
+   "body": "digital-marketing avg 43.5 dari 33 posts. Jangan buang pillar ni — tukar angle/hook, guna format tutorial-howto.",
+   "metric": 43.5
   },
   {
    "type": "volume",
    "title": "Konsistensi posting",
-   "body": "87 posts minggu ini (362 interactions, 8045 views). Target minimum 3-4 posts/minggu untuk kekal momentum algoritma.",
-   "metric": 87
+   "body": "96 posts minggu ini (378 interactions, 10118 views). Target minimum 3-4 posts/minggu untuk kekal momentum algoritma.",
+   "metric": 96
   },
   {
    "type": "win-replicate",
