@@ -164,6 +164,8 @@ export async function onRequest(context) {
 
     return json({ success: false, error: 'Method not allowed' }, 405);
   } catch (error) {
-    return json({ success: false, error: error.message || 'Unexpected error' }, 500);
+    const message = error.message || 'Unexpected error';
+    const clientError = message === 'topic is required' || message.includes('topics must');
+    return json({ success: false, error: message }, clientError ? 400 : 500);
   }
 }
