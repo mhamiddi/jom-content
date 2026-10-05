@@ -236,7 +236,7 @@ canvas{display:block;max-width:100%}
 /* TOAST */
 #toastWrap{position:fixed;bottom:var(--space-2xl);right:var(--space-2xl);z-index:600;display:flex;flex-direction:column;gap:var(--space-sm);pointer-events:none}
 .toast{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:var(--radius-sm);padding:var(--space-md) var(--space-lg);font-size:13px;font-weight:500;color:var(--text);box-shadow:var(--shadow-lg);animation:toastSlideIn .3s cubic-bezier(.16,1,.3,1);pointer-events:auto;min-width:220px;max-width:340px;display:flex;align-items:center;gap:var(--space-sm)}.toast::before{font-size:16px;flex-shrink:0}
-.toast.success{border-left-color:var(--success);--toast-icon:'\2713'}.toast.error{border-left-color:var(--danger);--toast-icon:'\2717'}
+.toast.success{border-left-color:var(--success);}.toast.error{border-left-color:var(--danger)}
 @keyframes toastIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
 @keyframes toastOut{to{opacity:0;transform:translateX(16px)}}
 .toast.out{animation:toastOut .25s ease forwards}
@@ -399,7 +399,7 @@ canvas{display:block;max-width:100%}
     <div class="nav-separator"></div>
     <a class="nav-external" id="navTeleprompter" href="https://teleprompter-jomdigital.pages.dev" target="_blank" rel="noopener" title="Buka PromptFlow Studio Teleprompter">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      🎬 Teleprompter
+      Teleprompter
       <span class="ext-arrow">↗</span>
     </a>
   </nav>
@@ -418,7 +418,7 @@ canvas{display:block;max-width:100%}
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
       <span class="page-title" id="pageTitle">Overview</span>
-      <button class="command-trigger" onclick="openCommand()" aria-label="Cari semua content"><span>⌕</span> Cari content… <kbd>⌘ K</kbd></button>
+      <button class="command-trigger" onclick="openCommand()" aria-label="Cari semua content"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-3px"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span> Cari content… <kbd>⌘ K</kbd></button>
       <div class="top-bar-right">
         <div class="header-stats">
           <span>Bulan Ni: <strong id="hdrMonthPosts">0</strong></span>
@@ -439,9 +439,9 @@ canvas{display:block;max-width:100%}
         <input type="file" id="importFile" accept=".json" style="display:none" onchange="handleImport(event)">
         <button class="hdr-btn" id="hdrTeleprompter" title="Buka PromptFlow Studio Teleprompter" style="background:var(--primary-bg);color:var(--primary);border-color:var(--primary-light)">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          <span>🎬 Teleprompter</span>
+          <span>Teleprompter</span>
         </button>
-        <button class="hdr-btn theme-btn" id="themeToggle" title="Tukar tema">🌙</button>
+        <button class="hdr-btn theme-btn" id="themeToggle" title="Tukar tema" aria-label="Tukar tema"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-3px"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
       </div>
     </div>
   </header>
@@ -472,7 +472,7 @@ canvas{display:block;max-width:100%}
         </div>
       </details>
       <div class="section library-section" id="contentLibrary">
-        <div class="section-hdr"><div class="section-title"><h2>Content planner</h2><span class="badge" id="dashTotalPosts">0</span></div><div class="view-switch" role="group" aria-label="Paparan content"><button id="view-list" onclick="setPlannerView('list')" aria-pressed="true">☷ List</button><button id="view-board" onclick="setPlannerView('board')" aria-pressed="false">▥ Board</button></div></div>
+        <div class="section-hdr"><div class="section-title"><h2>Content planner</h2><span class="badge" id="dashTotalPosts">0</span></div><div class="view-switch" role="group" aria-label="Paparan content"><button id="view-list" onclick="setPlannerView('list')" aria-pressed="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-3px;margin-right:6px"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg>List</button><button id="view-board" onclick="setPlannerView('board')" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-3px;margin-right:6px"><rect x="3" y="3" width="7" height="18" rx="1.5"/><rect x="14" y="3" width="7" height="11" rx="1.5"/></svg>Board</button></div></div>
         <div class="planner-toolbar">
           <input class="search-input" id="dashSearch" aria-label="Cari dalam planner" placeholder="Cari tajuk, caption atau pillar…" oninput="debounceSearch('dashboard')">
           <select id="plannerPlatform" aria-label="Filter platform" onchange="renderDashTimeline()"><option value="all">Semua platform</option><option value="threads">Threads</option><option value="tiktok">TikTok</option></select>
@@ -592,6 +592,10 @@ const PLATFORM_COLORS = {tiktok:'#fe2c55',threads:'#888'};
 const PLATFORM_ICONS = {tiktok:'TikTok',threads:'Threads'};
 const CANONICAL_PILLARS = ['Google Ads & Marketing','Agentic AI','Engage'];
 const CANONICAL_TARGETS = {'Google Ads & Marketing':35,'Agentic AI':35,'Engage':30};
+const SVG_PATHS = {"film": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4\"/>", "camera": "<rect x=\"3\" y=\"7\" width=\"18\" height=\"13\" rx=\"2\"/><path d=\"M9 7l1.5-3h3L15 7\"/><circle cx=\"12\" cy=\"13.5\" r=\"3.5\"/>", "moon": "<path d=\"M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z\"/>", "sun": "<circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4\"/>", "check": "<path d=\"M5 12.5l4.5 4.5L19 7.5\"/>", "cross": "<path d=\"M6 6l12 12M18 6L6 18\"/>", "info": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 11v6M12 7.5h.01\"/>", "search": "<circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"M20 20l-3.5-3.5\"/>", "list": "<path d=\"M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01\"/>", "board": "<rect x=\"3\" y=\"3\" width=\"7\" height=\"18\" rx=\"1.5\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"11\" rx=\"1.5\"/>", "doc": "<rect x=\"4\" y=\"3\" width=\"16\" height=\"18\" rx=\"2\"/><path d=\"M8 8h8M8 12h8M8 16h5\"/>", "edit": "<path d=\"M4 20h4L19 9l-4-4L4 16v4zM13.5 6.5l4 4\"/>", "clock": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/>", "note": "<path d=\"M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5\"/><path d=\"M14 4c.4 2.4 2 4 4.5 4.2\"/>"};
+function svgIcon(name, size = 16) {
+  return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-3px">' + (SVG_PATHS[name] || '') + '</svg>';
+}
 const PILLAR_ALIASES = {
   'google ads':'Google Ads & Marketing',
   'google ads & marketing':'Google Ads & Marketing',
@@ -736,9 +740,9 @@ function mediaIndicator(images) {
   if (!images || !images.length) return '';
   const hasVideo = images.some(i => i.type === 'video');
   const hasImage = images.some(i => i.type === 'image');
-  if (hasVideo && hasImage) return '<span class="p-img-indicator" title="Ada video & gambar">📷🎬</span>';
-  if (hasVideo) return '<span class="p-img-indicator" title="Ada video">🎬</span>';
-  return '<span class="p-img-indicator" title="Ada gambar">📷</span>';
+  if (hasVideo && hasImage) return '<span class="p-img-indicator" title="Ada video & gambar">' + svgIcon('camera',14) + svgIcon('film',14) + '</span>';
+  if (hasVideo) return '<span class="p-img-indicator" title="Ada video">' + svgIcon('film',14) + '</span>';
+  return '<span class="p-img-indicator" title="Ada gambar">' + svgIcon('camera',14) + '</span>';
 }
 function cssVar(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -873,8 +877,8 @@ function showToast(msg, type) {
   const wrap = document.getElementById('toastWrap');
   const t = document.createElement('div');
   t.className = 'toast ' + type;
-  const icons = {success: '✓', error: '✗', info: 'ℹ'};
-  const icon = icons[type] || 'ℹ';
+  const icons = {success: svgIcon('check'), error: svgIcon('cross'), info: svgIcon('info')};
+  const icon = icons[type] || svgIcon('info');
   t.innerHTML = '<span style="font-size:16px;flex-shrink:0">' + icon + '</span> <span>' + msg + '</span>';
   wrap.appendChild(t);
   setTimeout(() => {
@@ -887,7 +891,7 @@ function showUndoToast(msg, onUndo) {
   const wrap = document.getElementById('toastWrap');
   const t = document.createElement('div');
   t.className = 'toast info';
-  t.innerHTML = '<span style="font-size:16px;flex-shrink:0">ℹ</span><span>'+esc(msg)+'</span><button class="toast-action" type="button">Batal</button>';
+  t.innerHTML = '<span style="display:flex;flex-shrink:0">' + svgIcon('info') + '</span><span>'+esc(msg)+'</span><button class="toast-action" type="button">Batal</button>';
   wrap.appendChild(t);
   let active = true;
   const timer = setTimeout(remove, 3000);
@@ -899,7 +903,7 @@ function showAddAnotherToast(onAdd, onExpire) {
   const wrap = document.getElementById('toastWrap');
   const t = document.createElement('div');
   t.className = 'toast success';
-  t.innerHTML = '<span style="font-size:16px;flex-shrink:0">✓</span><span>Post disimpan! Tambah lagi?</span><button class="toast-action" type="button">Tambah Lagi</button>';
+  t.innerHTML = '<span style="display:flex;flex-shrink:0">' + svgIcon('check') + '</span><span>Post disimpan! Tambah lagi?</span><button class="toast-action" type="button">Tambah Lagi</button>';
   wrap.appendChild(t);
   let active = true;
   const timer = setTimeout(()=>remove(true),5000);
@@ -1288,7 +1292,7 @@ renderMediaPreview = function(images) {
   container.innerHTML = images.map((img,i) => {
     if (img.type === 'video') {
       return `<div class="media-thumb" onclick="window.open('${esc(img.src)}','_blank')" title="Klik untuk buka video" style="background:#1e1e2e;display:flex;align-items:center;justify-content:center">
-        <span style="font-size:28px">🎬</span>
+        <span style="display:flex;color:#fff">${svgIcon('film',28)}</span>
         <button class="del-media" onclick="event.stopPropagation();removeMedia(${i})">&times;</button>
       </div>`;
     }
@@ -1676,13 +1680,13 @@ function initTheme() {
   const btn=document.getElementById('themeToggle');
   const saved=localStorage.getItem('jomContentTheme')||'light';
   document.documentElement.setAttribute('data-theme',saved);
-  btn.textContent=saved==='dark'?'☀️':'🌙';
+  btn.innerHTML=saved==='dark'?svgIcon('sun'):svgIcon('moon');
   btn.addEventListener('click',()=>{
     const cur=document.documentElement.getAttribute('data-theme');
     const next=cur==='dark'?'light':'dark';
     document.documentElement.setAttribute('data-theme',next);
     localStorage.setItem('jomContentTheme',next);
-    btn.textContent=next==='dark'?'☀️':'🌙';
+    btn.innerHTML=next==='dark'?svgIcon('sun'):svgIcon('moon');
     btn.classList.remove('spinning'); void btn.offsetWidth; btn.classList.add('spinning');
     renderDashboard();
   });
