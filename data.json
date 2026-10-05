@@ -1,111 +1,111 @@
 {
-  "generated_at": "2026-10-05T01:45:41.330342+00:00",
-  "median_weighted_30d": 1.0,
-  "median_views_30d": 321.0,
+  "generated_at": "2026-10-05T06:42:34.772952+00:00",
+  "median_weighted_30d": 0.0,
+  "median_views_30d": 257.0,
   "weekly": {
-    "agentic-ai": {
-      "posts": 8,
-      "inter": 1,
-      "shares": 0,
-      "views": 4556,
-      "avg_score": 19.3,
-      "avg_inter": 0.1
-    },
     "others": {
-      "posts": 38,
+      "posts": 39,
       "inter": 29,
       "shares": 1,
       "views": 3414,
-      "avg_score": 25.9,
-      "avg_inter": 0.8
+      "avg_score": 37.6,
+      "avg_inter": 0.7
     },
-    "digital-marketing": {
-      "posts": 3,
-      "inter": 4,
+    "agentic-ai": {
+      "posts": 10,
+      "inter": 13,
       "shares": 0,
-      "views": 229,
-      "avg_score": 31.9,
+      "views": 4556,
+      "avg_score": 41.4,
       "avg_inter": 1.3
     },
+    "digital-marketing": {
+      "posts": 4,
+      "inter": 6,
+      "shares": 0,
+      "views": 229,
+      "avg_score": 54.6,
+      "avg_inter": 1.5
+    },
     "google-ads": {
-      "posts": 3,
-      "inter": 0,
+      "posts": 4,
+      "inter": 1,
       "shares": 0,
       "views": 489,
-      "avg_score": 9.7,
-      "avg_inter": 0.0
+      "avg_score": 33.4,
+      "avg_inter": 0.2
     }
   },
   "monthly": {
-    "agentic-ai": {
-      "posts": 56,
-      "inter": 336,
-      "shares": 33,
-      "views": 8496,
-      "avg_score": 50.6,
-      "avg_inter": 6.0
-    },
     "others": {
       "posts": 141,
-      "inter": 4355,
-      "shares": 261,
-      "views": 11476,
-      "avg_score": 36.1,
-      "avg_inter": 30.9
+      "inter": 4193,
+      "shares": 254,
+      "views": 19757,
+      "avg_score": 39.8,
+      "avg_inter": 29.7
+    },
+    "agentic-ai": {
+      "posts": 58,
+      "inter": 175,
+      "shares": 21,
+      "views": 17254,
+      "avg_score": 40.3,
+      "avg_inter": 3.0
     },
     "digital-marketing": {
-      "posts": 23,
-      "inter": 360,
-      "shares": 81,
-      "views": 9091,
-      "avg_score": 47.3,
-      "avg_inter": 15.7
+      "posts": 24,
+      "inter": 20,
+      "shares": 1,
+      "views": 22907,
+      "avg_score": 41.4,
+      "avg_inter": 0.8
     },
     "google-ads": {
-      "posts": 26,
-      "inter": 112,
-      "shares": 13,
-      "views": 3327,
-      "avg_score": 47.9,
-      "avg_inter": 4.3
+      "posts": 27,
+      "inter": 32,
+      "shares": 3,
+      "views": 5669,
+      "avg_score": 24.5,
+      "avg_inter": 1.2
     }
   },
   "pillars": [
     {
       "pillar": "google-ads",
-      "posts": 26,
+      "posts": 27,
       "pct": 11,
       "target": 40,
       "gap": -29,
-      "avg_score": 47.9,
-      "avg_inter": 4.3
+      "avg_score": 24.5,
+      "avg_inter": 1.2
     },
     {
       "pillar": "agentic-ai",
-      "posts": 56,
+      "posts": 58,
       "pct": 23,
       "target": 30,
       "gap": -7,
-      "avg_score": 50.6,
-      "avg_inter": 6.0
+      "avg_score": 40.3,
+      "avg_inter": 3.0
     },
     {
       "pillar": "digital-marketing",
-      "posts": 23,
-      "pct": 9,
+      "posts": 24,
+      "pct": 10,
       "target": 20,
-      "gap": -11,
-      "avg_score": 47.3,
-      "avg_inter": 15.7
+      "gap": -10,
+      "avg_score": 41.4,
+      "avg_inter": 0.8
     },
     {
       "pillar": "others",
       "posts": 141,
-      "pct": 57,
+      "pct": 56,
       "target": 10,
-      "gap": 47,
-      "avg_score": 36.1,
-      "avg_inter": 30.9
+      "gap": 46,
+      "avg_score": 39.8,
+      "avg_inter": 29.7
     }
   ],
   "pillar_targets": {
@@ -114,50 +114,78 @@
     "digital-marketing": 0.2,
     "others": 0.1
   },
-  "posts_7d": 52,
-  "posts_30d": 246,
+  "posts_7d": 57,
+  "posts_30d": 250,
   "top_7d": [
     {
-      "id": 1477,
-      "published_at": "2026-10-01T14:24:01.000Z",
-      "pillar": "others",
+      "id": 1503,
+      "published_at": "2026-10-05T03:34:02.000Z",
+      "pillar": "agentic-ai",
       "pillar_source": "label",
-      "format": "commentary",
-      "likes": 13,
+      "format": "story-experience",
+      "likes": 7,
       "comments": 0,
-      "shares": 1,
+      "shares": 0,
       "views": 0,
-      "text": "Suami sendiri pilih, lepas tu tanya orang ramai.\u00a0\u00a0Translate",
-      "weighted": 16,
-      "score": 94.1
+      "text": "Baru ingat nak 20x kan chatGPT. Lepas tu aku ter\u201dcuba\u201d T3 Code.\nNow chatGPT Plus rasanya macam dah cukup utk Hermes aku. Tu pun aku fallback ke deepseek yg memang aku topup regularly.\nUntuk kerja heavy, guna T3 dan claude code. Yang ni rasa lagi mantap. Opus 5.5 dan sonnet 5.5 memang responsive, output nice.\n1/2",
+      "weighted": 7,
+      "score": 100.0
     },
     {
-      "id": 1480,
-      "published_at": "2026-10-01T12:18:23.000Z",
+      "id": 1505,
+      "published_at": "2026-10-05T03:31:36.000Z",
       "pillar": "digital-marketing",
       "pillar_source": "label",
       "format": "commentary",
-      "likes": 4,
+      "likes": 2,
       "comments": 0,
       "shares": 0,
       "views": 0,
-      "text": "Rasanya boleh buat content isu ni jugak. Biar ramai aware. Komen for better reach especially keada founder luar sana.\u00a0\u00a0Translate",
-      "weighted": 4,
-      "score": 80.0
+      "text": "\u201cLate bloomer\u201d.\nAda certain content kau rasa dia slow, tak engaging, membazir.\nTapi kau tahu tak, kadang2 content macam ni lah yg convert. Tak semua content wajib meletop. Ada content yg dia sekadar perlu ada bila orang cari dia jumpa kita melalui content tu.",
+      "weighted": 2,
+      "score": 100.0
     },
     {
-      "id": 1460,
-      "published_at": "2026-09-29T14:54:27.000Z",
-      "pillar": "others",
+      "id": 1506,
+      "published_at": "2026-10-05T02:58:41.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 5,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Kalau kau baru nak guna Hermes, jangan lenjan semua benda nak setel / automate sekaligus.\nKenalpasti dulu mana yg crucial dan bagi highest roi. Spend masa untuk betul2 refine flow dia dan output dia. Baru rasa berbaloi.",
+      "weighted": 5,
+      "score": 100.0
+    },
+    {
+      "id": 1507,
+      "published_at": "2026-10-05T02:45:44.000Z",
+      "pillar": "google-ads",
       "pillar_source": "label",
       "format": "commentary",
       "likes": 1,
-      "comments": 1,
+      "comments": 0,
       "shares": 0,
       "views": 0,
-      "text": "Betul. Kalau ada yang baca, tu rezeki dia.",
-      "weighted": 3,
-      "score": 75.0
+      "text": "Kalau kau ragu2 antara Google ads dan Meta ads. Konfius nak buat mana satu dulu.\nThen buat meta ads ja. Meta ads, active ads, dia cari prospek. Leads mungkin kurang intent, tapi kalau kau reti CRM then boleh maximise return tu.\nJangan lah expect semua leads boleh close terus.",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1499,
+      "published_at": "2026-10-04T17:23:45.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Setel. Rakam, transfer ke macbook, claude edit, hermes post. Okay lah untuk bantu konsisten posting setiap hari dekat tiktok.\u00a02/2",
+      "weighted": 1,
+      "score": 100.0
     },
     {
       "id": 1498,
@@ -171,7 +199,21 @@
       "views": 0,
       "text": "Boleh post on demand dah lepas ni \ud83d\ude02\u00a01/2",
       "weighted": 2,
-      "score": 66.7
+      "score": 100.0
+    },
+    {
+      "id": 1500,
+      "published_at": "2026-10-04T14:47:15.000Z",
+      "pillar": "others",
+      "pillar_source": "label",
+      "format": "comparison",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Reply to unavailable post\nCommon sense adalah tahu budak makan bersepah, dan tahu kedai tu boleh bersihkan sendiri melainkan dia cakap sebaliknya.\nSatu lagi common sense adalah tak tangkap gambar macam ni dan post kat social media jadi \u201cterpaling benar\u201d.\nTak tahu lah kot common sense circle kita berbeza.\u00a0\u00a0Translate",
+      "weighted": 1,
+      "score": 100.0
     },
     {
       "id": 1501,
@@ -185,7 +227,21 @@
       "views": 0,
       "text": "Browser built sendiri ke? Setakat ni pi aku still guna agent browser tu \ud83d\ude02",
       "weighted": 2,
-      "score": 66.7
+      "score": 100.0
+    },
+    {
+      "id": 1477,
+      "published_at": "2026-10-01T14:24:01.000Z",
+      "pillar": "others",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 13,
+      "comments": 0,
+      "shares": 1,
+      "views": 0,
+      "text": "Suami sendiri pilih, lepas tu tanya orang ramai.\u00a0\u00a0Translate",
+      "weighted": 16,
+      "score": 100.0
     },
     {
       "id": 1478,
@@ -199,213 +255,157 @@
       "views": 0,
       "text": "Contabo india pun dah habis?",
       "weighted": 2,
-      "score": 66.7
-    },
-    {
-      "id": 1479,
-      "published_at": "2026-10-01T12:23:51.000Z",
-      "pillar": "others",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 0,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Okay ja europe. Saya hetzner europe, murah. Latency tak terasa sangat",
-      "weighted": 2,
-      "score": 66.7
-    },
-    {
-      "id": 1470,
-      "published_at": "2026-09-30T15:25:31.000Z",
-      "pillar": "others",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 0,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "huhu mencabar buat iklan untuk SA sekarang. Macam2 faktor lah.",
-      "weighted": 2,
-      "score": 66.7
-    },
-    {
-      "id": 1459,
-      "published_at": "2026-09-29T14:59:06.000Z",
-      "pillar": "others",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 0,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Boleh live kan dekat tiktok? Haha saja tulis hitam putih, sebab tulis tiktok view slow",
-      "weighted": 2,
-      "score": 66.7
-    },
-    {
-      "id": 1462,
-      "published_at": "2026-09-29T09:21:11.000Z",
-      "pillar": "others",
-      "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 2,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Kalau ada bajet boleh ambik coaching dgn saya. Hybrid coaching+consultation. Nak setup terus pun boleh.\n14 modules, 8 sesi min, sampai mahir.\u00a0\u00a0Translate",
-      "weighted": 2,
-      "score": 66.7
+      "score": 100.0
     }
   ],
   "top_30d": [
     {
-      "id": 1256,
-      "published_at": "2026-09-05T23:33:50.000Z",
-      "pillar": "others",
+      "id": 1503,
+      "published_at": "2026-10-05T03:34:02.000Z",
+      "pillar": "agentic-ai",
       "pillar_source": "label",
       "format": "story-experience",
-      "likes": 3700,
-      "comments": 96,
-      "shares": 250,
+      "likes": 7,
+      "comments": 0,
+      "shares": 0,
       "views": 0,
-      "text": "Wife kuat meracun, skang aku pulak sangkut dengan uniqlo ni. Seluar dia selesaaaa.\u00a0\u00a0\nTranslate\nmocha.bahagia\nUNIQLO\n09/06/26\nBetul ke ni darkside uniqlo,ada sapa2 nampak tak\ud83e\udee3\ud83e\udee0\u00a0\u00a0\nTranslate\n3.9K",
-      "weighted": 4642,
+      "text": "Baru ingat nak 20x kan chatGPT. Lepas tu aku ter\u201dcuba\u201d T3 Code.\nNow chatGPT Plus rasanya macam dah cukup utk Hermes aku. Tu pun aku fallback ke deepseek yg memang aku topup regularly.\nUntuk kerja heavy, guna T3 dan claude code. Yang ni rasa lagi mantap. Opus 5.5 dan sonnet 5.5 memang responsive, output nice.\n1/2",
+      "weighted": 7,
       "score": 100.0
     },
     {
-      "id": 1342,
-      "published_at": "2026-09-18T00:00:43.000Z",
+      "id": 1505,
+      "published_at": "2026-10-05T03:31:36.000Z",
       "pillar": "digital-marketing",
       "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 189,
-      "comments": 47,
-      "shares": 78,
+      "format": "commentary",
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
       "views": 0,
-      "text": "09/18/26\nNi adalah pendapat aku sendiri. Dalam threads atau mana2 platform social, kalau kau nak grow audiences kau dah monetise, ni setup dia.\ud83d\udc47",
-      "weighted": 517,
-      "score": 99.8
+      "text": "\u201cLate bloomer\u201d.\nAda certain content kau rasa dia slow, tak engaging, membazir.\nTapi kau tahu tak, kadang2 content macam ni lah yg convert. Tak semua content wajib meletop. Ada content yg dia sekadar perlu ada bila orang cari dia jumpa kita melalui content tu.",
+      "weighted": 2,
+      "score": 100.0
     },
     {
-      "id": 1267,
-      "published_at": "2026-09-07T05:52:25.000Z",
+      "id": 1506,
+      "published_at": "2026-10-05T02:58:41.000Z",
       "pillar": "agentic-ai",
       "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 87,
-      "comments": 16,
-      "shares": 12,
+      "format": "commentary",
+      "likes": 5,
+      "comments": 0,
+      "shares": 0,
       "views": 0,
-      "text": "Ai agent semua ni memang banyak membantu.\nTapi belajar tekan brek jugak. Tak semua perlu di-automate kan. Fokus gunakan Ai utk elevate instead of replacing.\nAku still consider utk hire bila dah ready nak scale. Aku akan guna Ai untuk mudahkan pekerja adapt. Guna Ai untuk pastikan output konsisten.\nTu apa yang aku aim dgn Ai. Not replacing, empowering.\u00a0\u00a0\nTranslate\nNi antara Ai agent yg aku guna. He",
-      "weighted": 155,
-      "score": 99.4
+      "text": "Kalau kau baru nak guna Hermes, jangan lenjan semua benda nak setel / automate sekaligus.\nKenalpasti dulu mana yg crucial dan bagi highest roi. Spend masa untuk betul2 refine flow dia dan output dia. Baru rasa berbaloi.",
+      "weighted": 5,
+      "score": 100.0
     },
     {
-      "id": 1384,
-      "published_at": "2026-09-22T12:48:10.000Z",
+      "id": 1507,
+      "published_at": "2026-10-05T02:45:44.000Z",
+      "pillar": "google-ads",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Kalau kau ragu2 antara Google ads dan Meta ads. Konfius nak buat mana satu dulu.\nThen buat meta ads ja. Meta ads, active ads, dia cari prospek. Leads mungkin kurang intent, tapi kalau kau reti CRM then boleh maximise return tu.\nJangan lah expect semua leads boleh close terus.",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1499,
+      "published_at": "2026-10-04T17:23:45.000Z",
       "pillar": "agentic-ai",
       "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 44,
-      "comments": 16,
-      "shares": 2,
+      "format": "commentary",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
       "views": 0,
-      "text": "Zaman Agentic Ai ni, aku still prefer wordpress.\nReason: sangat reliable.\nSekarang wordpress pun dah power. Elementor dah ada mcp. Breakdance builder pun confirm coming soon. Ada novamira.\nNak setup dan optimise wordpress? Dah memang boleh guna Hermes. Setup agentic Ai, dia boleh monitor website kau 24jam.",
-      "weighted": 82,
-      "score": 98.8
+      "text": "Setel. Rakam, transfer ke macbook, claude edit, hermes post. Okay lah untuk bantu konsisten posting setiap hari dekat tiktok.\u00a02/2",
+      "weighted": 1,
+      "score": 100.0
     },
     {
-      "id": 1272,
-      "published_at": "2026-09-09T14:50:10.000Z",
+      "id": 1498,
+      "published_at": "2026-10-04T15:48:55.000Z",
       "pillar": "others",
       "pillar_source": "label",
       "format": "commentary",
-      "likes": 44,
-      "comments": 12,
-      "shares": 4,
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
       "views": 0,
-      "text": "09/09/26\nAds ni pedang dua mata.\naliawafi\n09/09/26\nSale ogos 2025 - 180k\nSale ogos 2026 - 100k\nKadang rasa menyesal gila tekan Ads \ud83e\udd7a\nTahun lepas 100% organik tanpa ads, boleh capai 150-250k sebulan \ud83d\ude2d kusut weiii\u00a0\u00a0\nTranslate",
-      "weighted": 80,
-      "score": 98.8
+      "text": "Boleh post on demand dah lepas ni \ud83d\ude02\u00a01/2",
+      "weighted": 2,
+      "score": 100.0
     },
     {
-      "id": 1273,
-      "published_at": "2026-09-09T08:11:59.000Z",
+      "id": 1500,
+      "published_at": "2026-10-04T14:47:15.000Z",
+      "pillar": "others",
+      "pillar_source": "label",
+      "format": "comparison",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Reply to unavailable post\nCommon sense adalah tahu budak makan bersepah, dan tahu kedai tu boleh bersihkan sendiri melainkan dia cakap sebaliknya.\nSatu lagi common sense adalah tak tangkap gambar macam ni dan post kat social media jadi \u201cterpaling benar\u201d.\nTak tahu lah kot common sense circle kita berbeza.\u00a0\u00a0Translate",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1501,
+      "published_at": "2026-10-04T11:49:44.000Z",
+      "pillar": "others",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 0,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Browser built sendiri ke? Setakat ni pi aku still guna agent browser tu \ud83d\ude02",
+      "weighted": 2,
+      "score": 100.0
+    },
+    {
+      "id": 1477,
+      "published_at": "2026-10-01T14:24:01.000Z",
       "pillar": "others",
       "pillar_source": "label",
       "format": "commentary",
-      "likes": 36,
-      "comments": 12,
-      "shares": 2,
+      "likes": 13,
+      "comments": 0,
+      "shares": 1,
       "views": 0,
-      "text": "Ads ni pedang dua mata.\naliawafi\nSale ogos 2025 - 180k\nSale ogos 2026 - 100k\nKadang rasa menyesal gila tekan Ads \ud83e\udd7a\nTahun lepas 100% organik tanpa ads, boleh capai 150-250k sebulan \ud83d\ude2d kusut weiii\u00a0\u00a0\nTranslate",
-      "weighted": 66,
-      "score": 98.5
+      "text": "Suami sendiri pilih, lepas tu tanya orang ramai.\u00a0\u00a0Translate",
+      "weighted": 16,
+      "score": 100.0
     },
     {
-      "id": 1322,
-      "published_at": "2026-09-15T17:16:57.000Z",
-      "pillar": "google-ads",
+      "id": 1478,
+      "published_at": "2026-10-01T12:24:57.000Z",
+      "pillar": "others",
       "pillar_source": "label",
-      "format": "commentary",
-      "likes": 9,
-      "comments": 20,
-      "shares": 3,
+      "format": "question",
+      "likes": 0,
+      "comments": 1,
+      "shares": 0,
       "views": 0,
-      "text": "09/16/26\nMacam ni baru best, sesi soal jawab aktif.\n09/15/26\nApa yang korang nak tahu pasal google ads? Cepat tanya.",
-      "weighted": 58,
-      "score": 98.3
-    },
-    {
-      "id": 1323,
-      "published_at": "2026-09-15T13:45:04.000Z",
-      "pillar": "google-ads",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 6,
-      "comments": 17,
-      "shares": 3,
-      "views": 0,
-      "text": "Apa yang korang nak tahu pasal google ads? Cepat tanya.",
-      "weighted": 49,
-      "score": 98.0
-    },
-    {
-      "id": 1371,
-      "published_at": "2026-09-20T07:50:30.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 11,
-      "comments": 13,
-      "shares": 2,
-      "views": 0,
-      "text": "Baru nak start guna Hermes? Jangan terus suruh dia buat semua benda sekali gus. Aku share 13 benda yg aku akan ikut kalau mula balik.",
-      "weighted": 43,
-      "score": 97.7
-    },
-    {
-      "id": 1298,
-      "published_at": "2026-09-12T13:28:33.000Z",
-      "pillar": "google-ads",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 11,
-      "comments": 3,
-      "shares": 5,
-      "views": 0,
-      "text": "09/12/26\nGoogle ads agent ni sesuai untuk klinik yang run google ads sendiri / in-house.\nAku train agent ni sendiri khas untuk bisnes korang. Bukan one-fit-all.\n09/12/26\nRamai business owner yang berminat pasal dedicated Google ads Ai agent tu.\nSo ni aku share extra details antara features yang ada tapi tak terhad, yang korang boleh dapat.",
-      "weighted": 32,
-      "score": 97.0
+      "text": "Contabo india pun dah habis?",
+      "weighted": 2,
+      "score": 100.0
     }
   ],
   "recommendations": [
     {
       "type": "pillar-mix",
       "title": "Pillar mix vs target 40/30/20/10",
-      "body": "google-ads 11% (target 40%) | agentic-ai 23% (target 30%) | digital-marketing 9% (target 20%) | others 57% (target 10%)",
-      "metric": 246
+      "body": "google-ads 11% (target 40%) | agentic-ai 23% (target 30%) | digital-marketing 10% (target 20%) | others 56% (target 10%)",
+      "metric": 250
     },
     {
       "type": "pillar-under",
@@ -416,20 +416,20 @@
     {
       "type": "pillar-over",
       "title": "Pillar lebih: others",
-      "body": "others 57% (target 10%). Kurangkan volume, pindah ke pillar yang kurang.",
-      "metric": 57
+      "body": "others 56% (target 10%). Kurangkan volume, pindah ke pillar yang kurang.",
+      "metric": 56
     },
     {
       "type": "pillar-fix",
-      "title": "Tingkatkan: others",
-      "body": "others avg score 36.1 dari 141 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
-      "metric": 36.1
+      "title": "Tingkatkan: google-ads",
+      "body": "google-ads avg score 24.5 dari 27 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
+      "metric": 24.5
     },
     {
       "type": "top-pillar-week",
       "title": "Pillar terbaik minggu ni: digital-marketing",
-      "body": "digital-marketing avg score 31.9 dari 3 posts. Kekalkan bentuk ni.",
-      "metric": 31.9
+      "body": "digital-marketing avg score 54.6 dari 4 posts. Kekalkan bentuk ni.",
+      "metric": 54.6
     }
   ]
 }
