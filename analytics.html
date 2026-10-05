@@ -151,6 +151,12 @@ footer{text-align:center;font-size:11px;color:var(--text2);padding:18px 12px 30p
     <div class="chart-legend"><span><i style="background:var(--accent)"></i>Views harian</span><span><i style="background:#f59e0b"></i>Interactions harian</span></div>
   </div>
 
+  <div class="section" id="growthSec">
+    <div class="section-hdr"><h2>Pertumbuhan Followers</h2><span class="badge" id="growthBadge"></span></div>
+    <svg class="chart" id="growthChart" viewBox="0 0 600 150" preserveAspectRatio="none" role="img" aria-label="Carta pertumbuhan followers"></svg>
+    <div class="chart-legend" id="growthNote"></div>
+  </div>
+
   <div class="section">
     <div class="section-hdr"><h2>Best Performing</h2>
       <div class="seg" id="topSeg"><button type="button" data-r="top_week" aria-pressed="true">Minggu ini</button><button type="button" data-r="top_month" aria-pressed="false">30 hari</button><button type="button" data-r="top_all_time" aria-pressed="false">Views tertinggi</button></div>
@@ -207,7 +213,7 @@ function render() {
   $('handleLine').textContent = '@' + d.handle + ' · Score 1-100 · Auto-update harian';
   const gen = new Date(DATA.generated_at);
   $('genInfo').textContent = 'Jana: ' + gen.toLocaleString('en-GB', {day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'});
-  renderNotice(d); renderKpis(d); renderChart(d); renderTop(d); renderReplies(d);
+  renderNotice(d); renderKpis(d); renderChart(d); renderGrowth(d); renderTop(d); renderReplies(d);
   renderBars('pillarBars', d.by_pillar); renderBars('formatBars', d.by_format);
   renderRecs(d); renderPosts(d);
   $('foot').textContent = 'Score = 0.7 x engagement (like 1, comment 2, share 3 lawan median 30 hari) + 0.3 x reach (views). Kalau views tak ada, engagement sahaja.';
@@ -229,14 +235,16 @@ function renderKpis(d) {
   const inter = m.likes + m.comments + m.shares;
   const cards = [
     card('Views (30 hari)', fmt(m.views), trend(m.trend_views_pct, 'vs 30 hari sebelum'), 'hero'),
-    card('Interactions', fmt(inter), `${fmt(m.likes)} likes · ${fmt(m.comments)} cmt · ${fmt(m.shares)} share`),
+    card('Interactions', fmt(inter), `${fmt(m.likes)} likes · ${fmt(m.comments)} cmt · ${fmt(m.shares)} share` + (plat === 'tiktok' ? ` · ${fmt(m.saves)} saves` : '')),
     `<div class="card"><div class="label">Avg Score (30 hari)</div><div class="ring-row"><div class="ring" style="background:${scoreColor(m.avg_score || 0)}">${m.avg_score == null ? '-' : Math.round(m.avg_score)}</div><div><div style="font-weight:700;font-size:15px">${m.items} post</div><div class="sub">${trend(m.trend_score_pct, 'vs sebelum')}</div></div></div></div>`,
     `<div class="card"><div class="label">Minggu Ini</div><div class="ring-row"><div class="ring" style="background:${scoreColor(w.avg_score || 0)}">${w.avg_score == null ? '-' : Math.round(w.avg_score)}</div><div><div style="font-weight:700;font-size:15px">${w.items} post</div><div class="sub">${trend(w.trend_score_pct, 'vs minggu lepas')}</div></div></div></div>`,
     card('Kadar Posting', perWeek, 'post seminggu (purata 30 hari)')
   ];
-  if (plat === 'tiktok') cards.push(card('Saves', fmt(m.saves), 'dalam 30 hari'));
-  else if (d.followers) cards.push(card('Followers', fmt(d.followers.latest), 'setakat ' + d.followers.as_of));
-  else cards.push(card('Replies (30 hari)', fmt(d.replies_30d && d.replies_30d.items), 'reply dihantar'));
+  if (d.followers) {
+    const c = d.followers.change;
+    const sub = c ? `<span class="${c.delta >= 0 ? 'up' : 'down'}">${c.delta >= 0 ? '+' : ''}${fmt(c.delta)}${c.pct != null ? ' (' + (c.pct >= 0 ? '+' : '') + c.pct + '%)' : ''}</span> sejak ${esc(c.since)}` : 'rekod bermula ' + esc(d.followers.as_of);
+    cards.push(card('Followers', fmt(d.followers.latest), sub, 'hero'));
+  } else cards.push(card('Replies (30 hari)', fmt(d.replies_30d && d.replies_30d.items), 'reply dihantar'));
   $('kpis').innerHTML = cards.join('');
 }
 
@@ -255,6 +263,29 @@ function renderChart(d) {
   out += `<polyline points="${pts}" fill="none" stroke="#f59e0b" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>`;
   svg.innerHTML = out;
   $('trendBadge').textContent = 'puncak ' + short(maxV) + ' views/hari';
+}
+
+function renderGrowth(d) {
+  const f = d.followers, svg = $('growthChart'), note = $('growthNote');
+  if (!f || f.history.length < 2) {
+    svg.innerHTML = '';
+    $('growthBadge').textContent = f ? fmt(f.latest) + ' followers' : 'tiada data';
+    note.textContent = f ? 'Rekod followers bermula ' + f.as_of + '. Graf pertumbuhan muncul selepas beberapa hari collection.' : 'Followers belum direkod.';
+    return;
+  }
+  const h = f.history, W = 600, H = 150, pad = 6;
+  const t0 = new Date(h[0].date), t1 = new Date(h[h.length - 1].date), span = Math.max(1, t1 - t0);
+  const min = Math.min(...h.map(x => x.value)), max = Math.max(...h.map(x => x.value)), rng = Math.max(1, max - min);
+  const X = x => pad + (new Date(x.date) - t0) / span * (W - pad * 2);
+  const Y = x => H - pad - (x.value - min) / rng * (H - pad * 2 - 8);
+  const pts = h.map(x => X(x).toFixed(1) + ',' + Y(x).toFixed(1)).join(' ');
+  svg.innerHTML = `<polygon points="${pad},${H - pad} ${pts} ${(W - pad)},${H - pad}" fill="var(--accent)" opacity=".12"/>
+    <polyline points="${pts}" fill="none" stroke="var(--accent)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>` +
+    h.map(x => `<circle cx="${X(x).toFixed(1)}" cy="${Y(x).toFixed(1)}" r="3" fill="var(--accent)"><title>${esc(x.date)}: ${fmt(x.value)}</title></circle>`).join('');
+  const c = f.change;
+  $('growthBadge').textContent = fmt(f.latest) + ' followers';
+  note.innerHTML = `<span>${esc(h[0].date)} · ${fmt(h[0].value)}</span><span>${esc(f.as_of)} · ${fmt(f.latest)}</span>` +
+    (c ? `<span><b class="${c.delta >= 0 ? 'up' : 'down'}">${c.delta >= 0 ? '+' : ''}${fmt(c.delta)}</b> dalam ${c.days} hari (purata ${c.per_day >= 0 ? '+' : ''}${c.per_day}/hari)</span>` : '');
 }
 
 function metaLine(p) {

@@ -338,6 +338,7 @@ canvas{display:block;max-width:100%}
     #mImgUrl,#mVideoUrl{font-size:12px}
   }
 </style>
+<link rel="stylesheet" href="/dashboard-ui.css?v=20260925">
 </head>
 <body class="auth-locked">
 
@@ -354,7 +355,7 @@ canvas{display:block;max-width:100%}
   </div>
 </div>
 
-<div id="toastWrap"></div>
+<div id="toastWrap" role="status" aria-live="polite"></div>
 <div class="api-loading" id="apiLoading" role="progressbar" aria-label="Menyegerakkan data" aria-hidden="true"></div>
 
 <!-- SIDEBAR -->
@@ -374,7 +375,7 @@ canvas{display:block;max-width:100%}
   <nav class="sidebar-nav">
     <button class="nav-tab active" data-tab="dashboard">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-      Dashboard
+      Overview
     </button>
     <button class="nav-tab" data-tab="tiktok">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.74a4.85 4.85 0 0 1-1.01-.05z"/></svg>
@@ -416,7 +417,8 @@ canvas{display:block;max-width:100%}
       <button class="hamburger" id="hamburger" onclick="toggleSidebar()" title="Menu">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
-      <span class="page-title" id="pageTitle">Dashboard</span>
+      <span class="page-title" id="pageTitle">Overview</span>
+      <button class="command-trigger" onclick="openCommand()" aria-label="Cari semua content"><span>⌕</span> Cari content… <kbd>⌘ K</kbd></button>
       <div class="top-bar-right">
         <div class="header-stats">
           <span>Bulan Ni: <strong id="hdrMonthPosts">0</strong></span>
@@ -450,26 +452,37 @@ canvas{display:block;max-width:100%}
     <!-- DASHBOARD -->
     <div class="tab-content active" id="tab-dashboard">
       <div class="section" id="workspaceIntro"></div>
-      <div class="section">
-        <div class="section-hdr"><h2>Ringkasan Bulan Ini</h2>
+      <section class="section" id="focusPanel" aria-label="Fokus hari ini"></section>
+      <div class="section" id="summarySection">
+        <div class="section-hdr"><h2>Prestasi perancangan</h2>
           <div style="display:flex;align-items:center;gap:6px">
-            <button class="btn btn-sm" onclick="dashPrevMonth()" style="padding:2px 8px;font-size:16px;line-height:1">‹</button>
+            <button class="btn btn-sm" onclick="dashPrevMonth()" aria-label="Bulan sebelumnya">‹</button>
             <span class="badge" id="dashPeriod" style="min-width:100px;text-align:center"></span>
-            <button class="btn btn-sm" onclick="dashNextMonth()" style="padding:2px 8px;font-size:16px;line-height:1">›</button>
+            <button class="btn btn-sm" onclick="dashNextMonth()" aria-label="Bulan seterusnya">›</button>
+            <button class="btn btn-sm btn-outline" onclick="goToday()">Bulan ini</button>
           </div></div>
         <div class="card-grid" id="dashStats"></div>
       </div>
-      <div class="section">
+      <details class="section insights-section">
+        <summary>Content mix <span>Platform & pillar</span></summary>
         <div class="section-hdr"><h2>Pengedaran</h2></div>
         <div class="chart-row">
           <div class="card"><h3 style="font-size:13px;font-weight:600;margin-bottom:12px">Mengikut Platform</h3><canvas id="chartPlatform" height="200"></canvas></div>
           <div class="card"><h3 style="font-size:13px;font-weight:600;margin-bottom:12px">Mengikut Content Pillar</h3><canvas id="chartPillar" height="200"></canvas></div>
         </div>
-      </div>
-      <div class="section">
-        <div class="section-hdr"><h2>Timeline Semua Post</h2><span class="badge" id="dashTotalPosts">0</span></div>
-        <div class="search-wrap"><input class="search-input" id="dashSearch" placeholder="Cari post..." oninput="debounceSearch('dashboard')"></div>
+      </details>
+      <div class="section library-section" id="contentLibrary">
+        <div class="section-hdr"><div class="section-title"><h2>Content planner</h2><span class="badge" id="dashTotalPosts">0</span></div><div class="view-switch" role="group" aria-label="Paparan content"><button id="view-list" onclick="setPlannerView('list')" aria-pressed="true">☷ List</button><button id="view-board" onclick="setPlannerView('board')" aria-pressed="false">▥ Board</button></div></div>
+        <div class="planner-toolbar">
+          <input class="search-input" id="dashSearch" aria-label="Cari dalam planner" placeholder="Cari tajuk, caption atau pillar…" oninput="debounceSearch('dashboard')">
+          <select id="plannerPlatform" aria-label="Filter platform" onchange="renderDashTimeline()"><option value="all">Semua platform</option><option value="threads">Threads</option><option value="tiktok">TikTok</option></select>
+          <select id="plannerStatus" aria-label="Filter status" onchange="renderDashTimeline()"><option value="all">Semua status</option><option value="draft">Draft</option><option value="scheduled">Scheduled</option><option value="posted">Posted</option><option value="failed">Failed</option></select>
+          <select id="plannerRange" aria-label="Tempoh content" onchange="renderDashTimeline()"><option value="month">Bulan dipilih</option><option value="week">7 hari akan datang</option><option value="all">Semua tarikh</option><option value="attention">Perlu perhatian</option><option value="today">Hari ini</option></select>
+          <select id="plannerSort" aria-label="Susun content" onchange="renderDashTimeline()"><option value="asc">Tarikh terawal</option><option value="desc">Tarikh terbaru</option><option value="title">Tajuk A–Z</option></select>
+        </div>
+        <div class="planner-meta"><span id="filterSummary" aria-live="polite"></span><button class="text-button" onclick="resetPlannerFilters()">Reset filter</button></div>
         <div id="dashTimeline" class="post-list"></div>
+        <div id="plannerPagination" class="planner-pagination"></div>
       </div>
     </div>
 
@@ -483,23 +496,26 @@ canvas{display:block;max-width:100%}
 
 <!-- KBD HINT -->
 <div class="kbd-hint" id="kbdHint">
-  <kbd>Ctrl+N</kbd> Tambah post baru
+  <kbd>N</kbd> Post baru <span>·</span> <kbd>⌘ / Ctrl K</kbd> Cari content
 </div>
 
 <!-- MODAL -->
 <div class="modal-overlay" id="postModal">
-<div class="modal">
+<div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <button class="editor-close" onclick="closeModal()" aria-label="Tutup editor">×</button>
   <h3 id="modalTitle">Tambah Post</h3>
   <input type="hidden" id="mPostId">
-  <input type="hidden" id="mPlatform">
+  <div class="form-group"><label for="mPlatform">Platform</label><select id="mPlatform" onchange="changeEditorPlatform()"><option value="threads">Threads</option><option value="tiktok">TikTok</option></select></div>
+  <div id="draftRecovery" class="draft-recovery" hidden></div>
   <div class="form-group">
     <label>Tajuk / Content Idea</label>
     <input type="text" id="mTitle" placeholder="cth: Info rawatan jerawat">
     <div class="field-error-message" id="mTitleError">Sila isi tajuk post.</div>
   </div>
   <div class="form-group">
-    <label>Script / Caption</label>
+    <label for="mCaption">Script / Caption</label>
     <textarea id="mCaption" placeholder="Tulis caption penuh..."></textarea>
+    <div class="editor-caption-meta"><span id="captionCount">0 aksara</span><button type="button" class="text-button" onclick="copyCaption()">Salin caption</button></div>
   </div>
   <div class="form-row">
     <div class="form-group"><label>Tarikh</label><input type="date" id="mDate"><div class="field-error-message" id="mDateError">Sila pilih tarikh.</div></div>
@@ -559,7 +575,7 @@ canvas{display:block;max-width:100%}
       <div class="modal-actions-spacer"></div>
       <button class="btn btn-ghost" onclick="closeModal()">Batal</button>
       <button class="btn btn-outline" onclick="showPostPreview()">Pratonton</button>
-      <button class="btn btn-primary" onclick="savePost()">Simpan</button>
+      <button class="btn btn-primary" id="savePostButton" onclick="savePost()">Simpan post</button>
   </div>
 </div>
 </div>
@@ -574,11 +590,29 @@ const PLATFORMS = ['tiktok','threads'];
 const PLATFORM_NAMES = {tiktok:'TikTok',threads:'Threads'};
 const PLATFORM_COLORS = {tiktok:'#fe2c55',threads:'#888'};
 const PLATFORM_ICONS = {tiktok:'TikTok',threads:'Threads'};
+const CANONICAL_PILLARS = ['Google Ads & Marketing','Agentic AI','Engage'];
+const CANONICAL_TARGETS = {'Google Ads & Marketing':35,'Agentic AI':35,'Engage':30};
+const PILLAR_ALIASES = {
+  'google ads':'Google Ads & Marketing',
+  'google ads & marketing':'Google Ads & Marketing',
+  'digital marketing':'Google Ads & Marketing',
+  'website leads':'Google Ads & Marketing',
+  'website-cro':'Google Ads & Marketing',
+  'hermes agentic ai':'Agentic AI',
+  'agentic ai':'Agentic AI',
+  'personal':'Engage',
+  'personal & mindset':'Engage',
+  'others':'Engage'
+};
+function canonicalPillarName(value) {
+  const label = String(value || '').trim();
+  return PILLAR_ALIASES[label.toLowerCase()] || label || 'Engage';
+}
 const WORKSPACES = {
-  'jom-digital': {name:'Jom Digital', short:'Jom Digital', type:'Content OS', tagline:'Dashboard content TikTok & Threads untuk Jom Digital: Google Ads, website, digital marketing dan mindset.', pillars:['Google Ads','Website Leads','Digital Marketing','Personal & Mindset'], targets:{'Google Ads':30,'Website Leads':20,'Digital Marketing':25,'Personal & Mindset':25}}
+  'jom-digital': {name:'Jom Digital', short:'Jom Digital', type:'Content OS', tagline:'TikTok & Threads: Google Ads & Marketing, Agentic AI dan Engage.', pillars:[...CANONICAL_PILLARS], targets:{...CANONICAL_TARGETS}}
 };
 const DEFAULT_WORKSPACE = 'jom-digital';
-const PAGE_TITLES = {dashboard:'Dashboard',tiktok:'TikTok',threads:'Threads',analytics:'Analytics'};
+const PAGE_TITLES = {dashboard:'Overview',tiktok:'TikTok',threads:'Threads',analytics:'Analytics'};
 const DEFAULT_PILLARS = WORKSPACES[DEFAULT_WORKSPACE].pillars;
 const DEFAULT_TARGETS = WORKSPACES[DEFAULT_WORKSPACE].targets;
 const PILLAR_COLORS = ['#6366f1','#22C55E','#06b6d4','#ec4899','#8b5cf6','#14b8a6','#f97316','#a855f7'];
@@ -623,18 +657,20 @@ async function apiFetch(method, body, id) {
   setApiLoading(true);
   try {
     let lastError;
-    for (let attempt = 1; attempt <= 3; attempt++) {
+    const attempts = method === 'GET' ? 3 : 1;
+    for (let attempt = 1; attempt <= attempts; attempt++) {
       try {
         const res = await fetch(url, {
           method,
           headers: {'Content-Type':'application/json'},
-          body: body ? JSON.stringify(body) : undefined
+          body: body ? JSON.stringify(body) : undefined,
+          signal: AbortSignal.timeout(15000)
         });
         if (!res.ok) throw new Error('HTTP '+res.status);
         return await res.json();
       } catch (e) {
         lastError = e;
-        if (attempt < 3) await new Promise(resolve => setTimeout(resolve, 250 * attempt));
+        if (attempt < attempts) await new Promise(resolve => setTimeout(resolve, 250 * attempt));
       }
     }
     return {success:false,error:lastError ? lastError.message : 'API request failed'};
@@ -648,14 +684,20 @@ async function apiSyncPost(post, method) {
   return apiFetch('POST',post);
 }
 async function apiFetchAll() {
+  if (editorSaving) return;
+  setSyncStatus('loading');
   const res = await apiFetch('GET');
   if (res.success && Array.isArray(res.data)) {
+    const canonicalPosts = res.data.map(p => ({...p, pillar:canonicalPillarName(p.pillar)}));
     // Merge API posts with local — API is authoritative for existing IDs
-    const apiIds = new Set(res.data.map(p=>p.id));
-    state.posts = state.posts.filter(p => !apiIds.has(p.id) || p._localOnly);
-    state.posts = [...res.data.map(p => ({...p, workspace: postWorkspace(p), client: p.client || postWorkspace(p)})), ...state.posts];
+    const apiIds = new Set(canonicalPosts.map(p=>p.id));
+    state.posts = state.posts.filter(p => !apiIds.has(p.id));
+    state.posts = [...canonicalPosts.map(p => ({...p, workspace: postWorkspace(p), client: p.client || postWorkspace(p)})), ...state.posts];
     saveState();
     renderAll();
+    setSyncStatus('success');
+  } else {
+    setSyncStatus('error');
   }
 }
 
@@ -743,7 +785,7 @@ function loginToDashboard() {
   renderAll();
   apiFetchAll();
 }
-function logoutDashboard() { localStorage.removeItem('jomContentSession'); document.body.classList.add('auth-locked'); closeLoginModal(); }
+function logoutDashboard() { localStorage.removeItem('jomContentSession'); document.body.classList.add('auth-locked'); openLoginModal(); }
 function setWorkspace(ws) {
   if (!WORKSPACES[ws]) ws = DEFAULT_WORKSPACE;
   state.workspace = ws;
@@ -800,14 +842,15 @@ function loadState() {
   state.workspace = localStorage.getItem('jomContentWorkspace') || state.workspace || DEFAULT_WORKSPACE;
   Object.keys(WORKSPACES).forEach(ws => PLATFORMS.forEach(p => {
     const key = ws + ':' + p;
-    if (!state.pillars[key]) state.pillars[key] = [...WORKSPACES[ws].pillars];
-    if (!state.pillarTargets[key]) state.pillarTargets[key] = {...WORKSPACES[ws].targets};
-    if (!state.pillarFilters[key]) state.pillarFilters[key] = 'all';
+    // Replace any saved legacy taxonomy with the current canonical three-pillar setup.
+    state.pillars[key] = [...WORKSPACES[ws].pillars];
+    state.pillarTargets[key] = {...WORKSPACES[ws].targets};
+    if (!state.pillarFilters[key] || !state.pillars[key].includes(state.pillarFilters[key])) state.pillarFilters[key] = 'all';
   }));
   PLATFORMS.forEach(p => {
     if (!state.calDates[p]) state.calDates[p] = getDateKey(new Date());
   });
-  state.posts = state.posts.map(p => ({...p, workspace: postWorkspace(p)}));
+  state.posts = state.posts.map(p => ({...p, workspace: postWorkspace(p), pillar:canonicalPillarName(p.pillar)}));
   if (!state.dashMonth) {
     const n = new Date();
     state.dashMonth = {year: n.getFullYear(), month: n.getMonth()};
@@ -911,7 +954,7 @@ function handleImport(e) {
       const d = JSON.parse(ev.target.result);
       if (!Array.isArray(d.posts)) throw new Error('invalid');
       if (!confirm('Import '+d.posts.length+' posts? Data sedia ada akan digantikan.')) return;
-      state.posts = d.posts;
+      state.posts = d.posts.map(p => ({...p, pillar:canonicalPillarName(p.pillar)}));
       state.pillars = d.pillars||{};
       state.pillarColors = d.pillarColors||{};
       state.calDates = d.calDates||{};
@@ -919,9 +962,9 @@ function handleImport(e) {
       state.dashMonth = d.dashMonth || null;
       Object.keys(WORKSPACES).forEach(ws => PLATFORMS.forEach(p=>{
         const key = ws + ':' + p;
-        if(!state.pillars[key]) state.pillars[key]=[...WORKSPACES[ws].pillars];
-        if(!state.pillarTargets[key]) state.pillarTargets[key]={...WORKSPACES[ws].targets};
-        if(!state.pillarFilters[key]) state.pillarFilters[key]='all';
+        state.pillars[key]=[...WORKSPACES[ws].pillars];
+        state.pillarTargets[key]={...WORKSPACES[ws].targets};
+        if (!state.pillarFilters[key] || !state.pillars[key].includes(state.pillarFilters[key])) state.pillarFilters[key]='all';
       }));
       PLATFORMS.forEach(p=>{ if(!state.calDates[p]) state.calDates[p]=getDateKey(new Date()); });
       if (!state.dashMonth) { const n = new Date(); state.dashMonth = {year:n.getFullYear(),month:n.getMonth()}; }
@@ -1067,9 +1110,10 @@ function openModal(platform, postId, prefillDate) {
     renderMediaPreview([]);
   }
   setTimeout(() => document.getElementById('mTitle').focus(), 50);
+  initEditorSession();
 }
 
-function closeModal() { document.getElementById('postModal').classList.remove('open'); }
+function closeModal() { return closeEditorSafely(); }
 
 function setFieldError(inputId, messageId, hasError) {
   const input = document.getElementById(inputId);
@@ -1079,7 +1123,8 @@ function setFieldError(inputId, messageId, hasError) {
   message.classList.toggle('visible', hasError);
 }
 
-function savePost() {
+async function savePost() {
+  if (editorSaving) return;
   const id = document.getElementById('mPostId').value;
   const platform = document.getElementById('mPlatform').value;
   const title = document.getElementById('mTitle').value.trim();
@@ -1099,31 +1144,39 @@ function savePost() {
     status: document.getElementById('mStatus').value,
     notes: document.getElementById('mNotes').value.trim(),
     approved: document.getElementById('mApproved').checked,
-    images: window._modalImages || [],
+    images: _modalImages || [],
     workspace: state.workspace,
     client: state.workspace,
   };
-  const addAgainValues = {platform,date,time:data.time,pillar:data.pillar,status:data.status};
-  const savedModalSession = modalSession;
-  if (id) {
-    const idx = state.posts.findIndex(x => x.id === id);
-    if (idx >= 0) {
-      state.posts[idx] = {...state.posts[idx], ...data};
-      apiSyncPost(state.posts[idx], 'PUT');
+  data.id = id || editorCreateId;
+  data.platform = platform;
+  setEditorBusy(true);
+  try {
+    // Reconcile a prior interrupted create before retrying with the same ID.
+    let existing = !!id;
+    if (!existing && editorCreateAttempted) {
+      const check = await apiFetch('GET');
+      if (!check.success) throw new Error('Tak dapat semak simpanan sebelumnya. Cuba lagi bila sambungan pulih.');
+      existing = check.data.some(p => p.id === data.id);
     }
-  } else {
-    data.id = Date.now()+'_'+Math.random().toString(36).slice(2,7);
-    data.platform = platform;
-    state.posts.push(data);
-    apiSyncPost(data, 'POST');
-  }
-  saveState(); renderAll();
-  showAddAnotherToast(()=>{
-    openModal(addAgainValues.platform,null,addAgainValues.date);
-    document.getElementById('mTime').value = addAgainValues.time;
-    document.getElementById('mPillar').value = addAgainValues.pillar;
-    document.getElementById('mStatus').value = addAgainValues.status;
-  }, ()=>{ if (modalSession === savedModalSession) closeModal(); });
+    editorCreateAttempted = true;
+    const res = await apiSyncPost(data, existing ? 'PUT' : 'POST');
+    if (!res.success) throw new Error('Belum dapat sahkan simpanan. Draft dikekalkan; cuba simpan semula.');
+    const saved = {...data, ...res.data};
+    const index = state.posts.findIndex(p => p.id === saved.id);
+    if (index >= 0) state.posts[index] = {...state.posts[index], ...saved};
+    else state.posts.push(saved);
+    clearEditorDraft();
+    editorBaseline = editorSnapshot();
+    saveState(); renderAll(); setSyncStatus('success');
+    document.getElementById('postModal').classList.remove('open');
+    restoreEditorFocus();
+    showToast('Post disimpan.','success');
+  } catch (error) {
+    rememberEditorDraft();
+    setSyncStatus('error');
+    showToast(esc(error.message),'error');
+  } finally { setEditorBusy(false); }
 }
 
 function deletePost() {
@@ -1637,16 +1690,7 @@ function initTheme() {
 
 /* ===== KEYBOARD SHORTCUTS ===== */
 function initKeyboard() {
-  document.addEventListener('keydown', e => {
-    if (e.key==='Escape') { closeLoginModal(); closePostPreview(); closeModal(); return; }
-    const inField = ['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName);
-    if (inField) return;
-    if ((e.ctrlKey||e.metaKey) && e.key==='n') {
-      e.preventDefault();
-      const platform = PLATFORMS.includes(state.currentTab) ? state.currentTab : PLATFORMS[0];
-      openModal(platform);
-    }
-  });
+  initWorkspaceKeyboard();
 }
 
 /* ===== SCROLL ANIMATIONS ===== */
@@ -1728,5 +1772,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+<script src="/dashboard-ui.js?v=20260925"></script>
 </body>
 </html>

@@ -8,7 +8,24 @@
  */
 
 const KV_KEY = 'topic_bank';
+const CANONICAL_PILLARS = ['Google Ads & Marketing', 'Agentic AI', 'Engage'];
 const ALLOWED_FEEDBACK = new Set(['up', 'down', null, '']);
+const PILLAR_ALIASES = {
+  'google ads': 'Google Ads & Marketing',
+  'google ads & marketing': 'Google Ads & Marketing',
+  'digital marketing': 'Google Ads & Marketing',
+  'website leads': 'Google Ads & Marketing',
+  'website-cro': 'Google Ads & Marketing',
+  'hermes agentic ai': 'Agentic AI',
+  'agentic ai': 'Agentic AI',
+  'personal': 'Engage',
+  'personal & mindset': 'Engage',
+  'others': 'Engage',
+};
+function canonicalPillar(value) {
+  const label = String(value || '').trim();
+  return PILLAR_ALIASES[label.toLowerCase()] || label || 'Engage';
+}
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -37,7 +54,7 @@ function normaliseTopic(raw, fallback = {}) {
     rank: Number(raw.rank || 0),
     topic: String(raw.topic || raw.title || '').trim(),
     angle: String(raw.angle || '').trim(),
-    pillar: String(raw.pillar || 'Others').trim(),
+    pillar: canonicalPillar(raw.pillar || 'Engage'),
     why: String(raw.why || '').trim(),
     source: String(raw.source || '').trim(),
     sourceUrl: String(raw.sourceUrl || '').trim(),
@@ -73,7 +90,7 @@ function filterTopics(topics, url) {
     if (feedback && (item.feedback || 'none') !== feedback) return false;
     if (published === 'true' && !item.published) return false;
     if (published === 'false' && item.published) return false;
-    if (pillar && item.pillar !== pillar) return false;
+    if (pillar && canonicalPillar(item.pillar) !== canonicalPillar(pillar)) return false;
     if (q) {
       const haystack = [item.topic, item.angle, item.why, item.source, item.pillar, item.pattern, item.hook]
         .join(' ')
@@ -105,9 +122,9 @@ export async function onRequest(context) {
         disliked: topics.filter((x) => x.feedback === 'down').length,
         published: topics.filter((x) => x.published).length,
         dates: [...new Set(topics.map((x) => x.suggestedDate).filter(Boolean))].sort().reverse(),
-        pillars: [...new Set(topics.map((x) => x.pillar).filter(Boolean))].sort(),
+        pillars: CANONICAL_PILLARS,
       };
-      return json({ success: true, data: filtered, summary });
+      return json({ success: true, data: filtered.map((x) => ({ ...x, pillar: canonicalPillar(x.pillar) })), summary });
     }
 
     if (request.method === 'POST') {

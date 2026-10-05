@@ -11,6 +11,23 @@
  * Key: "posts" — JSON array of all posts
  */
 
+const PILLAR_ALIASES = {
+  'google ads': 'Google Ads & Marketing',
+  'google ads & marketing': 'Google Ads & Marketing',
+  'digital marketing': 'Google Ads & Marketing',
+  'website leads': 'Google Ads & Marketing',
+  'website-cro': 'Google Ads & Marketing',
+  'hermes agentic ai': 'Agentic AI',
+  'agentic ai': 'Agentic AI',
+  'personal': 'Engage',
+  'personal & mindset': 'Engage',
+  'others': 'Engage',
+};
+function canonicalPillar(value) {
+  const label = String(value || '').trim();
+  return PILLAR_ALIASES[label.toLowerCase()] || label || 'Engage';
+}
+
 export async function onRequest(context) {
   const { request, env } = context;
   const corsHeaders = {
@@ -53,10 +70,10 @@ export async function onRequest(context) {
       if (platform) filtered = filtered.filter(p => p.platform === platform);
       if (workspace) filtered = filtered.filter(p => (p.workspace || p.client || 'jom-digital') === workspace);
       if (status) filtered = filtered.filter(p => p.status === status);
-      if (pillar) filtered = filtered.filter(p => p.pillar === pillar);
+      if (pillar) filtered = filtered.filter(p => canonicalPillar(p.pillar) === canonicalPillar(pillar));
       if (month) filtered = filtered.filter(p => p.date && p.date.startsWith(month));
 
-      return new Response(JSON.stringify({ success: true, data: filtered }), {
+      return new Response(JSON.stringify({ success: true, data: filtered.map(p => ({...p, pillar:canonicalPillar(p.pillar)})) }), {
         headers: { 'Content-Type': 'application/json', ...corsHeaders }
       });
     }
@@ -87,7 +104,7 @@ export async function onRequest(context) {
         workspace: body.workspace || body.client || 'jom-digital',
         client: body.client || body.workspace || 'jom-digital',
         caption: body.caption || '',
-        pillar: body.pillar || 'Google Ads',
+        pillar: canonicalPillar(body.pillar || 'Google Ads & Marketing'),
         date: body.date || '',
         time: body.time || '',
         status: body.status || 'draft',
@@ -133,10 +150,11 @@ export async function onRequest(context) {
           posts[index][key] = body[key];
         }
       }
+      posts[index].pillar = canonicalPillar(posts[index].pillar);
       posts[index].updatedAt = new Date().toISOString();
 
       await postsKV.put('posts', JSON.stringify(posts));
-      return new Response(JSON.stringify({ success: true, data: posts[index] }), {
+      return new Response(JSON.stringify({ success: true, data: {...posts[index], pillar:canonicalPillar(posts[index].pillar)} }), {
         headers: { 'Content-Type': 'application/json', ...corsHeaders }
       });
     }

@@ -6,7 +6,7 @@ Kau guna Codex CLI dalam project ni untuk maintain dan audit content di jom-cont
 
 - **App:** jom-content.com — Centralised content dashboard untuk Jom Digital (Middi / @hamiddi_)
 - **Platforms:** TikTok + Threads sahaja
-- **Pillars (canonical 4):** Google Ads 30% / Website Leads 20% / Digital Marketing 25% / Personal & Mindset 25%
+- **Pillars (canonical 3):** Google Ads & Marketing 35% / Agentic AI 35% / Engage 30%
 - **Theme:** Jom Digital brand — primary #2563EB, accent #22C55E, Montserrat (headings) + DM Sans (body)
 - **Login:** jomdigital / Hakimi.1995
 - **API Base:** https://jom-content.com/api/posts (CF Pages Functions + KV namespace `jom-content-posts`)
