@@ -16,6 +16,7 @@ const PILLAR_ALIASES = {
   'digital marketing': 'Google Ads & Marketing',
   'website leads': 'Google Ads & Marketing',
   'website-cro': 'Google Ads & Marketing',
+  'website cro': 'Google Ads & Marketing',
   'hermes agentic ai': 'Agentic AI',
   'agentic ai': 'Agentic AI',
   'personal': 'Engage',
@@ -24,7 +25,7 @@ const PILLAR_ALIASES = {
 };
 function canonicalPillar(value) {
   const label = String(value || '').trim();
-  return PILLAR_ALIASES[label.toLowerCase()] || label || 'Engage';
+  return PILLAR_ALIASES[label.toLowerCase().replace(/[-_]+/g, ' ')] || PILLAR_ALIASES[label.toLowerCase()] || label || 'Engage';
 }
 
 const corsHeaders = {

@@ -606,7 +606,7 @@ const PILLAR_ALIASES = {
 };
 function canonicalPillarName(value) {
   const label = String(value || '').trim();
-  return PILLAR_ALIASES[label.toLowerCase()] || label || 'Engage';
+  return PILLAR_ALIASES[label.toLowerCase().replace(/[-_]+/g, ' ')] || PILLAR_ALIASES[label.toLowerCase()] || label || 'Engage';
 }
 const WORKSPACES = {
   'jom-digital': {name:'Jom Digital', short:'Jom Digital', type:'Content OS', tagline:'TikTok & Threads: Google Ads & Marketing, Agentic AI dan Engage.', pillars:[...CANONICAL_PILLARS], targets:{...CANONICAL_TARGETS}}
