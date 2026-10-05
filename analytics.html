@@ -6,436 +6,327 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<title>Jom Digital — Threads Analytics</title>
+<title>Jom Digital · Social Analytics</title>
 <style>
 :root{
   --bg:#f4f6fa; --surface:#fff; --surface2:#f8f9fc;
   --text:#1a1d23; --text2:#5f6779; --border:#e2e6ef;
-  --primary:#2563EB; --primary-light:#1D4ED8; --primary-bg:#EFF6FF;
-  --green:#16a34a; --green-bg:#dcfce7;
-  --amber:#d97706; --amber-bg:#fef3c7;
-  --red:#dc2626; --red-bg:#fee2e2;
-  --shadow:0 1px 3px rgba(0,0,0,.08); --radius:12px; --radius-sm:8px;
+  --primary:#2563EB; --primary-dark:#1E40AF; --primary-bg:#EFF6FF;
+  --green:#16a34a; --green-bg:#dcfce7; --amber:#d97706; --amber-bg:#fef3c7; --red:#dc2626; --red-bg:#fee2e2;
+  --tiktok:#fe2c55; --threads:#111827;
+  --shadow:0 1px 3px rgba(15,23,42,.08),0 4px 14px rgba(15,23,42,.04);
+  --radius:12px; --radius-sm:8px; --ease:cubic-bezier(0.22,1,0.36,1); --accent:var(--primary);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{overflow-x:hidden}
-h1,h2,h3,h4,h5{font-family:'Montserrat','DM Sans',sans-serif}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.5}
+h1,h2,h3,h4{font-family:'Montserrat','DM Sans',sans-serif}
+svg{display:block}
 .wrap{max-width:1100px;margin:0 auto;padding:16px}
 
 /* HEADER */
-header{background:linear-gradient(135deg,#2563EB,#1E40AF);color:#fff;padding:28px 20px 24px;position:relative;overflow:hidden}
+header{background:linear-gradient(135deg,#2563EB,#1E40AF);color:#fff;padding:22px 16px 20px;position:relative;overflow:hidden}
 header::after{content:'';position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.06)}
-header::before{content:'';position:absolute;right:60px;bottom:-60px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.05)}
-.h-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;max-width:1100px;margin:0 auto}
-.h-brand{font-size:15px;font-weight:700;letter-spacing:.5px;display:flex;align-items:center;gap:8px}
-.h-brand .dot{width:10px;height:10px;border-radius:50%;background:#4ade80;display:inline-block}
-.h-updated{font-size:11px;opacity:.8;text-align:right}
-.h-title{max-width:1100px;margin:12px auto 0;font-size:26px;font-weight:800;line-height:1.2}
-.h-sub{max-width:1100px;margin:6px auto 0;font-size:13px;opacity:.85}
+.h-in{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;opacity:.85;display:flex;align-items:center;gap:8px}
+.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:#4ade80}
+.h-title{font-size:24px;font-weight:800;line-height:1.2;margin-top:8px}
+.h-sub{font-size:12px;opacity:.85;margin-top:4px}
+.switch{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.switch button{width:auto;display:inline-flex;align-items:center;gap:8px;font:600 13px 'DM Sans',sans-serif;padding:9px 16px;border-radius:999px;border:1.5px solid rgba(255,255,255,.55);background:transparent;color:#fff;cursor:pointer;transition:background .3s var(--ease),color .3s var(--ease),transform .3s var(--ease)}
+.switch button:hover{background:rgba(255,255,255,.14)}
+.switch button[aria-pressed="true"]{background:#fff;color:var(--primary-dark);border-color:#fff}
+.switch button:focus-visible{outline:3px solid #fff;outline-offset:2px}
 
-/* SUMMARY CARDS */
-.sum-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0}
-.card{background:var(--surface);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);border:1px solid var(--border)}
-.card .label{font-size:11px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
-.card .value{font-size:26px;font-weight:800;margin-top:4px}
-.card .sub{font-size:11px;color:var(--text2);margin-top:2px}
-.trend-up{color:var(--green);font-weight:700}
-.trend-down{color:var(--red);font-weight:700}
-.score-big{display:flex;align-items:center;gap:10px}
-.score-ring{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff;flex-shrink:0}
+/* NOTICE */
+.notice{display:none;margin:14px 0 0;padding:10px 14px;border-radius:var(--radius-sm);background:var(--amber-bg);color:#92400e;font-size:12px;border:1px solid #fcd34d}
+.notice.show{display:block}
+
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0}
+.card{background:var(--surface);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);border:1px solid var(--border);min-width:0}
+.card .label{font-size:11px;color:var(--text2);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.card .value{font-size:28px;font-weight:800;margin-top:4px;line-height:1.15;font-family:'Montserrat',sans-serif}
+.card .sub{font-size:11px;color:var(--text2);margin-top:4px}
+.card.hero{background:linear-gradient(135deg,var(--primary-bg),#fff)}
+.up{color:var(--green);font-weight:700}.down{color:var(--red);font-weight:700}
+.ring{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#fff;flex-shrink:0}
+.ring-row{display:flex;align-items:center;gap:10px;margin-top:6px}
 
 /* SECTION */
-.section{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);margin:16px 0;padding:18px}
+.section{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);margin:16px 0;padding:16px}
 .section-hdr{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
 .section-hdr h2{font-size:16px;font-weight:700}
-.section-hdr .badge{font-size:11px;background:var(--primary-bg);color:var(--primary);padding:3px 10px;border-radius:12px;font-weight:600}
+.badge{font-size:11px;background:var(--primary-bg);color:var(--primary);padding:3px 10px;border-radius:12px;font-weight:600;white-space:nowrap}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button,.pill{width:auto;font:600 11px 'DM Sans',sans-serif;padding:5px 12px;border-radius:14px;border:1px solid var(--border);background:transparent;cursor:pointer;color:var(--text);transition:background .3s var(--ease)}
+.seg button[aria-pressed="true"],.pill.active{background:var(--primary);color:#fff;border-color:transparent}
+.empty{text-align:center;color:var(--text2);font-size:13px;padding:26px 10px}
 
-/* TOP POSTS */
+/* CHART */
+.chart{width:100%;height:150px}
+.chart-legend{display:flex;gap:14px;font-size:11px;color:var(--text2);margin-top:8px;flex-wrap:wrap}
+.chart-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+
+/* TOP LIST */
 .top-list{display:flex;flex-direction:column;gap:10px}
-.top-item{display:flex;gap:12px;align-items:flex-start;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;transition:transform .15s ease}
-.top-item:hover{transform:translateY(-2px)}
-.top-rank{width:32px;height:32px;border-radius:8px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0}
-.top-rank.r1{background:linear-gradient(135deg,#f59e0b,#d97706)}
-.top-rank.r2{background:linear-gradient(135deg,#94a3b8,#64748b)}
-.top-rank.r3{background:linear-gradient(135deg,#b45309,#92400e)}
+.top-item{display:flex;gap:12px;align-items:flex-start;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;color:inherit;text-decoration:none;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.top-item:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.rank{width:30px;height:30px;border-radius:8px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0}
+.rank.r1{background:linear-gradient(135deg,#f59e0b,#d97706)}.rank.r2{background:linear-gradient(135deg,#94a3b8,#64748b)}.rank.r3{background:linear-gradient(135deg,#b45309,#92400e)}
 .top-body{flex:1;min-width:0}
-.top-text{font-size:13px;font-weight:600;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.top-meta{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--text2);margin-top:6px}
-.top-meta b{color:var(--text)}
-.top-score{margin-left:auto;text-align:right;flex-shrink:0}
-.top-score .sc{font-size:20px;font-weight:800}
-.grade-chip{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px;color:#fff;margin-left:4px}
-
-/* CALENDAR */
-.cal-nav{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
-.cal-nav h3{font-size:15px;font-weight:700}
-.cal-nav button{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer;color:var(--text)}
-.cal-nav button:hover{background:var(--primary-bg)}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
-.cal-day-header{text-align:center;font-size:10px;font-weight:700;color:var(--text2);padding:4px 0;text-transform:uppercase}
-.cal-day{background:var(--surface2);border-radius:8px;min-height:74px;padding:5px;border:1px solid var(--border);overflow:hidden}
-.cal-day.other{opacity:.35}
-.cal-day.today{border-color:var(--primary);border-width:2px}
-.cal-day .day-num{font-size:11px;font-weight:700;margin-bottom:3px;color:var(--text2)}
-.cal-day.today .day-num{color:var(--primary)}
-.post-chip{font-size:9px;padding:2px 4px;border-radius:4px;margin-bottom:2px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block;cursor:default}
-.post-chip .sc{font-weight:800}
+.top-text{font-size:13px;font-weight:600;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.meta{display:flex;gap:6px 12px;flex-wrap:wrap;font-size:11px;color:var(--text2);margin-top:6px}
+.meta b{color:var(--text)}
+.score{margin-left:auto;text-align:right;flex-shrink:0}
+.score .sc{font-size:20px;font-weight:800;font-family:'Montserrat',sans-serif}
+.score .lb{font-size:9px;color:var(--text2);text-transform:uppercase;letter-spacing:.4px}
 
 /* BARS */
 .bar-row{margin-bottom:14px}
 .bar-head{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;gap:8px}
-.bar-head .nm{font-weight:600}
-.bar-head .vl{color:var(--text2);white-space:nowrap}
-.bar-track{height:18px;border-radius:8px;background:var(--surface2);overflow:hidden}
-.bar-fill{height:100%;border-radius:8px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:10px;font-weight:700;color:#fff;min-width:34px;transition:width .6s ease}
+.bar-head .nm{font-weight:600;overflow-wrap:anywhere}.bar-head .vl{color:var(--text2);white-space:nowrap}
+.bar-track{height:16px;border-radius:8px;background:var(--surface2);overflow:hidden}
+.bar-fill{height:100%;border-radius:8px;transform-origin:left;animation:grow .9s var(--ease) both}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .bar-sub{font-size:10px;color:var(--text2);margin-top:2px}
 
 /* RECS */
-.rec-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.rec-list{display:grid;grid-template-columns:1fr;gap:12px}
 .rec-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;border-left:4px solid var(--primary)}
-.rec-card.type-format-scale{border-left-color:var(--green)}
-.rec-card.type-format-untapped{border-left-color:var(--amber)}
-.rec-card.type-pillar-scale{border-left-color:var(--primary)}
-.rec-card.type-pillar-fix{border-left-color:var(--red)}
-.rec-card.type-volume{border-left-color:#06b6d4}
-.rec-card.type-win-replicate{border-left-color:#8b5cf6}
-.rec-card h4{font-size:13px;font-weight:700;margin-bottom:6px}
-.rec-card p{font-size:12px;color:var(--text2);line-height:1.55}
-
-/* INSIGHTS */
-.insight{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px}
-.insight:last-child{border-bottom:none}
-.insight .ic{font-size:16px;flex-shrink:0}
+.rec-card.win{border-left-color:var(--green)}.rec-card.fix{border-left-color:var(--red)}.rec-card.volume{border-left-color:var(--amber)}
+.rec-card h4{font-size:13px;font-weight:700;margin-bottom:4px}.rec-card p{font-size:12px;color:var(--text2)}
 
 /* POST LIST */
-.post-list{display:flex;flex-direction:column;gap:8px;max-height:520px;overflow-y:auto}
-.pl-item{display:flex;gap:10px;align-items:center;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px}
-.pl-date{font-size:11px;color:var(--text2);font-weight:600;width:74px;flex-shrink:0}
-.pl-text{flex:1;min-width:0;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.pl-metrics{font-size:10px;color:var(--text2);display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap}
-.pl-score{font-size:13px;font-weight:800;width:38px;text-align:right;flex-shrink:0}
 .filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
-.pill{font-size:11px;padding:4px 12px;border-radius:14px;border:1px solid var(--border);background:transparent;cursor:pointer;color:var(--text)}
-.pill.active{background:var(--primary);color:#fff;border-color:transparent}
-.empty{text-align:center;color:var(--text2);font-size:13px;padding:30px 10px}
-footer{text-align:center;font-size:11px;color:var(--text2);padding:20px 10px 30px}
+.post-list{display:flex;flex-direction:column;gap:8px;max-height:520px;overflow-y:auto}
+.pl{display:flex;gap:10px;align-items:center;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;color:inherit;text-decoration:none}
+.pl:hover{border-color:var(--primary)}
+.pl-date{font-size:11px;color:var(--text2);font-weight:600;width:42px;flex-shrink:0}
+.pl-text{flex:1;min-width:0;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pl-m{font-size:10px;color:var(--text2);display:none;gap:8px;flex-shrink:0}
+.pl-sc{font-size:13px;font-weight:800;width:34px;text-align:right;flex-shrink:0}
+footer{text-align:center;font-size:11px;color:var(--text2);padding:18px 12px 30px}
 
-@media(max-width:600px){
-  .h-title{font-size:21px}
-  .sum-grid{grid-template-columns:repeat(2,1fr)}
-  .card .value{font-size:21px}
-  .cal-day{min-height:56px;padding:4px}
-  .cal-day .day-num{font-size:10px}
-  .post-chip{font-size:8px}
-  .cal-day-header{font-size:9px}
-  .pl-date{width:64px;font-size:10px}
-  .pl-metrics{display:none}
-  .rec-list{grid-template-columns:1fr}
-  .top-meta{gap:8px}
-  .reply-parent{font-size:10px;color:var(--text2);margin-top:3px;font-style:italic}
+.fade{animation:fadeUp .7s var(--ease) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+@media(min-width:700px){
+  .kpis{grid-template-columns:repeat(3,1fr)}
+  .rec-list{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .pl-m{display:flex}.pl-date{width:48px}
+  .h-title{font-size:28px}header{padding:28px 20px 24px}
+}
+@media(max-width:699px){
+  .fade{animation-duration:.75s}
+  .top-item:hover{transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
 }
 </style>
 </head>
 <body>
 <header>
-  <div class="h-top">
-    <div class="h-brand"><span class="dot"></span> JOM DIGITAL — INTERNAL</div>
-    <div class="h-updated" id="genInfo"></div>
+  <div class="h-in">
+    <div class="eyebrow"><span class="dot"></span>Jom Digital · Internal<span id="genInfo" style="margin-left:auto;text-transform:none;letter-spacing:0;font-weight:500"></span></div>
+    <h1 class="h-title">Social Analytics</h1>
+    <div class="h-sub" id="handleLine"></div>
+    <div class="switch" role="group" aria-label="Platform">
+      <button type="button" data-p="threads" aria-pressed="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17.5 10.5c-.5-3-2.6-4.5-5.5-4.5-3.3 0-5.5 2.4-5.5 6s2.2 6 5.5 6c2.7 0 4.5-1.4 4.5-3.2 0-2-1.8-3-4.2-3-1.7 0-2.8.6-2.8 1.6 0 .9.9 1.6 2.2 1.6 2 0 3.3-1.4 3.3-4"/></svg>Threads</button>
+      <button type="button" data-p="tiktok" aria-pressed="false">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 4c.4 2.4 2 4 4.5 4.2"/></svg>TikTok</button>
+    </div>
   </div>
-  <div class="h-title">Threads Analytics Dashboard</div>
-  <div class="h-sub">@hamiddi_ · Scoring 1-100 · Purata mingguan &amp; bulanan · Auto-update setiap collection</div>
 </header>
 
-<div class="wrap">
-  <div class="sum-grid" id="sumGrid"></div>
+<div class="wrap" id="app">
+  <div class="notice" id="notice" role="status"></div>
+  <div class="kpis" id="kpis"></div>
 
   <div class="section">
-    <div class="section-hdr"><h2>Best Performing — Minggu Ini</h2><span class="badge" id="topWeekBadge"></span></div>
-    <div class="top-list" id="topWeek"></div>
+    <div class="section-hdr"><h2>Trend 30 Hari</h2><span class="badge" id="trendBadge"></span></div>
+    <svg class="chart" id="chart" viewBox="0 0 600 150" preserveAspectRatio="none" role="img" aria-label="Carta views harian"></svg>
+    <div class="chart-legend"><span><i style="background:var(--accent)"></i>Views harian</span><span><i style="background:#f59e0b"></i>Interactions harian</span></div>
   </div>
 
   <div class="section">
-    <div class="section-hdr"><h2>Best Performing — Bulan Ini</h2><span class="badge" id="topMonthBadge"></span></div>
-    <div class="top-list" id="topMonth"></div>
-  </div>
-
-  <div class="section">
-    <div class="section-hdr"><h2>Top Replies — 30 Hari</h2><span class="badge" id="topRepliesBadge"></span></div>
-    <div class="top-list" id="topReplies"></div>
-  </div>
-
-  <div class="section">
-    <div class="section-hdr"><h2>Content Calendar</h2><span class="badge" id="calBadge"></span></div>
-    <div class="cal-nav">
-      <button onclick="calNav(-1)">Sebelum</button>
-      <h3 id="calTitle"></h3>
-      <button onclick="calNav(1)">Seterusnya</button>
+    <div class="section-hdr"><h2>Best Performing</h2>
+      <div class="seg" id="topSeg"><button type="button" data-r="top_week" aria-pressed="true">Minggu ini</button><button type="button" data-r="top_month" aria-pressed="false">30 hari</button><button type="button" data-r="top_all_time" aria-pressed="false">Views tertinggi</button></div>
     </div>
-    <div class="filters" id="calFilters"></div>
-    <div class="cal-grid" id="calGrid"></div>
+    <div class="top-list" id="topList"></div>
   </div>
 
-  <div class="section">
-    <div class="section-hdr"><h2>Prestasi by Format</h2><span class="badge">30 hari</span></div>
-    <div id="formatBars"></div>
+  <div class="section" id="repliesSec">
+    <div class="section-hdr"><h2>Top Replies · 30 Hari</h2><span class="badge" id="repliesBadge"></span></div>
+    <div class="top-list" id="repliesList"></div>
   </div>
 
-  <div class="section">
-    <div class="section-hdr"><h2>Prestasi by Pillar</h2><span class="badge">30 hari</span></div>
-    <div id="pillarBars"></div>
-  </div>
+  <div class="section"><div class="section-hdr"><h2>Prestasi by Pillar</h2><span class="badge">30 hari</span></div><div id="pillarBars"></div></div>
+  <div class="section"><div class="section-hdr"><h2>Prestasi by Format</h2><span class="badge">30 hari</span></div><div id="formatBars"></div></div>
+
+  <div class="section"><div class="section-hdr"><h2>Cadangan</h2><span class="badge">auto</span></div><div class="rec-list" id="recList"></div></div>
 
   <div class="section">
-    <div class="section-hdr"><h2>Recommendations</h2><span class="badge">auto</span></div>
-    <div class="rec-list" id="recList"></div>
-  </div>
-
-  <div class="section">
-    <div class="section-hdr"><h2>Insights</h2><span class="badge">30 hari</span></div>
-    <div id="insights"></div>
-  </div>
-
-  <div class="section">
-    <div class="section-hdr"><h2>Semua Posts (30 hari)</h2><span class="badge" id="allPostsBadge"></span></div>
+    <div class="section-hdr"><h2>Semua Content</h2><span class="badge" id="postsBadge"></span></div>
     <div class="filters" id="postFilters"></div>
     <div class="post-list" id="postList"></div>
   </div>
 
-  <footer>Jom Digital · Data dari scrape Threads @hamiddi_ · Score = weighted engagement (share 3x, comment 2x, like 1x) + reach, dinormalkan terhadap median 30 hari</footer>
+  <footer id="foot"></footer>
 </div>
 
 <script>
-let DATA = null;
-let calDate = new Date(); calDate.setDate(1);
-let calFilter = 'all';
-let postFilter = 'all';
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const fmt = n => (n == null ? '-' : Number(n).toLocaleString('en-US'));
+const short = n => n >= 10000 ? (n/1000).toFixed(n >= 100000 ? 0 : 1).replace(/\.0$/,'') + 'k' : fmt(n);
+const scoreColor = s => s >= 80 ? '#16a34a' : s >= 60 ? '#0ea5e9' : s >= 45 ? '#f59e0b' : '#ef4444';
+const ICON = {
+  link: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>'
+};
+const PLATFORM = {threads: {name: 'Threads', accent: '#111827'}, tiktok: {name: 'TikTok', accent: '#fe2c55'}};
 
-const GRADE_COLORS = {'A+':'#16a34a','A':'#22c55e','B+':'#06b6d4','B':'#0ea5e9','C':'#f59e0b','D':'#f97316','E':'#ef4444'};
+let DATA = null, plat = 'threads', topRange = 'top_week', pillarFilter = 'all';
 
-function gradeColor(g){ return GRADE_COLORS[g] || '#94a3b8'; }
-function scoreColor(s){
-  if(s>=80) return '#16a34a';
-  if(s>=60) return '#0ea5e9';
-  if(s>=45) return '#f59e0b';
-  return '#ef4444';
-}
-function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function stripEmoji(s){
-  return (s||'').replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{2764}\u{2197}\u{1F440}]/gu,'').replace(/\s+/g,' ').trim();
-}
-function fmtDate(d){ const p=d.split('-'); return p[2]+'/'+p[1]; }
-
-function load(){
-  fetch('data.json?v='+Date.now()).then(r=>r.json()).then(d=>{
-    DATA = d; renderAll();
-  }).catch(e=>{ document.getElementById('genInfo').textContent = 'Error load data.json: '+e; });
+function trend(v, suffix) {
+  if (v == null) return '<span class="sub">tiada data bulan lepas</span>';
+  return `<span class="${v >= 0 ? 'up' : 'down'}">${v >= 0 ? '+' : ''}${v}%</span> ${suffix}`;
 }
 
-function renderAll(){
-  renderGenInfo(); renderSum(); renderTop(); renderTopReplies(); renderCalendar(); renderBars(); renderRecs(); renderInsights(); renderPostList();
+function load() {
+  fetch('analytics-data.json?v=' + Date.now()).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(d => { DATA = d; render(); })
+    .catch(e => { $('kpis').innerHTML = '<div class="empty" style="grid-column:1/-1">Gagal load analytics-data.json (' + esc(e.message) + ')</div>'; });
 }
 
-function renderGenInfo(){
-  document.getElementById('genInfo').textContent = 'Jana: ' + DATA.generated_at;
+function render() {
+  const d = DATA.platforms[plat];
+  document.documentElement.style.setProperty('--accent', PLATFORM[plat].accent === '#111827' ? '#2563EB' : PLATFORM[plat].accent);
+  $('handleLine').textContent = '@' + d.handle + ' · Score 1-100 · Auto-update harian';
+  const gen = new Date(DATA.generated_at);
+  $('genInfo').textContent = 'Jana: ' + gen.toLocaleString('en-GB', {day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'});
+  renderNotice(d); renderKpis(d); renderChart(d); renderTop(d); renderReplies(d);
+  renderBars('pillarBars', d.by_pillar); renderBars('formatBars', d.by_format);
+  renderRecs(d); renderPosts(d);
+  $('foot').textContent = 'Score = 0.7 x engagement (like 1, comment 2, share 3 lawan median 30 hari) + 0.3 x reach (views). Kalau views tak ada, engagement sahaja.';
+  document.querySelectorAll('.section,.card').forEach(el => { el.classList.remove('fade'); void el.offsetWidth; el.classList.add('fade'); });
 }
 
-function renderSum(){
-  const w = DATA.weekly, m = DATA.monthly;
-  const g = document.getElementById('sumGrid');
-  const wTrend = w.woW_pct===null?'—':(w.woW_pct>=0?'+':'')+w.woW_pct+'%';
-  const wTrendCls = w.woW_pct===null?'':(w.woW_pct>=0?'trend-up':'trend-down');
-  const mTrend = m.MoM_pct===null?'—':(m.MoM_pct>=0?'+':'')+m.MoM_pct+'%';
-  const mTrendCls = m.MoM_pct===null?'':(m.MoM_pct>=0?'trend-up':'trend-down');
-  const inter30 = DATA.posts.reduce((a,p)=>a+p.likes+p.comments+p.shares,0);
-  const views30 = DATA.posts.reduce((a,p)=>a+p.views,0);
-
-  g.innerHTML = `
-    <div class="card"><div class="label">Score Mingguan</div>
-      <div class="score-big"><div class="score-ring" style="background:${scoreColor(w.avg_score)}">${w.avg_score}</div>
-      <div><div class="value" style="font-size:18px">${w.posts} posts</div>
-      <div class="sub"><span class="${wTrendCls}">${wTrend}</span> vs minggu lepas</div></div></div>
-    </div>
-    <div class="card"><div class="label">Score Bulanan</div>
-      <div class="score-big"><div class="score-ring" style="background:${scoreColor(m.avg_score)}">${m.avg_score}</div>
-      <div><div class="value" style="font-size:18px">${m.posts} posts</div>
-      <div class="sub"><span class="${mTrendCls}">${mTrend}</span> vs bulan lepas</div></div></div>
-    </div>
-    <div class="card"><div class="label">Interactions (30d)</div><div class="value">${inter30}</div>
-      <div class="sub">${DATA.posts.reduce((a,p)=>a+p.likes,0)} likes · ${DATA.posts.reduce((a,p)=>a+p.comments,0)} comments · ${DATA.posts.reduce((a,p)=>a+p.shares,0)} shares</div></div>
-    <div class="card"><div class="label">Views (30d)</div><div class="value">${views30.toLocaleString()}</div>
-      <div class="sub">Baseline median: ${DATA.window.baseline_median_weighted} weighted</div></div>
-  `;
+function renderNotice(d) {
+  const msgs = [];
+  const age = d.last_collected ? (Date.now() - new Date(d.last_collected)) / 3600000 : null;
+  if (age == null || age > 48) msgs.push('Data ' + PLATFORM[plat].name + ' last collected ' + (age == null ? 'tak diketahui' : Math.round(age / 24) + ' hari lepas') + '. Semak cron collector.');
+  if (d.followers && (Date.now() - new Date(d.followers.as_of)) / 86400000 > 7) msgs.push('Followers count last direkod ' + d.followers.as_of + ' (collector tak simpan followers sejak tarikh tu).');
+  const n = $('notice'); n.textContent = msgs.join(' '); n.classList.toggle('show', msgs.length > 0);
 }
 
-function renderTop(){
-  const tw = document.getElementById('topWeek');
-  tw.innerHTML = DATA.top_week.map((p,i)=>topItem(p,i)).join('') || '<div class="empty">Tiada post minggu ini</div>';
-  document.getElementById('topWeekBadge').textContent = DATA.weekly.posts + ' posts minggu ini';
-  const tm = document.getElementById('topMonth');
-  tm.innerHTML = DATA.top_month.map((p,i)=>topItem(p,i)).join('') || '<div class="empty">Tiada post bulan ini</div>';
-  document.getElementById('topMonthBadge').textContent = DATA.monthly.posts + ' posts bulan ini';
-}
+function card(label, value, sub, cls) { return `<div class="card ${cls || ''}"><div class="label">${label}</div><div class="value">${value}</div><div class="sub">${sub}</div></div>`; }
 
-function renderTopReplies(){
-  const el = document.getElementById('topReplies');
-  if(!DATA.top_replies || !DATA.top_replies.length){
-    el.innerHTML = '<div class="empty">Tiada reply dalam 30 hari</div>';
-    document.getElementById('topRepliesBadge').textContent = '0 replies';
-    return;
-  }
-  el.innerHTML = DATA.top_replies.map((r,i)=>replyItem(r,i)).join('');
-  document.getElementById('topRepliesBadge').textContent = DATA.top_replies.length + ' replies terbaik';
-}
-function replyItem(r,i){
-  const rankCls = i===0?'r1':i===1?'r2':i===2?'r3':'';
-  const parentLine = r.parent_text ? `<div class="reply-parent">↳ balas: ${esc(stripEmoji(r.parent_text))}</div>` : '';
-  return `<div class="top-item">
-    <div class="top-rank ${rankCls}">${i+1}</div>
-    <div class="top-body">
-      <div class="top-text">${esc(stripEmoji(r.text))}</div>
-      ${parentLine}
-      <div class="top-meta"><span><b>@${esc(r.author)}</b></span><span>${fmtDate(r.date)}</span>
-        <span><b>${r.likes}</b> likes</span><span><b>${r.comments}</b> cmt</span><span><b>${r.shares}</b> share</span>
-        ${r.views>0?`<span><b>${r.views.toLocaleString()}</b> views</span>`:''}</div>
-    </div>
-    <div class="top-score"><div class="sc" style="color:${scoreColor(Math.min(r.weighted,100))}">${r.weighted}</div>
-      <span class="grade-chip" style="background:${gradeColor(r.weighted>=50?'A':r.weighted>=20?'B':'C')}">eng</span></div>
-  </div>`;
-}
-function topItem(p,i){
-  const rankCls = i===0?'r1':i===1?'r2':i===2?'r3':'';
-  return `<div class="top-item">
-    <div class="top-rank ${rankCls}">${i+1}</div>
-    <div class="top-body">
-      <div class="top-text">${esc(stripEmoji(p.text))}</div>
-      <div class="top-meta"><span>${fmtDate(p.date)}</span>
-        <span><b>${p.likes}</b> likes</span><span><b>${p.comments}</b> cmt</span><span><b>${p.shares}</b> share</span>
-        ${p.views>0?`<span><b>${p.views.toLocaleString()}</b> views</span>`:''}
-        <span>${esc(p.format||'')} · ${esc(p.pillar||'')}</span></div>
-    </div>
-    <div class="top-score"><div class="sc" style="color:${scoreColor(p.score)}">${p.score}</div>
-      <span class="grade-chip" style="background:${gradeColor(p.grade)}">${p.grade}</span></div>
-  </div>`;
-}
-
-// CALENDAR
-function calNav(dir){
-  calDate.setMonth(calDate.getMonth()+dir);
-  renderCalendar();
-}
-function renderCalendar(){
-  const y = calDate.getFullYear(), m = calDate.getMonth();
-  document.getElementById('calTitle').textContent = new Date(y,m,1).toLocaleDateString('ms-MY',{month:'long',year:'numeric'});
-
-  // filters
-  const fmts = ['all'].concat(Object.keys(DATA.formats));
-  const f = document.getElementById('calFilters');
-  f.innerHTML = fmts.map(x=>`<button class="pill ${calFilter===x?'active':''}" onclick="setCalFilter('${x}',this)">${x==='all'?'Semua':esc(x)}</button>`).join('');
-
-  const first = new Date(y,m,1), last = new Date(y,m+1,0);
-  const startDay = first.getDay();
-  const prevLast = new Date(y,m,0).getDate();
-  let cells = [];
-  for(let i=startDay-1;i>=0;i--) cells.push({day:prevLast-i,other:true,date:new Date(y,m-1,prevLast-i)});
-  for(let i=1;i<=last.getDate();i++) cells.push({day:i,other:false,date:new Date(y,m,i)});
-  for(let i=1;cells.length<42;i++) cells.push({day:i,other:true,date:new Date(y,m+1,i)});
-
-  const today = new Date();
-  const todayStr = today.getFullYear()+'-'+String(today.getMonth()+1).padStart(2,'0')+'-'+String(today.getDate()).padStart(2,'0');
-
-  let html = ['S','A','R','K','J','S','A'].map(d=>`<div class="cal-day-header">${d}</div>`).join('');
-  cells.forEach(c=>{
-    const ds2 = c.date.getFullYear()+'-'+String(c.date.getMonth()+1).padStart(2,'0')+'-'+String(c.day).padStart(2,'0');
-    const dayPosts = DATA.posts.filter(p=>{
-      const d = p.date.split('-');
-      return +d[0]===c.date.getFullYear() && +d[1]===c.date.getMonth()+1 && +d[2]===c.day;
-    }).filter(p=> calFilter==='all' || p.format===calFilter);
-    const chips = dayPosts.slice(0,3).map(p=>`<span class="post-chip" style="background:${scoreColor(p.score)}" title="${esc(stripEmoji(p.text))}"><span class="sc">${p.score}</span> ${esc(stripEmoji(p.text.slice(0,20)))}</span>`).join('');
-    const more = dayPosts.length>3?`<span style="font-size:8px;color:var(--text2)">+${dayPosts.length-3}</span>`:'';
-    const isToday = ds2===todayStr;
-    html += `<div class="cal-day ${c.other?'other':''} ${isToday?'today':''}">
-      <div class="day-num">${c.day}</div>${chips}${more}</div>`;
-  });
-  document.getElementById('calGrid').innerHTML = html;
-  document.getElementById('calBadge').textContent = DATA.posts.length + ' posts dalam 30 hari';
-}
-function setCalFilter(v,btn){
-  calFilter = v;
-  btn.parentElement.querySelectorAll('.pill').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderCalendar();
-}
-
-// BARS
-function renderBars(){
-  const fmt = document.getElementById('formatBars');
-  const maxF = Math.max(...Object.values(DATA.formats).map(v=>v.avg_score),1);
-  fmt.innerHTML = Object.entries(DATA.formats).map(([k,v])=>{
-    const w = Math.max(v.avg_score/maxF*100,6);
-    return `<div class="bar-row"><div class="bar-head"><span class="nm">${esc(k)}</span><span class="vl">avg ${v.avg_score} · ${v.posts} posts · ${v.shares} shares</span></div>
-      <div class="bar-track"><div class="bar-fill" style="width:${w}%;background:${scoreColor(v.avg_score)}">${v.avg_score}</div></div>
-      <div class="bar-sub">${v.inter} interactions · ${v.views.toLocaleString()} views</div></div>`;
-  }).join('');
-
-  const pil = document.getElementById('pillarBars');
-  const maxP = Math.max(...Object.values(DATA.pillars).map(v=>v.avg_score),1);
-  pil.innerHTML = Object.entries(DATA.pillars).map(([k,v])=>{
-    const w = Math.max(v.avg_score/maxP*100,6);
-    return `<div class="bar-row"><div class="bar-head"><span class="nm">${esc(k)}</span><span class="vl">avg ${v.avg_score} · ${v.posts} posts</span></div>
-      <div class="bar-track"><div class="bar-fill" style="width:${w}%;background:${scoreColor(v.avg_score)}">${v.avg_score}</div></div>
-      <div class="bar-sub">${v.inter} interactions · ${v.shares} shares · ${v.views.toLocaleString()} views</div></div>`;
-  }).join('');
-}
-
-function renderRecs(){
-  const el = document.getElementById('recList');
-  el.innerHTML = DATA.recommendations.map(r=>`
-    <div class="rec-card ${r.type}"><h4>${esc(r.title)}</h4><p>${esc(r.body)}</p></div>`).join('');
-}
-
-function renderInsights(){
-  const el = document.getElementById('insights');
-  const w = DATA.weekly, m = DATA.monthly;
-  const totalScore = DATA.posts.reduce((a,p)=>a+p.score,0);
-  const avgAll = (totalScore/DATA.posts.length).toFixed(1);
-  const grades = {};
-  DATA.posts.forEach(p=>grades[p.grade]=(grades[p.grade]||0)+1);
-  const gradeTxt = Object.entries(grades).sort((a,b)=>a[0].localeCompare(b[0])).map(([g,c])=>`${g}: ${c}`).join(' · ');
-
-  const insights = [
-    {ic:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>', t:`Score purata 30 hari: <b>${avgAll}/100</b>. Minggu ini <b>${w.avg_score}</b> (${w.woW_pct>=0?'+':''}${w.woW_pct}% WoW).`},
-    {ic:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>', t:`Post terbaik 30 hari: <b>${DATA.top_all[0].score}</b> — "${esc(DATA.top_all[0].text.slice(0,70))}..."`},
-    {ic:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>', t:`Format ${Object.entries(DATA.formats)[0][0]} = enjin utama (avg ${Object.entries(DATA.formats)[0][1].avg_score}). Tutorial/how-to bawa paling banyak shares.`},
-    {ic:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/><path d="M7 2h10"/></svg>', t:`Myth-buster cuma ${(DATA.formats['opinion-mythbust']||{posts:0}).posts} posts tapi avg ${(DATA.formats['opinion-mythbust']||{avg_score:0}).avg_score} — under-used, high potential untuk shares.`},
-    {ic:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3"/><path d="M12 10v8"/><path d="M17 6v12"/></svg>', t:`Grade distribution: ${gradeTxt}. ${(grades['E']||0)} posts grade E (skor rendah) — banyak post personal/cerita yang tak perform.`},
-    {ic:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.4 1 2.3h6c0-.9.4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg>', t:`Views tinggi tak semestinya engagement: post story ada views tapi score rendah. Fokus pada hook yang bawa comments/shares, bukan sekadar reach.`},
+function renderKpis(d) {
+  const m = d.month, w = d.week, perWeek = (m.items / (30 / 7)).toFixed(1);
+  const inter = m.likes + m.comments + m.shares;
+  const cards = [
+    card('Views (30 hari)', fmt(m.views), trend(m.trend_views_pct, 'vs 30 hari sebelum'), 'hero'),
+    card('Interactions', fmt(inter), `${fmt(m.likes)} likes · ${fmt(m.comments)} cmt · ${fmt(m.shares)} share`),
+    `<div class="card"><div class="label">Avg Score (30 hari)</div><div class="ring-row"><div class="ring" style="background:${scoreColor(m.avg_score || 0)}">${m.avg_score == null ? '-' : Math.round(m.avg_score)}</div><div><div style="font-weight:700;font-size:15px">${m.items} post</div><div class="sub">${trend(m.trend_score_pct, 'vs sebelum')}</div></div></div></div>`,
+    `<div class="card"><div class="label">Minggu Ini</div><div class="ring-row"><div class="ring" style="background:${scoreColor(w.avg_score || 0)}">${w.avg_score == null ? '-' : Math.round(w.avg_score)}</div><div><div style="font-weight:700;font-size:15px">${w.items} post</div><div class="sub">${trend(w.trend_score_pct, 'vs minggu lepas')}</div></div></div></div>`,
+    card('Kadar Posting', perWeek, 'post seminggu (purata 30 hari)')
   ];
-  el.innerHTML = insights.map(i=>`<div class="insight"><span class="ic">${i.ic}</span><div>${i.t}</div></div>`).join('');
+  if (plat === 'tiktok') cards.push(card('Saves', fmt(m.saves), 'dalam 30 hari'));
+  else if (d.followers) cards.push(card('Followers', fmt(d.followers.latest), 'setakat ' + d.followers.as_of));
+  else cards.push(card('Replies (30 hari)', fmt(d.replies_30d && d.replies_30d.items), 'reply dihantar'));
+  $('kpis').innerHTML = cards.join('');
 }
 
-function renderPostList(){
-  const fmts = ['all'].concat(Object.keys(DATA.formats));
-  const f = document.getElementById('postFilters');
-  f.innerHTML = fmts.map(x=>`<button class="pill ${postFilter===x?'active':''}" onclick="setPostFilter('${x}',this)">${x==='all'?'Semua':esc(x)}</button>`).join('');
-  const posts = DATA.posts.slice().sort((a,b)=>b.score-a.score).filter(p=>postFilter==='all'||p.format===postFilter);
-  document.getElementById('allPostsBadge').textContent = posts.length + ' posts';
-  const el = document.getElementById('postList');
-  el.innerHTML = posts.map(p=>`
-    <div class="pl-item">
-      <div class="pl-date">${fmtDate(p.date)}</div>
-      <div class="pl-text" title="${esc(stripEmoji(p.text))}">${esc(stripEmoji(p.text))}</div>
-      <div class="pl-metrics"><span>${p.likes} likes</span><span>${p.comments} cmt</span><span>${p.shares} shr</span>${p.views>0?`<span>${p.views.toLocaleString()} views</span>`:''}</div>
-      <div class="pl-score" style="color:${scoreColor(p.score)}">${p.score}</div>
-    </div>`).join('');
-}
-function setPostFilter(v,btn){
-  postFilter = v;
-  btn.parentElement.querySelectorAll('.pill').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderPostList();
+function renderChart(d) {
+  const svg = $('chart'), days = [], W = 600, H = 150, pad = 4;
+  const byDate = Object.fromEntries(d.daily.map(x => [x.date, x]));
+  for (let i = 29; i >= 0; i--) { const t = new Date(Date.now() + 8 * 3600000 - i * 86400000).toISOString().slice(0, 10); days.push(byDate[t] || {date: t, views: 0, interactions: 0, items: 0}); }
+  const maxV = Math.max(1, ...days.map(x => x.views)), maxI = Math.max(1, ...days.map(x => x.interactions));
+  const bw = (W - pad * 2) / days.length;
+  let out = '';
+  days.forEach((x, i) => {
+    const h = Math.round((x.views / maxV) * (H - 18)), x0 = pad + i * bw + bw * .15;
+    out += `<rect x="${x0.toFixed(1)}" y="${H - h}" width="${(bw * .7).toFixed(1)}" height="${h}" rx="2" fill="var(--accent)" opacity=".85"><title>${x.date}: ${fmt(x.views)} views, ${x.items} post</title></rect>`;
+  });
+  const pts = days.map((x, i) => `${(pad + i * bw + bw / 2).toFixed(1)},${(H - 4 - (x.interactions / maxI) * (H - 24)).toFixed(1)}`).join(' ');
+  out += `<polyline points="${pts}" fill="none" stroke="#f59e0b" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>`;
+  svg.innerHTML = out;
+  $('trendBadge').textContent = 'puncak ' + short(maxV) + ' views/hari';
 }
 
+function metaLine(p) {
+  const bits = [`<span><b>${fmt(p.likes)}</b> likes</span>`, `<span><b>${fmt(p.comments)}</b> cmt</span>`, `<span><b>${fmt(p.shares)}</b> share</span>`];
+  if (plat === 'tiktok') bits.push(`<span><b>${fmt(p.saves)}</b> saves</span>`);
+  bits.push(p.views_missing ? '<span>views n/a</span>' : `<span><b>${fmt(p.views)}</b> views</span>`);
+  if (p.duration) bits.push(`<span>${Math.round(p.duration)}s</span>`);
+  bits.push(`<span>${esc(p.date.slice(5).split('-').reverse().join('/'))}</span>`, `<span>${esc(p.pillar)}</span>`);
+  return bits.join('');
+}
+
+function topItem(p, i) {
+  const cls = i === 0 ? 'r1' : i === 1 ? 'r2' : i === 2 ? 'r3' : '';
+  return `<a class="top-item" href="${esc(p.url)}" target="_blank" rel="noopener"><div class="rank ${cls}">${i + 1}</div>
+    <div class="top-body"><div class="top-text">${esc(p.text)}</div><div class="meta">${metaLine(p)}</div></div>
+    <div class="score"><div class="sc" style="color:${scoreColor(p.score)}">${Math.round(p.score)}</div><div class="lb">score</div></div></a>`;
+}
+
+function renderTop(d) {
+  const list = d[topRange] || [];
+  $('topList').innerHTML = list.map(topItem).join('') || '<div class="empty">Tiada content dalam tempoh ni</div>';
+}
+
+function renderReplies(d) {
+  const sec = $('repliesSec'), list = d.top_replies || [];
+  sec.style.display = d.replies_30d ? '' : 'none';
+  $('repliesBadge').textContent = d.replies_30d ? fmt(d.replies_30d.items) + ' reply' : '';
+  $('repliesList').innerHTML = list.map(topItem).join('') || '<div class="empty">Tiada reply dalam 30 hari</div>';
+}
+
+function renderBars(id, rows) {
+  if (!rows || !rows.length) { $(id).innerHTML = '<div class="empty">Tiada data</div>'; return; }
+  const max = Math.max(...rows.map(r => r.avg_score), 1);
+  $(id).innerHTML = rows.map(r => `<div class="bar-row"><div class="bar-head"><span class="nm">${esc(r.name)}</span><span class="vl">${r.avg_score} score · ${r.items} item</span></div>
+    <div class="bar-track"><div class="bar-fill" style="width:${Math.max(4, r.avg_score / max * 100)}%;background:${scoreColor(r.avg_score)}"></div></div>
+    <div class="bar-sub">${r.avg_interactions} interactions/item · ${fmt(r.views)} views</div></div>`).join('');
+}
+
+function renderRecs(d) {
+  $('recList').innerHTML = (d.recommendations || []).map(r => `<div class="rec-card ${esc(r.type)}"><h4>${esc(r.title)}</h4><p>${esc(r.body)}</p></div>`).join('') || '<div class="empty">Belum cukup data untuk cadangan</div>';
+}
+
+function renderPosts(d) {
+  const pillars = ['all', ...new Set(d.posts.map(p => p.pillar))];
+  if (!pillars.includes(pillarFilter)) pillarFilter = 'all';
+  $('postFilters').innerHTML = pillars.map(k => `<button type="button" class="pill ${k === pillarFilter ? 'active' : ''}" data-k="${esc(k)}">${k === 'all' ? 'Semua' : esc(k)}</button>`).join('');
+  const rows = d.posts.filter(p => pillarFilter === 'all' || p.pillar === pillarFilter);
+  $('postsBadge').textContent = rows.length + ' item';
+  $('postList').innerHTML = rows.map(p => `<a class="pl" href="${esc(p.url)}" target="_blank" rel="noopener"><span class="pl-date">${esc(p.date.slice(5).split('-').reverse().join('/'))}</span>
+    <span class="pl-text">${esc(p.text.replace(/\s+/g, ' '))}</span>
+    <span class="pl-m"><span>${fmt(p.likes)} lk</span><span>${fmt(p.comments)} cm</span><span>${p.views_missing ? 'n/a' : short(p.views)} vw</span></span>
+    <span class="pl-sc" style="color:${scoreColor(p.score)}">${Math.round(p.score)}</span></a>`).join('') || '<div class="empty">Tiada item</div>';
+}
+
+document.querySelectorAll('.switch button').forEach(b => b.addEventListener('click', () => {
+  plat = b.dataset.p; pillarFilter = 'all';
+  document.querySelectorAll('.switch button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+  if (DATA) render();
+  try { history.replaceState(null, '', '#' + plat); } catch (e) {}
+}));
+$('topSeg').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  topRange = b.dataset.r;
+  document.querySelectorAll('#topSeg button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+  renderTop(DATA.platforms[plat]);
+});
+$('postFilters').addEventListener('click', e => {
+  const b = e.target.closest('.pill'); if (!b) return;
+  pillarFilter = b.dataset.k; renderPosts(DATA.platforms[plat]);
+});
+
+if (location.hash === '#tiktok') { plat = 'tiktok'; document.querySelectorAll('.switch button').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.p === 'tiktok'))); }
 load();
 </script>
 </body>
