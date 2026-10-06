@@ -4,7 +4,7 @@ let plannerView = localStorage.getItem('jomContentPlannerView') === 'board' ? 'b
 let plannerPage = 1, plannerFilterKey = '', selectedPlannerDate = '';
 let editorSaving = false, editorBaseline = '', editorDraftKey = '', editorReturnFocus = null;
 let editorCreateId = '', editorCreateAttempted = false;
-const editorFields = ['mPostId','mPlatform','mTitle','mCaption','mDate','mTime','mPillar','mStatus','mNotes'];
+const editorFields = ['mPostId','mPlatform','mTitle','mCaption','mActualTitle','mActualContent','mPostedUrl','mDate','mTime','mPillar','mStatus','mNotes'];
 const statusLabels = {draft:'Draft',scheduled:'Scheduled',posted:'Posted',failed:'Failed'};
 const statusOf = post => post.status === 'published' ? 'posted' : (post.status || 'draft');
 const isDone = post => statusOf(post) === 'posted';
@@ -85,7 +85,7 @@ function getPlannerPosts() {
 }
 function plannerCard(post,index,board=false) {
   const status=statusOf(post), label=statusLabels[status]||status;
-  return `<button class="${board?'board-card':'planner-row'}" data-post-id="${esc(post.id)}" style="--i:${index}" aria-label="Edit ${esc(post.title||'Tanpa tajuk')}"><span class="post-platform-icon ${esc(post.platform)}" title="${esc(PLATFORM_NAMES[post.platform]||post.platform)}">${post.platform==='threads'?'@':UI_ICONS.note}</span><span class="planner-copy"><strong>${esc(post.title||'Tanpa tajuk')}</strong><small><span class="pillar-mini" style="--pillar-color:${getPillarColor(post.pillar)}">${esc(post.pillar||'Tiada pillar')}</span>${post.approved?' · Approved':''}</small></span><span class="planner-date">${post.date?esc(formatDate(post.date))+' '+esc(post.date.slice(0,4)):'Belum bertarikh'}<small>${esc(post.time||'Masa belum ditetapkan')}</small></span>${board?'':`<span class="p-status status-${Object.hasOwn(statusLabels,status)?status:'draft'}">${esc(label)}</span><span class="row-chevron">↗</span>`}</button>`;
+  return `<button class="${board?'board-card':'planner-row'}" data-post-id="${esc(post.id)}" style="--i:${index}" aria-label="Edit ${esc(post.title||'Tanpa tajuk')}"><span class="post-platform-icon ${esc(post.platform)}" title="${esc(PLATFORM_NAMES[post.platform]||post.platform)}">${post.platform==='threads'?'@':UI_ICONS.note}</span><span class="planner-copy"><strong>${esc(post.actualTitle||post.title||'Tanpa tajuk')}</strong><small>${post.actualContent?`<span class="actual-chip" title="Content sebenar dah direkod${post.actualTitle&&post.actualTitle!==post.title?' (tajuk lain daripada cadangan)':''}">${UI_ICONS.check.replace(/width="18" height="18"/,'width="11" height="11"')}Dah post${post.actualTitle&&post.actualTitle!==post.title?' · tajuk lain':''}</span>`:''}<span class="pillar-mini" style="--pillar-color:${getPillarColor(post.pillar)}">${esc(post.pillar||'Tiada pillar')}</span>${post.approved?' · Approved':''}</small></span><span class="planner-date">${post.date?esc(formatDate(post.date))+' '+esc(post.date.slice(0,4)):'Belum bertarikh'}<small>${esc(post.time||'Masa belum ditetapkan')}</small></span>${board?'':`<span class="p-status status-${Object.hasOwn(statusLabels,status)?status:'draft'}">${esc(label)}</span><span class="row-chevron">↗</span>`}</button>`;
 }
 renderDashTimeline = function() {
   if(!ui('plannerPlatform')) return;
@@ -142,7 +142,8 @@ function closeEditorSafely(){
   ui('postModal').classList.remove('open');restoreEditorFocus();return true;
 }
 function setEditorBusy(busy){editorSaving=busy;ui('postModal').setAttribute('aria-busy',String(busy));ui('postModal').querySelectorAll('input,textarea,select,button').forEach(el=>el.disabled=busy);ui('savePostButton').textContent=busy?'Menyimpan…':'Simpan post';}
-function updateCaptionCount(){const count=Array.from(ui('mCaption').value).length;ui('captionCount').textContent=count+' aksara';}
+function updateCaptionCount(){const count=Array.from(ui('mCaption').value).length;ui('captionCount').textContent=count+' aksara';ui('actualCount').textContent=Array.from(ui('mActualContent').value).length+' aksara';}
+function copySuggestedToActual(){const box=ui('mActualContent');if(box.value.trim()&&!confirm('Gantikan content sebenar dgn cadangan?'))return;box.value=ui('mCaption').value;if(!ui('mActualTitle').value.trim())ui('mActualTitle').value=ui('mTitle').value;updateCaptionCount();rememberEditorDraft();showToast('Cadangan disalin. Edit ikut apa yang kau post.','info');}
 function changeEditorPlatform(){const value=ui('mPillar').value;ui('mPillar').replaceChildren(...workspacePillars(ui('mPlatform').value).map(p=>new Option(p,p)));if([...ui('mPillar').options].some(o=>o.value===value))ui('mPillar').value=value;rememberEditorDraft();}
 async function copyCaption(){try{await navigator.clipboard.writeText(ui('mCaption').value);showToast('Caption disalin.','success');}catch{ui('mCaption').select();showToast('Pilih Copy untuk salin caption.','info');}}
 

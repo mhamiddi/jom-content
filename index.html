@@ -188,7 +188,7 @@ canvas{display:block;max-width:100%}
 .modal h3{font-size:17px;font-weight:700;margin-bottom:var(--space-lg);letter-spacing:-.2px}
 .form-group{margin-bottom:var(--space-lg)}
 .form-group label{font-size:12px;font-weight:600;color:var(--text2);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
-.form-group input[type="text"],.form-group input[type="date"],.form-group input[type="time"],.form-group input[type="number"],.form-group select,.form-group textarea{width:100%;min-width:0;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;background:var(--surface);color:var(--text);font-family:inherit;transition:all var(--trans)}
+.form-group input[type="text"],.form-group input[type="url"],.form-group input[type="date"],.form-group input[type="time"],.form-group input[type="number"],.form-group select,.form-group textarea{width:100%;min-width:0;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;background:var(--surface);color:var(--text);font-family:inherit;transition:all var(--trans)}
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.08)}
 .form-group input.field-error{border-color:var(--danger);box-shadow:0 0 0 3px rgba(220,38,38,.1)}
 .field-error-message{display:none;margin-top:5px;color:var(--danger);font-size:11px;font-weight:500}.field-error-message.visible{display:block}
@@ -508,14 +508,27 @@ canvas{display:block;max-width:100%}
   <div class="form-group"><label for="mPlatform">Platform</label><select id="mPlatform" onchange="changeEditorPlatform()"><option value="threads">Threads</option><option value="tiktok">TikTok</option></select></div>
   <div id="draftRecovery" class="draft-recovery" hidden></div>
   <div class="form-group">
-    <label>Tajuk / Content Idea</label>
+    <label for="mTitle">Tajuk cadangan</label>
     <input type="text" id="mTitle" placeholder="cth: Info rawatan jerawat">
     <div class="field-error-message" id="mTitleError">Sila isi tajuk post.</div>
   </div>
   <div class="form-group">
-    <label for="mCaption">Script / Caption</label>
+    <label for="mCaption">Script / Caption cadangan (rujukan)</label>
     <textarea id="mCaption" placeholder="Tulis caption penuh..."></textarea>
     <div class="editor-caption-meta"><span id="captionCount">0 aksara</span><button type="button" class="text-button" onclick="copyCaption()">Salin caption</button></div>
+  </div>
+  <div class="form-group actual-group" id="actualGroup">
+    <div class="actual-head">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      <div><strong>Yang aku betul2 post</strong><small>Isi lepas post. Cadangan di atas ialah rujukan, bahagian ni yang sistem belajar untuk draf lain.</small></div>
+    </div>
+    <label for="mActualTitle">Tajuk sebenar</label>
+    <input type="text" id="mActualTitle" placeholder="Kosongkan kalau sama dgn tajuk cadangan">
+    <label for="mActualContent">Content sebenar (script / caption)</label>
+    <textarea id="mActualContent" placeholder="Tampal apa yang kau betul2 post..."></textarea>
+    <div class="editor-caption-meta"><span id="actualCount">0 aksara</span><button type="button" class="text-button" onclick="copySuggestedToActual()">Salin cadangan ke sini</button></div>
+    <label for="mPostedUrl">Link post (optional)</label>
+    <input type="url" id="mPostedUrl" placeholder="https://www.threads.com/... atau https://www.tiktok.com/...">
   </div>
   <div class="form-row">
     <div class="form-group"><label>Tarikh</label><input type="date" id="mDate"><div class="field-error-message" id="mDateError">Sila pilih tarikh.</div></div>
@@ -1087,6 +1100,9 @@ function openModal(platform, postId, prefillDate) {
     document.getElementById('mPostId').value = postId;
     document.getElementById('mTitle').value = post.title || '';
     document.getElementById('mCaption').value = post.caption || '';
+    document.getElementById('mActualTitle').value = post.actualTitle || '';
+    document.getElementById('mActualContent').value = post.actualContent || '';
+    document.getElementById('mPostedUrl').value = post.postedUrl || '';
     document.getElementById('mDate').value = post.date || '';
     document.getElementById('mTime').value = post.time || '';
     sel.value = post.pillar || '';
@@ -1102,6 +1118,9 @@ function openModal(platform, postId, prefillDate) {
     document.getElementById('mPostId').value = '';
     document.getElementById('mTitle').value = '';
     document.getElementById('mCaption').value = '';
+    document.getElementById('mActualTitle').value = '';
+    document.getElementById('mActualContent').value = '';
+    document.getElementById('mPostedUrl').value = '';
     document.getElementById('mDate').value = prefillDate || todayStr();
     document.getElementById('mTime').value = '12:00';
     sel.value = workspacePillars(p)[0] || '';
@@ -1143,6 +1162,9 @@ async function savePost() {
   const data = {
     title, date,
     caption: document.getElementById('mCaption').value.trim(),
+    actualTitle: document.getElementById('mActualTitle').value.trim(),
+    actualContent: document.getElementById('mActualContent').value.trim(),
+    postedUrl: document.getElementById('mPostedUrl').value.trim(),
     time: document.getElementById('mTime').value,
     pillar: document.getElementById('mPillar').value,
     status: document.getElementById('mStatus').value,
@@ -1219,7 +1241,7 @@ function duplicatePost() {
   if (!id) return;
   const orig = state.posts.find(x => x.id === id);
   if (!orig) return;
-  const dupe = {...orig, id:Date.now()+'_'+Math.random().toString(36).slice(2,7), title:(orig.title||'')+'(Salinan)', status:'draft', approved:false, workspace:state.workspace, client:state.workspace};
+  const dupe = {...orig, id:Date.now()+'_'+Math.random().toString(36).slice(2,7), title:(orig.title||'')+'(Salinan)', status:'draft', approved:false, actualTitle:'', actualContent:'', postedUrl:'', actualUpdatedAt:'', workspace:state.workspace, client:state.workspace};
   state.posts.push(dupe);
   saveState(); closeModal(); renderAll();
   showToast('Post diduplikat!','success');

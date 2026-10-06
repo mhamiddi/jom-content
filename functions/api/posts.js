@@ -11,6 +11,13 @@
  * Key: "posts" — JSON array of all posts
  */
 
+// What Middi actually posted (may differ from the suggested title/caption). Kept as plain strings.
+const ACTUAL_FIELDS = ['actualTitle', 'actualContent', 'postedUrl'];
+const ACTUAL_MAX = 20000;
+function cleanActual(value) {
+  return String(value == null ? '' : value).slice(0, ACTUAL_MAX).trim();
+}
+
 const PILLAR_ALIASES = {
   'google ads': 'Google Ads & Marketing',
   'google ads & marketing': 'Google Ads & Marketing',
@@ -112,6 +119,10 @@ export async function onRequest(context) {
         approved: body.approved || false,
         notes: body.notes || '',
         images: body.images || [],
+        actualTitle: cleanActual(body.actualTitle),
+        actualContent: cleanActual(body.actualContent),
+        postedUrl: cleanActual(body.postedUrl),
+        actualUpdatedAt: (body.actualTitle || body.actualContent) ? new Date().toISOString() : '',
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
       };
@@ -150,6 +161,17 @@ export async function onRequest(context) {
         if (body[key] !== undefined) {
           posts[index][key] = body[key];
         }
+      }
+      let actualChanged = false;
+      for (const key of ACTUAL_FIELDS) {
+        if (body[key] !== undefined) {
+          const next = cleanActual(body[key]);
+          if (next !== (posts[index][key] || '')) actualChanged = true;
+          posts[index][key] = next;
+        }
+      }
+      if (actualChanged && (posts[index].actualTitle || posts[index].actualContent)) {
+        posts[index].actualUpdatedAt = new Date().toISOString();
       }
       posts[index].pillar = canonicalPillar(posts[index].pillar);
       posts[index].updatedAt = new Date().toISOString();
