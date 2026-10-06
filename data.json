@@ -1,84 +1,84 @@
 {
-  "generated_at": "2026-10-05T07:48:59.863847+00:00",
-  "median_weighted_30d": 1.0,
-  "median_views_30d": 257.0,
+  "generated_at": "2026-10-06T01:45:41.834312+00:00",
+  "median_weighted_30d": 1,
+  "median_views_30d": 256,
   "weekly": {
     "others": {
-      "posts": 39,
-      "inter": 29,
+      "posts": 37,
+      "inter": 32,
       "shares": 1,
-      "views": 3414,
-      "avg_score": 25.7,
-      "avg_inter": 0.7
+      "views": 2638,
+      "avg_score": 30.0,
+      "avg_inter": 0.9
     },
     "agentic-ai": {
-      "posts": 10,
-      "inter": 13,
-      "shares": 0,
-      "views": 4556,
-      "avg_score": 33.5,
-      "avg_inter": 1.3
+      "posts": 12,
+      "inter": 53,
+      "shares": 1,
+      "views": 4682,
+      "avg_score": 43.5,
+      "avg_inter": 4.4
+    },
+    "google-ads": {
+      "posts": 7,
+      "inter": 12,
+      "shares": 1,
+      "views": 489,
+      "avg_score": 45.8,
+      "avg_inter": 1.7
     },
     "digital-marketing": {
       "posts": 4,
       "inter": 6,
       "shares": 0,
-      "views": 229,
-      "avg_score": 41.3,
+      "views": 233,
+      "avg_score": 41.4,
       "avg_inter": 1.5
-    },
-    "google-ads": {
-      "posts": 4,
-      "inter": 1,
-      "shares": 0,
-      "views": 489,
-      "avg_score": 20.9,
-      "avg_inter": 0.2
     }
   },
   "monthly": {
     "others": {
       "posts": 141,
-      "inter": 4340,
-      "shares": 260,
-      "views": 19757,
-      "avg_score": 34.9,
-      "avg_inter": 30.8
+      "inter": 298,
+      "shares": 10,
+      "views": 19444,
+      "avg_score": 35.2,
+      "avg_inter": 2.1
     },
     "agentic-ai": {
       "posts": 58,
-      "inter": 348,
-      "shares": 33,
-      "views": 17254,
-      "avg_score": 50.3,
-      "avg_inter": 6.0
+      "inter": 385,
+      "shares": 34,
+      "views": 17146,
+      "avg_score": 51.4,
+      "avg_inter": 6.6
+    },
+    "google-ads": {
+      "posts": 30,
+      "inter": 124,
+      "shares": 14,
+      "views": 5669,
+      "avg_score": 47.3,
+      "avg_inter": 4.1
     },
     "digital-marketing": {
       "posts": 24,
       "inter": 362,
       "shares": 81,
-      "views": 22907,
-      "avg_score": 46.3,
+      "views": 22911,
+      "avg_score": 46.4,
       "avg_inter": 15.1
-    },
-    "google-ads": {
-      "posts": 27,
-      "inter": 113,
-      "shares": 13,
-      "views": 5669,
-      "avg_score": 43.8,
-      "avg_inter": 4.2
     }
   },
   "pillars": [
     {
       "pillar": "google-ads",
-      "posts": 27,
-      "pct": 11,
+      "posts": 30,
+      "pct": 12,
       "target": 40,
-      "gap": -29,
-      "avg_score": 43.8,
-      "avg_inter": 4.2
+      "gap": -28,
+      "avg_score": 47.3,
+      "avg_inter": 4.1
     },
     {
       "pillar": "agentic-ai",
@@ -86,16 +86,16 @@
       "pct": 23,
       "target": 30,
       "gap": -7,
-      "avg_score": 50.3,
-      "avg_inter": 6.0
+      "avg_score": 51.4,
+      "avg_inter": 6.6
     },
     {
       "pillar": "digital-marketing",
       "posts": 24,
-      "pct": 10,
+      "pct": 9,
       "target": 20,
-      "gap": -10,
-      "avg_score": 46.3,
+      "gap": -11,
+      "avg_score": 46.4,
       "avg_inter": 15.1
     },
     {
@@ -104,8 +104,8 @@
       "pct": 56,
       "target": 10,
       "gap": 46,
-      "avg_score": 34.9,
-      "avg_inter": 30.8
+      "avg_score": 35.2,
+      "avg_inter": 2.1
     }
   ],
   "pillar_targets": {
@@ -114,9 +114,37 @@
     "digital-marketing": 0.2,
     "others": 0.1
   },
-  "posts_7d": 57,
-  "posts_30d": 250,
+  "posts_7d": 60,
+  "posts_30d": 253,
   "top_7d": [
+    {
+      "id": 1511,
+      "published_at": "2026-10-05T14:51:39.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 17,
+      "comments": 3,
+      "shares": 1,
+      "views": 0,
+      "text": "Fuhh mantap arr T3 Code.\nT3 Code + Claude Code\nHermes + Codex Auth\nPi Agent + Deepseek v4.1 Flash",
+      "weighted": 26,
+      "score": 96.3
+    },
+    {
+      "id": 1512,
+      "published_at": "2026-10-05T06:43:52.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 15,
+      "comments": 4,
+      "shares": 0,
+      "views": 0,
+      "text": "Pembelian paling berbaloi aku tahun ni still macbook air m4. Berbaloi gila.\nLagi2 lepas ai harness start booming. Fuh, lagi sedap guna.",
+      "weighted": 23,
+      "score": 95.8
+    },
     {
       "id": 1477,
       "published_at": "2026-10-01T14:24:01.000Z",
@@ -130,6 +158,20 @@
       "text": "Suami sendiri pilih, lepas tu tanya orang ramai.\u00a0\u00a0Translate",
       "weighted": 16,
       "score": 94.1
+    },
+    {
+      "id": 1513,
+      "published_at": "2026-10-05T06:40:58.000Z",
+      "pillar": "google-ads",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 2,
+      "comments": 2,
+      "shares": 1,
+      "views": 0,
+      "text": "Kau tak perlu invent new way, new method, ground-breaking copywriting untuk buat ads power dapat sales macam air terjun.\nBila aku setup google ads, sebelum aku start, aku tengok keliling dulu. Faham tak?",
+      "weighted": 9,
+      "score": 90.0
     },
     {
       "id": 1503,
@@ -160,6 +202,20 @@
       "score": 83.3
     },
     {
+      "id": 1514,
+      "published_at": "2026-10-05T06:25:28.000Z",
+      "pillar": "google-ads",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 4,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Dental clinic yang nak run google ads jangan buat silap ni masa setup.\n1/2",
+      "weighted": 4,
+      "score": 80.0
+    },
+    {
       "id": 1480,
       "published_at": "2026-10-01T12:18:23.000Z",
       "pillar": "digital-marketing",
@@ -188,22 +244,8 @@
       "score": 75.0
     },
     {
-      "id": 1505,
-      "published_at": "2026-10-05T03:31:36.000Z",
-      "pillar": "digital-marketing",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 2,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "\u201cLate bloomer\u201d.\nAda certain content kau rasa dia slow, tak engaging, membazir.\nTapi kau tahu tak, kadang2 content macam ni lah yg convert. Tak semua content wajib meletop. Ada content yg dia sekadar perlu ada bila orang cari dia jumpa kita melalui content tu.",
-      "weighted": 2,
-      "score": 66.7
-    },
-    {
-      "id": 1498,
-      "published_at": "2026-10-04T15:48:55.000Z",
+      "id": 1510,
+      "published_at": "2026-10-05T15:32:23.000Z",
       "pillar": "others",
       "pillar_source": "label",
       "format": "commentary",
@@ -211,68 +253,12 @@
       "comments": 0,
       "shares": 0,
       "views": 0,
-      "text": "Boleh post on demand dah lepas ni \ud83d\ude02\u00a01/2",
-      "weighted": 2,
-      "score": 66.7
-    },
-    {
-      "id": 1501,
-      "published_at": "2026-10-04T11:49:44.000Z",
-      "pillar": "others",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 0,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Browser built sendiri ke? Setakat ni pi aku still guna agent browser tu \ud83d\ude02",
-      "weighted": 2,
-      "score": 66.7
-    },
-    {
-      "id": 1478,
-      "published_at": "2026-10-01T12:24:57.000Z",
-      "pillar": "others",
-      "pillar_source": "label",
-      "format": "question",
-      "likes": 0,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Contabo india pun dah habis?",
-      "weighted": 2,
-      "score": 66.7
-    },
-    {
-      "id": 1479,
-      "published_at": "2026-10-01T12:23:51.000Z",
-      "pillar": "others",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 0,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Okay ja europe. Saya hetzner europe, murah. Latency tak terasa sangat",
+      "text": "Betul lah orang cakap, makin dalam kita belajar, makin rasa bodoh tu.",
       "weighted": 2,
       "score": 66.7
     }
   ],
   "top_30d": [
-    {
-      "id": 1256,
-      "published_at": "2026-09-05T23:33:50.000Z",
-      "pillar": "others",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 3700,
-      "comments": 96,
-      "shares": 250,
-      "views": 0,
-      "text": "Wife kuat meracun, skang aku pulak sangkut dengan uniqlo ni. Seluar dia selesaaaa.\u00a0\u00a0\nTranslate\nmocha.bahagia\nUNIQLO\n09/06/26\nBetul ke ni darkside uniqlo,ada sapa2 nampak tak\ud83e\udee3\ud83e\udee0\u00a0\u00a0\nTranslate\n3.9K",
-      "weighted": 4642,
-      "score": 100.0
-    },
     {
       "id": 1267,
       "published_at": "2026-09-07T05:52:25.000Z",
@@ -358,6 +344,34 @@
       "score": 96.4
     },
     {
+      "id": 1511,
+      "published_at": "2026-10-05T14:51:39.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 17,
+      "comments": 3,
+      "shares": 1,
+      "views": 0,
+      "text": "Fuhh mantap arr T3 Code.\nT3 Code + Claude Code\nHermes + Codex Auth\nPi Agent + Deepseek v4.1 Flash",
+      "weighted": 26,
+      "score": 96.3
+    },
+    {
+      "id": 1512,
+      "published_at": "2026-10-05T06:43:52.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 15,
+      "comments": 4,
+      "shares": 0,
+      "views": 0,
+      "text": "Pembelian paling berbaloi aku tahun ni still macbook air m4. Berbaloi gila.\nLagi2 lepas ai harness start booming. Fuh, lagi sedap guna.",
+      "weighted": 23,
+      "score": 95.8
+    },
+    {
       "id": 1477,
       "published_at": "2026-10-01T14:24:01.000Z",
       "pillar": "others",
@@ -384,34 +398,20 @@
       "text": "Part 1 kat sini. Pantai belakang Timur Bay \ud83d\udc47\u00a0\u00a0\nTranslate\n\u00a0\n2\n/\n2\n09/06/26\nKuantan darul healing \u2764\ufe0f\u200d\ud83e\ude79",
       "weighted": 13,
       "score": 92.9
-    },
-    {
-      "id": 1268,
-      "published_at": "2026-09-08T16:31:42.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 9,
-      "comments": 0,
-      "shares": 1,
-      "views": 0,
-      "text": "Astra adalah model.\nChatGPT Codex adalah harness official ChatGPT.\nModel + Harness -> Boleh control computer.\nOpenClaw adalah Harness.\nAstra + OpenClaw -> boleh control computer jugak.\u00a0\u00a0Translate",
-      "weighted": 12,
-      "score": 92.3
     }
   ],
   "recommendations": [
     {
       "type": "pillar-mix",
       "title": "Pillar mix vs target 40/30/20/10",
-      "body": "google-ads 11% (target 40%) | agentic-ai 23% (target 30%) | digital-marketing 10% (target 20%) | others 56% (target 10%)",
-      "metric": 250
+      "body": "google-ads 12% (target 40%) | agentic-ai 23% (target 30%) | digital-marketing 9% (target 20%) | others 56% (target 10%)",
+      "metric": 253
     },
     {
       "type": "pillar-under",
       "title": "Pillar kurang: google-ads",
-      "body": "google-ads cuma 11% (target 40%). Naikkan volume je tak cukup. Kalau pillar ni engagement rendah, tukar bentuk: AI sebagai tool, masalah bisnes sebagai cerita.",
-      "metric": 11
+      "body": "google-ads cuma 12% (target 40%). Naikkan volume je tak cukup. Kalau pillar ni engagement rendah, tukar bentuk: AI sebagai tool, masalah bisnes sebagai cerita.",
+      "metric": 12
     },
     {
       "type": "pillar-over",
@@ -422,14 +422,14 @@
     {
       "type": "pillar-fix",
       "title": "Tingkatkan: others",
-      "body": "others avg score 34.9 dari 141 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
-      "metric": 34.9
+      "body": "others avg score 35.2 dari 141 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
+      "metric": 35.2
     },
     {
       "type": "top-pillar-week",
-      "title": "Pillar terbaik minggu ni: digital-marketing",
-      "body": "digital-marketing avg score 41.3 dari 4 posts. Kekalkan bentuk ni.",
-      "metric": 41.3
+      "title": "Pillar terbaik minggu ni: google-ads",
+      "body": "google-ads avg score 45.8 dari 7 posts. Kekalkan bentuk ni.",
+      "metric": 45.8
     }
   ]
 }
