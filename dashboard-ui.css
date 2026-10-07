@@ -42,3 +42,11 @@ main{max-width:1550px;width:100%;margin:auto;padding:30px 34px 60px}.section{mar
 .rejected-group .actual-head{color:#7c3aed}
 .rejected-group label{margin-top:12px}
 .rejected-group textarea{min-height:96px}
+
+.rt-label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin:12px 0 2px}
+.reject-tags{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 2px}
+.reject-tag{width:auto;display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:7px 13px;border-radius:999px;border:1.5px solid var(--border);background:var(--surface,#fff);color:var(--text);font:600 12.5px 'DM Sans',sans-serif;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.reject-tag:hover{border-color:#7c3aed}
+.reject-tag.on{background:#ede9fe;border-color:#7c3aed;color:#5b21b6}
+.reject-tag:focus-visible{outline:3px solid #c4b5fd;outline-offset:2px}
+@media(pointer:coarse){.reject-tag{min-height:44px}}

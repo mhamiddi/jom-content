@@ -582,7 +582,10 @@ canvas{display:block;max-width:100%}
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
       <div><strong>Kenapa ditolak?</strong><small>Tulis sebab sejujurnya. Hermes baca dan analisis setiap malam supaya cadangan akan datang lebih tepat.</small></div>
     </div>
-    <label for="mRejectedReason">Sebab (optional, tapi sangat membantu)</label>
+    <span class="rt-label" id="rejectTagsLabel">Pilih sebab (boleh lebih daripada satu)</span>
+    <div class="reject-tags" id="rejectTags" role="group" aria-labelledby="rejectTagsLabel"></div>
+    <input type="hidden" id="mRejectedTags">
+    <label for="mRejectedReason">Atau tulis sendiri (optional)</label>
     <textarea id="mRejectedReason" placeholder="cth: topik dah banyak cover, bunyi macam AI, angle tak kena dgn audience, fakta tak tepat..."></textarea>
   </div>
   <div class="form-group">
@@ -1129,6 +1132,7 @@ function openModal(platform, postId, prefillDate) {
     document.getElementById('mActualTitle').value = post.actualTitle || '';
     document.getElementById('mActualContent').value = post.actualContent || '';
     document.getElementById('mRejectedReason').value = post.rejectedReason || '';
+    document.getElementById('mRejectedTags').value = (post.rejectedTags || []).join(',');
     document.getElementById('mPostedUrl').value = post.postedUrl || '';
     document.getElementById('mDate').value = post.date || '';
     document.getElementById('mTime').value = post.time || '';
@@ -1148,6 +1152,7 @@ function openModal(platform, postId, prefillDate) {
     document.getElementById('mActualTitle').value = '';
     document.getElementById('mActualContent').value = '';
     document.getElementById('mRejectedReason').value = '';
+    document.getElementById('mRejectedTags').value = '';
     document.getElementById('mPostedUrl').value = '';
     document.getElementById('mDate').value = prefillDate || todayStr();
     document.getElementById('mTime').value = '12:00';
@@ -1193,6 +1198,7 @@ async function savePost() {
     actualTitle: document.getElementById('mActualTitle').value.trim(),
     actualContent: document.getElementById('mActualContent').value.trim(),
     rejectedReason: document.getElementById('mRejectedReason').value.trim(),
+    rejectedTags: document.getElementById('mRejectedTags').value.split(',').filter(Boolean),
     postedUrl: document.getElementById('mPostedUrl').value.trim(),
     time: document.getElementById('mTime').value,
     pillar: document.getElementById('mPillar').value,
@@ -1270,7 +1276,7 @@ function duplicatePost() {
   if (!id) return;
   const orig = state.posts.find(x => x.id === id);
   if (!orig) return;
-  const dupe = {...orig, id:Date.now()+'_'+Math.random().toString(36).slice(2,7), title:(orig.title||'')+'(Salinan)', status:'draft', approved:false, actualTitle:'', actualContent:'', postedUrl:'', actualUpdatedAt:'', rejectedReason:'', rejectedAt:'', workspace:state.workspace, client:state.workspace};
+  const dupe = {...orig, id:Date.now()+'_'+Math.random().toString(36).slice(2,7), title:(orig.title||'')+'(Salinan)', status:'draft', approved:false, actualTitle:'', actualContent:'', postedUrl:'', actualUpdatedAt:'', rejectedReason:'', rejectedTags:[], rejectedAt:'', workspace:state.workspace, client:state.workspace};
   state.posts.push(dupe);
   saveState(); closeModal(); renderAll();
   showToast('Post diduplikat!','success');

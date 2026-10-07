@@ -15,6 +15,13 @@
 const ACTUAL_FIELDS = ['actualTitle', 'actualContent', 'postedUrl'];
 // Why a suggestion was rejected (Hermes analyses these every night). rejectedAt is set by the server.
 const REJECT_MAX = 5000;
+// Structured rejection reasons (keys such as too_short, generic, ai_tone). Free-form keys are allowed
+// but must look like a slug, so the analysis can count them reliably.
+const TAG_RE = /^[a-z][a-z_]{1,23}$/;
+function cleanTags(value) {
+  const list = Array.isArray(value) ? value : String(value == null ? '' : value).split(',');
+  return [...new Set(list.map((x) => String(x).trim().toLowerCase()).filter((x) => TAG_RE.test(x)))].slice(0, 8);
+}
 function cleanReason(value) {
   return String(value == null ? '' : value).slice(0, REJECT_MAX).trim();
 }
@@ -129,6 +136,7 @@ export async function onRequest(context) {
         postedUrl: cleanActual(body.postedUrl),
         actualUpdatedAt: (body.actualTitle || body.actualContent) ? new Date().toISOString() : '',
         rejectedReason: cleanReason(body.rejectedReason),
+        rejectedTags: cleanTags(body.rejectedTags),
         rejectedAt: (body.status === 'rejected') ? new Date().toISOString() : '',
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
@@ -171,6 +179,7 @@ export async function onRequest(context) {
         }
       }
       if (body.rejectedReason !== undefined) posts[index].rejectedReason = cleanReason(body.rejectedReason);
+      if (body.rejectedTags !== undefined) posts[index].rejectedTags = cleanTags(body.rejectedTags);
       if (posts[index].status === 'rejected') {
         if (previousStatus !== 'rejected' || !posts[index].rejectedAt) posts[index].rejectedAt = new Date().toISOString();
       } else if (posts[index].rejectedAt) {
