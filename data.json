@@ -1,111 +1,111 @@
 {
-  "generated_at": "2026-10-06T01:45:41.834312+00:00",
+  "generated_at": "2026-10-07T01:45:18.051609+00:00",
   "median_weighted_30d": 1,
-  "median_views_30d": 256,
+  "median_views_30d": 253.0,
   "weekly": {
     "others": {
-      "posts": 37,
-      "inter": 32,
+      "posts": 34,
+      "inter": 28,
       "shares": 1,
-      "views": 2638,
-      "avg_score": 30.0,
-      "avg_inter": 0.9
+      "views": 2634,
+      "avg_score": 27.5,
+      "avg_inter": 0.8
     },
     "agentic-ai": {
-      "posts": 12,
-      "inter": 53,
+      "posts": 11,
+      "inter": 69,
       "shares": 1,
-      "views": 4682,
-      "avg_score": 43.5,
-      "avg_inter": 4.4
+      "views": 7922,
+      "avg_score": 54.5,
+      "avg_inter": 6.3
     },
     "google-ads": {
       "posts": 7,
       "inter": 12,
       "shares": 1,
-      "views": 489,
-      "avg_score": 45.8,
+      "views": 1714,
+      "avg_score": 42.6,
       "avg_inter": 1.7
     },
     "digital-marketing": {
       "posts": 4,
       "inter": 6,
       "shares": 0,
-      "views": 233,
-      "avg_score": 41.4,
+      "views": 429,
+      "avg_score": 39.7,
       "avg_inter": 1.5
     }
   },
   "monthly": {
     "others": {
-      "posts": 141,
-      "inter": 298,
-      "shares": 10,
-      "views": 19444,
-      "avg_score": 35.2,
-      "avg_inter": 2.1
+      "posts": 139,
+      "inter": 282,
+      "shares": 9,
+      "views": 19834,
+      "avg_score": 34.0,
+      "avg_inter": 2.0
     },
     "agentic-ai": {
-      "posts": 58,
-      "inter": 385,
+      "posts": 60,
+      "inter": 401,
       "shares": 34,
-      "views": 17146,
-      "avg_score": 51.4,
-      "avg_inter": 6.6
+      "views": 21481,
+      "avg_score": 51.8,
+      "avg_inter": 6.7
     },
     "google-ads": {
-      "posts": 30,
-      "inter": 124,
+      "posts": 29,
+      "inter": 120,
       "shares": 14,
-      "views": 5669,
-      "avg_score": 47.3,
+      "views": 6894,
+      "avg_score": 45.4,
       "avg_inter": 4.1
     },
     "digital-marketing": {
-      "posts": 24,
-      "inter": 362,
+      "posts": 23,
+      "inter": 361,
       "shares": 81,
-      "views": 22911,
-      "avg_score": 46.4,
-      "avg_inter": 15.1
+      "views": 22782,
+      "avg_score": 45.9,
+      "avg_inter": 15.7
     }
   },
   "pillars": [
     {
       "pillar": "google-ads",
-      "posts": 30,
+      "posts": 29,
       "pct": 12,
       "target": 40,
       "gap": -28,
-      "avg_score": 47.3,
+      "avg_score": 45.4,
       "avg_inter": 4.1
     },
     {
       "pillar": "agentic-ai",
-      "posts": 58,
-      "pct": 23,
+      "posts": 60,
+      "pct": 24,
       "target": 30,
-      "gap": -7,
-      "avg_score": 51.4,
-      "avg_inter": 6.6
+      "gap": -6,
+      "avg_score": 51.8,
+      "avg_inter": 6.7
     },
     {
       "pillar": "digital-marketing",
-      "posts": 24,
+      "posts": 23,
       "pct": 9,
       "target": 20,
       "gap": -11,
-      "avg_score": 46.4,
-      "avg_inter": 15.1
+      "avg_score": 45.9,
+      "avg_inter": 15.7
     },
     {
       "pillar": "others",
-      "posts": 141,
-      "pct": 56,
+      "posts": 139,
+      "pct": 55,
       "target": 10,
-      "gap": 46,
-      "avg_score": 35.2,
-      "avg_inter": 2.1
+      "gap": 45,
+      "avg_score": 34.0,
+      "avg_inter": 2.0
     }
   ],
   "pillar_targets": {
@@ -114,34 +114,20 @@
     "digital-marketing": 0.2,
     "others": 0.1
   },
-  "posts_7d": 60,
-  "posts_30d": 253,
+  "posts_7d": 56,
+  "posts_30d": 251,
   "top_7d": [
     {
-      "id": 1511,
-      "published_at": "2026-10-05T14:51:39.000Z",
+      "id": 1524,
+      "published_at": "2026-10-06T11:26:21.000Z",
       "pillar": "agentic-ai",
       "pillar_source": "label",
-      "format": "commentary",
-      "likes": 17,
-      "comments": 3,
-      "shares": 1,
-      "views": 0,
-      "text": "Fuhh mantap arr T3 Code.\nT3 Code + Claude Code\nHermes + Codex Auth\nPi Agent + Deepseek v4.1 Flash",
-      "weighted": 26,
-      "score": 96.3
-    },
-    {
-      "id": 1512,
-      "published_at": "2026-10-05T06:43:52.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 15,
-      "comments": 4,
+      "format": "tutorial-howto",
+      "likes": 7,
+      "comments": 8,
       "shares": 0,
       "views": 0,
-      "text": "Pembelian paling berbaloi aku tahun ni still macbook air m4. Berbaloi gila.\nLagi2 lepas ai harness start booming. Fuh, lagi sedap guna.",
+      "text": "Business owner kuantan yang nak belajar mcm mana nak implement Ai dalam bisnes, ada satu open sharing bulan ni dekat Kuantan.\nAku akan share cara guna Ai untuk marketing bisnes, dan mcm mana nak setup. Dah confirm nanti aku roger.\nHari tu ada yg request kan buat sharing, kita nak buat lah ni.",
       "weighted": 23,
       "score": 95.8
     },
@@ -160,18 +146,32 @@
       "score": 94.1
     },
     {
-      "id": 1513,
-      "published_at": "2026-10-05T06:40:58.000Z",
-      "pillar": "google-ads",
+      "id": 1511,
+      "published_at": "2026-10-05T14:51:39.000Z",
+      "pillar": "agentic-ai",
       "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 2,
-      "comments": 2,
+      "format": "commentary",
+      "likes": 17,
+      "comments": 3,
       "shares": 1,
-      "views": 0,
-      "text": "Kau tak perlu invent new way, new method, ground-breaking copywriting untuk buat ads power dapat sales macam air terjun.\nBila aku setup google ads, sebelum aku start, aku tengok keliling dulu. Faham tak?",
-      "weighted": 9,
-      "score": 90.0
+      "views": 2000,
+      "text": "Fuhh mantap arr T3 Code.\nT3 Code + Claude Code\nHermes + Codex Auth\nPi Agent + Deepseek v4.1 Flash",
+      "weighted": 26,
+      "score": 94.0
+    },
+    {
+      "id": 1512,
+      "published_at": "2026-10-05T06:43:52.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 15,
+      "comments": 4,
+      "shares": 0,
+      "views": 1100,
+      "text": "Pembelian paling berbaloi aku tahun ni still macbook air m4. Berbaloi gila.\nLagi2 lepas ai harness start booming. Fuh, lagi sedap guna.",
+      "weighted": 23,
+      "score": 91.5
     },
     {
       "id": 1503,
@@ -182,38 +182,10 @@
       "likes": 7,
       "comments": 0,
       "shares": 0,
-      "views": 0,
+      "views": 1000,
       "text": "Baru ingat nak 20x kan chatGPT. Lepas tu aku ter\u201dcuba\u201d T3 Code.\nNow chatGPT Plus rasanya macam dah cukup utk Hermes aku. Tu pun aku fallback ke deepseek yg memang aku topup regularly.\nUntuk kerja heavy, guna T3 dan claude code. Yang ni rasa lagi mantap. Opus 5.5 dan sonnet 5.5 memang responsive, output nice.\n1/2",
       "weighted": 7,
-      "score": 87.5
-    },
-    {
-      "id": 1506,
-      "published_at": "2026-10-05T02:58:41.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 5,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Kalau kau baru nak guna Hermes, jangan lenjan semua benda nak setel / automate sekaligus.\nKenalpasti dulu mana yg crucial dan bagi highest roi. Spend masa untuk betul2 refine flow dia dan output dia. Baru rasa berbaloi.",
-      "weighted": 5,
-      "score": 83.3
-    },
-    {
-      "id": 1514,
-      "published_at": "2026-10-05T06:25:28.000Z",
-      "pillar": "google-ads",
-      "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 4,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Dental clinic yang nak run google ads jangan buat silap ni masa setup.\n1/2",
-      "weighted": 4,
-      "score": 80.0
+      "score": 85.2
     },
     {
       "id": 1480,
@@ -230,30 +202,58 @@
       "score": 80.0
     },
     {
-      "id": 1460,
-      "published_at": "2026-09-29T14:54:27.000Z",
+      "id": 1513,
+      "published_at": "2026-10-05T06:40:58.000Z",
+      "pillar": "google-ads",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 2,
+      "comments": 2,
+      "shares": 1,
+      "views": 285,
+      "text": "Kau tak perlu invent new way, new method, ground-breaking copywriting untuk buat ads power dapat sales macam air terjun.\nBila aku setup google ads, sebelum aku start, aku tengok keliling dulu. Faham tak?",
+      "weighted": 9,
+      "score": 78.9
+    },
+    {
+      "id": 1514,
+      "published_at": "2026-10-05T06:25:28.000Z",
+      "pillar": "google-ads",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 4,
+      "comments": 0,
+      "shares": 0,
+      "views": 509,
+      "text": "Dental clinic yang nak run google ads jangan buat silap ni masa setup.\n1/2",
+      "weighted": 4,
+      "score": 76.0
+    },
+    {
+      "id": 1506,
+      "published_at": "2026-10-05T02:58:41.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 5,
+      "comments": 0,
+      "shares": 0,
+      "views": 235,
+      "text": "Kalau kau baru nak guna Hermes, jangan lenjan semua benda nak setel / automate sekaligus.\nKenalpasti dulu mana yg crucial dan bagi highest roi. Spend masa untuk betul2 refine flow dia dan output dia. Baru rasa berbaloi.",
+      "weighted": 5,
+      "score": 72.8
+    },
+    {
+      "id": 1517,
+      "published_at": "2026-10-05T15:31:14.000Z",
       "pillar": "others",
       "pillar_source": "label",
       "format": "commentary",
-      "likes": 1,
+      "likes": 0,
       "comments": 1,
       "shares": 0,
       "views": 0,
-      "text": "Betul. Kalau ada yang baca, tu rezeki dia.",
-      "weighted": 3,
-      "score": 75.0
-    },
-    {
-      "id": 1510,
-      "published_at": "2026-10-05T15:32:23.000Z",
-      "pillar": "others",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 2,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Betul lah orang cakap, makin dalam kita belajar, makin rasa bodoh tu.",
+      "text": "Uu terminal chat side by side macam menarik",
       "weighted": 2,
       "score": 66.7
     }
@@ -344,30 +344,16 @@
       "score": 96.4
     },
     {
-      "id": 1511,
-      "published_at": "2026-10-05T14:51:39.000Z",
+      "id": 1524,
+      "published_at": "2026-10-06T11:26:21.000Z",
       "pillar": "agentic-ai",
       "pillar_source": "label",
-      "format": "commentary",
-      "likes": 17,
-      "comments": 3,
-      "shares": 1,
-      "views": 0,
-      "text": "Fuhh mantap arr T3 Code.\nT3 Code + Claude Code\nHermes + Codex Auth\nPi Agent + Deepseek v4.1 Flash",
-      "weighted": 26,
-      "score": 96.3
-    },
-    {
-      "id": 1512,
-      "published_at": "2026-10-05T06:43:52.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 15,
-      "comments": 4,
+      "format": "tutorial-howto",
+      "likes": 7,
+      "comments": 8,
       "shares": 0,
       "views": 0,
-      "text": "Pembelian paling berbaloi aku tahun ni still macbook air m4. Berbaloi gila.\nLagi2 lepas ai harness start booming. Fuh, lagi sedap guna.",
+      "text": "Business owner kuantan yang nak belajar mcm mana nak implement Ai dalam bisnes, ada satu open sharing bulan ni dekat Kuantan.\nAku akan share cara guna Ai untuk marketing bisnes, dan mcm mana nak setup. Dah confirm nanti aku roger.\nHari tu ada yg request kan buat sharing, kita nak buat lah ni.",
       "weighted": 23,
       "score": 95.8
     },
@@ -386,26 +372,40 @@
       "score": 94.1
     },
     {
-      "id": 1249,
-      "published_at": "2026-09-06T10:28:27.000Z",
-      "pillar": "others",
+      "id": 1511,
+      "published_at": "2026-10-05T14:51:39.000Z",
+      "pillar": "agentic-ai",
       "pillar_source": "label",
       "format": "commentary",
-      "likes": 10,
+      "likes": 17,
+      "comments": 3,
+      "shares": 1,
+      "views": 2000,
+      "text": "Fuhh mantap arr T3 Code.\nT3 Code + Claude Code\nHermes + Codex Auth\nPi Agent + Deepseek v4.1 Flash",
+      "weighted": 26,
+      "score": 94.0
+    },
+    {
+      "id": 1268,
+      "published_at": "2026-09-08T16:31:42.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 9,
       "comments": 0,
       "shares": 1,
       "views": 0,
-      "text": "Part 1 kat sini. Pantai belakang Timur Bay \ud83d\udc47\u00a0\u00a0\nTranslate\n\u00a0\n2\n/\n2\n09/06/26\nKuantan darul healing \u2764\ufe0f\u200d\ud83e\ude79",
-      "weighted": 13,
-      "score": 92.9
+      "text": "Astra adalah model.\nChatGPT Codex adalah harness official ChatGPT.\nModel + Harness -> Boleh control computer.\nOpenClaw adalah Harness.\nAstra + OpenClaw -> boleh control computer jugak.\u00a0\u00a0Translate",
+      "weighted": 12,
+      "score": 92.3
     }
   ],
   "recommendations": [
     {
       "type": "pillar-mix",
       "title": "Pillar mix vs target 40/30/20/10",
-      "body": "google-ads 12% (target 40%) | agentic-ai 23% (target 30%) | digital-marketing 9% (target 20%) | others 56% (target 10%)",
-      "metric": 253
+      "body": "google-ads 12% (target 40%) | agentic-ai 24% (target 30%) | digital-marketing 9% (target 20%) | others 55% (target 10%)",
+      "metric": 251
     },
     {
       "type": "pillar-under",
@@ -416,20 +416,20 @@
     {
       "type": "pillar-over",
       "title": "Pillar lebih: others",
-      "body": "others 56% (target 10%). Kurangkan volume, pindah ke pillar yang kurang.",
-      "metric": 56
+      "body": "others 55% (target 10%). Kurangkan volume, pindah ke pillar yang kurang.",
+      "metric": 55
     },
     {
       "type": "pillar-fix",
       "title": "Tingkatkan: others",
-      "body": "others avg score 35.2 dari 141 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
-      "metric": 35.2
+      "body": "others avg score 34.0 dari 139 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
+      "metric": 34.0
     },
     {
       "type": "top-pillar-week",
-      "title": "Pillar terbaik minggu ni: google-ads",
-      "body": "google-ads avg score 45.8 dari 7 posts. Kekalkan bentuk ni.",
-      "metric": 45.8
+      "title": "Pillar terbaik minggu ni: agentic-ai",
+      "body": "agentic-ai avg score 54.5 dari 11 posts. Kekalkan bentuk ni.",
+      "metric": 54.5
     }
   ]
 }
