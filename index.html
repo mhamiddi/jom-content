@@ -96,7 +96,7 @@ main{padding:var(--space-2xl);flex:1}
 .cal-add-btn{display:none;position:absolute;top:2px;right:2px;width:16px;height:16px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.8);color:#1f2937;align-items:center;justify-content:center;font-size:13px;font-weight:700;line-height:1;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.16);z-index:2}
 .cal-day:hover .cal-add-btn{display:flex}
 .post-chip{font-size:10px;padding:3px 6px;border-radius:4px;margin-bottom:2px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;display:block;font-weight:500;border-left:4px solid var(--status-accent,#94a3b8);transition:opacity var(--trans-fast),transform var(--trans-fast);max-width:100%;width:100%;box-sizing:border-box}
-.post-chip.status-draft{--status-accent:#94a3b8}.post-chip.status-scheduled{--status-accent:#3b82f6}.post-chip.status-posted{--status-accent:#22c55e}.post-chip.status-failed{--status-accent:#ef4444}
+.post-chip.status-draft{--status-accent:#94a3b8}.post-chip.status-scheduled{--status-accent:#3b82f6}.post-chip.status-posted{--status-accent:#22c55e}.post-chip.status-failed{--status-accent:#ef4444}.post-chip.status-rejected{--status-accent:#7c3aed}
 .post-chip:hover{opacity:.85;transform:translateX(2px)}
 .more-chip{font-size:10px;color:var(--text2);padding:2px 6px;font-weight:500}
 
@@ -150,10 +150,12 @@ main{padding:var(--space-2xl);flex:1}
 .status-scheduled{background:var(--primary-soft);color:var(--primary)}
 .status-posted{background:var(--success-bg);color:var(--success)}
 .status-failed{background:var(--danger-bg);color:var(--danger)}
+.status-rejected{background:#ede9fe;color:#6d28d9}
 [data-theme="dark"] .status-draft{background:#2a2e3a;color:#9ca3af}
 [data-theme="dark"] .status-scheduled{background:#1a2a4a;color:#60a5fa}
 [data-theme="dark"] .status-posted{background:#1a2e1a;color:#4ade80}
 [data-theme="dark"] .status-failed{background:#2e1a1a;color:#f87171}
+[data-theme="dark"] .status-rejected{background:#2a2145;color:#c4b5fd}
 
 /* SCROLL ANIMATIONS */
 .animate-on-scroll{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}.animate-on-scroll.visible{opacity:1;transform:translateY(0)}
@@ -504,7 +506,7 @@ canvas{display:block;max-width:100%}
         <div class="planner-toolbar">
           <input class="search-input" id="dashSearch" aria-label="Cari dalam planner" placeholder="Cari tajuk, caption atau pillar…" oninput="debounceSearch('dashboard')">
           <select id="plannerPlatform" aria-label="Filter platform" onchange="renderDashTimeline()"><option value="all">Semua platform</option><option value="threads">Threads</option><option value="tiktok">TikTok</option></select>
-          <select id="plannerStatus" aria-label="Filter status" onchange="renderDashTimeline()"><option value="all">Semua status</option><option value="draft">Draft</option><option value="scheduled">Scheduled</option><option value="posted">Posted</option><option value="failed">Failed</option></select>
+          <select id="plannerStatus" aria-label="Filter status" onchange="renderDashTimeline()"><option value="all">Semua status</option><option value="draft">Draft</option><option value="scheduled">Scheduled</option><option value="posted">Posted</option><option value="failed">Failed</option><option value="rejected">Rejected</option></select>
           <select id="plannerRange" aria-label="Tempoh content" onchange="renderDashTimeline()"><option value="month">Bulan dipilih</option><option value="week">7 hari akan datang</option><option value="all">Semua tarikh</option><option value="attention">Perlu perhatian</option><option value="today">Hari ini</option></select>
           <select id="plannerSort" aria-label="Susun content" onchange="renderDashTimeline()"><option value="asc">Tarikh terawal</option><option value="desc">Tarikh terbaru</option><option value="title">Tajuk A–Z</option></select>
         </div>
@@ -566,13 +568,22 @@ canvas{display:block;max-width:100%}
     <div class="form-group"><label>Content Pillar</label><select id="mPillar"></select></div>
     <div class="form-group">
       <label>Status</label>
-      <select id="mStatus">
+      <select id="mStatus" onchange="toggleRejectedField()">
         <option value="draft">Draft</option>
         <option value="scheduled">Scheduled</option>
         <option value="posted">Posted</option>
         <option value="failed">Failed</option>
+        <option value="rejected">Rejected</option>
       </select>
     </div>
+  </div>
+  <div class="form-group rejected-group" id="rejectedGroup" hidden>
+    <div class="actual-head">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
+      <div><strong>Kenapa ditolak?</strong><small>Tulis sebab sejujurnya. Hermes baca dan analisis setiap malam supaya cadangan akan datang lebih tepat.</small></div>
+    </div>
+    <label for="mRejectedReason">Sebab (optional, tapi sangat membantu)</label>
+    <textarea id="mRejectedReason" placeholder="cth: topik dah banyak cover, bunyi macam AI, angle tak kena dgn audience, fakta tak tepat..."></textarea>
   </div>
   <div class="form-group">
     <label>Internal Notes</label>
@@ -1117,6 +1128,7 @@ function openModal(platform, postId, prefillDate) {
     document.getElementById('mCaption').value = post.caption || '';
     document.getElementById('mActualTitle').value = post.actualTitle || '';
     document.getElementById('mActualContent').value = post.actualContent || '';
+    document.getElementById('mRejectedReason').value = post.rejectedReason || '';
     document.getElementById('mPostedUrl').value = post.postedUrl || '';
     document.getElementById('mDate').value = post.date || '';
     document.getElementById('mTime').value = post.time || '';
@@ -1135,6 +1147,7 @@ function openModal(platform, postId, prefillDate) {
     document.getElementById('mCaption').value = '';
     document.getElementById('mActualTitle').value = '';
     document.getElementById('mActualContent').value = '';
+    document.getElementById('mRejectedReason').value = '';
     document.getElementById('mPostedUrl').value = '';
     document.getElementById('mDate').value = prefillDate || todayStr();
     document.getElementById('mTime').value = '12:00';
@@ -1179,6 +1192,7 @@ async function savePost() {
     caption: document.getElementById('mCaption').value.trim(),
     actualTitle: document.getElementById('mActualTitle').value.trim(),
     actualContent: document.getElementById('mActualContent').value.trim(),
+    rejectedReason: document.getElementById('mRejectedReason').value.trim(),
     postedUrl: document.getElementById('mPostedUrl').value.trim(),
     time: document.getElementById('mTime').value,
     pillar: document.getElementById('mPillar').value,
@@ -1241,7 +1255,7 @@ function showPostPreview() {
   const caption=document.getElementById('mCaption').value.trim()||'Tiada caption.';
   const pillar=document.getElementById('mPillar').value||'-';
   const status=document.getElementById('mStatus').value||'draft';
-  const labels={draft:'Draft',scheduled:'Scheduled',posted:'Posted',failed:'Failed'};
+  const labels={draft:'Draft',scheduled:'Scheduled',posted:'Posted',failed:'Failed',rejected:'Rejected'};
   const date=document.getElementById('mDate').value||'-', time=document.getElementById('mTime').value||'';
   const media=(_modalImages||[]).map(m=>m.type==='video'
     ? `<video src="${esc(m.src)}" controls preload="metadata"></video>`
@@ -1256,7 +1270,7 @@ function duplicatePost() {
   if (!id) return;
   const orig = state.posts.find(x => x.id === id);
   if (!orig) return;
-  const dupe = {...orig, id:Date.now()+'_'+Math.random().toString(36).slice(2,7), title:(orig.title||'')+'(Salinan)', status:'draft', approved:false, actualTitle:'', actualContent:'', postedUrl:'', actualUpdatedAt:'', workspace:state.workspace, client:state.workspace};
+  const dupe = {...orig, id:Date.now()+'_'+Math.random().toString(36).slice(2,7), title:(orig.title||'')+'(Salinan)', status:'draft', approved:false, actualTitle:'', actualContent:'', postedUrl:'', actualUpdatedAt:'', rejectedReason:'', rejectedAt:'', workspace:state.workspace, client:state.workspace};
   state.posts.push(dupe);
   saveState(); closeModal(); renderAll();
   showToast('Post diduplikat!','success');
@@ -1511,7 +1525,7 @@ function renderPostList(platform) {
       (searchVal?'Tiada post sepadan dengan "'+esc(searchVal)+'".':'Belum ada post bulan ni.')+'</p><button class="btn btn-primary btn-sm" onclick="openModal(\''+platform+'\')">+ Tambah Post</button></div>';
     return;
   }
-  const STATUS_LABEL = {draft:'Draft',scheduled:'Scheduled',posted:'Posted',failed:'Failed'};
+  const STATUS_LABEL = {draft:'Draft',scheduled:'Scheduled',posted:'Posted',failed:'Failed',rejected:'Rejected'};
   container.innerHTML = posts.map(p => {
     const ap = p.approved
       ? '<span class="approval-badge approval-approved">Approved</span>'
@@ -1665,7 +1679,7 @@ function renderDashTimeline() {
     container.innerHTML='<div class="empty-state">'+'<div class="icon"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><rect x="12" y="8" width="40" height="30" rx="4" stroke="#c4c4d4" stroke-width="2" fill="#f0f0f8"/><rect x="18" y="16" width="8" height="8" rx="4" fill="#d0d0e0"/><rect x="30" y="16" width="16" height="4" rx="2" fill="#d0d0e0"/><rect x="30" y="22" width="12" height="4" rx="2" fill="#d0d0e0"/><rect x="18" y="30" width="28" height="3" rx="1.5" fill="#d0d0e0"/><circle cx="32" cy="50" r="12" stroke="#c4c4d4" stroke-width="2" fill="#f0f0f8"/><path d="M28 52l3 3 5-7" stroke="#a0a0c0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p>'+(q?'Tiada post sepadan.':'Tiada post — tambah di mana-mana platform!')+'</p><button class="btn btn-primary btn-sm" onclick="openModal(\'tiktok\')">+ Tambah Post</button></div>';
     return;
   }
-  const STATUS_LABEL={draft:'Draft',scheduled:'Scheduled',posted:'Posted',failed:'Failed'};
+  const STATUS_LABEL={draft:'Draft',scheduled:'Scheduled',posted:'Posted',failed:'Failed',rejected:'Rejected'};
   container.innerHTML=sorted.map(p=>`
     <div class="post-item" onclick="openModal('${p.platform}','${p.id}')">
       <div class="p-date">${formatDate(p.date)}${p.time?' '+p.time.slice(0,5):''}</div>

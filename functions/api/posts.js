@@ -13,6 +13,11 @@
 
 // What Middi actually posted (may differ from the suggested title/caption). Kept as plain strings.
 const ACTUAL_FIELDS = ['actualTitle', 'actualContent', 'postedUrl'];
+// Why a suggestion was rejected (Hermes analyses these every night). rejectedAt is set by the server.
+const REJECT_MAX = 5000;
+function cleanReason(value) {
+  return String(value == null ? '' : value).slice(0, REJECT_MAX).trim();
+}
 const ACTUAL_MAX = 20000;
 function cleanActual(value) {
   return String(value == null ? '' : value).slice(0, ACTUAL_MAX).trim();
@@ -123,6 +128,8 @@ export async function onRequest(context) {
         actualContent: cleanActual(body.actualContent),
         postedUrl: cleanActual(body.postedUrl),
         actualUpdatedAt: (body.actualTitle || body.actualContent) ? new Date().toISOString() : '',
+        rejectedReason: cleanReason(body.rejectedReason),
+        rejectedAt: (body.status === 'rejected') ? new Date().toISOString() : '',
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
       };
@@ -156,11 +163,18 @@ export async function onRequest(context) {
         });
       }
 
+      const previousStatus = posts[index].status;
       const updatable = ['title', 'caption', 'platform', 'workspace', 'client', 'pillar', 'date', 'time', 'status', 'approved', 'notes', 'images'];
       for (const key of updatable) {
         if (body[key] !== undefined) {
           posts[index][key] = body[key];
         }
+      }
+      if (body.rejectedReason !== undefined) posts[index].rejectedReason = cleanReason(body.rejectedReason);
+      if (posts[index].status === 'rejected') {
+        if (previousStatus !== 'rejected' || !posts[index].rejectedAt) posts[index].rejectedAt = new Date().toISOString();
+      } else if (posts[index].rejectedAt) {
+        posts[index].rejectedAt = '';
       }
       let actualChanged = false;
       for (const key of ACTUAL_FIELDS) {

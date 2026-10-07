@@ -35,3 +35,10 @@ main{max-width:1550px;width:100%;margin:auto;padding:30px 34px 60px}.section{mar
 .actual-group textarea{min-height:110px}
 .actual-chip{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;line-height:1;padding:3px 7px;border-radius:999px;background:var(--success-bg,#dcfce7);color:var(--success,#16a34a);margin-right:6px;white-space:nowrap;vertical-align:middle}
 .actual-chip svg{flex-shrink:0}
+
+/* Rejected suggestions: a reason box shown only when status is Rejected */
+.rejected-group{background:var(--surface2,#f8f9fc);border:1px solid var(--border);border-left:4px solid #7c3aed;border-radius:12px;padding:14px;margin-top:4px}
+.rejected-group[hidden]{display:none}
+.rejected-group .actual-head{color:#7c3aed}
+.rejected-group label{margin-top:12px}
+.rejected-group textarea{min-height:96px}

@@ -4,11 +4,13 @@ let plannerView = localStorage.getItem('jomContentPlannerView') === 'board' ? 'b
 let plannerPage = 1, plannerFilterKey = '', selectedPlannerDate = '';
 let editorSaving = false, editorBaseline = '', editorDraftKey = '', editorReturnFocus = null;
 let editorCreateId = '', editorCreateAttempted = false;
-const editorFields = ['mPostId','mPlatform','mTitle','mCaption','mActualTitle','mActualContent','mPostedUrl','mDate','mTime','mPillar','mStatus','mNotes'];
-const statusLabels = {draft:'Draft',scheduled:'Scheduled',posted:'Posted',failed:'Failed'};
+const editorFields = ['mPostId','mPlatform','mTitle','mCaption','mActualTitle','mActualContent','mPostedUrl','mRejectedReason','mDate','mTime','mPillar','mStatus','mNotes'];
+const statusLabels = {draft:'Draft',scheduled:'Scheduled',posted:'Posted',failed:'Failed',rejected:'Rejected'};
 const statusOf = post => post.status === 'published' ? 'posted' : (post.status || 'draft');
 const isDone = post => statusOf(post) === 'posted';
-const attentionNeeded = post => !isDone(post) && (statusOf(post) === 'failed' || (post.date && post.date < todayStr()));
+const isRejected = post => statusOf(post) === 'rejected';
+const isOpen = post => !isDone(post) && !isRejected(post);
+const attentionNeeded = post => isOpen(post) && (statusOf(post) === 'failed' || (post.date && post.date < todayStr()));
 const ui = id => document.getElementById(id);
 function nextWeekEnd() { const d = new Date(); d.setDate(d.getDate()+6); return localDateStr(d); }
 function inSelectedMonth(post) { return Boolean(post.date && post.date.startsWith(state.dashMonth.year+'-'+String(state.dashMonth.month+1).padStart(2,'0')+'-')); }
@@ -32,9 +34,9 @@ renderWorkspaceIntro = function() {
 
 function renderFocus() {
   const posts = scopedPosts(), today = todayStr();
-  const due = posts.filter(p=>p.date===today && !isDone(p));
+  const due = posts.filter(p=>p.date===today && isOpen(p));
   const pending = posts.filter(attentionNeeded);
-  const next = posts.filter(p=>!isDone(p) && p.date>=today).sort((a,b)=>(a.date+(a.time||'')).localeCompare(b.date+(b.time||'')))[0];
+  const next = posts.filter(p=>isOpen(p) && p.date>=today).sort((a,b)=>(a.date+(a.time||'')).localeCompare(b.date+(b.time||'')))[0];
   const days = Array.from({length:7},(_,i)=>{
     const d = new Date(); d.setDate(d.getDate()+i); const key=localDateStr(d);
     const count = posts.filter(p=>p.date===key).length;
@@ -127,10 +129,10 @@ function initEditorSession(){
     ui('mStatus').value=status;
   }
   editorBaseline=editorSnapshot();editorDraftKey='jomContentEditor:'+state.workspace+':'+(ui('mPostId').value||'new');
-  updateCaptionCount();setEditorBusy(false);
+  updateCaptionCount();toggleRejectedField();setEditorBusy(false);
   let recovered;try{recovered=JSON.parse(sessionStorage.getItem(editorDraftKey));}catch{}
   ui('draftRecovery').hidden=!recovered;
-  if(recovered){ui('draftRecovery').innerHTML='Ada draft belum disimpan dalam tab ini. <button class="text-button" id="restoreDraft">Pulihkan</button> <button class="text-button" id="discardDraft">Abaikan</button>';ui('restoreDraft').onclick=()=>{editorFields.forEach(id=>{if(id!=='mPostId')ui(id).value=recovered.values[id]||'';});ui('mApproved').checked=!!recovered.approved;_modalImages=recovered.images||[];editorCreateId=recovered.createId||editorCreateId;editorCreateAttempted=!!recovered.createAttempted;renderMediaPreview(_modalImages);ui('draftRecovery').hidden=true;updateCaptionCount();};ui('discardDraft').onclick=()=>{clearEditorDraft();ui('draftRecovery').hidden=true;};}
+  if(recovered){ui('draftRecovery').innerHTML='Ada draft belum disimpan dalam tab ini. <button class="text-button" id="restoreDraft">Pulihkan</button> <button class="text-button" id="discardDraft">Abaikan</button>';ui('restoreDraft').onclick=()=>{editorFields.forEach(id=>{if(id!=='mPostId')ui(id).value=recovered.values[id]||'';});ui('mApproved').checked=!!recovered.approved;_modalImages=recovered.images||[];editorCreateId=recovered.createId||editorCreateId;editorCreateAttempted=!!recovered.createAttempted;renderMediaPreview(_modalImages);ui('draftRecovery').hidden=true;updateCaptionCount();toggleRejectedField();};ui('discardDraft').onclick=()=>{clearEditorDraft();ui('draftRecovery').hidden=true;};}
 }
 function rememberEditorDraft(){if(editorDraftKey && editorSnapshot()!==editorBaseline)try{sessionStorage.setItem(editorDraftKey,editorSnapshot());}catch{}}
 function clearEditorDraft(){try{sessionStorage.removeItem(editorDraftKey);}catch{}}
@@ -143,6 +145,7 @@ function closeEditorSafely(){
 }
 function setEditorBusy(busy){editorSaving=busy;ui('postModal').setAttribute('aria-busy',String(busy));ui('postModal').querySelectorAll('input,textarea,select,button').forEach(el=>el.disabled=busy);ui('savePostButton').textContent=busy?'Menyimpan…':'Simpan post';}
 function updateCaptionCount(){const count=Array.from(ui('mCaption').value).length;ui('captionCount').textContent=count+' aksara';ui('actualCount').textContent=Array.from(ui('mActualContent').value).length+' aksara';}
+function toggleRejectedField(){const group=ui('rejectedGroup');if(!group)return;const on=ui('mStatus').value==='rejected';group.hidden=!on;if(on&&!ui('mRejectedReason').value&&document.activeElement===ui('mStatus'))setTimeout(()=>ui('mRejectedReason').focus(),0);}
 function copySuggestedToActual(){const box=ui('mActualContent');if(box.value.trim()&&!confirm('Gantikan content sebenar dgn cadangan?'))return;box.value=ui('mCaption').value;if(!ui('mActualTitle').value.trim())ui('mActualTitle').value=ui('mTitle').value;updateCaptionCount();rememberEditorDraft();showToast('Cadangan disalin. Edit ikut apa yang kau post.','info');}
 function changeEditorPlatform(){const value=ui('mPillar').value;ui('mPillar').replaceChildren(...workspacePillars(ui('mPlatform').value).map(p=>new Option(p,p)));if([...ui('mPillar').options].some(o=>o.value===value))ui('mPillar').value=value;rememberEditorDraft();}
 async function copyCaption(){try{await navigator.clipboard.writeText(ui('mCaption').value);showToast('Caption disalin.','success');}catch{ui('mCaption').select();showToast('Pilih Copy untuk salin caption.','info');}}
