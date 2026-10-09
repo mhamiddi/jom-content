@@ -1,65 +1,65 @@
 {
-  "generated_at": "2026-10-08T01:46:01.156576+00:00",
+  "generated_at": "2026-10-09T01:45:57.322311+00:00",
   "median_weighted_30d": 1.0,
-  "median_views_30d": 251,
+  "median_views_30d": 251.0,
   "weekly": {
     "others": {
-      "posts": 32,
-      "inter": 27,
-      "shares": 1,
-      "views": 2029,
-      "avg_score": 25.6,
-      "avg_inter": 0.8
-    },
-    "agentic-ai": {
-      "posts": 14,
-      "inter": 69,
-      "shares": 1,
-      "views": 9055,
-      "avg_score": 42.2,
-      "avg_inter": 4.9
+      "posts": 33,
+      "inter": 44,
+      "shares": 0,
+      "views": 1522,
+      "avg_score": 25.4,
+      "avg_inter": 1.3
     },
     "digital-marketing": {
-      "posts": 5,
-      "inter": 6,
+      "posts": 4,
+      "inter": 2,
       "shares": 0,
-      "views": 429,
-      "avg_score": 31.8,
-      "avg_inter": 1.2
+      "views": 312,
+      "avg_score": 17.3,
+      "avg_inter": 0.5
+    },
+    "agentic-ai": {
+      "posts": 13,
+      "inter": 72,
+      "shares": 2,
+      "views": 6544,
+      "avg_score": 51.6,
+      "avg_inter": 5.5
     },
     "google-ads": {
-      "posts": 7,
+      "posts": 5,
       "inter": 12,
       "shares": 1,
-      "views": 1770,
-      "avg_score": 42.7,
-      "avg_inter": 1.7
+      "views": 1356,
+      "avg_score": 54.4,
+      "avg_inter": 2.4
     }
   },
   "monthly": {
     "others": {
-      "posts": 140,
-      "inter": 278,
+      "posts": 147,
+      "inter": 307,
       "shares": 9,
-      "views": 19825,
-      "avg_score": 33.1,
-      "avg_inter": 2.0
-    },
-    "agentic-ai": {
-      "posts": 60,
-      "inter": 282,
-      "shares": 21,
-      "views": 22614,
-      "avg_score": 47.8,
-      "avg_inter": 4.7
+      "views": 20079,
+      "avg_score": 32.9,
+      "avg_inter": 2.1
     },
     "digital-marketing": {
       "posts": 23,
       "inter": 361,
       "shares": 81,
-      "views": 21917,
-      "avg_score": 44.9,
+      "views": 21845,
+      "avg_score": 44.6,
       "avg_inter": 15.7
+    },
+    "agentic-ai": {
+      "posts": 57,
+      "inter": 273,
+      "shares": 20,
+      "views": 23098,
+      "avg_score": 49.2,
+      "avg_inter": 4.8
     },
     "google-ads": {
       "posts": 29,
@@ -74,20 +74,20 @@
     {
       "pillar": "google-ads",
       "posts": 29,
-      "pct": 12,
+      "pct": 11,
       "target": 40,
-      "gap": -28,
+      "gap": -29,
       "avg_score": 45.4,
       "avg_inter": 4.1
     },
     {
       "pillar": "agentic-ai",
-      "posts": 60,
-      "pct": 24,
+      "posts": 57,
+      "pct": 22,
       "target": 30,
-      "gap": -6,
-      "avg_score": 47.8,
-      "avg_inter": 4.7
+      "gap": -8,
+      "avg_score": 49.2,
+      "avg_inter": 4.8
     },
     {
       "pillar": "digital-marketing",
@@ -95,17 +95,17 @@
       "pct": 9,
       "target": 20,
       "gap": -11,
-      "avg_score": 44.9,
+      "avg_score": 44.6,
       "avg_inter": 15.7
     },
     {
       "pillar": "others",
-      "posts": 140,
-      "pct": 56,
+      "posts": 147,
+      "pct": 57,
       "target": 10,
-      "gap": 46,
-      "avg_score": 33.1,
-      "avg_inter": 2.0
+      "gap": 47,
+      "avg_score": 32.9,
+      "avg_inter": 2.1
     }
   ],
   "pillar_targets": {
@@ -114,9 +114,23 @@
     "digital-marketing": 0.2,
     "others": 0.1
   },
-  "posts_7d": 58,
-  "posts_30d": 252,
+  "posts_7d": 55,
+  "posts_30d": 256,
   "top_7d": [
+    {
+      "id": 1539,
+      "published_at": "2026-10-08T14:16:55.000Z",
+      "pillar": "others",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 18,
+      "comments": 12,
+      "shares": 0,
+      "views": 0,
+      "text": "Dekat thread ni tempat saling meracun ja. Punya lah pemurah semua berkongsi ilmu. Tak tahu lah feed korang, tapi feed aku sentiasa bagi viba positif and naikkan value aku.",
+      "weighted": 42,
+      "score": 97.7
+    },
     {
       "id": 1511,
       "published_at": "2026-10-05T14:51:39.000Z",
@@ -129,20 +143,6 @@
       "views": 2000,
       "text": "Fuhh mantap arr T3 Code.\nT3 Code + Claude Code\nHermes + Codex Auth\nPi Agent + Deepseek v4.1 Flash",
       "weighted": 26,
-      "score": 94.1
-    },
-    {
-      "id": 1477,
-      "published_at": "2026-10-01T14:24:01.000Z",
-      "pillar": "others",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 13,
-      "comments": 0,
-      "shares": 1,
-      "views": 0,
-      "text": "Suami sendiri pilih, lepas tu tanya orang ramai.\u00a0\u00a0Translate",
-      "weighted": 16,
       "score": 94.1
     },
     {
@@ -188,18 +188,18 @@
       "score": 85.2
     },
     {
-      "id": 1480,
-      "published_at": "2026-10-01T12:18:23.000Z",
-      "pillar": "digital-marketing",
+      "id": 1542,
+      "published_at": "2026-10-08T02:15:40.000Z",
+      "pillar": "agentic-ai",
       "pillar_source": "label",
-      "format": "commentary",
-      "likes": 4,
+      "format": "tutorial-howto",
+      "likes": 2,
       "comments": 0,
-      "shares": 0,
+      "shares": 1,
       "views": 0,
-      "text": "Rasanya boleh buat content isu ni jugak. Biar ramai aware. Komen for better reach especially keada founder luar sana.\u00a0\u00a0Translate",
-      "weighted": 4,
-      "score": 80.0
+      "text": "Untuk utilise audience agentic Ai yg banyak duk follow dan engage dengan content aku sekarang,\nNi antara servis/produk yang aku offer.\n1. Ai agent untuk setup, manage google ads termasuk dashboard\n2. Ai agent untuk setup, manage meta ads termasuk dashboard\n3. CRM system untuk tiktok, dia pull form dari tiktok ads, simpan, notify dan analyse korang.\n4. Full Hermes setup khusus untuk Marketing\n5. Co",
+      "weighted": 5,
+      "score": 83.3
     },
     {
       "id": 1513,
@@ -244,8 +244,8 @@
       "score": 72.8
     },
     {
-      "id": 1517,
-      "published_at": "2026-10-05T15:31:14.000Z",
+      "id": 1548,
+      "published_at": "2026-10-08T14:47:36.000Z",
       "pillar": "others",
       "pillar_source": "label",
       "format": "commentary",
@@ -253,7 +253,7 @@
       "comments": 1,
       "shares": 0,
       "views": 0,
-      "text": "Uu terminal chat side by side macam menarik",
+      "text": "Dia salah pilih circle, salah alllocate perhatian, memang negatif lah\u00a0\u00a0Translate",
       "weighted": 2,
       "score": 66.7
     }
@@ -300,6 +300,20 @@
       "text": "Apa yang korang nak tahu pasal google ads? Cepat tanya.",
       "weighted": 49,
       "score": 98.0
+    },
+    {
+      "id": 1539,
+      "published_at": "2026-10-08T14:16:55.000Z",
+      "pillar": "others",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 18,
+      "comments": 12,
+      "shares": 0,
+      "views": 0,
+      "text": "Dekat thread ni tempat saling meracun ja. Punya lah pemurah semua berkongsi ilmu. Tak tahu lah feed korang, tapi feed aku sentiasa bagi viba positif and naikkan value aku.",
+      "weighted": 42,
+      "score": 97.7
     },
     {
       "id": 1384,
@@ -358,20 +372,6 @@
       "score": 94.1
     },
     {
-      "id": 1268,
-      "published_at": "2026-09-08T16:31:42.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 9,
-      "comments": 0,
-      "shares": 1,
-      "views": 0,
-      "text": "Astra adalah model.\nChatGPT Codex adalah harness official ChatGPT.\nModel + Harness -> Boleh control computer.\nOpenClaw adalah Harness.\nAstra + OpenClaw -> boleh control computer jugak.\u00a0\u00a0Translate",
-      "weighted": 12,
-      "score": 92.3
-    },
-    {
       "id": 1271,
       "published_at": "2026-09-09T15:09:07.000Z",
       "pillar": "others",
@@ -404,32 +404,32 @@
     {
       "type": "pillar-mix",
       "title": "Pillar mix vs target 40/30/20/10",
-      "body": "google-ads 12% (target 40%) | agentic-ai 24% (target 30%) | digital-marketing 9% (target 20%) | others 56% (target 10%)",
-      "metric": 252
+      "body": "google-ads 11% (target 40%) | agentic-ai 22% (target 30%) | digital-marketing 9% (target 20%) | others 57% (target 10%)",
+      "metric": 256
     },
     {
       "type": "pillar-under",
       "title": "Pillar kurang: google-ads",
-      "body": "google-ads cuma 12% (target 40%). Naikkan volume je tak cukup. Kalau pillar ni engagement rendah, tukar bentuk: AI sebagai tool, masalah bisnes sebagai cerita.",
-      "metric": 12
+      "body": "google-ads cuma 11% (target 40%). Naikkan volume je tak cukup. Kalau pillar ni engagement rendah, tukar bentuk: AI sebagai tool, masalah bisnes sebagai cerita.",
+      "metric": 11
     },
     {
       "type": "pillar-over",
       "title": "Pillar lebih: others",
-      "body": "others 56% (target 10%). Kurangkan volume, pindah ke pillar yang kurang.",
-      "metric": 56
+      "body": "others 57% (target 10%). Kurangkan volume, pindah ke pillar yang kurang.",
+      "metric": 57
     },
     {
       "type": "pillar-fix",
       "title": "Tingkatkan: others",
-      "body": "others avg score 33.1 dari 140 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
-      "metric": 33.1
+      "body": "others avg score 32.9 dari 147 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
+      "metric": 32.9
     },
     {
       "type": "top-pillar-week",
       "title": "Pillar terbaik minggu ni: google-ads",
-      "body": "google-ads avg score 42.7 dari 7 posts. Kekalkan bentuk ni.",
-      "metric": 42.7
+      "body": "google-ads avg score 54.4 dari 5 posts. Kekalkan bentuk ni.",
+      "metric": 54.4
     }
   ]
 }
