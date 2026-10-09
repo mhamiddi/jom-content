@@ -820,10 +820,11 @@ function workspaceTargets(platform) {
 function openLoginModal() { JomAuth.openLogin(); }
 function closeLoginModal() { JomAuth.closeLogin(); }
 function submitLogin(event) { event.preventDefault(); loginToDashboard(); return false; }
-function loginToDashboard() {
+async function loginToDashboard() {
   const user = (document.getElementById('loginUsername')?.value || '').trim();
   const pass = document.getElementById('loginPassword')?.value || '';
-  if (!JomAuth.check(user, pass)) { JomAuth.fail(); return; }
+  const result = await JomAuth.login(user, pass);
+  if (!result.ok) { JomAuth.fail(result.error || undefined); return; }
   setWorkspace(DEFAULT_WORKSPACE);
   JomAuth.setAuthed();
   document.body.classList.remove('auth-locked');
@@ -832,6 +833,7 @@ function loginToDashboard() {
   apiFetchAll();
 }
 function logoutDashboard() { JomAuth.clear(); document.body.classList.add('auth-locked'); openLoginModal(); }
+JomAuth.onExpired = () => { document.body.classList.add('auth-locked'); openLoginModal(); showToast('Sesi tamat. Sila login semula.', 'info'); };
 function setWorkspace(ws) {
   if (!WORKSPACES[ws]) ws = DEFAULT_WORKSPACE;
   state.workspace = ws;
@@ -1782,7 +1784,8 @@ function renderAll() {
 }
 
 /* ===== INIT ===== */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await JomAuth.ready;
   initScrollAnimations();
   loadState();
   initTheme();

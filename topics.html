@@ -74,8 +74,9 @@ function esc(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'
 const PILLAR_ALIASES={'google ads':'Google Ads & Marketing','google ads & marketing':'Google Ads & Marketing','digital marketing':'Google Ads & Marketing','website leads':'Google Ads & Marketing','website-cro':'Google Ads & Marketing','website cro':'Google Ads & Marketing','hermes agentic ai':'Agentic AI','agentic ai':'Agentic AI','personal':'Engage','personal & mindset':'Engage','others':'Engage'};
 const CANONICAL_PILLARS=['Google Ads & Marketing','Agentic AI','Engage'];
 function canonicalPillar(value){const label=String(value||'').trim();return PILLAR_ALIASES[label.toLowerCase().replace(/[-_]+/g,' ')]||PILLAR_ALIASES[label.toLowerCase()]||label||'Engage'}
-function submitLogin(event){event.preventDefault();const u=document.getElementById('loginUsername').value.trim(),p=document.getElementById('loginPassword').value;if(!JomAuth.check(u,p)){JomAuth.fail();return false}JomAuth.setAuthed();document.body.classList.remove('locked');JomAuth.closeLogin();loadTopics();return false}
+async function submitLogin(event){event.preventDefault();const u=document.getElementById('loginUsername').value.trim(),p=document.getElementById('loginPassword').value;const res=await JomAuth.login(u,p);if(!res.ok){JomAuth.fail(res.error||undefined);return false}JomAuth.setAuthed();document.body.classList.remove('locked');JomAuth.closeLogin();loadTopics();return false}
 function logout(){JomAuth.clear();document.body.classList.add('locked');JomAuth.openLogin()}
+JomAuth.onExpired=()=>{document.body.classList.add('locked');JomAuth.openLogin()};
 function toast(msg,error=false){const t=document.getElementById('toast');t.textContent=msg;t.className='toast '+(error?'error':'success');clearTimeout(window._toast);window._toast=setTimeout(()=>t.className='',2600)}
 function apiUrl(){return API}
 async function loadTopics(){
@@ -93,6 +94,6 @@ function feedback(id,value){const x=TOPICS.find(t=>t.id===id);if(!x)return;updat
 function saveNote(id){const note=document.getElementById('note-'+id)?.value||'';update(id,{feedbackNote:note})}
 function togglePublished(id){const x=TOPICS.find(t=>t.id===id);if(!x)return;if(x.published){update(id,{published:false,publishedAt:null});return}const url=document.getElementById('url-'+id)?.value||'';update(id,{published:true,publishedAt:new Date().toISOString(),publishedUrl:url})}
 function init(){if(JomAuth.isAuthed()){document.body.classList.remove('locked');JomAuth.closeLogin();loadTopics()}else{JomAuth.openLogin()}}
-init();
+JomAuth.ready.then(init);
 </script>
 </body></html>
