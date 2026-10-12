@@ -1,86 +1,86 @@
 {
-  "generated_at": "2026-10-11T01:45:56.905690+00:00",
+  "generated_at": "2026-10-12T01:45:56.903999+00:00",
   "median_weighted_30d": 0,
-  "median_views_30d": 251.0,
+  "median_views_30d": 252,
   "weekly": {
     "engage": {
-      "posts": 42,
-      "inter": 55,
+      "posts": 41,
+      "inter": 59,
       "shares": 0,
-      "views": 1888,
-      "avg_score": 46.9,
-      "avg_inter": 1.3
+      "views": 2316,
+      "avg_score": 45.5,
+      "avg_inter": 1.4
     },
     "agentic-ai": {
-      "posts": 15,
-      "inter": 83,
+      "posts": 18,
+      "inter": 124,
       "shares": 3,
-      "views": 6835,
-      "avg_score": 69.0,
-      "avg_inter": 5.5
+      "views": 7295,
+      "avg_score": 68.2,
+      "avg_inter": 6.9
     },
     "google-ads-marketing": {
       "posts": 9,
       "inter": 17,
       "shares": 1,
       "views": 1592,
-      "avg_score": 59.7,
+      "avg_score": 59.6,
       "avg_inter": 1.9
     }
   },
   "monthly": {
     "engage": {
-      "posts": 147,
-      "inter": 180,
+      "posts": 148,
+      "inter": 188,
       "shares": 3,
-      "views": 19211,
-      "avg_score": 44.1,
-      "avg_inter": 1.2
+      "views": 19930,
+      "avg_score": 45.0,
+      "avg_inter": 1.3
     },
     "agentic-ai": {
-      "posts": 61,
-      "inter": 284,
-      "shares": 21,
-      "views": 23816,
-      "avg_score": 59.9,
-      "avg_inter": 4.7
+      "posts": 62,
+      "inter": 321,
+      "shares": 20,
+      "views": 23930,
+      "avg_score": 58.6,
+      "avg_inter": 5.2
     },
     "google-ads-marketing": {
-      "posts": 51,
-      "inter": 477,
-      "shares": 95,
-      "views": 28454,
-      "avg_score": 54.8,
-      "avg_inter": 9.4
+      "posts": 47,
+      "inter": 466,
+      "shares": 94,
+      "views": 28104,
+      "avg_score": 52.3,
+      "avg_inter": 9.9
     }
   },
   "pillars": [
     {
       "pillar": "google-ads-marketing",
-      "posts": 51,
-      "pct": 20,
+      "posts": 47,
+      "pct": 18,
       "target": 35,
-      "gap": -15,
-      "avg_score": 54.8,
-      "avg_inter": 9.4
+      "gap": -17,
+      "avg_score": 52.3,
+      "avg_inter": 9.9
     },
     {
       "pillar": "agentic-ai",
-      "posts": 61,
+      "posts": 62,
       "pct": 24,
       "target": 35,
       "gap": -11,
-      "avg_score": 59.9,
-      "avg_inter": 4.7
+      "avg_score": 58.6,
+      "avg_inter": 5.2
     },
     {
       "pillar": "engage",
-      "posts": 147,
-      "pct": 57,
+      "posts": 148,
+      "pct": 58,
       "target": 30,
-      "gap": 27,
-      "avg_score": 44.1,
-      "avg_inter": 1.2
+      "gap": 28,
+      "avg_score": 45.0,
+      "avg_inter": 1.3
     }
   ],
   "pillar_targets": {
@@ -88,21 +88,77 @@
     "agentic-ai": 0.35,
     "engage": 0.3
   },
-  "posts_7d": 66,
-  "posts_30d": 259,
+  "posts_7d": 68,
+  "posts_30d": 257,
   "top_7d": [
     {
-      "id": 1562,
-      "published_at": "2026-10-10T17:36:21.000Z",
+      "id": 1573,
+      "published_at": "2026-10-11T14:26:51.000Z",
       "pillar": "agentic-ai",
       "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 2,
+      "format": "story-experience",
+      "likes": 12,
+      "comments": 4,
+      "shares": 0,
+      "views": 0,
+      "text": "Dalam Hermes aku,\nBerapa total Ai agent yg aku ada? 35 agents kesemuanya. Specific workflows.\nBerapa total skills? 294 skills.",
+      "weighted": 20,
+      "score": 100.0
+    },
+    {
+      "id": 1578,
+      "published_at": "2026-10-11T13:21:23.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 0,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Kemah. Ingat nak subs 5x claude. Dah masuk mode bulder jugak ni.",
+      "weighted": 2,
+      "score": 100.0
+    },
+    {
+      "id": 1579,
+      "published_at": "2026-10-11T13:06:21.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "opinion-mythbust",
+      "likes": 0,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Lebih lagi sebenarnya. 24 yg posted sahaja. Cluade pro sahaja 20usd. Tu pun banyak lagi usage.\u00a0\u00a0Translate",
+      "weighted": 2,
+      "score": 100.0
+    },
+    {
+      "id": 1574,
+      "published_at": "2026-10-11T11:51:30.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 17,
+      "comments": 8,
+      "shares": 0,
+      "views": 0,
+      "text": "Total 24 video dah aku shoot & post. Edit semua guna claude opus 5.5.",
+      "weighted": 33,
+      "score": 100.0
+    },
+    {
+      "id": 1575,
+      "published_at": "2026-10-11T08:40:31.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 7,
       "comments": 0,
       "shares": 0,
       "views": 0,
-      "text": "Hasil inspirasi circle kat Thread ni, aku dah finalise Ai related servis yang aku nak offer.\n\ud83d\udc49 Custom agentic Ai & dashboard for business marketing (Content engine, website, engagement, crm, paid ads).\n\ud83d\udc49 Hermes Ai marketing setup & coaching for business.\nDua ni adalah core servis yang aku akan push dan cuba monetise dari audience aku dekat thread ni.",
-      "weighted": 2,
+      "text": "Apa maksud branding kau strong?\n- Bila kau cakap dia percaya,\n- Offering kau tak masuk akal pun orang akan rasa ketinggalan,\n- Nama kau ada pemberat cth. \u201csi A ni cakap macam tu\u201d. Orang ambik face value terus.\n1/2",
+      "weighted": 7,
       "score": 100.0
     },
     {
@@ -130,48 +186,6 @@
       "shares": 0,
       "views": 0,
       "text": "terima kasih tuan!",
-      "weighted": 3,
-      "score": 100.0
-    },
-    {
-      "id": 1563,
-      "published_at": "2026-10-10T15:26:38.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 2,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "tak semua orang prefer chat dengan Ai agent.\nRamai yang prefer ada dashboard, tapi behind it diselia Ai agents. Kalau dia nak apa2 semua dah ada dekat dashboard tu.\nSo tu lah antara sebab aku giat bina dashabord sekarang. Untuk clients google ads aku, memang dalam process untuk semua dapat dashboard sendiri.\nAku add on sekali CRM dalam dashboard tu. Senang. Selagi dia guna servis aku, dashboard tu",
-      "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1564,
-      "published_at": "2026-10-10T14:14:28.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 2,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Rutin aku setiap kali sales shopee adalah untuk borong pampers anak2.\n3 anak, sekali borong 4 packs sorang. Beli time sales ni jimat. Cuma kena beli terus banyak sekaligus.",
-      "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1565,
-      "published_at": "2026-10-10T09:58:26.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 3,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Sekarang guna mic mini 1 > Upgrade ke mic mini 2.\nRamai cakap hollyland best. Aku tak argue, memang best. Tapi mic mini pun dah cukup. \ud83d\ude02\nAmbik yg ni meriah sikit. Kali ni beli terus dengan charging case.\n1/2",
       "weighted": 3,
       "score": 100.0
     },
@@ -215,36 +229,78 @@
       "views": 0,
       "text": "Kena ada conversion dulu for better P-Max performance. So run tight then tekan Pmax. Tapi tak kisah pun kalau nak terus run P-max.",
       "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1544,
-      "published_at": "2026-10-08T14:48:26.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Setujuuuu!!",
-      "weighted": 1,
       "score": 100.0
     }
   ],
   "top_30d": [
     {
-      "id": 1562,
-      "published_at": "2026-10-10T17:36:21.000Z",
+      "id": 1573,
+      "published_at": "2026-10-11T14:26:51.000Z",
       "pillar": "agentic-ai",
       "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 2,
+      "format": "story-experience",
+      "likes": 12,
+      "comments": 4,
+      "shares": 0,
+      "views": 0,
+      "text": "Dalam Hermes aku,\nBerapa total Ai agent yg aku ada? 35 agents kesemuanya. Specific workflows.\nBerapa total skills? 294 skills.",
+      "weighted": 20,
+      "score": 100.0
+    },
+    {
+      "id": 1578,
+      "published_at": "2026-10-11T13:21:23.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 0,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Kemah. Ingat nak subs 5x claude. Dah masuk mode bulder jugak ni.",
+      "weighted": 2,
+      "score": 100.0
+    },
+    {
+      "id": 1579,
+      "published_at": "2026-10-11T13:06:21.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "opinion-mythbust",
+      "likes": 0,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Lebih lagi sebenarnya. 24 yg posted sahaja. Cluade pro sahaja 20usd. Tu pun banyak lagi usage.\u00a0\u00a0Translate",
+      "weighted": 2,
+      "score": 100.0
+    },
+    {
+      "id": 1574,
+      "published_at": "2026-10-11T11:51:30.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 17,
+      "comments": 8,
+      "shares": 0,
+      "views": 0,
+      "text": "Total 24 video dah aku shoot & post. Edit semua guna claude opus 5.5.",
+      "weighted": 33,
+      "score": 100.0
+    },
+    {
+      "id": 1575,
+      "published_at": "2026-10-11T08:40:31.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 7,
       "comments": 0,
       "shares": 0,
       "views": 0,
-      "text": "Hasil inspirasi circle kat Thread ni, aku dah finalise Ai related servis yang aku nak offer.\n\ud83d\udc49 Custom agentic Ai & dashboard for business marketing (Content engine, website, engagement, crm, paid ads).\n\ud83d\udc49 Hermes Ai marketing setup & coaching for business.\nDua ni adalah core servis yang aku akan push dan cuba monetise dari audience aku dekat thread ni.",
-      "weighted": 2,
+      "text": "Apa maksud branding kau strong?\n- Bila kau cakap dia percaya,\n- Offering kau tak masuk akal pun orang akan rasa ketinggalan,\n- Nama kau ada pemberat cth. \u201csi A ni cakap macam tu\u201d. Orang ambik face value terus.\n1/2",
+      "weighted": 7,
       "score": 100.0
     },
     {
@@ -272,48 +328,6 @@
       "shares": 0,
       "views": 0,
       "text": "terima kasih tuan!",
-      "weighted": 3,
-      "score": 100.0
-    },
-    {
-      "id": 1563,
-      "published_at": "2026-10-10T15:26:38.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 2,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "tak semua orang prefer chat dengan Ai agent.\nRamai yang prefer ada dashboard, tapi behind it diselia Ai agents. Kalau dia nak apa2 semua dah ada dekat dashboard tu.\nSo tu lah antara sebab aku giat bina dashabord sekarang. Untuk clients google ads aku, memang dalam process untuk semua dapat dashboard sendiri.\nAku add on sekali CRM dalam dashboard tu. Senang. Selagi dia guna servis aku, dashboard tu",
-      "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1564,
-      "published_at": "2026-10-10T14:14:28.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 2,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Rutin aku setiap kali sales shopee adalah untuk borong pampers anak2.\n3 anak, sekali borong 4 packs sorang. Beli time sales ni jimat. Cuma kena beli terus banyak sekaligus.",
-      "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1565,
-      "published_at": "2026-10-10T09:58:26.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 3,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Sekarang guna mic mini 1 > Upgrade ke mic mini 2.\nRamai cakap hollyland best. Aku tak argue, memang best. Tapi mic mini pun dah cukup. \ud83d\ude02\nAmbik yg ni meriah sikit. Kali ni beli terus dengan charging case.\n1/2",
       "weighted": 3,
       "score": 100.0
     },
@@ -357,20 +371,6 @@
       "views": 0,
       "text": "Kena ada conversion dulu for better P-Max performance. So run tight then tekan Pmax. Tapi tak kisah pun kalau nak terus run P-max.",
       "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1544,
-      "published_at": "2026-10-08T14:48:26.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Setujuuuu!!",
-      "weighted": 1,
       "score": 100.0
     }
   ],
@@ -378,32 +378,32 @@
     {
       "type": "pillar-mix",
       "title": "Pillar mix vs target 35/35/30",
-      "body": "google-ads-marketing 20% (target 35%) | agentic-ai 24% (target 35%) | engage 57% (target 30%)",
-      "metric": 259
+      "body": "google-ads-marketing 18% (target 35%) | agentic-ai 24% (target 35%) | engage 58% (target 30%)",
+      "metric": 257
     },
     {
       "type": "pillar-under",
       "title": "Pillar kurang: google-ads-marketing",
-      "body": "google-ads-marketing cuma 20% (target 35%). Naikkan volume je tak cukup. Kalau pillar ni engagement rendah, tukar bentuk: AI sebagai tool, masalah bisnes sebagai cerita.",
-      "metric": 20
+      "body": "google-ads-marketing cuma 18% (target 35%). Naikkan volume je tak cukup. Kalau pillar ni engagement rendah, tukar bentuk: AI sebagai tool, masalah bisnes sebagai cerita.",
+      "metric": 18
     },
     {
       "type": "pillar-over",
       "title": "Pillar lebih: engage",
-      "body": "engage 57% (target 30%). Kurangkan volume, pindah ke pillar yang kurang.",
-      "metric": 57
+      "body": "engage 58% (target 30%). Kurangkan volume, pindah ke pillar yang kurang.",
+      "metric": 58
     },
     {
       "type": "pillar-fix",
       "title": "Tingkatkan: engage",
-      "body": "engage avg score 44.1 dari 147 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
-      "metric": 44.1
+      "body": "engage avg score 45.0 dari 148 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
+      "metric": 45.0
     },
     {
       "type": "top-pillar-week",
       "title": "Pillar terbaik minggu ni: agentic-ai",
-      "body": "agentic-ai avg score 69.0 dari 15 posts. Kekalkan bentuk ni.",
-      "metric": 69.0
+      "body": "agentic-ai avg score 68.2 dari 18 posts. Kekalkan bentuk ni.",
+      "metric": 68.2
     }
   ]
 }
