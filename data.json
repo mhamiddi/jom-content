@@ -1,57 +1,57 @@
 {
-  "generated_at": "2026-10-12T01:45:56.903999+00:00",
+  "generated_at": "2026-10-13T01:45:56.176999+00:00",
   "median_weighted_30d": 0,
-  "median_views_30d": 252,
+  "median_views_30d": 260,
   "weekly": {
     "engage": {
-      "posts": 41,
+      "posts": 39,
       "inter": 59,
       "shares": 0,
-      "views": 2316,
-      "avg_score": 45.5,
-      "avg_inter": 1.4
+      "views": 2221,
+      "avg_score": 39.8,
+      "avg_inter": 1.5
     },
     "agentic-ai": {
-      "posts": 18,
-      "inter": 124,
-      "shares": 3,
-      "views": 7295,
-      "avg_score": 68.2,
-      "avg_inter": 6.9
+      "posts": 17,
+      "inter": 92,
+      "shares": 4,
+      "views": 8720,
+      "avg_score": 68.1,
+      "avg_inter": 5.4
     },
     "google-ads-marketing": {
-      "posts": 9,
-      "inter": 17,
+      "posts": 5,
+      "inter": 7,
       "shares": 1,
-      "views": 1592,
-      "avg_score": 59.6,
-      "avg_inter": 1.9
+      "views": 115,
+      "avg_score": 41.8,
+      "avg_inter": 1.4
     }
   },
   "monthly": {
     "engage": {
       "posts": 148,
-      "inter": 188,
+      "inter": 190,
       "shares": 3,
-      "views": 19930,
+      "views": 20079,
       "avg_score": 45.0,
       "avg_inter": 1.3
     },
     "agentic-ai": {
       "posts": 62,
-      "inter": 321,
-      "shares": 20,
-      "views": 23930,
-      "avg_score": 58.6,
-      "avg_inter": 5.2
+      "inter": 319,
+      "shares": 16,
+      "views": 29690,
+      "avg_score": 58.5,
+      "avg_inter": 5.1
     },
     "google-ads-marketing": {
       "posts": 47,
-      "inter": 466,
-      "shares": 94,
-      "views": 28104,
-      "avg_score": 52.3,
-      "avg_inter": 9.9
+      "inter": 451,
+      "shares": 90,
+      "views": 28027,
+      "avg_score": 52.7,
+      "avg_inter": 9.6
     }
   },
   "pillars": [
@@ -61,8 +61,8 @@
       "pct": 18,
       "target": 35,
       "gap": -17,
-      "avg_score": 52.3,
-      "avg_inter": 9.9
+      "avg_score": 52.7,
+      "avg_inter": 9.6
     },
     {
       "pillar": "agentic-ai",
@@ -70,8 +70,8 @@
       "pct": 24,
       "target": 35,
       "gap": -11,
-      "avg_score": 58.6,
-      "avg_inter": 5.2
+      "avg_score": 58.5,
+      "avg_inter": 5.1
     },
     {
       "pillar": "engage",
@@ -88,21 +88,77 @@
     "agentic-ai": 0.35,
     "engage": 0.3
   },
-  "posts_7d": 68,
+  "posts_7d": 61,
   "posts_30d": 257,
   "top_7d": [
     {
-      "id": 1573,
-      "published_at": "2026-10-11T14:26:51.000Z",
+      "id": 1580,
+      "published_at": "2026-10-12T13:25:13.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 4,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Followers ke 5,000! Done. Boleh rilek dah dulu.",
+      "weighted": 6,
+      "score": 100.0
+    },
+    {
+      "id": 1581,
+      "published_at": "2026-10-12T11:24:05.000Z",
       "pillar": "agentic-ai",
       "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 12,
+      "format": "tutorial-howto",
+      "likes": 7,
       "comments": 4,
       "shares": 0,
       "views": 0,
-      "text": "Dalam Hermes aku,\nBerapa total Ai agent yg aku ada? 35 agents kesemuanya. Specific workflows.\nBerapa total skills? 294 skills.",
-      "weighted": 20,
+      "text": "Nampak preview macam kemah molek. Haha\nIngat guys, nak start edit video guna claude, guna claude code opus5.5 high.  Claude rc, boleh edit video guna phone\ufffc. Rakam pakai phone, upload drive. Klau sambung drive api outh client boleh auto download, upload dari device ke google drive.\nSenang boleh akses dan edit dimano2.",
+      "weighted": 15,
+      "score": 100.0
+    },
+    {
+      "id": 1582,
+      "published_at": "2026-10-12T10:21:04.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 4,
+      "comments": 0,
+      "shares": 1,
+      "views": 0,
+      "text": "Nak edit video guna claude code dari phone still perlukan access ke device kau.\nSo kau boleh guna claude code remote. Sambung dari phone ke device. Guna command \u201cclaude rc\u201d.\nStep kat bawah ni\n1/2",
+      "weighted": 7,
+      "score": 100.0
+    },
+    {
+      "id": 1583,
+      "published_at": "2026-10-12T10:21:04.000Z",
+      "pillar": "google-ads-marketing",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 2,
+      "comments": 1,
+      "shares": 1,
+      "views": 0,
+      "text": "Ni step dia, malas nak ulang. Kalau banyak engagement maybe nanti aku share video.\n2/2",
+      "weighted": 7,
+      "score": 100.0
+    },
+    {
+      "id": 1584,
+      "published_at": "2026-10-12T10:17:06.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 2,
+      "comments": 1,
+      "shares": 1,
+      "views": 0,
+      "text": "Replying to @mhd._asyraf\nBoleh. Follow cara ni.\n1. \u201cClaude auth login\u201d dekat terminal pc/macbook kau.\n2. Dah login. \u201cClaude rc\u201d dekat terminal sama.\n** 2 step ni untuk sambungkan claude code remote dari phone ke device kau. **\nDah setel,\n3. Rakam video pakai phone. Upload ke drive, manage access, editor, all can access.\n4. Bagi link dekat claude code session, suruh dia download, edit.\n5. Set lah t",
+      "weighted": 7,
       "score": 100.0
     },
     {
@@ -131,34 +187,6 @@
       "views": 0,
       "text": "Lebih lagi sebenarnya. 24 yg posted sahaja. Cluade pro sahaja 20usd. Tu pun banyak lagi usage.\u00a0\u00a0Translate",
       "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1574,
-      "published_at": "2026-10-11T11:51:30.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 17,
-      "comments": 8,
-      "shares": 0,
-      "views": 0,
-      "text": "Total 24 video dah aku shoot & post. Edit semua guna claude opus 5.5.",
-      "weighted": 33,
-      "score": 100.0
-    },
-    {
-      "id": 1575,
-      "published_at": "2026-10-11T08:40:31.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 7,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Apa maksud branding kau strong?\n- Bila kau cakap dia percaya,\n- Offering kau tak masuk akal pun orang akan rasa ketinggalan,\n- Nama kau ada pemberat cth. \u201csi A ni cakap macam tu\u201d. Orang ambik face value terus.\n1/2",
-      "weighted": 7,
       "score": 100.0
     },
     {
@@ -201,50 +229,78 @@
       "views": 0,
       "text": "Meta ads sekarang pun dah mahal. Not worth it utk jadi platform to create and nurture demand.\nCpm tiktok quite cheap. Cpm demand gen, lagi lagi murah. Pmax. Omni channel all the way.",
       "weighted": 1,
-      "score": 100.0
-    },
-    {
-      "id": 1557,
-      "published_at": "2026-10-09T16:54:00.000Z",
-      "pillar": "google-ads-marketing",
-      "pillar_source": "label",
-      "format": "opinion-mythbust",
-      "likes": 2,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Masih relevan. Tapi audience tu kena filter. Better custom audience yg dah engage, ada awareness. Run pun lebih kepada untuk buat dia aware ada website ecomm. So pemilihan objective campaign penting.\nRekomen buat split antara traffic dan sales conversion. Tengok cpm, cost dan results mcm mana.\u00a0\u00a0Translate",
-      "weighted": 4,
-      "score": 100.0
-    },
-    {
-      "id": 1558,
-      "published_at": "2026-10-09T16:51:51.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 0,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Kena ada conversion dulu for better P-Max performance. So run tight then tekan Pmax. Tapi tak kisah pun kalau nak terus run P-max.",
-      "weighted": 2,
       "score": 100.0
     }
   ],
   "top_30d": [
     {
-      "id": 1573,
-      "published_at": "2026-10-11T14:26:51.000Z",
+      "id": 1580,
+      "published_at": "2026-10-12T13:25:13.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 4,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Followers ke 5,000! Done. Boleh rilek dah dulu.",
+      "weighted": 6,
+      "score": 100.0
+    },
+    {
+      "id": 1581,
+      "published_at": "2026-10-12T11:24:05.000Z",
       "pillar": "agentic-ai",
       "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 12,
+      "format": "tutorial-howto",
+      "likes": 7,
       "comments": 4,
       "shares": 0,
       "views": 0,
-      "text": "Dalam Hermes aku,\nBerapa total Ai agent yg aku ada? 35 agents kesemuanya. Specific workflows.\nBerapa total skills? 294 skills.",
-      "weighted": 20,
+      "text": "Nampak preview macam kemah molek. Haha\nIngat guys, nak start edit video guna claude, guna claude code opus5.5 high.  Claude rc, boleh edit video guna phone\ufffc. Rakam pakai phone, upload drive. Klau sambung drive api outh client boleh auto download, upload dari device ke google drive.\nSenang boleh akses dan edit dimano2.",
+      "weighted": 15,
+      "score": 100.0
+    },
+    {
+      "id": 1582,
+      "published_at": "2026-10-12T10:21:04.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 4,
+      "comments": 0,
+      "shares": 1,
+      "views": 0,
+      "text": "Nak edit video guna claude code dari phone still perlukan access ke device kau.\nSo kau boleh guna claude code remote. Sambung dari phone ke device. Guna command \u201cclaude rc\u201d.\nStep kat bawah ni\n1/2",
+      "weighted": 7,
+      "score": 100.0
+    },
+    {
+      "id": 1583,
+      "published_at": "2026-10-12T10:21:04.000Z",
+      "pillar": "google-ads-marketing",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 2,
+      "comments": 1,
+      "shares": 1,
+      "views": 0,
+      "text": "Ni step dia, malas nak ulang. Kalau banyak engagement maybe nanti aku share video.\n2/2",
+      "weighted": 7,
+      "score": 100.0
+    },
+    {
+      "id": 1584,
+      "published_at": "2026-10-12T10:17:06.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 2,
+      "comments": 1,
+      "shares": 1,
+      "views": 0,
+      "text": "Replying to @mhd._asyraf\nBoleh. Follow cara ni.\n1. \u201cClaude auth login\u201d dekat terminal pc/macbook kau.\n2. Dah login. \u201cClaude rc\u201d dekat terminal sama.\n** 2 step ni untuk sambungkan claude code remote dari phone ke device kau. **\nDah setel,\n3. Rakam video pakai phone. Upload ke drive, manage access, editor, all can access.\n4. Bagi link dekat claude code session, suruh dia download, edit.\n5. Set lah t",
+      "weighted": 7,
       "score": 100.0
     },
     {
@@ -273,34 +329,6 @@
       "views": 0,
       "text": "Lebih lagi sebenarnya. 24 yg posted sahaja. Cluade pro sahaja 20usd. Tu pun banyak lagi usage.\u00a0\u00a0Translate",
       "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1574,
-      "published_at": "2026-10-11T11:51:30.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 17,
-      "comments": 8,
-      "shares": 0,
-      "views": 0,
-      "text": "Total 24 video dah aku shoot & post. Edit semua guna claude opus 5.5.",
-      "weighted": 33,
-      "score": 100.0
-    },
-    {
-      "id": 1575,
-      "published_at": "2026-10-11T08:40:31.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 7,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Apa maksud branding kau strong?\n- Bila kau cakap dia percaya,\n- Offering kau tak masuk akal pun orang akan rasa ketinggalan,\n- Nama kau ada pemberat cth. \u201csi A ni cakap macam tu\u201d. Orang ambik face value terus.\n1/2",
-      "weighted": 7,
       "score": 100.0
     },
     {
@@ -343,34 +371,6 @@
       "views": 0,
       "text": "Meta ads sekarang pun dah mahal. Not worth it utk jadi platform to create and nurture demand.\nCpm tiktok quite cheap. Cpm demand gen, lagi lagi murah. Pmax. Omni channel all the way.",
       "weighted": 1,
-      "score": 100.0
-    },
-    {
-      "id": 1557,
-      "published_at": "2026-10-09T16:54:00.000Z",
-      "pillar": "google-ads-marketing",
-      "pillar_source": "label",
-      "format": "opinion-mythbust",
-      "likes": 2,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Masih relevan. Tapi audience tu kena filter. Better custom audience yg dah engage, ada awareness. Run pun lebih kepada untuk buat dia aware ada website ecomm. So pemilihan objective campaign penting.\nRekomen buat split antara traffic dan sales conversion. Tengok cpm, cost dan results mcm mana.\u00a0\u00a0Translate",
-      "weighted": 4,
-      "score": 100.0
-    },
-    {
-      "id": 1558,
-      "published_at": "2026-10-09T16:51:51.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 0,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Kena ada conversion dulu for better P-Max performance. So run tight then tekan Pmax. Tapi tak kisah pun kalau nak terus run P-max.",
-      "weighted": 2,
       "score": 100.0
     }
   ],
@@ -402,8 +402,8 @@
     {
       "type": "top-pillar-week",
       "title": "Pillar terbaik minggu ni: agentic-ai",
-      "body": "agentic-ai avg score 68.2 dari 18 posts. Kekalkan bentuk ni.",
-      "metric": 68.2
+      "body": "agentic-ai avg score 68.1 dari 17 posts. Kekalkan bentuk ni.",
+      "metric": 68.1
     }
   ]
 }
