@@ -1,67 +1,67 @@
 {
-  "generated_at": "2026-10-13T01:45:56.176999+00:00",
-  "median_weighted_30d": 0,
-  "median_views_30d": 260,
+  "generated_at": "2026-10-14T01:45:57.868664+00:00",
+  "median_weighted_30d": 0.0,
+  "median_views_30d": 272.5,
   "weekly": {
-    "engage": {
-      "posts": 39,
-      "inter": 59,
-      "shares": 0,
-      "views": 2221,
-      "avg_score": 39.8,
-      "avg_inter": 1.5
-    },
     "agentic-ai": {
-      "posts": 17,
-      "inter": 92,
-      "shares": 4,
-      "views": 8720,
-      "avg_score": 68.1,
-      "avg_inter": 5.4
+      "posts": 18,
+      "inter": 79,
+      "shares": 5,
+      "views": 8608,
+      "avg_score": 69.9,
+      "avg_inter": 4.4
+    },
+    "engage": {
+      "posts": 40,
+      "inter": 66,
+      "shares": 1,
+      "views": 2530,
+      "avg_score": 44.0,
+      "avg_inter": 1.6
     },
     "google-ads-marketing": {
       "posts": 5,
       "inter": 7,
       "shares": 1,
-      "views": 115,
-      "avg_score": 41.8,
+      "views": 232,
+      "avg_score": 37.6,
       "avg_inter": 1.4
     }
   },
   "monthly": {
-    "engage": {
-      "posts": 148,
-      "inter": 190,
-      "shares": 3,
-      "views": 20079,
-      "avg_score": 45.0,
-      "avg_inter": 1.3
-    },
     "agentic-ai": {
       "posts": 62,
-      "inter": 319,
-      "shares": 16,
-      "views": 29690,
-      "avg_score": 58.5,
-      "avg_inter": 5.1
+      "inter": 302,
+      "shares": 12,
+      "views": 29693,
+      "avg_score": 58.2,
+      "avg_inter": 4.9
+    },
+    "engage": {
+      "posts": 150,
+      "inter": 195,
+      "shares": 4,
+      "views": 20466,
+      "avg_score": 45.6,
+      "avg_inter": 1.3
     },
     "google-ads-marketing": {
-      "posts": 47,
-      "inter": 451,
-      "shares": 90,
-      "views": 28027,
-      "avg_score": 52.7,
+      "posts": 46,
+      "inter": 440,
+      "shares": 88,
+      "views": 27952,
+      "avg_score": 51.4,
       "avg_inter": 9.6
     }
   },
   "pillars": [
     {
       "pillar": "google-ads-marketing",
-      "posts": 47,
+      "posts": 46,
       "pct": 18,
       "target": 35,
       "gap": -17,
-      "avg_score": 52.7,
+      "avg_score": 51.4,
       "avg_inter": 9.6
     },
     {
@@ -70,16 +70,16 @@
       "pct": 24,
       "target": 35,
       "gap": -11,
-      "avg_score": 58.5,
-      "avg_inter": 5.1
+      "avg_score": 58.2,
+      "avg_inter": 4.9
     },
     {
       "pillar": "engage",
-      "posts": 148,
+      "posts": 150,
       "pct": 58,
       "target": 30,
       "gap": 28,
-      "avg_score": 45.0,
+      "avg_score": 45.6,
       "avg_inter": 1.3
     }
   ],
@@ -88,63 +88,91 @@
     "agentic-ai": 0.35,
     "engage": 0.3
   },
-  "posts_7d": 61,
-  "posts_30d": 257,
+  "posts_7d": 63,
+  "posts_30d": 258,
   "top_7d": [
     {
-      "id": 1580,
-      "published_at": "2026-10-12T13:25:13.000Z",
+      "id": 1591,
+      "published_at": "2026-10-13T16:18:53.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Sebab opus lagi pandai guna tools dan reasoning untuk benda kreatif cthnya macam video.\nChatgpt okay, guna Astra atau 6.1sol. Tapi ukur token usage dia.",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1593,
+      "published_at": "2026-10-13T16:07:58.000Z",
       "pillar": "engage",
       "pillar_source": "label",
       "format": "commentary",
-      "likes": 4,
+      "likes": 1,
       "comments": 1,
       "shares": 0,
       "views": 0,
-      "text": "Followers ke 5,000! Done. Boleh rilek dah dulu.",
-      "weighted": 6,
+      "text": "Tapi token usage berderu mcm air. Sebab materials tu pun dia yang cari sendiri kat internet",
+      "weighted": 3,
       "score": 100.0
     },
     {
-      "id": 1581,
-      "published_at": "2026-10-12T11:24:05.000Z",
-      "pillar": "agentic-ai",
+      "id": 1588,
+      "published_at": "2026-10-13T16:02:52.000Z",
+      "pillar": "engage",
       "pillar_source": "label",
       "format": "tutorial-howto",
-      "likes": 7,
-      "comments": 4,
+      "likes": 5,
+      "comments": 0,
       "shares": 0,
       "views": 0,
-      "text": "Nampak preview macam kemah molek. Haha\nIngat guys, nak start edit video guna claude, guna claude code opus5.5 high.  Claude rc, boleh edit video guna phone\ufffc. Rakam pakai phone, upload drive. Klau sambung drive api outh client boleh auto download, upload dari device ke google drive.\nSenang boleh akses dan edit dimano2.",
-      "weighted": 15,
+      "text": "Business owner kuantan, gempak arr tengok sharing edit video pakai Ai. Join benda ni, hujung minggu ni, 30min aku share macam mana nak buat dan siap automation edit dari phone lagi.\nNak belajar? Datang. Bukan tu ja aku share. Banyak lagi. Selagi masa membenarkan lah.\n1/2",
+      "weighted": 5,
       "score": 100.0
     },
     {
-      "id": 1582,
-      "published_at": "2026-10-12T10:21:04.000Z",
-      "pillar": "agentic-ai",
+      "id": 1589,
+      "published_at": "2026-10-13T16:02:52.000Z",
+      "pillar": "engage",
       "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 4,
+      "format": "commentary",
+      "likes": 0,
       "comments": 0,
       "shares": 1,
       "views": 0,
-      "text": "Nak edit video guna claude code dari phone still perlukan access ke device kau.\nSo kau boleh guna claude code remote. Sambung dari phone ke device. Guna command \u201cclaude rc\u201d.\nStep kat bawah ni\n1/2",
-      "weighted": 7,
+      "text": "Tekan sini kalau nak join\n2/2",
+      "weighted": 3,
       "score": 100.0
     },
     {
-      "id": 1583,
-      "published_at": "2026-10-12T10:21:04.000Z",
-      "pillar": "google-ads-marketing",
+      "id": 1594,
+      "published_at": "2026-10-13T15:34:57.000Z",
+      "pillar": "agentic-ai",
       "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 2,
+      "format": "commentary",
+      "likes": 0,
       "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Uuu brother ni dah onboard wave Ai \ud83d\ude02",
+      "weighted": 2,
+      "score": 100.0
+    },
+    {
+      "id": 1590,
+      "published_at": "2026-10-13T10:26:48.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 0,
+      "comments": 0,
       "shares": 1,
       "views": 0,
-      "text": "Ni step dia, malas nak ulang. Kalau banyak engagement maybe nanti aku share video.\n2/2",
-      "weighted": 7,
+      "text": "syamimihafiz_\nReplying to @syamimihafiz_\nJangan lupa daftar untuk secure slot anda! \ud83d\ude4c\n\ud83d\udc49 tinyurl.com/Lepak\u2026\nShare dalam group dan ajak geng korang sekali. Kita lepak sambil tambah ilmu! \ud83d\udd25\nluma.com\nLepak Tech EP.01: Gen AI to Agentic AI \u00b7 Luma",
+      "weighted": 3,
       "score": 100.0
     },
     {
@@ -201,92 +229,92 @@
       "views": 0,
       "text": "betul. Tapi kalau ada sampel takda lah lama sangat nak match dengan style yg kita nak",
       "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1571,
-      "published_at": "2026-10-10T15:58:13.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "terima kasih tuan!",
-      "weighted": 3,
-      "score": 100.0
-    },
-    {
-      "id": 1556,
-      "published_at": "2026-10-09T16:58:27.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Meta ads sekarang pun dah mahal. Not worth it utk jadi platform to create and nurture demand.\nCpm tiktok quite cheap. Cpm demand gen, lagi lagi murah. Pmax. Omni channel all the way.",
-      "weighted": 1,
       "score": 100.0
     }
   ],
   "top_30d": [
     {
-      "id": 1580,
-      "published_at": "2026-10-12T13:25:13.000Z",
+      "id": 1591,
+      "published_at": "2026-10-13T16:18:53.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Sebab opus lagi pandai guna tools dan reasoning untuk benda kreatif cthnya macam video.\nChatgpt okay, guna Astra atau 6.1sol. Tapi ukur token usage dia.",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1593,
+      "published_at": "2026-10-13T16:07:58.000Z",
       "pillar": "engage",
       "pillar_source": "label",
       "format": "commentary",
-      "likes": 4,
+      "likes": 1,
       "comments": 1,
       "shares": 0,
       "views": 0,
-      "text": "Followers ke 5,000! Done. Boleh rilek dah dulu.",
-      "weighted": 6,
+      "text": "Tapi token usage berderu mcm air. Sebab materials tu pun dia yang cari sendiri kat internet",
+      "weighted": 3,
       "score": 100.0
     },
     {
-      "id": 1581,
-      "published_at": "2026-10-12T11:24:05.000Z",
-      "pillar": "agentic-ai",
+      "id": 1588,
+      "published_at": "2026-10-13T16:02:52.000Z",
+      "pillar": "engage",
       "pillar_source": "label",
       "format": "tutorial-howto",
-      "likes": 7,
-      "comments": 4,
+      "likes": 5,
+      "comments": 0,
       "shares": 0,
       "views": 0,
-      "text": "Nampak preview macam kemah molek. Haha\nIngat guys, nak start edit video guna claude, guna claude code opus5.5 high.  Claude rc, boleh edit video guna phone\ufffc. Rakam pakai phone, upload drive. Klau sambung drive api outh client boleh auto download, upload dari device ke google drive.\nSenang boleh akses dan edit dimano2.",
-      "weighted": 15,
+      "text": "Business owner kuantan, gempak arr tengok sharing edit video pakai Ai. Join benda ni, hujung minggu ni, 30min aku share macam mana nak buat dan siap automation edit dari phone lagi.\nNak belajar? Datang. Bukan tu ja aku share. Banyak lagi. Selagi masa membenarkan lah.\n1/2",
+      "weighted": 5,
       "score": 100.0
     },
     {
-      "id": 1582,
-      "published_at": "2026-10-12T10:21:04.000Z",
-      "pillar": "agentic-ai",
+      "id": 1589,
+      "published_at": "2026-10-13T16:02:52.000Z",
+      "pillar": "engage",
       "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 4,
+      "format": "commentary",
+      "likes": 0,
       "comments": 0,
       "shares": 1,
       "views": 0,
-      "text": "Nak edit video guna claude code dari phone still perlukan access ke device kau.\nSo kau boleh guna claude code remote. Sambung dari phone ke device. Guna command \u201cclaude rc\u201d.\nStep kat bawah ni\n1/2",
-      "weighted": 7,
+      "text": "Tekan sini kalau nak join\n2/2",
+      "weighted": 3,
       "score": 100.0
     },
     {
-      "id": 1583,
-      "published_at": "2026-10-12T10:21:04.000Z",
-      "pillar": "google-ads-marketing",
+      "id": 1594,
+      "published_at": "2026-10-13T15:34:57.000Z",
+      "pillar": "agentic-ai",
       "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 2,
+      "format": "commentary",
+      "likes": 0,
       "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Uuu brother ni dah onboard wave Ai \ud83d\ude02",
+      "weighted": 2,
+      "score": 100.0
+    },
+    {
+      "id": 1590,
+      "published_at": "2026-10-13T10:26:48.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 0,
+      "comments": 0,
       "shares": 1,
       "views": 0,
-      "text": "Ni step dia, malas nak ulang. Kalau banyak engagement maybe nanti aku share video.\n2/2",
-      "weighted": 7,
+      "text": "syamimihafiz_\nReplying to @syamimihafiz_\nJangan lupa daftar untuk secure slot anda! \ud83d\ude4c\n\ud83d\udc49 tinyurl.com/Lepak\u2026\nShare dalam group dan ajak geng korang sekali. Kita lepak sambil tambah ilmu! \ud83d\udd25\nluma.com\nLepak Tech EP.01: Gen AI to Agentic AI \u00b7 Luma",
+      "weighted": 3,
       "score": 100.0
     },
     {
@@ -343,34 +371,6 @@
       "views": 0,
       "text": "betul. Tapi kalau ada sampel takda lah lama sangat nak match dengan style yg kita nak",
       "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1571,
-      "published_at": "2026-10-10T15:58:13.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "terima kasih tuan!",
-      "weighted": 3,
-      "score": 100.0
-    },
-    {
-      "id": 1556,
-      "published_at": "2026-10-09T16:58:27.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Meta ads sekarang pun dah mahal. Not worth it utk jadi platform to create and nurture demand.\nCpm tiktok quite cheap. Cpm demand gen, lagi lagi murah. Pmax. Omni channel all the way.",
-      "weighted": 1,
       "score": 100.0
     }
   ],
@@ -379,7 +379,7 @@
       "type": "pillar-mix",
       "title": "Pillar mix vs target 35/35/30",
       "body": "google-ads-marketing 18% (target 35%) | agentic-ai 24% (target 35%) | engage 58% (target 30%)",
-      "metric": 257
+      "metric": 258
     },
     {
       "type": "pillar-under",
@@ -396,14 +396,14 @@
     {
       "type": "pillar-fix",
       "title": "Tingkatkan: engage",
-      "body": "engage avg score 45.0 dari 148 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
-      "metric": 45.0
+      "body": "engage avg score 45.6 dari 150 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
+      "metric": 45.6
     },
     {
       "type": "top-pillar-week",
       "title": "Pillar terbaik minggu ni: agentic-ai",
-      "body": "agentic-ai avg score 68.1 dari 17 posts. Kekalkan bentuk ni.",
-      "metric": 68.1
+      "body": "agentic-ai avg score 69.9 dari 18 posts. Kekalkan bentuk ni.",
+      "metric": 69.9
     }
   ]
 }
