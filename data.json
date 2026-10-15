@@ -1,68 +1,68 @@
 {
-  "generated_at": "2026-10-14T01:45:57.868664+00:00",
+  "generated_at": "2026-10-15T01:45:56.786429+00:00",
   "median_weighted_30d": 0.0,
-  "median_views_30d": 272.5,
+  "median_views_30d": 285.0,
   "weekly": {
     "agentic-ai": {
       "posts": 18,
-      "inter": 79,
-      "shares": 5,
-      "views": 8608,
-      "avg_score": 69.9,
-      "avg_inter": 4.4
+      "inter": 759,
+      "shares": 97,
+      "views": 8199,
+      "avg_score": 79.0,
+      "avg_inter": 42.2
     },
     "engage": {
       "posts": 40,
-      "inter": 66,
+      "inter": 68,
       "shares": 1,
-      "views": 2530,
-      "avg_score": 44.0,
-      "avg_inter": 1.6
+      "views": 2300,
+      "avg_score": 46.0,
+      "avg_inter": 1.7
     },
     "google-ads-marketing": {
-      "posts": 5,
+      "posts": 4,
       "inter": 7,
       "shares": 1,
-      "views": 232,
-      "avg_score": 37.6,
-      "avg_inter": 1.4
+      "views": 237,
+      "avg_score": 46.9,
+      "avg_inter": 1.8
     }
   },
   "monthly": {
     "agentic-ai": {
       "posts": 62,
-      "inter": 302,
-      "shares": 12,
-      "views": 29693,
-      "avg_score": 58.2,
-      "avg_inter": 4.9
+      "inter": 977,
+      "shares": 104,
+      "views": 29466,
+      "avg_score": 58.1,
+      "avg_inter": 15.8
     },
     "engage": {
-      "posts": 150,
-      "inter": 195,
+      "posts": 152,
+      "inter": 196,
       "shares": 4,
-      "views": 20466,
-      "avg_score": 45.6,
+      "views": 20436,
+      "avg_score": 45.5,
       "avg_inter": 1.3
     },
     "google-ads-marketing": {
-      "posts": 46,
-      "inter": 440,
-      "shares": 88,
-      "views": 27952,
-      "avg_score": 51.4,
-      "avg_inter": 9.6
+      "posts": 44,
+      "inter": 435,
+      "shares": 86,
+      "views": 27668,
+      "avg_score": 51.6,
+      "avg_inter": 9.9
     }
   },
   "pillars": [
     {
       "pillar": "google-ads-marketing",
-      "posts": 46,
-      "pct": 18,
+      "posts": 44,
+      "pct": 17,
       "target": 35,
-      "gap": -17,
-      "avg_score": 51.4,
-      "avg_inter": 9.6
+      "gap": -18,
+      "avg_score": 51.6,
+      "avg_inter": 9.9
     },
     {
       "pillar": "agentic-ai",
@@ -70,16 +70,16 @@
       "pct": 24,
       "target": 35,
       "gap": -11,
-      "avg_score": 58.2,
-      "avg_inter": 4.9
+      "avg_score": 58.1,
+      "avg_inter": 15.8
     },
     {
       "pillar": "engage",
-      "posts": 150,
-      "pct": 58,
+      "posts": 152,
+      "pct": 59,
       "target": 30,
-      "gap": 28,
-      "avg_score": 45.6,
+      "gap": 29,
+      "avg_score": 45.5,
       "avg_inter": 1.3
     }
   ],
@@ -88,9 +88,65 @@
     "agentic-ai": 0.35,
     "engage": 0.3
   },
-  "posts_7d": 63,
+  "posts_7d": 62,
   "posts_30d": 258,
   "top_7d": [
+    {
+      "id": 1597,
+      "published_at": "2026-10-14T16:39:05.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 255,
+      "comments": 39,
+      "shares": 46,
+      "views": 0,
+      "text": "Anyone cari guide video macam mana nak edit dengan claude boleh refer ni.\nOkay lah, nanti aku share video cara nak edit video guna claude code dari phone jugak.\nLaptop duk rumah, kau duk luar berjalan pun boleh hantar video kat claude suruh dia edit dan post kan.\n100 likes aku buat \ud83d\ude02",
+      "weighted": 471,
+      "score": 100.0
+    },
+    {
+      "id": 1601,
+      "published_at": "2026-10-14T10:52:12.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Hi saya dah respon.\u00a0\u00a0Translate",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1598,
+      "published_at": "2026-10-14T08:33:48.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 255,
+      "comments": 39,
+      "shares": 46,
+      "views": 0,
+      "text": "akid.ahmad\nAku edit video ni guna Claude + HyperFrames.\nBagi satu prompt simple je, dia transcribe, buang pause & yang repeat, letak motion graphics, SFX & music. 20\u201330 minit siap.\nKau cuma perlukan 3 benda:\n1\ufe0f\u20e3 Claude Pro (dalam $20 sebulan)\n2\ufe0f\u20e3 Prompt yang simple\n3\ufe0f\u20e3 Guide aku: Claude Video for Dummies\nLink guide ada dekat bio \ud83d\udd17",
+      "weighted": 471,
+      "score": 100.0
+    },
+    {
+      "id": 1604,
+      "published_at": "2026-10-14T08:29:35.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 1,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Tak nafikan. Sebab tu ada yang komplain cakap ambik servis food reviewer takda hasil. Kalau senang macam tu then luncur lah",
+      "weighted": 3,
+      "score": 100.0
+    },
     {
       "id": 1591,
       "published_at": "2026-10-13T16:18:53.000Z",
@@ -173,67 +229,67 @@
       "views": 0,
       "text": "syamimihafiz_\nReplying to @syamimihafiz_\nJangan lupa daftar untuk secure slot anda! \ud83d\ude4c\n\ud83d\udc49 tinyurl.com/Lepak\u2026\nShare dalam group dan ajak geng korang sekali. Kita lepak sambil tambah ilmu! \ud83d\udd25\nluma.com\nLepak Tech EP.01: Gen AI to Agentic AI \u00b7 Luma",
       "weighted": 3,
-      "score": 100.0
-    },
-    {
-      "id": 1584,
-      "published_at": "2026-10-12T10:17:06.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 2,
-      "comments": 1,
-      "shares": 1,
-      "views": 0,
-      "text": "Replying to @mhd._asyraf\nBoleh. Follow cara ni.\n1. \u201cClaude auth login\u201d dekat terminal pc/macbook kau.\n2. Dah login. \u201cClaude rc\u201d dekat terminal sama.\n** 2 step ni untuk sambungkan claude code remote dari phone ke device kau. **\nDah setel,\n3. Rakam video pakai phone. Upload ke drive, manage access, editor, all can access.\n4. Bagi link dekat claude code session, suruh dia download, edit.\n5. Set lah t",
-      "weighted": 7,
-      "score": 100.0
-    },
-    {
-      "id": 1578,
-      "published_at": "2026-10-11T13:21:23.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 0,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Kemah. Ingat nak subs 5x claude. Dah masuk mode bulder jugak ni.",
-      "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1579,
-      "published_at": "2026-10-11T13:06:21.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "opinion-mythbust",
-      "likes": 0,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Lebih lagi sebenarnya. 24 yg posted sahaja. Cluade pro sahaja 20usd. Tu pun banyak lagi usage.\u00a0\u00a0Translate",
-      "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1570,
-      "published_at": "2026-10-10T15:58:54.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 0,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "betul. Tapi kalau ada sampel takda lah lama sangat nak match dengan style yg kita nak",
-      "weighted": 2,
       "score": 100.0
     }
   ],
   "top_30d": [
     {
+      "id": 1597,
+      "published_at": "2026-10-14T16:39:05.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 255,
+      "comments": 39,
+      "shares": 46,
+      "views": 0,
+      "text": "Anyone cari guide video macam mana nak edit dengan claude boleh refer ni.\nOkay lah, nanti aku share video cara nak edit video guna claude code dari phone jugak.\nLaptop duk rumah, kau duk luar berjalan pun boleh hantar video kat claude suruh dia edit dan post kan.\n100 likes aku buat \ud83d\ude02",
+      "weighted": 471,
+      "score": 100.0
+    },
+    {
+      "id": 1601,
+      "published_at": "2026-10-14T10:52:12.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Hi saya dah respon.\u00a0\u00a0Translate",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1598,
+      "published_at": "2026-10-14T08:33:48.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 255,
+      "comments": 39,
+      "shares": 46,
+      "views": 0,
+      "text": "akid.ahmad\nAku edit video ni guna Claude + HyperFrames.\nBagi satu prompt simple je, dia transcribe, buang pause & yang repeat, letak motion graphics, SFX & music. 20\u201330 minit siap.\nKau cuma perlukan 3 benda:\n1\ufe0f\u20e3 Claude Pro (dalam $20 sebulan)\n2\ufe0f\u20e3 Prompt yang simple\n3\ufe0f\u20e3 Guide aku: Claude Video for Dummies\nLink guide ada dekat bio \ud83d\udd17",
+      "weighted": 471,
+      "score": 100.0
+    },
+    {
+      "id": 1604,
+      "published_at": "2026-10-14T08:29:35.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 1,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Tak nafikan. Sebab tu ada yang komplain cakap ambik servis food reviewer takda hasil. Kalau senang macam tu then luncur lah",
+      "weighted": 3,
+      "score": 100.0
+    },
+    {
       "id": 1591,
       "published_at": "2026-10-13T16:18:53.000Z",
       "pillar": "agentic-ai",
@@ -315,62 +371,6 @@
       "views": 0,
       "text": "syamimihafiz_\nReplying to @syamimihafiz_\nJangan lupa daftar untuk secure slot anda! \ud83d\ude4c\n\ud83d\udc49 tinyurl.com/Lepak\u2026\nShare dalam group dan ajak geng korang sekali. Kita lepak sambil tambah ilmu! \ud83d\udd25\nluma.com\nLepak Tech EP.01: Gen AI to Agentic AI \u00b7 Luma",
       "weighted": 3,
-      "score": 100.0
-    },
-    {
-      "id": 1584,
-      "published_at": "2026-10-12T10:17:06.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 2,
-      "comments": 1,
-      "shares": 1,
-      "views": 0,
-      "text": "Replying to @mhd._asyraf\nBoleh. Follow cara ni.\n1. \u201cClaude auth login\u201d dekat terminal pc/macbook kau.\n2. Dah login. \u201cClaude rc\u201d dekat terminal sama.\n** 2 step ni untuk sambungkan claude code remote dari phone ke device kau. **\nDah setel,\n3. Rakam video pakai phone. Upload ke drive, manage access, editor, all can access.\n4. Bagi link dekat claude code session, suruh dia download, edit.\n5. Set lah t",
-      "weighted": 7,
-      "score": 100.0
-    },
-    {
-      "id": 1578,
-      "published_at": "2026-10-11T13:21:23.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 0,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Kemah. Ingat nak subs 5x claude. Dah masuk mode bulder jugak ni.",
-      "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1579,
-      "published_at": "2026-10-11T13:06:21.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "opinion-mythbust",
-      "likes": 0,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Lebih lagi sebenarnya. 24 yg posted sahaja. Cluade pro sahaja 20usd. Tu pun banyak lagi usage.\u00a0\u00a0Translate",
-      "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1570,
-      "published_at": "2026-10-10T15:58:54.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 0,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "betul. Tapi kalau ada sampel takda lah lama sangat nak match dengan style yg kita nak",
-      "weighted": 2,
       "score": 100.0
     }
   ],
@@ -378,32 +378,32 @@
     {
       "type": "pillar-mix",
       "title": "Pillar mix vs target 35/35/30",
-      "body": "google-ads-marketing 18% (target 35%) | agentic-ai 24% (target 35%) | engage 58% (target 30%)",
+      "body": "google-ads-marketing 17% (target 35%) | agentic-ai 24% (target 35%) | engage 59% (target 30%)",
       "metric": 258
     },
     {
       "type": "pillar-under",
       "title": "Pillar kurang: google-ads-marketing",
-      "body": "google-ads-marketing cuma 18% (target 35%). Naikkan volume je tak cukup. Kalau pillar ni engagement rendah, tukar bentuk: AI sebagai tool, masalah bisnes sebagai cerita.",
-      "metric": 18
+      "body": "google-ads-marketing cuma 17% (target 35%). Naikkan volume je tak cukup. Kalau pillar ni engagement rendah, tukar bentuk: AI sebagai tool, masalah bisnes sebagai cerita.",
+      "metric": 17
     },
     {
       "type": "pillar-over",
       "title": "Pillar lebih: engage",
-      "body": "engage 58% (target 30%). Kurangkan volume, pindah ke pillar yang kurang.",
-      "metric": 58
+      "body": "engage 59% (target 30%). Kurangkan volume, pindah ke pillar yang kurang.",
+      "metric": 59
     },
     {
       "type": "pillar-fix",
       "title": "Tingkatkan: engage",
-      "body": "engage avg score 45.6 dari 150 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
-      "metric": 45.6
+      "body": "engage avg score 45.5 dari 152 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
+      "metric": 45.5
     },
     {
       "type": "top-pillar-week",
       "title": "Pillar terbaik minggu ni: agentic-ai",
-      "body": "agentic-ai avg score 69.9 dari 18 posts. Kekalkan bentuk ni.",
-      "metric": 69.9
+      "body": "agentic-ai avg score 79.0 dari 18 posts. Kekalkan bentuk ni.",
+      "metric": 79.0
     }
   ]
 }
