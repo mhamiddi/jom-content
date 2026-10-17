@@ -1,57 +1,57 @@
 {
-  "generated_at": "2026-10-16T01:45:56.647900+00:00",
+  "generated_at": "2026-10-17T01:45:56.527360+00:00",
   "median_weighted_30d": 0,
   "median_views_30d": 286,
   "weekly": {
     "engage": {
-      "posts": 37,
-      "inter": 38,
+      "posts": 36,
+      "inter": 40,
       "shares": 1,
-      "views": 2021,
-      "avg_score": 40.6,
-      "avg_inter": 1.0
+      "views": 2084,
+      "avg_score": 36.0,
+      "avg_inter": 1.1
+    },
+    "agentic-ai": {
+      "posts": 18,
+      "inter": 759,
+      "shares": 95,
+      "views": 9044,
+      "avg_score": 85.7,
+      "avg_inter": 42.2
     },
     "google-ads-marketing": {
       "posts": 4,
-      "inter": 12,
+      "inter": 11,
       "shares": 1,
-      "views": 123,
-      "avg_score": 69.8,
-      "avg_inter": 3.0
-    },
-    "agentic-ai": {
-      "posts": 17,
-      "inter": 756,
-      "shares": 96,
-      "views": 9541,
-      "avg_score": 78.6,
-      "avg_inter": 44.5
+      "views": 379,
+      "avg_score": 65.8,
+      "avg_inter": 2.8
     }
   },
   "monthly": {
     "engage": {
       "posts": 157,
-      "inter": 198,
+      "inter": 192,
       "shares": 4,
-      "views": 20730,
-      "avg_score": 43.8,
-      "avg_inter": 1.3
-    },
-    "google-ads-marketing": {
-      "posts": 39,
-      "inter": 374,
-      "shares": 80,
-      "views": 27298,
-      "avg_score": 51.5,
-      "avg_inter": 9.6
+      "views": 20914,
+      "avg_score": 42.5,
+      "avg_inter": 1.2
     },
     "agentic-ai": {
       "posts": 59,
-      "inter": 968,
+      "inter": 964,
       "shares": 103,
-      "views": 30255,
-      "avg_score": 58.1,
-      "avg_inter": 16.4
+      "views": 29576,
+      "avg_score": 58.9,
+      "avg_inter": 16.3
+    },
+    "google-ads-marketing": {
+      "posts": 39,
+      "inter": 376,
+      "shares": 80,
+      "views": 27554,
+      "avg_score": 53.6,
+      "avg_inter": 9.6
     }
   },
   "pillars": [
@@ -61,7 +61,7 @@
       "pct": 15,
       "target": 35,
       "gap": -20,
-      "avg_score": 51.5,
+      "avg_score": 53.6,
       "avg_inter": 9.6
     },
     {
@@ -70,8 +70,8 @@
       "pct": 23,
       "target": 35,
       "gap": -12,
-      "avg_score": 58.1,
-      "avg_inter": 16.4
+      "avg_score": 58.9,
+      "avg_inter": 16.3
     },
     {
       "pillar": "engage",
@@ -79,8 +79,8 @@
       "pct": 62,
       "target": 30,
       "gap": 32,
-      "avg_score": 43.8,
-      "avg_inter": 1.3
+      "avg_score": 42.5,
+      "avg_inter": 1.2
     }
   ],
   "pillar_targets": {
@@ -92,31 +92,73 @@
   "posts_30d": 255,
   "top_7d": [
     {
-      "id": 1607,
-      "published_at": "2026-10-15T15:32:16.000Z",
-      "pillar": "google-ads-marketing",
+      "id": 1620,
+      "published_at": "2026-10-17T00:54:26.000Z",
+      "pillar": "agentic-ai",
       "pillar_source": "label",
       "format": "tutorial-howto",
       "likes": 3,
-      "comments": 2,
+      "comments": 4,
       "shares": 0,
       "views": 0,
-      "text": "Sebeluk tidur jangan lupa selesaikan tugas tertangguh. Nanti tak lena.\nContohnya, nak run google ads untuk bisnes, tapi tak reti. Takpa, saya ada.\nNak upah setup pun boleh, nak belajar sambil buat pun boleh. Semua boleh.",
-      "weighted": 7,
+      "text": "Aku nak ajar orang guna Agentic Ai marketing hari ni. Ada 40 business owner/ marketer.\nAku ada slides tapi aku risau yg datang tak dapat bayang apa aku cakap.\nSo better aku guna ja slides atau dari start tu terus demo ja setup aku? Sesi 30 minit ja. Cer bagi pendapat sikit. Kalau korang prefer yg mana?",
+      "weighted": 11,
       "score": 100.0
     },
     {
-      "id": 1609,
-      "published_at": "2026-10-15T09:58:18.000Z",
-      "pillar": "engage",
+      "id": 1614,
+      "published_at": "2026-10-16T14:02:46.000Z",
+      "pillar": "agentic-ai",
       "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 2,
-      "comments": 1,
+      "format": "tutorial-howto",
+      "likes": 1,
+      "comments": 0,
       "shares": 0,
       "views": 0,
-      "text": "Lain macam anak aku ni. Dekat CBTL pun dia boleh memancing.",
-      "weighted": 4,
+      "text": "Done sesi coaching google ada hari ni dengan owner dental clinic jugak, di Penang. Smooth sailing ja. Tak menyesal setup LMS tu. flow coaching lebih smooth, lebih interactive.\nNanti maybe boleh pasang ai agent \ud83d\ude02 gatal takda kerja.",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1619,
+      "published_at": "2026-10-16T08:40:27.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 5,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Betul. Yang melebih ni ada agenda sendiri.\u00a0\u00a0Translate",
+      "weighted": 5,
+      "score": 100.0
+    },
+    {
+      "id": 1615,
+      "published_at": "2026-10-16T08:32:53.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Takda idea nak setup Ai workflow apa dulu untuk bisnes? Setup content engine. Semua bisnes especially b2c wajib buat content.",
+      "weighted": 2,
+      "score": 100.0
+    },
+    {
+      "id": 1616,
+      "published_at": "2026-10-16T04:15:40.000Z",
+      "pillar": "google-ads-marketing",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Nampak gayanya kena buat adjustment sikit dekat cara kita shoot content \ud83d\ude02",
+      "weighted": 2,
       "score": 100.0
     },
     {
@@ -187,78 +229,78 @@
       "views": 0,
       "text": "Tapi token usage berderu mcm air. Sebab materials tu pun dia yang cari sendiri kat internet",
       "weighted": 3,
-      "score": 100.0
-    },
-    {
-      "id": 1594,
-      "published_at": "2026-10-13T15:34:57.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 0,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Uuu brother ni dah onboard wave Ai \ud83d\ude02",
-      "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1590,
-      "published_at": "2026-10-13T10:26:48.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 0,
-      "comments": 0,
-      "shares": 1,
-      "views": 0,
-      "text": "syamimihafiz_\nReplying to @syamimihafiz_\nJangan lupa daftar untuk secure slot anda! \ud83d\ude4c\n\ud83d\udc49 tinyurl.com/Lepak\u2026\nShare dalam group dan ajak geng korang sekali. Kita lepak sambil tambah ilmu! \ud83d\udd25\nluma.com\nLepak Tech EP.01: Gen AI to Agentic AI \u00b7 Luma",
-      "weighted": 3,
-      "score": 100.0
-    },
-    {
-      "id": 1584,
-      "published_at": "2026-10-12T10:17:06.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 2,
-      "comments": 1,
-      "shares": 1,
-      "views": 0,
-      "text": "Replying to @mhd._asyraf\nBoleh. Follow cara ni.\n1. \u201cClaude auth login\u201d dekat terminal pc/macbook kau.\n2. Dah login. \u201cClaude rc\u201d dekat terminal sama.\n** 2 step ni untuk sambungkan claude code remote dari phone ke device kau. **\nDah setel,\n3. Rakam video pakai phone. Upload ke drive, manage access, editor, all can access.\n4. Bagi link dekat claude code session, suruh dia download, edit.\n5. Set lah t",
-      "weighted": 7,
       "score": 100.0
     }
   ],
   "top_30d": [
     {
-      "id": 1607,
-      "published_at": "2026-10-15T15:32:16.000Z",
-      "pillar": "google-ads-marketing",
+      "id": 1620,
+      "published_at": "2026-10-17T00:54:26.000Z",
+      "pillar": "agentic-ai",
       "pillar_source": "label",
       "format": "tutorial-howto",
       "likes": 3,
-      "comments": 2,
+      "comments": 4,
       "shares": 0,
       "views": 0,
-      "text": "Sebeluk tidur jangan lupa selesaikan tugas tertangguh. Nanti tak lena.\nContohnya, nak run google ads untuk bisnes, tapi tak reti. Takpa, saya ada.\nNak upah setup pun boleh, nak belajar sambil buat pun boleh. Semua boleh.",
-      "weighted": 7,
+      "text": "Aku nak ajar orang guna Agentic Ai marketing hari ni. Ada 40 business owner/ marketer.\nAku ada slides tapi aku risau yg datang tak dapat bayang apa aku cakap.\nSo better aku guna ja slides atau dari start tu terus demo ja setup aku? Sesi 30 minit ja. Cer bagi pendapat sikit. Kalau korang prefer yg mana?",
+      "weighted": 11,
       "score": 100.0
     },
     {
-      "id": 1609,
-      "published_at": "2026-10-15T09:58:18.000Z",
-      "pillar": "engage",
+      "id": 1614,
+      "published_at": "2026-10-16T14:02:46.000Z",
+      "pillar": "agentic-ai",
       "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 2,
-      "comments": 1,
+      "format": "tutorial-howto",
+      "likes": 1,
+      "comments": 0,
       "shares": 0,
       "views": 0,
-      "text": "Lain macam anak aku ni. Dekat CBTL pun dia boleh memancing.",
-      "weighted": 4,
+      "text": "Done sesi coaching google ada hari ni dengan owner dental clinic jugak, di Penang. Smooth sailing ja. Tak menyesal setup LMS tu. flow coaching lebih smooth, lebih interactive.\nNanti maybe boleh pasang ai agent \ud83d\ude02 gatal takda kerja.",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1619,
+      "published_at": "2026-10-16T08:40:27.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 5,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Betul. Yang melebih ni ada agenda sendiri.\u00a0\u00a0Translate",
+      "weighted": 5,
+      "score": 100.0
+    },
+    {
+      "id": 1615,
+      "published_at": "2026-10-16T08:32:53.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Takda idea nak setup Ai workflow apa dulu untuk bisnes? Setup content engine. Semua bisnes especially b2c wajib buat content.",
+      "weighted": 2,
+      "score": 100.0
+    },
+    {
+      "id": 1616,
+      "published_at": "2026-10-16T04:15:40.000Z",
+      "pillar": "google-ads-marketing",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Nampak gayanya kena buat adjustment sikit dekat cara kita shoot content \ud83d\ude02",
+      "weighted": 2,
       "score": 100.0
     },
     {
@@ -329,48 +371,6 @@
       "views": 0,
       "text": "Tapi token usage berderu mcm air. Sebab materials tu pun dia yang cari sendiri kat internet",
       "weighted": 3,
-      "score": 100.0
-    },
-    {
-      "id": 1594,
-      "published_at": "2026-10-13T15:34:57.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 0,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Uuu brother ni dah onboard wave Ai \ud83d\ude02",
-      "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1590,
-      "published_at": "2026-10-13T10:26:48.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 0,
-      "comments": 0,
-      "shares": 1,
-      "views": 0,
-      "text": "syamimihafiz_\nReplying to @syamimihafiz_\nJangan lupa daftar untuk secure slot anda! \ud83d\ude4c\n\ud83d\udc49 tinyurl.com/Lepak\u2026\nShare dalam group dan ajak geng korang sekali. Kita lepak sambil tambah ilmu! \ud83d\udd25\nluma.com\nLepak Tech EP.01: Gen AI to Agentic AI \u00b7 Luma",
-      "weighted": 3,
-      "score": 100.0
-    },
-    {
-      "id": 1584,
-      "published_at": "2026-10-12T10:17:06.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 2,
-      "comments": 1,
-      "shares": 1,
-      "views": 0,
-      "text": "Replying to @mhd._asyraf\nBoleh. Follow cara ni.\n1. \u201cClaude auth login\u201d dekat terminal pc/macbook kau.\n2. Dah login. \u201cClaude rc\u201d dekat terminal sama.\n** 2 step ni untuk sambungkan claude code remote dari phone ke device kau. **\nDah setel,\n3. Rakam video pakai phone. Upload ke drive, manage access, editor, all can access.\n4. Bagi link dekat claude code session, suruh dia download, edit.\n5. Set lah t",
-      "weighted": 7,
       "score": 100.0
     }
   ],
@@ -396,14 +396,14 @@
     {
       "type": "pillar-fix",
       "title": "Tingkatkan: engage",
-      "body": "engage avg score 43.8 dari 157 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
-      "metric": 43.8
+      "body": "engage avg score 42.5 dari 157 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
+      "metric": 42.5
     },
     {
       "type": "top-pillar-week",
       "title": "Pillar terbaik minggu ni: agentic-ai",
-      "body": "agentic-ai avg score 78.6 dari 17 posts. Kekalkan bentuk ni.",
-      "metric": 78.6
+      "body": "agentic-ai avg score 85.7 dari 18 posts. Kekalkan bentuk ni.",
+      "metric": 85.7
     }
   ]
 }
