@@ -1,86 +1,86 @@
 {
-  "generated_at": "2026-10-17T01:45:56.527360+00:00",
-  "median_weighted_30d": 0,
-  "median_views_30d": 286,
+  "generated_at": "2026-10-18T01:45:56.273521+00:00",
+  "median_weighted_30d": 0.0,
+  "median_views_30d": 285.0,
   "weekly": {
     "engage": {
-      "posts": 36,
-      "inter": 40,
+      "posts": 35,
+      "inter": 60,
       "shares": 1,
-      "views": 2084,
-      "avg_score": 36.0,
-      "avg_inter": 1.1
+      "views": 1386,
+      "avg_score": 40.5,
+      "avg_inter": 1.7
     },
     "agentic-ai": {
-      "posts": 18,
-      "inter": 759,
+      "posts": 19,
+      "inter": 760,
       "shares": 95,
-      "views": 9044,
-      "avg_score": 85.7,
-      "avg_inter": 42.2
+      "views": 8484,
+      "avg_score": 77.5,
+      "avg_inter": 40.0
     },
     "google-ads-marketing": {
-      "posts": 4,
+      "posts": 3,
       "inter": 11,
       "shares": 1,
-      "views": 379,
-      "avg_score": 65.8,
-      "avg_inter": 2.8
+      "views": 661,
+      "avg_score": 82.7,
+      "avg_inter": 3.7
     }
   },
   "monthly": {
     "engage": {
-      "posts": 157,
-      "inter": 192,
-      "shares": 4,
-      "views": 20914,
-      "avg_score": 42.5,
-      "avg_inter": 1.2
+      "posts": 162,
+      "inter": 207,
+      "shares": 2,
+      "views": 19952,
+      "avg_score": 43.7,
+      "avg_inter": 1.3
     },
     "agentic-ai": {
-      "posts": 59,
-      "inter": 964,
+      "posts": 62,
+      "inter": 969,
       "shares": 103,
-      "views": 29576,
-      "avg_score": 58.9,
-      "avg_inter": 16.3
+      "views": 29580,
+      "avg_score": 57.7,
+      "avg_inter": 15.6
     },
     "google-ads-marketing": {
-      "posts": 39,
-      "inter": 376,
-      "shares": 80,
-      "views": 27554,
-      "avg_score": 53.6,
-      "avg_inter": 9.6
+      "posts": 38,
+      "inter": 62,
+      "shares": 2,
+      "views": 15136,
+      "avg_score": 52.0,
+      "avg_inter": 1.6
     }
   },
   "pillars": [
     {
       "pillar": "google-ads-marketing",
-      "posts": 39,
+      "posts": 38,
       "pct": 15,
       "target": 35,
       "gap": -20,
-      "avg_score": 53.6,
-      "avg_inter": 9.6
+      "avg_score": 52.0,
+      "avg_inter": 1.6
     },
     {
       "pillar": "agentic-ai",
-      "posts": 59,
-      "pct": 23,
+      "posts": 62,
+      "pct": 24,
       "target": 35,
-      "gap": -12,
-      "avg_score": 58.9,
-      "avg_inter": 16.3
+      "gap": -11,
+      "avg_score": 57.7,
+      "avg_inter": 15.6
     },
     {
       "pillar": "engage",
-      "posts": 157,
+      "posts": 162,
       "pct": 62,
       "target": 30,
       "gap": 32,
-      "avg_score": 42.5,
-      "avg_inter": 1.2
+      "avg_score": 43.7,
+      "avg_inter": 1.3
     }
   ],
   "pillar_targets": {
@@ -88,9 +88,93 @@
     "agentic-ai": 0.35,
     "engage": 0.3
   },
-  "posts_7d": 58,
-  "posts_30d": 255,
+  "posts_7d": 57,
+  "posts_30d": 262,
   "top_7d": [
+    {
+      "id": 1628,
+      "published_at": "2026-10-17T15:26:18.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 1,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Uu nice feedback",
+      "weighted": 3,
+      "score": 100.0
+    },
+    {
+      "id": 1629,
+      "published_at": "2026-10-17T15:26:08.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Bereh dah habis nanti saya share feedback\u00a0\u00a0Translate",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1631,
+      "published_at": "2026-10-17T15:24:46.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 1,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Llm hosted under ytl. Dia GLM tapi rebadge jadi ilmu-glm5.3",
+      "weighted": 3,
+      "score": 100.0
+    },
+    {
+      "id": 1624,
+      "published_at": "2026-10-17T14:48:21.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 11,
+      "comments": 6,
+      "shares": 0,
+      "views": 0,
+      "text": "It\u2019s time to upgrade my storytelling. Kita start dengan buku ni dulu. Semoga aura penulis buku ni turun kat aku sikit \ud83d\ude02",
+      "weighted": 23,
+      "score": 100.0
+    },
+    {
+      "id": 1625,
+      "published_at": "2026-10-17T14:44:53.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 1,
+      "comments": 5,
+      "shares": 0,
+      "views": 0,
+      "text": "Aku skang tengok consider nak cuba guna ilmu code \ud83d\ude02\nKena racun kat lepak tech hari ni.",
+      "weighted": 11,
+      "score": 100.0
+    },
+    {
+      "id": 1626,
+      "published_at": "2026-10-17T10:19:05.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 5,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Untuk setup agentic Ai sendiri, anggap dia extension diri kita. Dia tak replace, tapi dia buat workflow kita lebih efficient.\nMeans kalau kau nak output yang up to the standard, better ajar workflow kau sendiri dan guna Ai untuk tukar dia jadi agentic dan boleh run sendiri tanpa kau handle.\n1/2",
+      "weighted": 5,
+      "score": 100.0
+    },
     {
       "id": 1620,
       "published_at": "2026-10-17T00:54:26.000Z",
@@ -145,95 +229,95 @@
       "views": 0,
       "text": "Takda idea nak setup Ai workflow apa dulu untuk bisnes? Setup content engine. Semua bisnes especially b2c wajib buat content.",
       "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1616,
-      "published_at": "2026-10-16T04:15:40.000Z",
-      "pillar": "google-ads-marketing",
-      "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 2,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Nampak gayanya kena buat adjustment sikit dekat cara kita shoot content \ud83d\ude02",
-      "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1601,
-      "published_at": "2026-10-14T10:52:12.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 1,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Hi saya dah respon.\u00a0\u00a0Translate",
-      "weighted": 1,
-      "score": 100.0
-    },
-    {
-      "id": 1598,
-      "published_at": "2026-10-14T08:33:48.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 255,
-      "comments": 39,
-      "shares": 46,
-      "views": 0,
-      "text": "akid.ahmad\nAku edit video ni guna Claude + HyperFrames.\nBagi satu prompt simple je, dia transcribe, buang pause & yang repeat, letak motion graphics, SFX & music. 20\u201330 minit siap.\nKau cuma perlukan 3 benda:\n1\ufe0f\u20e3 Claude Pro (dalam $20 sebulan)\n2\ufe0f\u20e3 Prompt yang simple\n3\ufe0f\u20e3 Guide aku: Claude Video for Dummies\nLink guide ada dekat bio \ud83d\udd17",
-      "weighted": 471,
-      "score": 100.0
-    },
-    {
-      "id": 1604,
-      "published_at": "2026-10-14T08:29:35.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Tak nafikan. Sebab tu ada yang komplain cakap ambik servis food reviewer takda hasil. Kalau senang macam tu then luncur lah",
-      "weighted": 3,
-      "score": 100.0
-    },
-    {
-      "id": 1591,
-      "published_at": "2026-10-13T16:18:53.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Sebab opus lagi pandai guna tools dan reasoning untuk benda kreatif cthnya macam video.\nChatgpt okay, guna Astra atau 6.1sol. Tapi ukur token usage dia.",
-      "weighted": 1,
-      "score": 100.0
-    },
-    {
-      "id": 1593,
-      "published_at": "2026-10-13T16:07:58.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Tapi token usage berderu mcm air. Sebab materials tu pun dia yang cari sendiri kat internet",
-      "weighted": 3,
       "score": 100.0
     }
   ],
   "top_30d": [
     {
+      "id": 1628,
+      "published_at": "2026-10-17T15:26:18.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 1,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Uu nice feedback",
+      "weighted": 3,
+      "score": 100.0
+    },
+    {
+      "id": 1629,
+      "published_at": "2026-10-17T15:26:08.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Bereh dah habis nanti saya share feedback\u00a0\u00a0Translate",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1631,
+      "published_at": "2026-10-17T15:24:46.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 1,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Llm hosted under ytl. Dia GLM tapi rebadge jadi ilmu-glm5.3",
+      "weighted": 3,
+      "score": 100.0
+    },
+    {
+      "id": 1624,
+      "published_at": "2026-10-17T14:48:21.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 11,
+      "comments": 6,
+      "shares": 0,
+      "views": 0,
+      "text": "It\u2019s time to upgrade my storytelling. Kita start dengan buku ni dulu. Semoga aura penulis buku ni turun kat aku sikit \ud83d\ude02",
+      "weighted": 23,
+      "score": 100.0
+    },
+    {
+      "id": 1625,
+      "published_at": "2026-10-17T14:44:53.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 1,
+      "comments": 5,
+      "shares": 0,
+      "views": 0,
+      "text": "Aku skang tengok consider nak cuba guna ilmu code \ud83d\ude02\nKena racun kat lepak tech hari ni.",
+      "weighted": 11,
+      "score": 100.0
+    },
+    {
+      "id": 1626,
+      "published_at": "2026-10-17T10:19:05.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 5,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Untuk setup agentic Ai sendiri, anggap dia extension diri kita. Dia tak replace, tapi dia buat workflow kita lebih efficient.\nMeans kalau kau nak output yang up to the standard, better ajar workflow kau sendiri dan guna Ai untuk tukar dia jadi agentic dan boleh run sendiri tanpa kau handle.\n1/2",
+      "weighted": 5,
+      "score": 100.0
+    },
+    {
       "id": 1620,
       "published_at": "2026-10-17T00:54:26.000Z",
       "pillar": "agentic-ai",
@@ -287,90 +371,6 @@
       "views": 0,
       "text": "Takda idea nak setup Ai workflow apa dulu untuk bisnes? Setup content engine. Semua bisnes especially b2c wajib buat content.",
       "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1616,
-      "published_at": "2026-10-16T04:15:40.000Z",
-      "pillar": "google-ads-marketing",
-      "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 2,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Nampak gayanya kena buat adjustment sikit dekat cara kita shoot content \ud83d\ude02",
-      "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1601,
-      "published_at": "2026-10-14T10:52:12.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 1,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Hi saya dah respon.\u00a0\u00a0Translate",
-      "weighted": 1,
-      "score": 100.0
-    },
-    {
-      "id": 1598,
-      "published_at": "2026-10-14T08:33:48.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 255,
-      "comments": 39,
-      "shares": 46,
-      "views": 0,
-      "text": "akid.ahmad\nAku edit video ni guna Claude + HyperFrames.\nBagi satu prompt simple je, dia transcribe, buang pause & yang repeat, letak motion graphics, SFX & music. 20\u201330 minit siap.\nKau cuma perlukan 3 benda:\n1\ufe0f\u20e3 Claude Pro (dalam $20 sebulan)\n2\ufe0f\u20e3 Prompt yang simple\n3\ufe0f\u20e3 Guide aku: Claude Video for Dummies\nLink guide ada dekat bio \ud83d\udd17",
-      "weighted": 471,
-      "score": 100.0
-    },
-    {
-      "id": 1604,
-      "published_at": "2026-10-14T08:29:35.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Tak nafikan. Sebab tu ada yang komplain cakap ambik servis food reviewer takda hasil. Kalau senang macam tu then luncur lah",
-      "weighted": 3,
-      "score": 100.0
-    },
-    {
-      "id": 1591,
-      "published_at": "2026-10-13T16:18:53.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Sebab opus lagi pandai guna tools dan reasoning untuk benda kreatif cthnya macam video.\nChatgpt okay, guna Astra atau 6.1sol. Tapi ukur token usage dia.",
-      "weighted": 1,
-      "score": 100.0
-    },
-    {
-      "id": 1593,
-      "published_at": "2026-10-13T16:07:58.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Tapi token usage berderu mcm air. Sebab materials tu pun dia yang cari sendiri kat internet",
-      "weighted": 3,
       "score": 100.0
     }
   ],
@@ -378,8 +378,8 @@
     {
       "type": "pillar-mix",
       "title": "Pillar mix vs target 35/35/30",
-      "body": "google-ads-marketing 15% (target 35%) | agentic-ai 23% (target 35%) | engage 62% (target 30%)",
-      "metric": 255
+      "body": "google-ads-marketing 15% (target 35%) | agentic-ai 24% (target 35%) | engage 62% (target 30%)",
+      "metric": 262
     },
     {
       "type": "pillar-under",
@@ -396,14 +396,14 @@
     {
       "type": "pillar-fix",
       "title": "Tingkatkan: engage",
-      "body": "engage avg score 42.5 dari 157 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
-      "metric": 42.5
+      "body": "engage avg score 43.7 dari 162 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
+      "metric": 43.7
     },
     {
       "type": "top-pillar-week",
-      "title": "Pillar terbaik minggu ni: agentic-ai",
-      "body": "agentic-ai avg score 85.7 dari 18 posts. Kekalkan bentuk ni.",
-      "metric": 85.7
+      "title": "Pillar terbaik minggu ni: google-ads-marketing",
+      "body": "google-ads-marketing avg score 82.7 dari 3 posts. Kekalkan bentuk ni.",
+      "metric": 82.7
     }
   ]
 }
