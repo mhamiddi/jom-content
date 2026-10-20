@@ -1,86 +1,86 @@
 {
-  "generated_at": "2026-10-19T01:45:56.317387+00:00",
+  "generated_at": "2026-10-20T01:45:56.296188+00:00",
   "median_weighted_30d": 0.0,
-  "median_views_30d": 285.0,
+  "median_views_30d": 284,
   "weekly": {
     "engage": {
-      "posts": 36,
-      "inter": 63,
-      "shares": 2,
-      "views": 1483,
-      "avg_score": 39.5,
-      "avg_inter": 1.8
-    },
-    "agentic-ai": {
-      "posts": 17,
-      "inter": 729,
-      "shares": 95,
-      "views": 3773,
-      "avg_score": 77.4,
-      "avg_inter": 42.9
+      "posts": 41,
+      "inter": 69,
+      "shares": 3,
+      "views": 1956,
+      "avg_score": 49.0,
+      "avg_inter": 1.7
     },
     "google-ads-marketing": {
-      "posts": 4,
-      "inter": 13,
-      "shares": 1,
-      "views": 671,
-      "avg_score": 87.1,
-      "avg_inter": 3.2
+      "posts": 6,
+      "inter": 17,
+      "shares": 0,
+      "views": 665,
+      "avg_score": 74.7,
+      "avg_inter": 2.8
+    },
+    "agentic-ai": {
+      "posts": 14,
+      "inter": 709,
+      "shares": 93,
+      "views": 3344,
+      "avg_score": 71.8,
+      "avg_inter": 50.6
     }
   },
   "monthly": {
     "engage": {
-      "posts": 155,
-      "inter": 194,
-      "shares": 3,
-      "views": 19709,
-      "avg_score": 42.6,
-      "avg_inter": 1.3
-    },
-    "agentic-ai": {
-      "posts": 60,
-      "inter": 964,
-      "shares": 103,
-      "views": 29967,
-      "avg_score": 57.8,
-      "avg_inter": 16.1
+      "posts": 158,
+      "inter": 191,
+      "shares": 4,
+      "views": 17045,
+      "avg_score": 44.1,
+      "avg_inter": 1.2
     },
     "google-ads-marketing": {
-      "posts": 37,
-      "inter": 57,
+      "posts": 38,
+      "inter": 61,
       "shares": 2,
-      "views": 14976,
-      "avg_score": 54.0,
-      "avg_inter": 1.5
+      "views": 14577,
+      "avg_score": 52.8,
+      "avg_inter": 1.6
+    },
+    "agentic-ai": {
+      "posts": 58,
+      "inter": 963,
+      "shares": 103,
+      "views": 30266,
+      "avg_score": 57.3,
+      "avg_inter": 16.6
     }
   },
   "pillars": [
     {
       "pillar": "google-ads-marketing",
-      "posts": 37,
+      "posts": 38,
       "pct": 15,
       "target": 35,
       "gap": -20,
-      "avg_score": 54.0,
-      "avg_inter": 1.5
+      "avg_score": 52.8,
+      "avg_inter": 1.6
     },
     {
       "pillar": "agentic-ai",
-      "posts": 60,
-      "pct": 24,
+      "posts": 58,
+      "pct": 23,
       "target": 35,
-      "gap": -11,
-      "avg_score": 57.8,
-      "avg_inter": 16.1
+      "gap": -12,
+      "avg_score": 57.3,
+      "avg_inter": 16.6
     },
     {
       "pillar": "engage",
-      "posts": 155,
+      "posts": 158,
       "pct": 62,
       "target": 30,
       "gap": 32,
-      "avg_score": 42.6,
-      "avg_inter": 1.3
+      "avg_score": 44.1,
+      "avg_inter": 1.2
     }
   ],
   "pillar_targets": {
@@ -88,9 +88,121 @@
     "agentic-ai": 0.35,
     "engage": 0.3
   },
-  "posts_7d": 57,
-  "posts_30d": 252,
+  "posts_7d": 61,
+  "posts_30d": 254,
   "top_7d": [
+    {
+      "id": 1644,
+      "published_at": "2026-10-19T15:36:18.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Cara untuk bazirkan/ maximise token usage \ud83d\ude02\nIt\u2019s necessary? Tak.\nIt\u2019s fun? Yes.",
+      "weighted": 2,
+      "score": 100.0
+    },
+    {
+      "id": 1651,
+      "published_at": "2026-10-19T14:34:41.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Depends.",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1652,
+      "published_at": "2026-10-19T14:31:39.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Kamu kalau genz bawah 2001 anggap ja hybrid haha",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1653,
+      "published_at": "2026-10-19T14:31:02.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Setiap pagi terpacak depan tv. \ud83d\ude02",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1645,
+      "published_at": "2026-10-19T14:21:01.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Incase genz muda2 ni curious apa millennials buat masa zaman sebelum social media dan smartphone,\nKami ada lawak kampus.\nSatu buku tu ulang 10x, normal.\n1/2",
+      "weighted": 2,
+      "score": 100.0
+    },
+    {
+      "id": 1654,
+      "published_at": "2026-10-19T14:16:31.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 0,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Tools no dua, masalah dulu. Tools bila2 boleh tukar",
+      "weighted": 2,
+      "score": 100.0
+    },
+    {
+      "id": 1649,
+      "published_at": "2026-10-19T14:09:22.000Z",
+      "pillar": "google-ads-marketing",
+      "pillar_source": "label",
+      "format": "comparison",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Buat ja elok2. Memang leceh tapi perlu. Meta ads still lebih lenient berbanding google ads especially utk leads gen dan ecomm/sales page.\n2/2",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1648,
+      "published_at": "2026-10-19T13:59:17.000Z",
+      "pillar": "google-ads-marketing",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 7,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Anyone yang sakit kepala handle verification meta ads mesti tak pernah buat verification dan appeal policy violation dekat google ads\nAku handle berpuluh account google ads, dah bermacam verification, account suspension dan policy violation yang kena hadap.\n1/2",
+      "weighted": 7,
+      "score": 100.0
+    },
     {
       "id": 1637,
       "published_at": "2026-10-18T05:36:29.000Z",
@@ -117,123 +229,123 @@
       "views": 0,
       "text": "Kalau dah add tester account then memang kena tunggu. Hari tu masa test pun dia tak detect segera.",
       "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1633,
-      "published_at": "2026-10-18T01:58:09.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "comparison",
-      "likes": 9,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Seronok buat talk semalam. Beza kelah fizikal dan atas talian. Rasa macam nak buat weekly class/ sharing pulak untuk business owner dan marketer area kuantan.\nMaybe boleh buat kelas google ads/ marketing atau kelas agentic Ai. Kita letak fee sekali.\nFuhh mcm best.",
-      "weighted": 11,
-      "score": 100.0
-    },
-    {
-      "id": 1634,
-      "published_at": "2026-10-18T01:54:15.000Z",
-      "pillar": "google-ads-marketing",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 2,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Sekarang aku manage google ads 80% guna phone + discord ja.\nMemang jarang lah bukak dashboard unless kalau aku nak betul2 lock in (biasanya kalau akaun tengah severe).\nSearch term reports, ada reports, adjust copywriting, optimise campaign structure, tambah new adgroup etc.",
-      "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1635,
-      "published_at": "2026-10-18T01:51:29.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 1,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Nak guna Ai sangat mudah. Nak start tu maybe seram sikit, tapi kalau fokus at least 1 jam, dah boleh buat.\nYang susah bukan nak guna, tapi nak apply. Apply tu yang paling susah.\nKorang boleh ada Ai paling berkuasa dekat dunia, tapi kalau x boleh apply dan selesaikan masalah, dia sekadar tools sahaja lah. Faham tak?",
-      "weighted": 1,
-      "score": 100.0
-    },
-    {
-      "id": 1628,
-      "published_at": "2026-10-17T15:26:18.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Uu nice feedback",
-      "weighted": 3,
-      "score": 100.0
-    },
-    {
-      "id": 1629,
-      "published_at": "2026-10-17T15:26:08.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 1,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Bereh dah habis nanti saya share feedback\u00a0\u00a0Translate",
-      "weighted": 1,
-      "score": 100.0
-    },
-    {
-      "id": 1631,
-      "published_at": "2026-10-17T15:24:46.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Llm hosted under ytl. Dia GLM tapi rebadge jadi ilmu-glm5.3",
-      "weighted": 3,
-      "score": 100.0
-    },
-    {
-      "id": 1624,
-      "published_at": "2026-10-17T14:48:21.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 17,
-      "comments": 7,
-      "shares": 1,
-      "views": 0,
-      "text": "It\u2019s time to upgrade my storytelling. Kita start dengan buku ni dulu. Semoga aura penulis buku ni turun kat aku sikit \ud83d\ude02",
-      "weighted": 34,
-      "score": 100.0
-    },
-    {
-      "id": 1619,
-      "published_at": "2026-10-16T08:40:27.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 5,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Betul. Yang melebih ni ada agenda sendiri.\u00a0\u00a0Translate",
-      "weighted": 5,
       "score": 100.0
     }
   ],
   "top_30d": [
     {
+      "id": 1644,
+      "published_at": "2026-10-19T15:36:18.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Cara untuk bazirkan/ maximise token usage \ud83d\ude02\nIt\u2019s necessary? Tak.\nIt\u2019s fun? Yes.",
+      "weighted": 2,
+      "score": 100.0
+    },
+    {
+      "id": 1651,
+      "published_at": "2026-10-19T14:34:41.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Depends.",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1652,
+      "published_at": "2026-10-19T14:31:39.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Kamu kalau genz bawah 2001 anggap ja hybrid haha",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1653,
+      "published_at": "2026-10-19T14:31:02.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Setiap pagi terpacak depan tv. \ud83d\ude02",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1645,
+      "published_at": "2026-10-19T14:21:01.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Incase genz muda2 ni curious apa millennials buat masa zaman sebelum social media dan smartphone,\nKami ada lawak kampus.\nSatu buku tu ulang 10x, normal.\n1/2",
+      "weighted": 2,
+      "score": 100.0
+    },
+    {
+      "id": 1654,
+      "published_at": "2026-10-19T14:16:31.000Z",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 0,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Tools no dua, masalah dulu. Tools bila2 boleh tukar",
+      "weighted": 2,
+      "score": 100.0
+    },
+    {
+      "id": 1649,
+      "published_at": "2026-10-19T14:09:22.000Z",
+      "pillar": "google-ads-marketing",
+      "pillar_source": "label",
+      "format": "comparison",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Buat ja elok2. Memang leceh tapi perlu. Meta ads still lebih lenient berbanding google ads especially utk leads gen dan ecomm/sales page.\n2/2",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1648,
+      "published_at": "2026-10-19T13:59:17.000Z",
+      "pillar": "google-ads-marketing",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 7,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Anyone yang sakit kepala handle verification meta ads mesti tak pernah buat verification dan appeal policy violation dekat google ads\nAku handle berpuluh account google ads, dah bermacam verification, account suspension dan policy violation yang kena hadap.\n1/2",
+      "weighted": 7,
+      "score": 100.0
+    },
+    {
       "id": 1637,
       "published_at": "2026-10-18T05:36:29.000Z",
       "pillar": "engage",
@@ -259,118 +371,6 @@
       "views": 0,
       "text": "Kalau dah add tester account then memang kena tunggu. Hari tu masa test pun dia tak detect segera.",
       "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1633,
-      "published_at": "2026-10-18T01:58:09.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "comparison",
-      "likes": 9,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Seronok buat talk semalam. Beza kelah fizikal dan atas talian. Rasa macam nak buat weekly class/ sharing pulak untuk business owner dan marketer area kuantan.\nMaybe boleh buat kelas google ads/ marketing atau kelas agentic Ai. Kita letak fee sekali.\nFuhh mcm best.",
-      "weighted": 11,
-      "score": 100.0
-    },
-    {
-      "id": 1634,
-      "published_at": "2026-10-18T01:54:15.000Z",
-      "pillar": "google-ads-marketing",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 2,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Sekarang aku manage google ads 80% guna phone + discord ja.\nMemang jarang lah bukak dashboard unless kalau aku nak betul2 lock in (biasanya kalau akaun tengah severe).\nSearch term reports, ada reports, adjust copywriting, optimise campaign structure, tambah new adgroup etc.",
-      "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1635,
-      "published_at": "2026-10-18T01:51:29.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 1,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Nak guna Ai sangat mudah. Nak start tu maybe seram sikit, tapi kalau fokus at least 1 jam, dah boleh buat.\nYang susah bukan nak guna, tapi nak apply. Apply tu yang paling susah.\nKorang boleh ada Ai paling berkuasa dekat dunia, tapi kalau x boleh apply dan selesaikan masalah, dia sekadar tools sahaja lah. Faham tak?",
-      "weighted": 1,
-      "score": 100.0
-    },
-    {
-      "id": 1628,
-      "published_at": "2026-10-17T15:26:18.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Uu nice feedback",
-      "weighted": 3,
-      "score": 100.0
-    },
-    {
-      "id": 1629,
-      "published_at": "2026-10-17T15:26:08.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 1,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Bereh dah habis nanti saya share feedback\u00a0\u00a0Translate",
-      "weighted": 1,
-      "score": 100.0
-    },
-    {
-      "id": 1631,
-      "published_at": "2026-10-17T15:24:46.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Llm hosted under ytl. Dia GLM tapi rebadge jadi ilmu-glm5.3",
-      "weighted": 3,
-      "score": 100.0
-    },
-    {
-      "id": 1624,
-      "published_at": "2026-10-17T14:48:21.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 17,
-      "comments": 7,
-      "shares": 1,
-      "views": 0,
-      "text": "It\u2019s time to upgrade my storytelling. Kita start dengan buku ni dulu. Semoga aura penulis buku ni turun kat aku sikit \ud83d\ude02",
-      "weighted": 34,
-      "score": 100.0
-    },
-    {
-      "id": 1619,
-      "published_at": "2026-10-16T08:40:27.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 5,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Betul. Yang melebih ni ada agenda sendiri.\u00a0\u00a0Translate",
-      "weighted": 5,
       "score": 100.0
     }
   ],
@@ -378,8 +378,8 @@
     {
       "type": "pillar-mix",
       "title": "Pillar mix vs target 35/35/30",
-      "body": "google-ads-marketing 15% (target 35%) | agentic-ai 24% (target 35%) | engage 62% (target 30%)",
-      "metric": 252
+      "body": "google-ads-marketing 15% (target 35%) | agentic-ai 23% (target 35%) | engage 62% (target 30%)",
+      "metric": 254
     },
     {
       "type": "pillar-under",
@@ -396,14 +396,14 @@
     {
       "type": "pillar-fix",
       "title": "Tingkatkan: engage",
-      "body": "engage avg score 42.6 dari 155 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
-      "metric": 42.6
+      "body": "engage avg score 44.1 dari 158 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
+      "metric": 44.1
     },
     {
       "type": "top-pillar-week",
       "title": "Pillar terbaik minggu ni: google-ads-marketing",
-      "body": "google-ads-marketing avg score 87.1 dari 4 posts. Kekalkan bentuk ni.",
-      "metric": 87.1
+      "body": "google-ads-marketing avg score 74.7 dari 6 posts. Kekalkan bentuk ni.",
+      "metric": 74.7
     }
   ]
 }
