@@ -1,68 +1,68 @@
 {
-  "generated_at": "2026-10-20T01:45:56.296188+00:00",
-  "median_weighted_30d": 0.0,
-  "median_views_30d": 284,
+  "generated_at": "2026-10-21T01:45:58.770122+00:00",
+  "median_weighted_30d": 0,
+  "median_views_30d": 286,
   "weekly": {
     "engage": {
-      "posts": 41,
-      "inter": 69,
-      "shares": 3,
-      "views": 1956,
-      "avg_score": 49.0,
-      "avg_inter": 1.7
-    },
-    "google-ads-marketing": {
-      "posts": 6,
-      "inter": 17,
-      "shares": 0,
-      "views": 665,
-      "avg_score": 74.7,
-      "avg_inter": 2.8
+      "posts": 40,
+      "inter": 61,
+      "shares": 2,
+      "views": 2499,
+      "avg_score": 43.2,
+      "avg_inter": 1.5
     },
     "agentic-ai": {
       "posts": 14,
-      "inter": 709,
-      "shares": 93,
-      "views": 3344,
-      "avg_score": 71.8,
-      "avg_inter": 50.6
+      "inter": 715,
+      "shares": 92,
+      "views": 3355,
+      "avg_score": 64.7,
+      "avg_inter": 51.1
+    },
+    "google-ads-marketing": {
+      "posts": 9,
+      "inter": 32,
+      "shares": 2,
+      "views": 11199,
+      "avg_score": 79.2,
+      "avg_inter": 3.6
     }
   },
   "monthly": {
     "engage": {
       "posts": 158,
-      "inter": 191,
+      "inter": 186,
       "shares": 4,
-      "views": 17045,
-      "avg_score": 44.1,
+      "views": 17480,
+      "avg_score": 42.3,
       "avg_inter": 1.2
-    },
-    "google-ads-marketing": {
-      "posts": 38,
-      "inter": 61,
-      "shares": 2,
-      "views": 14577,
-      "avg_score": 52.8,
-      "avg_inter": 1.6
     },
     "agentic-ai": {
       "posts": 58,
-      "inter": 963,
-      "shares": 103,
-      "views": 30266,
-      "avg_score": 57.3,
-      "avg_inter": 16.6
+      "inter": 943,
+      "shares": 101,
+      "views": 29545,
+      "avg_score": 57.7,
+      "avg_inter": 16.3
+    },
+    "google-ads-marketing": {
+      "posts": 41,
+      "inter": 76,
+      "shares": 4,
+      "views": 25111,
+      "avg_score": 55.4,
+      "avg_inter": 1.9
     }
   },
   "pillars": [
     {
       "pillar": "google-ads-marketing",
-      "posts": 38,
-      "pct": 15,
+      "posts": 41,
+      "pct": 16,
       "target": 35,
-      "gap": -20,
-      "avg_score": 52.8,
-      "avg_inter": 1.6
+      "gap": -19,
+      "avg_score": 55.4,
+      "avg_inter": 1.9
     },
     {
       "pillar": "agentic-ai",
@@ -70,16 +70,16 @@
       "pct": 23,
       "target": 35,
       "gap": -12,
-      "avg_score": 57.3,
-      "avg_inter": 16.6
+      "avg_score": 57.7,
+      "avg_inter": 16.3
     },
     {
       "pillar": "engage",
       "posts": 158,
-      "pct": 62,
+      "pct": 61,
       "target": 30,
-      "gap": 32,
-      "avg_score": 44.1,
+      "gap": 31,
+      "avg_score": 42.3,
       "avg_inter": 1.2
     }
   ],
@@ -88,21 +88,63 @@
     "agentic-ai": 0.35,
     "engage": 0.3
   },
-  "posts_7d": 61,
-  "posts_30d": 254,
+  "posts_7d": 63,
+  "posts_30d": 257,
   "top_7d": [
     {
-      "id": 1644,
-      "published_at": "2026-10-19T15:36:18.000Z",
-      "pillar": "engage",
+      "id": 1656,
+      "published_at": "2026-10-20T14:29:45.000Z",
+      "pillar": "agentic-ai",
       "pillar_source": "label",
       "format": "tutorial-howto",
       "likes": 2,
       "comments": 0,
       "shares": 0,
       "views": 0,
-      "text": "Cara untuk bazirkan/ maximise token usage \ud83d\ude02\nIt\u2019s necessary? Tak.\nIt\u2019s fun? Yes.",
+      "text": "Max plan claude dah boleh guna Auth secara rasmi dekat model selection Hermes ya?\nAku nampak tadi masa setup hermes untuk client. Next week upgrade Claude 20x Max Plan. Mode membina dah masuk. Setelkan semua project by end of this year.",
       "weighted": 2,
+      "score": 100.0
+    },
+    {
+      "id": 1657,
+      "published_at": "2026-10-20T10:29:18.000Z",
+      "pillar": "google-ads-marketing",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 7,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Tahun depan memang kena gear up untuk omni channel marketing.\nBukan sekadar paid ads sahaja, content pun kena push.\n1/2",
+      "weighted": 7,
+      "score": 100.0
+    },
+    {
+      "id": 1664,
+      "published_at": "2026-10-20T08:27:59.000Z",
+      "pillar": "google-ads-marketing",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Best tapi dia bukan magic tool.\nBuat website boleh, tapi nak fully refined website kita kena ajar dia properly.\nSama jugak dengan tasks lain.\nYang bagus nya dia ni, kalau kita suruh, dia tak kan jawab, apa tu? Unless kalau kita buat term sendiri",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1660,
+      "published_at": "2026-10-20T02:48:38.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 7,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Still guna Chatgpt Auth dengan Hermes sebab dapat 1 bulan ChatGPT plus free.\nMemang guna untuk Hermes ja. Dia still reliable. Aku guna 5.6 Luna dgn 1mil context ja. Get the job done. Cuma untuk specific project memang aku guna T3 Code + Claude Opus 5.5.\n1/2",
+      "weighted": 7,
       "score": 100.0
     },
     {
@@ -148,20 +190,6 @@
       "score": 100.0
     },
     {
-      "id": 1645,
-      "published_at": "2026-10-19T14:21:01.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 2,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Incase genz muda2 ni curious apa millennials buat masa zaman sebelum social media dan smartphone,\nKami ada lawak kampus.\nSatu buku tu ulang 10x, normal.\n1/2",
-      "weighted": 2,
-      "score": 100.0
-    },
-    {
       "id": 1654,
       "published_at": "2026-10-19T14:16:31.000Z",
       "pillar": "engage",
@@ -173,34 +201,6 @@
       "views": 0,
       "text": "Tools no dua, masalah dulu. Tools bila2 boleh tukar",
       "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1649,
-      "published_at": "2026-10-19T14:09:22.000Z",
-      "pillar": "google-ads-marketing",
-      "pillar_source": "label",
-      "format": "comparison",
-      "likes": 1,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Buat ja elok2. Memang leceh tapi perlu. Meta ads still lebih lenient berbanding google ads especially utk leads gen dan ecomm/sales page.\n2/2",
-      "weighted": 1,
-      "score": 100.0
-    },
-    {
-      "id": 1648,
-      "published_at": "2026-10-19T13:59:17.000Z",
-      "pillar": "google-ads-marketing",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 7,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Anyone yang sakit kepala handle verification meta ads mesti tak pernah buat verification dan appeal policy violation dekat google ads\nAku handle berpuluh account google ads, dah bermacam verification, account suspension dan policy violation yang kena hadap.\n1/2",
-      "weighted": 7,
       "score": 100.0
     },
     {
@@ -234,17 +234,59 @@
   ],
   "top_30d": [
     {
-      "id": 1644,
-      "published_at": "2026-10-19T15:36:18.000Z",
-      "pillar": "engage",
+      "id": 1656,
+      "published_at": "2026-10-20T14:29:45.000Z",
+      "pillar": "agentic-ai",
       "pillar_source": "label",
       "format": "tutorial-howto",
       "likes": 2,
       "comments": 0,
       "shares": 0,
       "views": 0,
-      "text": "Cara untuk bazirkan/ maximise token usage \ud83d\ude02\nIt\u2019s necessary? Tak.\nIt\u2019s fun? Yes.",
+      "text": "Max plan claude dah boleh guna Auth secara rasmi dekat model selection Hermes ya?\nAku nampak tadi masa setup hermes untuk client. Next week upgrade Claude 20x Max Plan. Mode membina dah masuk. Setelkan semua project by end of this year.",
       "weighted": 2,
+      "score": 100.0
+    },
+    {
+      "id": 1657,
+      "published_at": "2026-10-20T10:29:18.000Z",
+      "pillar": "google-ads-marketing",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 7,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Tahun depan memang kena gear up untuk omni channel marketing.\nBukan sekadar paid ads sahaja, content pun kena push.\n1/2",
+      "weighted": 7,
+      "score": 100.0
+    },
+    {
+      "id": 1664,
+      "published_at": "2026-10-20T08:27:59.000Z",
+      "pillar": "google-ads-marketing",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Best tapi dia bukan magic tool.\nBuat website boleh, tapi nak fully refined website kita kena ajar dia properly.\nSama jugak dengan tasks lain.\nYang bagus nya dia ni, kalau kita suruh, dia tak kan jawab, apa tu? Unless kalau kita buat term sendiri",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1660,
+      "published_at": "2026-10-20T02:48:38.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 7,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Still guna Chatgpt Auth dengan Hermes sebab dapat 1 bulan ChatGPT plus free.\nMemang guna untuk Hermes ja. Dia still reliable. Aku guna 5.6 Luna dgn 1mil context ja. Get the job done. Cuma untuk specific project memang aku guna T3 Code + Claude Opus 5.5.\n1/2",
+      "weighted": 7,
       "score": 100.0
     },
     {
@@ -290,20 +332,6 @@
       "score": 100.0
     },
     {
-      "id": 1645,
-      "published_at": "2026-10-19T14:21:01.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 2,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Incase genz muda2 ni curious apa millennials buat masa zaman sebelum social media dan smartphone,\nKami ada lawak kampus.\nSatu buku tu ulang 10x, normal.\n1/2",
-      "weighted": 2,
-      "score": 100.0
-    },
-    {
       "id": 1654,
       "published_at": "2026-10-19T14:16:31.000Z",
       "pillar": "engage",
@@ -315,34 +343,6 @@
       "views": 0,
       "text": "Tools no dua, masalah dulu. Tools bila2 boleh tukar",
       "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1649,
-      "published_at": "2026-10-19T14:09:22.000Z",
-      "pillar": "google-ads-marketing",
-      "pillar_source": "label",
-      "format": "comparison",
-      "likes": 1,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Buat ja elok2. Memang leceh tapi perlu. Meta ads still lebih lenient berbanding google ads especially utk leads gen dan ecomm/sales page.\n2/2",
-      "weighted": 1,
-      "score": 100.0
-    },
-    {
-      "id": 1648,
-      "published_at": "2026-10-19T13:59:17.000Z",
-      "pillar": "google-ads-marketing",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 7,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Anyone yang sakit kepala handle verification meta ads mesti tak pernah buat verification dan appeal policy violation dekat google ads\nAku handle berpuluh account google ads, dah bermacam verification, account suspension dan policy violation yang kena hadap.\n1/2",
-      "weighted": 7,
       "score": 100.0
     },
     {
@@ -378,32 +378,32 @@
     {
       "type": "pillar-mix",
       "title": "Pillar mix vs target 35/35/30",
-      "body": "google-ads-marketing 15% (target 35%) | agentic-ai 23% (target 35%) | engage 62% (target 30%)",
-      "metric": 254
+      "body": "google-ads-marketing 16% (target 35%) | agentic-ai 23% (target 35%) | engage 61% (target 30%)",
+      "metric": 257
     },
     {
       "type": "pillar-under",
       "title": "Pillar kurang: google-ads-marketing",
-      "body": "google-ads-marketing cuma 15% (target 35%). Naikkan volume je tak cukup. Kalau pillar ni engagement rendah, tukar bentuk: AI sebagai tool, masalah bisnes sebagai cerita.",
-      "metric": 15
+      "body": "google-ads-marketing cuma 16% (target 35%). Naikkan volume je tak cukup. Kalau pillar ni engagement rendah, tukar bentuk: AI sebagai tool, masalah bisnes sebagai cerita.",
+      "metric": 16
     },
     {
       "type": "pillar-over",
       "title": "Pillar lebih: engage",
-      "body": "engage 62% (target 30%). Kurangkan volume, pindah ke pillar yang kurang.",
-      "metric": 62
+      "body": "engage 61% (target 30%). Kurangkan volume, pindah ke pillar yang kurang.",
+      "metric": 61
     },
     {
       "type": "pillar-fix",
       "title": "Tingkatkan: engage",
-      "body": "engage avg score 44.1 dari 158 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
-      "metric": 44.1
+      "body": "engage avg score 42.3 dari 158 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
+      "metric": 42.3
     },
     {
       "type": "top-pillar-week",
       "title": "Pillar terbaik minggu ni: google-ads-marketing",
-      "body": "google-ads-marketing avg score 74.7 dari 6 posts. Kekalkan bentuk ni.",
-      "metric": 74.7
+      "body": "google-ads-marketing avg score 79.2 dari 9 posts. Kekalkan bentuk ni.",
+      "metric": 79.2
     }
   ]
 }
