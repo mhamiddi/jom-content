@@ -100,6 +100,52 @@ main{padding:var(--space-2xl);flex:1}
 .post-chip:hover{opacity:.85;transform:translateX(2px)}
 .more-chip{font-size:10px;color:var(--text2);padding:2px 6px;font-weight:500}
 
+/* CALENDAR VIEWS (day / week / month) + POST PERFORMANCE */
+.cal-toolbar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.cal-toolbar .view-switch button{min-height:32px}
+.cal-today{background:var(--surface2);border:1px solid var(--border);padding:6px 14px;border-radius:var(--radius-sm);cursor:pointer;font-size:13px;color:var(--text);font-weight:500}.cal-today:hover{background:var(--primary-bg);color:var(--primary);border-color:var(--primary-light)}
+.cal-grid.cal-slide,.cal-week.cal-slide,.cal-dayview.cal-slide{opacity:0;transform:translateX(var(--cal-slide-x,18px))}
+.cal-week,.cal-dayview{transition:opacity .22s ease,transform .22s ease;min-width:0}
+.cal-week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.cal-wcol{background:var(--surface2);border-radius:var(--radius-sm);padding:8px;border:2px solid transparent;display:flex;flex-direction:column;gap:6px;min-width:0;min-height:140px}
+.cal-wcol.today{border-color:var(--primary);background:var(--primary-bg)}
+.cal-wcol-hd{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;cursor:pointer;border:0;background:transparent;padding:2px;text-align:left;font-family:inherit}
+.cal-wcol-hd b{font-size:15px;color:var(--text);letter-spacing:0}.cal-wcol.today .cal-wcol-hd b{color:var(--primary)}
+.cal-wcol-empty{font-size:11px;color:var(--text3);padding:4px 2px}
+.cal-card{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--pc,var(--primary));border-radius:var(--radius-sm);padding:8px 10px;cursor:pointer;min-width:0;box-shadow:var(--shadow-sm);transition:transform .2s ease,box-shadow .2s ease;text-align:left}
+.cal-card:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}.cal-card:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.cal-card-top{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:5px}
+.cal-card-time{font-size:11px;font-weight:700;color:var(--text2)}
+.cal-card-title{font-size:12px;font-weight:600;line-height:1.4;overflow-wrap:anywhere}
+.cal-card.compact .cal-card-title{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.cal-card-pillar{font-size:10px;color:var(--text2);margin-top:5px}
+.cal-card-caption{font-size:13px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--text);margin-top:8px}
+.cal-card.full{padding:14px 16px}.cal-card.full .cal-card-title{font-size:15px}
+.cal-dayview-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:2px}
+.cal-dayview-hd span{font-size:13px;color:var(--text2)}
+.cal-dayview-empty{padding:28px 12px;text-align:center;color:var(--text2);font-size:13px;background:var(--surface2);border-radius:var(--radius-sm)}
+.perf-strip{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:8px;padding-top:7px;border-top:1px dashed var(--border);font-size:11px;color:var(--text2)}
+.perf-strip b{color:var(--text);font-size:12px}.perf-strip .perf-score b{color:var(--primary)}
+.perf-none{margin-top:8px;font-size:11px;color:var(--text3)}
+.chip-score{margin-left:4px;opacity:.9;font-weight:700}
+.perf-panel{margin:14px 0;padding:14px;background:var(--surface2);border-radius:var(--radius)}
+.perf-panel h4{font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--text2);margin-bottom:10px}
+.perf-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.perf-tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 8px;text-align:center}
+.perf-tile b{display:block;font-size:20px;font-weight:800;line-height:1.1;font-family:'Montserrat',var(--font)}
+.perf-tile span{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.4px}
+.perf-score-row{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:12px;font-weight:600}
+.perf-score-row b{font-size:22px;font-family:'Montserrat',var(--font);color:var(--primary)}
+.perf-bar{flex:1;height:8px;background:var(--surface3);border-radius:var(--radius-full);overflow:hidden}.perf-bar i{display:block;height:100%;background:var(--primary);border-radius:var(--radius-full)}
+.perf-parts{margin-top:12px;display:flex;flex-direction:column;gap:6px}
+.perf-part{display:flex;flex-wrap:wrap;gap:2px 10px;align-items:center;font-size:11px;color:var(--text2);padding:7px 9px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xs)}
+.perf-part a{color:var(--primary);margin-left:auto}
+.perf-foot{margin-top:10px;font-size:10px;color:var(--text3);line-height:1.5}
+.detail-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+@media(max-width:1100px){.cal-week{grid-template-columns:1fr}.cal-wcol{min-height:0}}
+@media(max-width:480px){.perf-tile b{font-size:17px}.cal-card.full{padding:12px}.cal-toolbar{justify-content:center}}
+@media(prefers-reduced-motion:reduce){.cal-card,.cal-week,.cal-dayview{transition:none}.cal-card:hover{transform:none}}
+
 /* PILLARS */
 .pillar-bar-wrap{display:flex;align-items:center;gap:var(--space-sm);margin:var(--space-sm) 0;flex-wrap:wrap}
 .pillar-tag{font-size:11px;padding:4px 10px;border-radius:var(--radius-full);color:#fff;font-weight:500;display:inline-flex;align-items:center;gap:5px;transition:transform var(--trans-fast)}.pillar-tag:hover{transform:scale(1.03)}
@@ -695,7 +741,7 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
 }
 
 /* ===== STATE ===== */
-let state = {posts:[],pillars:{},pillarColors:{},calDates:{},pillarTargets:{},currentTab:'dashboard',pillarFilters:{},dashMonth:null,workspace:DEFAULT_WORKSPACE};
+let state = {posts:[],pillars:{},pillarColors:{},calDates:{},calFocus:{},calView:{},pillarTargets:{},currentTab:'dashboard',pillarFilters:{},dashMonth:null,workspace:DEFAULT_WORKSPACE};
 
 /* ===== API ===== */
 const API_BASE = '/api/posts';
@@ -895,9 +941,9 @@ function loadState() {
     state.pillarTargets[key] = {...WORKSPACES[ws].targets};
     if (!state.pillarFilters[key] || !state.pillars[key].includes(state.pillarFilters[key])) state.pillarFilters[key] = 'all';
   }));
-  PLATFORMS.forEach(p => {
-    if (!state.calDates[p]) state.calDates[p] = getDateKey(new Date());
-  });
+  // The calendar always opens on the current month (month view), never on the last month visited.
+  state.calFocus = {}; state.calView = {};
+  PLATFORMS.forEach(p => { resetCalendar(p); });
   state.posts = state.posts.map(p => ({...p, workspace: postWorkspace(p), pillar:canonicalPillarName(p.pillar)}));
   if (!state.dashMonth) {
     const n = new Date();
@@ -1036,10 +1082,18 @@ function renderPlatformTab(platform) {
         <button class="btn btn-primary btn-sm" onclick="openModal('${platform}')">+ Tambah Post</button>
       </div>
     </div>
+    <div class="cal-toolbar">
+      <div class="view-switch" role="group" aria-label="Paparan kalendar">
+        <button type="button" id="calv-${platform}-day" onclick="setCalView('${platform}','day')" aria-pressed="false">Hari</button>
+        <button type="button" id="calv-${platform}-week" onclick="setCalView('${platform}','week')" aria-pressed="false">Minggu</button>
+        <button type="button" id="calv-${platform}-month" onclick="setCalView('${platform}','month')" aria-pressed="true">Bulan</button>
+      </div>
+      <button type="button" class="cal-today" onclick="calToday('${platform}')">Hari ini</button>
+    </div>
     <div class="cal-nav">
-      <button onclick="calPrev('${platform}')">&#8249; Sebelum</button>
+      <button onclick="calPrev('${platform}')" aria-label="Sebelum">&#8249; Sebelum</button>
       <h3 id="calTitle-${platform}"></h3>
-      <button onclick="calNext('${platform}')">Seterusnya &#8250;</button>
+      <button onclick="calNext('${platform}')" aria-label="Seterusnya">Seterusnya &#8250;</button>
     </div>
     <div id="calGrid-${platform}" class="cal-grid"></div>
   </div>
@@ -1374,32 +1428,226 @@ function getMonthDays(year, month) {
   return days;
 }
 
+/* ===== POST PERFORMANCE (planner posts linked to analytics-data.json) ===== */
+let ANALYTICS = null;
+const PERF = {};
+const CAL_STATUS = {draft:'Draft',scheduled:'Scheduled',posted:'Posted',failed:'Failed',rejected:'Rejected'};
+
+function loadAnalytics() {
+  return fetch('analytics-data.json?v=' + Date.now())
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(d => { ANALYTICS = d; renderAll(); })
+    .catch(e => console.warn('analytics-data:', e));
+}
+
+function addDays(ds, n) {
+  const d = parseLocalDate(ds);
+  return localDateStr(new Date(d.getFullYear(), d.getMonth(), d.getDate() + n));
+}
+function perfTokens(s) {
+  return new Set(String(s || '').toLowerCase().replace(/view \d+ more/g, ' ').replace(/\b\d+\/\d+\b/g, ' ').replace(/https?:\/\/\S+/g, ' ').split(/[^a-z0-9]+/).filter(w => w.length > 1));
+}
+function perfSim(a, b) {
+  let n = 0;
+  a.forEach(x => { if (b.has(x)) n++; });
+  if (n < 4) return 0;
+  return Math.max(n / (a.size + b.size - n), n / a.size * 0.9);
+}
+
+/* Link each planner post to the analytics items it became. A chain (parts split by ---) links to several items.
+   Exact match on postedUrl first, else text similarity within +/-5 days. One analytics item belongs to one post only. */
+function buildPerfMap(platform) {
+  const map = {};
+  if (!ANALYTICS) return map;
+  const items = (((ANALYTICS.platforms || {})[platform]) || {}).posts || [];
+  const limit = addDays(todayStr(), 1);
+  const pairs = [];
+  state.posts.filter(p => p.platform === platform && p.status !== 'rejected' && p.date && p.date <= limit).forEach(p => {
+    const text = p.actualContent || p.caption || '';
+    const parts = text.split(/\n\s*---\s*\n/).map(perfTokens).filter(t => t.size);
+    if (text.trim()) parts.push(perfTokens(text));
+    const m = String(p.postedUrl || '').match(/\/post\/([\w-]+)/) || String(p.postedUrl || '').match(/\/video\/(\d+)/);
+    const code = m && m[1];
+    const pd = parseLocalDate(p.date).getTime();
+    items.forEach(it => {
+      if (code && String(it.url || '').indexOf(code) !== -1) { pairs.push({p, it, s: 2, how: 'url'}); return; }
+      if (Math.abs(parseLocalDate(it.date).getTime() - pd) > 5 * 864e5) return;
+      if (!it._t) it._t = perfTokens(it.text);
+      let best = 0;
+      parts.forEach(q => { best = Math.max(best, perfSim(it._t, q)); });
+      if (best >= 0.55) pairs.push({p, it, s: best, how: 'text'});
+    });
+  });
+  pairs.sort((a, b) => b.s - a.s);
+  const taken = new Set();
+  pairs.forEach(x => {
+    if (taken.has(x.it.id)) return;
+    taken.add(x.it.id);
+    const m = map[x.p.id] || (map[x.p.id] = {items: [], how: 'text'});
+    if (x.how === 'url') m.how = 'url';
+    m.items.push(x.it);
+  });
+  Object.keys(map).forEach(id => {
+    const m = map[id];
+    m.items.sort((a, b) => String(a.date).localeCompare(String(b.date)) || a.id - b.id);
+    const sum = k => m.items.reduce((t, i) => t + (+i[k] || 0), 0);
+    m.views = sum('views'); m.likes = sum('likes'); m.comments = sum('comments'); m.shares = sum('shares'); m.saves = sum('saves');
+    m.viewsMissing = m.items.every(i => i.views_missing);
+    m.interactions = m.likes + m.comments + m.shares + m.saves;
+    m.rate = (!m.viewsMissing && m.views > 0) ? m.interactions / m.views * 100 : null;
+    m.score = Math.round(m.items.reduce((t, i) => t + (+i.score || 0), 0) / m.items.length * 10) / 10;
+  });
+  return map;
+}
+function perfFor(platform, id) { return (PERF[platform] || {})[id] || null; }
+function fmtNum(n) { return Number(n || 0).toLocaleString('en-US'); }
+function fmtViews(m) { return m.viewsMissing ? '-' : fmtNum(m.views); }
+
+function perfStripHtml(p, m, full) {
+  if (!m) {
+    if (p.status === 'posted') return '<div class="perf-none">Belum ada data analytics</div>';
+    return '';
+  }
+  let h = `<div class="perf-strip"><span><b>${fmtViews(m)}</b> views</span>`;
+  if (full) h += `<span><b>${fmtNum(m.likes)}</b> likes</span><span><b>${fmtNum(m.comments)}</b> komen</span><span><b>${fmtNum(m.shares)}</b> kongsi</span>`;
+  h += `<span class="perf-score">Skor <b>${m.score}</b>${m.viewsMissing ? ' (tanpa views)' : ''}</span></div>`;
+  return h;
+}
+
+function calCardHtml(platform, p, full) {
+  const m = perfFor(platform, p.id);
+  const st = p.status || 'draft';
+  const body = p.actualContent || p.caption || '';
+  return `<div class="cal-card ${full ? 'full' : 'compact'}" role="button" tabindex="0" style="--pc:${getPillarColor(p.pillar)}" data-id="${esc(p.id)}" data-platform="${esc(platform)}" onclick="openPostDetail(this.dataset.platform,this.dataset.id)" onkeydown="calCardKey(event,this)">
+    <div class="cal-card-top"><span class="cal-card-time">${esc(p.time || 'Tiada masa')}</span><span class="p-status status-${esc(st)}">${esc(CAL_STATUS[st] || st)}</span></div>
+    <div class="cal-card-title">${esc(p.title || 'Post')}</div>
+    <div class="cal-card-pillar">${esc(p.pillar || '')}</div>
+    ${full && body ? `<div class="cal-card-caption">${esc(body)}</div>` : ''}
+    ${perfStripHtml(p, m, full)}
+  </div>`;
+}
+function calCardKey(e, el) {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPostDetail(el.dataset.platform, el.dataset.id); }
+}
+
+function openPostDetail(platform, id) {
+  const p = state.posts.find(x => x.id === id);
+  if (!p) return;
+  const m = perfFor(platform, id);
+  const st = p.status || 'draft';
+  const when = parseLocalDate(p.date).toLocaleDateString('ms-MY', {weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'});
+  const posted = p.actualContent || '';
+  let perf;
+  if (m) {
+    const asOf = ANALYTICS && ANALYTICS.generated_at ? new Date(ANALYTICS.generated_at).toLocaleString('ms-MY', {timeZone: 'Asia/Kuala_Lumpur', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'}) : '';
+    const tiles = [['Views', fmtViews(m)], ['Likes', fmtNum(m.likes)], ['Komen', fmtNum(m.comments)], ['Kongsi', fmtNum(m.shares)], ['Simpan', fmtNum(m.saves)], ['Eng. rate', m.rate == null ? '-' : m.rate.toFixed(1) + '%']];
+    const parts = m.items.map((it, i) => `<div class="perf-part"><span>${m.items.length > 1 ? 'Bahagian ' + (i + 1) + ': ' : ''}${it.views_missing ? 'views belum ada' : fmtNum(it.views) + ' views'}</span><span>${fmtNum(it.likes)} likes</span><span>${fmtNum(it.comments)} komen</span><span>${fmtNum(it.shares)} kongsi</span><span>skor ${it.score}</span>${it.url ? `<a href="${esc(it.url)}" target="_blank" rel="noopener noreferrer">Buka post</a>` : ''}</div>`).join('');
+    perf = `<div class="perf-panel"><h4>Prestasi sekarang</h4>
+      <div class="perf-grid">${tiles.map(t => `<div class="perf-tile"><b>${t[1]}</b><span>${t[0]}</span></div>`).join('')}</div>
+      <div class="perf-score-row"><span>Skor${m.items.length > 1 ? ' purata' : ''}</span><div class="perf-bar"><i style="width:${Math.max(0, Math.min(100, m.score))}%"></i></div><b>${m.score}</b></div>
+      <div class="perf-parts">${parts}</div>
+      <div class="perf-foot">Dipadankan ikut ${m.how === 'url' ? 'URL post' : 'teks caption'}. Data analytics dikemas kini setiap hari${asOf ? ', terkini ' + esc(asOf) : ''}. Views kosong bermakna platform belum bagi angka, jadi skor dikira dari interaksi sahaja.${st !== 'posted' ? ' Status plan ni masih ' + esc(CAL_STATUS[st] || st) + ' tapi post sepadan dah ada dalam analytics, kemungkinan dah diposkan.' : ''}</div></div>`;
+  } else if (st === 'posted' || p.date <= todayStr()) {
+    perf = `<div class="perf-panel"><h4>Prestasi sekarang</h4><div class="perf-foot" style="margin-top:0">Belum ada data analytics untuk post ni. Analytics dikemas kini sekali sehari, dan post yang baru keluar akan muncul esok pagi. Kalau post dah lama dan masih kosong, collector belum tangkap post tu.</div></div>`;
+  } else {
+    perf = '';
+  }
+  document.getElementById('previewCard').innerHTML = `<button class="preview-close" onclick="closePostPreview()" aria-label="Tutup">&#215;</button>
+    <h3>${esc(p.title || 'Post')}</h3>
+    <div><span class="p-status status-${esc(st)}">${esc(CAL_STATUS[st] || st)}</span> <span class="p-pillar" style="background:${getPillarColor(p.pillar)}">${esc(p.pillar || '')}</span></div>
+    <div class="preview-meta">${esc(PLATFORM_NAMES[platform] || platform)} &middot; ${esc(when)}${p.time ? ' &middot; ' + esc(p.time) : ''}</div>
+    ${perf}
+    <div class="preview-meta" style="margin:0">${posted ? 'Yang diposkan' : 'Caption'}</div>
+    <div class="preview-caption">${esc(posted || p.caption || 'Tiada caption.')}</div>
+    ${posted && p.caption && p.caption !== posted ? `<div class="preview-meta" style="margin:0">Caption asal (plan)</div><div class="preview-caption">${esc(p.caption)}</div>` : ''}
+    <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(p.id)}" data-platform="${esc(platform)}" onclick="editFromDetail(this.dataset.platform,this.dataset.id)">Edit post</button><button class="btn btn-outline btn-sm" onclick="closePostPreview()">Tutup</button></div>`;
+  document.getElementById('previewOverlay').classList.add('open');
+}
+function editFromDetail(platform, id) { closePostPreview(); openModal(platform, id); }
+
+/* ===== CALENDAR (day / week / month) ===== */
+function getMonthDays(year, month) {
+  const first = new Date(year,month,1).getDay();
+  const last = new Date(year,month+1,0).getDate();
+  const prevLast = new Date(year,month,0).getDate();
+  const days = [];
+  for (let i=first-1;i>=0;i--) days.push({day:prevLast-i,other:true,date:new Date(year,month-1,prevLast-i)});
+  for (let i=1;i<=last;i++) days.push({day:i,other:false,date:new Date(year,month,i)});
+  for (let i=days.length;i<42;i++) days.push({day:i-last+1,other:true,date:new Date(year,month+1,i-last+1)});
+  return days;
+}
+
+function calFocusDate(platform) { return (state.calFocus && state.calFocus[platform]) || todayStr(); }
+function calViewOf(platform) { return (state.calView && state.calView[platform]) || 'month'; }
+function setCalFocus(platform, ds) {
+  state.calFocus[platform] = ds;
+  state.calDates[platform] = getDateKey(parseLocalDate(ds));
+}
+function resetCalendar(platform) {
+  state.calView[platform] = 'month';
+  setCalFocus(platform, todayStr());
+}
+
 function renderCalendar(platform) {
-  const key = state.calDates[platform] || getDateKey(new Date());
-  const {year,month} = parseDateKey(key);
-  const days = getMonthDays(year,month);
   const grid = document.getElementById('calGrid-'+platform);
   const titleEl = document.getElementById('calTitle-'+platform);
   if (!grid || !titleEl) return;
-  titleEl.textContent = new Date(year,month).toLocaleString('ms-MY',{month:'long',year:'numeric'});
-  const today = todayStr();
-  const platformPosts = scopedPosts().filter(p => p.platform === platform);
-  const filterPillar = state.pillarFilters[state.workspace+':'+platform] || 'all';
-  const DAYS = ['Ah','Is','Se','Ra','Kh','Ju','Sa'];
-  let html = DAYS.map(d=>`<div class="cal-day-header">${d}</div>`).join('');
-  days.forEach(d => {
-    const ds = localDateStr(d.date);
-    const isToday = ds === today;
-    const dayPosts = platformPosts.filter(p => p.date===ds && (filterPillar==='all'||p.pillar===filterPillar));
-    const shown = dayPosts.slice(0,3);
-    const more = dayPosts.length - 3;
-    let cls = 'cal-day'+(d.other?' other-month':'')+(isToday?' today':'');
-    let chips = shown.map(p =>
-      `<span class="post-chip status-${p.status||'draft'}" style="background:${getPillarColor(p.pillar)}" onclick="event.stopPropagation();openModal('${platform}','${p.id}')">${esc(p.title||'Post')}</span>`
-    ).join('');
-    if (more > 0) chips += `<div class="more-chip">+${more} lagi</div>`;
-    html += `<div class="${cls}" onclick="openModal('${platform}',null,'${ds}')"><button class="cal-add-btn" type="button" aria-label="Tambah post pada ${ds}" onclick="event.stopPropagation();openModal('${platform}',null,'${ds}')">+</button><div class="day-num">${d.day}</div>${chips}</div>`;
+  const view = calViewOf(platform);
+  const focus = calFocusDate(platform);
+  const fd = parseLocalDate(focus);
+  state.calDates[platform] = getDateKey(fd);
+  PERF[platform] = buildPerfMap(platform);
+  ['day','week','month'].forEach(v => {
+    const b = document.getElementById('calv-'+platform+'-'+v);
+    if (b) b.setAttribute('aria-pressed', v === view ? 'true' : 'false');
   });
+  const today = todayStr();
+  const filterPillar = state.pillarFilters[state.workspace+':'+platform] || 'all';
+  const platformPosts = scopedPosts().filter(p => p.platform === platform && (filterPillar==='all'||p.pillar===filterPillar));
+  const postsOn = ds => platformPosts.filter(p => p.date === ds).sort((a,b) => (a.time||'99:99').localeCompare(b.time||'99:99'));
+  grid.classList.remove('cal-grid','cal-week','cal-dayview');
+  let html = '';
+
+  if (view === 'day') {
+    grid.classList.add('cal-dayview');
+    titleEl.textContent = fd.toLocaleDateString('ms-MY',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    const list = postsOn(focus);
+    html = `<div class="cal-dayview-hd"><span>${list.length} plan${focus===today?' &middot; hari ini':''}</span><button type="button" class="btn btn-primary btn-sm" onclick="openModal('${platform}',null,'${focus}')">+ Tambah Post</button></div>`;
+    html += list.length ? list.map(p => calCardHtml(platform,p,true)).join('') : '<div class="cal-dayview-empty">Tiada plan untuk hari ni.</div>';
+  } else if (view === 'week') {
+    grid.classList.add('cal-week');
+    const start = addDays(focus, -fd.getDay());
+    const end = addDays(start, 6);
+    const sd = parseLocalDate(start), ed = parseLocalDate(end);
+    titleEl.textContent = sd.toLocaleDateString('ms-MY',{day:'numeric',month:'short'}) + ' - ' + ed.toLocaleDateString('ms-MY',{day:'numeric',month:'short',year:'numeric'});
+    const NAMES = ['Ahad','Isnin','Selasa','Rabu','Khamis','Jumaat','Sabtu'];
+    for (let i=0;i<7;i++) {
+      const ds = addDays(start,i);
+      const list = postsOn(ds);
+      html += `<div class="cal-wcol${ds===today?' today':''}"><button type="button" class="cal-wcol-hd" onclick="setCalView('${platform}','day','${ds}')" aria-label="Buka hari ${ds}"><span>${NAMES[i]}</span><b>${parseLocalDate(ds).getDate()}</b></button>`;
+      html += list.length ? list.map(p => calCardHtml(platform,p,false)).join('') : '<div class="cal-wcol-empty">Tiada plan</div>';
+      html += '</div>';
+    }
+  } else {
+    grid.classList.add('cal-grid');
+    titleEl.textContent = new Date(fd.getFullYear(),fd.getMonth()).toLocaleString('ms-MY',{month:'long',year:'numeric'});
+    const days = getMonthDays(fd.getFullYear(),fd.getMonth());
+    const DAYS = ['Ah','Is','Se','Ra','Kh','Ju','Sa'];
+    html = DAYS.map(d=>`<div class="cal-day-header">${d}</div>`).join('');
+    days.forEach(d => {
+      const ds = localDateStr(d.date);
+      const dayPosts = postsOn(ds);
+      const shown = dayPosts.slice(0,3);
+      const more = dayPosts.length - 3;
+      const cls = 'cal-day'+(d.other?' other-month':'')+(ds===today?' today':'');
+      let chips = shown.map(p => {
+        const m = perfFor(platform,p.id);
+        return `<span class="post-chip status-${esc(p.status||'draft')}" style="background:${getPillarColor(p.pillar)}" data-id="${esc(p.id)}" onclick="event.stopPropagation();openPostDetail('${platform}',this.dataset.id)">${esc(p.title||'Post')}${m?`<span class="chip-score">${m.score}</span>`:''}</span>`;
+      }).join('');
+      if (more > 0) chips += `<div class="more-chip">+${more} lagi</div>`;
+      html += `<div class="${cls}" role="button" tabindex="0" onclick="setCalView('${platform}','day','${ds}')" onkeydown="if(event.key==='Enter'){setCalView('${platform}','day','${ds}')}"><button class="cal-add-btn" type="button" aria-label="Tambah post pada ${ds}" onclick="event.stopPropagation();openModal('${platform}',null,'${ds}')">+</button><div class="day-num">${d.day}</div>${chips}</div>`;
+    });
+  }
   grid.innerHTML = html;
   if (grid.dataset.slidePending === 'true') {
     grid.dataset.slidePending = 'false';
@@ -1415,17 +1663,30 @@ function startCalendarSlide(platform, direction) {
   grid.dataset.slidePending = 'true';
 }
 
-function calPrev(platform) {
-  startCalendarSlide(platform, -1);
-  const {year,month} = parseDateKey(state.calDates[platform]||getDateKey(new Date()));
-  state.calDates[platform] = getDateKey(new Date(year,month-1,1));
+function calStep(platform, dir) {
+  startCalendarSlide(platform, dir);
+  const view = calViewOf(platform);
+  const f = parseLocalDate(calFocusDate(platform));
+  let n;
+  if (view === 'day') n = new Date(f.getFullYear(), f.getMonth(), f.getDate()+dir);
+  else if (view === 'week') n = new Date(f.getFullYear(), f.getMonth(), f.getDate()+7*dir);
+  else {
+    const dim = new Date(f.getFullYear(), f.getMonth()+dir+1, 0).getDate();
+    n = new Date(f.getFullYear(), f.getMonth()+dir, Math.min(f.getDate(), dim));
+  }
+  setCalFocus(platform, localDateStr(n));
   saveState(); renderAll();
 }
-function calNext(platform) {
-  startCalendarSlide(platform, 1);
-  const {year,month} = parseDateKey(state.calDates[platform]||getDateKey(new Date()));
-  state.calDates[platform] = getDateKey(new Date(year,month+1,1));
+function calPrev(platform) { calStep(platform, -1); }
+function calNext(platform) { calStep(platform, 1); }
+function calToday(platform) {
+  setCalFocus(platform, todayStr());
   saveState(); renderAll();
+}
+function setCalView(platform, view, ds) {
+  state.calView[platform] = view;
+  if (ds) setCalFocus(platform, ds);
+  renderAll();
 }
 
 /* ===== PILLARS RENDER ===== */
@@ -1722,7 +1983,9 @@ function initNav() {
       document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
       document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
       btn.classList.add('active');
+      const prevTab = state.currentTab;
       state.currentTab = btn.dataset.tab;
+      if (state.currentTab !== prevTab && PLATFORMS.includes(state.currentTab)) resetCalendar(state.currentTab);
       document.getElementById('tab-'+state.currentTab).classList.add('active');
       const titleEl = document.getElementById('pageTitle');
       if (titleEl) titleEl.textContent = PAGE_TITLES[state.currentTab] || state.currentTab;
@@ -1805,6 +2068,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (JomAuth.isAuthed()) { document.body.classList.remove('auth-locked'); } else { openLoginModal(); }
   initKeyboard();
   renderAll();
+  loadAnalytics();
   // Sync from API only after dashboard login
   if (JomAuth.isAuthed()) setTimeout(apiFetchAll, 500);
   let resizeTimer;
