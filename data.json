@@ -1,85 +1,85 @@
 {
-  "generated_at": "2026-10-22T01:45:59.158282+00:00",
+  "generated_at": "2026-10-23T01:45:52.134165+00:00",
   "median_weighted_30d": 0.0,
-  "median_views_30d": 285.0,
+  "median_views_30d": 273.5,
   "weekly": {
     "engage": {
-      "posts": 40,
+      "posts": 41,
       "inter": 58,
       "shares": 2,
-      "views": 2605,
-      "avg_score": 38.4,
+      "views": 2469,
+      "avg_score": 40.6,
       "avg_inter": 1.4
+    },
+    "google-ads-marketing": {
+      "posts": 10,
+      "inter": 34,
+      "shares": 2,
+      "views": 1391,
+      "avg_score": 69.7,
+      "avg_inter": 3.4
     },
     "agentic-ai": {
       "posts": 14,
       "inter": 40,
       "shares": 1,
-      "views": 3346,
-      "avg_score": 64.5,
+      "views": 3912,
+      "avg_score": 62.8,
       "avg_inter": 2.9
-    },
-    "google-ads-marketing": {
-      "posts": 9,
-      "inter": 32,
-      "shares": 2,
-      "views": 1647,
-      "avg_score": 75.5,
-      "avg_inter": 3.6
     }
   },
   "monthly": {
     "engage": {
-      "posts": 161,
-      "inter": 181,
+      "posts": 166,
+      "inter": 175,
       "shares": 4,
-      "views": 17586,
-      "avg_score": 41.0,
+      "views": 17261,
+      "avg_score": 40.1,
       "avg_inter": 1.1
     },
-    "agentic-ai": {
-      "posts": 60,
-      "inter": 935,
-      "shares": 101,
-      "views": 30797,
-      "avg_score": 57.6,
-      "avg_inter": 15.6
-    },
     "google-ads-marketing": {
-      "posts": 37,
-      "inter": 70,
+      "posts": 36,
+      "inter": 76,
       "shares": 4,
-      "views": 14949,
-      "avg_score": 53.0,
-      "avg_inter": 1.9
+      "views": 14966,
+      "avg_score": 54.7,
+      "avg_inter": 2.1
+    },
+    "agentic-ai": {
+      "posts": 56,
+      "inter": 868,
+      "shares": 99,
+      "views": 28075,
+      "avg_score": 56.5,
+      "avg_inter": 15.5
     }
   },
   "pillars": [
     {
       "pillar": "google-ads-marketing",
-      "posts": 37,
+      "posts": 36,
       "pct": 14,
       "target": 35,
       "gap": -21,
-      "avg_score": 53.0,
-      "avg_inter": 1.9
+      "avg_score": 54.7,
+      "avg_inter": 2.1
     },
     {
       "pillar": "agentic-ai",
-      "posts": 60,
-      "pct": 23,
+      "posts": 56,
+      "pct": 22,
       "target": 35,
-      "gap": -12,
-      "avg_score": 57.6,
-      "avg_inter": 15.6
+      "gap": -13,
+      "avg_score": 56.5,
+      "avg_inter": 15.5
     },
     {
       "pillar": "engage",
-      "posts": 161,
-      "pct": 62,
+      "posts": 166,
+      "pct": 64,
       "target": 30,
-      "gap": 32,
-      "avg_score": 41.0,
+      "gap": 34,
+      "avg_score": 40.1,
       "avg_inter": 1.1
     }
   ],
@@ -88,35 +88,49 @@
     "agentic-ai": 0.35,
     "engage": 0.3
   },
-  "posts_7d": 63,
+  "posts_7d": 65,
   "posts_30d": 258,
   "top_7d": [
     {
-      "id": 1666,
-      "published_at": "2026-10-21T17:38:25.000Z",
-      "pillar": "agentic-ai",
+      "id": 1679,
+      "published_at": "2026-10-22T11:45:06.000Z",
+      "pillar": "engage",
       "pillar_source": "label",
       "format": "story-experience",
-      "likes": 0,
-      "comments": 2,
+      "likes": 1,
+      "comments": 0,
       "shares": 0,
       "views": 0,
-      "text": "Kenapa lah aku rasa semenjak ada Hermes handle ni kerja tak pernah putus \ud83d\ude02\nTahu lah dah boleh setel kerja pakai phone ja. Boleh burn out oo. Geng20x tu apa cerita lah, cukup tidur ke tidak.",
-      "weighted": 4,
+      "text": "Offer masih menarik ke?\nService okay ke? Response time laju ke? Customer dapat experience yang dia expect ke?\n2/5\nView 3 more",
+      "weighted": 1,
       "score": 100.0
     },
     {
-      "id": 1668,
-      "published_at": "2026-10-21T08:38:01.000Z",
-      "pillar": "agentic-ai",
+      "id": 1678,
+      "published_at": "2026-10-22T11:45:00.000Z",
+      "pillar": "engage",
       "pillar_source": "label",
-      "format": "tutorial-howto",
+      "format": "story-experience",
       "likes": 2,
       "comments": 0,
-      "shares": 1,
+      "shares": 0,
       "views": 0,
-      "text": "Gpt5.6 Luna lagi bagus dari Gpt6 Luna.\nBenda ni selalu bug aku. Ramai orang rekomen gpt6 luna, tapi aku personally rasa yang gpt5.6 luna lagi bagus.\nSo run 6 tasks guna Hermes. Tasks ni memang tasks yang aku selalu guna Hermes aku.\nScoring tu pun adalah scoring verifier yang aku setup untuk loop & graph engineering.\n1/2",
-      "weighted": 5,
+      "text": "Aku tak salahkan ads dulu bila sales jatuh.\nAku check benda lain dulu.\u00a01/5",
+      "weighted": 2,
+      "score": 100.0
+    },
+    {
+      "id": 1680,
+      "published_at": "2026-10-22T09:45:23.000Z",
+      "pillar": "google-ads-marketing",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 7,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Aku pilih Google Ads bila customer dah search.\nBukan sebab Meta Ads tak bagus.\u00a01/5",
+      "weighted": 7,
       "score": 100.0
     },
     {
@@ -215,50 +229,50 @@
       "views": 0,
       "text": "Kalau dah add tester account then memang kena tunggu. Hari tu masa test pun dia tak detect segera.",
       "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1628,
-      "published_at": "2026-10-17T15:26:18.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Uu nice feedback",
-      "weighted": 3,
       "score": 100.0
     }
   ],
   "top_30d": [
     {
-      "id": 1666,
-      "published_at": "2026-10-21T17:38:25.000Z",
-      "pillar": "agentic-ai",
+      "id": 1679,
+      "published_at": "2026-10-22T11:45:06.000Z",
+      "pillar": "engage",
       "pillar_source": "label",
       "format": "story-experience",
-      "likes": 0,
-      "comments": 2,
+      "likes": 1,
+      "comments": 0,
       "shares": 0,
       "views": 0,
-      "text": "Kenapa lah aku rasa semenjak ada Hermes handle ni kerja tak pernah putus \ud83d\ude02\nTahu lah dah boleh setel kerja pakai phone ja. Boleh burn out oo. Geng20x tu apa cerita lah, cukup tidur ke tidak.",
-      "weighted": 4,
+      "text": "Offer masih menarik ke?\nService okay ke? Response time laju ke? Customer dapat experience yang dia expect ke?\n2/5\nView 3 more",
+      "weighted": 1,
       "score": 100.0
     },
     {
-      "id": 1668,
-      "published_at": "2026-10-21T08:38:01.000Z",
-      "pillar": "agentic-ai",
+      "id": 1678,
+      "published_at": "2026-10-22T11:45:00.000Z",
+      "pillar": "engage",
       "pillar_source": "label",
-      "format": "tutorial-howto",
+      "format": "story-experience",
       "likes": 2,
       "comments": 0,
-      "shares": 1,
+      "shares": 0,
       "views": 0,
-      "text": "Gpt5.6 Luna lagi bagus dari Gpt6 Luna.\nBenda ni selalu bug aku. Ramai orang rekomen gpt6 luna, tapi aku personally rasa yang gpt5.6 luna lagi bagus.\nSo run 6 tasks guna Hermes. Tasks ni memang tasks yang aku selalu guna Hermes aku.\nScoring tu pun adalah scoring verifier yang aku setup untuk loop & graph engineering.\n1/2",
-      "weighted": 5,
+      "text": "Aku tak salahkan ads dulu bila sales jatuh.\nAku check benda lain dulu.\u00a01/5",
+      "weighted": 2,
+      "score": 100.0
+    },
+    {
+      "id": 1680,
+      "published_at": "2026-10-22T09:45:23.000Z",
+      "pillar": "google-ads-marketing",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 7,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "text": "Aku pilih Google Ads bila customer dah search.\nBukan sebab Meta Ads tak bagus.\u00a01/5",
+      "weighted": 7,
       "score": 100.0
     },
     {
@@ -357,20 +371,6 @@
       "views": 0,
       "text": "Kalau dah add tester account then memang kena tunggu. Hari tu masa test pun dia tak detect segera.",
       "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1628,
-      "published_at": "2026-10-17T15:26:18.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Uu nice feedback",
-      "weighted": 3,
       "score": 100.0
     }
   ],
@@ -378,7 +378,7 @@
     {
       "type": "pillar-mix",
       "title": "Pillar mix vs target 35/35/30",
-      "body": "google-ads-marketing 14% (target 35%) | agentic-ai 23% (target 35%) | engage 62% (target 30%)",
+      "body": "google-ads-marketing 14% (target 35%) | agentic-ai 22% (target 35%) | engage 64% (target 30%)",
       "metric": 258
     },
     {
@@ -390,20 +390,20 @@
     {
       "type": "pillar-over",
       "title": "Pillar lebih: engage",
-      "body": "engage 62% (target 30%). Kurangkan volume, pindah ke pillar yang kurang.",
-      "metric": 62
+      "body": "engage 64% (target 30%). Kurangkan volume, pindah ke pillar yang kurang.",
+      "metric": 64
     },
     {
       "type": "pillar-fix",
       "title": "Tingkatkan: engage",
-      "body": "engage avg score 41.0 dari 161 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
-      "metric": 41.0
+      "body": "engage avg score 40.1 dari 166 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
+      "metric": 40.1
     },
     {
       "type": "top-pillar-week",
       "title": "Pillar terbaik minggu ni: google-ads-marketing",
-      "body": "google-ads-marketing avg score 75.5 dari 9 posts. Kekalkan bentuk ni.",
-      "metric": 75.5
+      "body": "google-ads-marketing avg score 69.7 dari 10 posts. Kekalkan bentuk ni.",
+      "metric": 69.7
     }
   ]
 }
