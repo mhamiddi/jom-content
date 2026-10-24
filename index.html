@@ -156,6 +156,10 @@ main{padding:var(--space-2xl);flex:1}
 .perf-part a{color:var(--primary);margin-left:auto}
 .perf-foot{margin-top:10px;font-size:10px;color:var(--text3);line-height:1.5}
 .detail-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.publish-box{margin-top:14px;padding:12px 14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface2);font-size:12px;line-height:1.55;color:var(--text2)}
+.publish-box strong{color:var(--text)}.publish-box .detail-actions{margin-top:10px}
+.publish-box.ok{background:var(--success-bg);border-color:transparent;color:var(--success)}.publish-box.ok a{color:inherit;font-weight:600}
+.publish-box.err{background:var(--danger-bg);border-color:transparent;color:var(--danger)}
 @media(max-width:1100px){.cal-week{grid-template-columns:1fr}.cal-wcol{min-height:0}}
 @media(max-width:480px){.perf-tile b{font-size:17px}.cal-card.full{padding:12px}.cal-toolbar{justify-content:center}}
 @media(prefers-reduced-motion:reduce){.cal-card,.cal-week,.cal-dayview{transition:none}.cal-card:hover{transform:none}}
@@ -1587,10 +1591,79 @@ function openPostDetail(platform, id) {
     <div class="preview-meta" style="margin:0">${posted ? 'Yang diposkan' : 'Caption'}</div>
     <div class="preview-caption">${esc(posted || p.caption || 'Tiada caption.')}</div>
     ${posted && p.caption && p.caption !== posted ? `<div class="preview-meta" style="margin:0">Caption asal (plan)</div><div class="preview-caption">${esc(p.caption)}</div>` : ''}
+    ${canPublishToThreads(p) ? `<div class="publish-box" id="pubBox" data-id="${esc(p.id)}">Semak sambungan Threads...</div>` : ''}
     <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(p.id)}" data-platform="${esc(platform)}" onclick="editFromDetail(this.dataset.platform,this.dataset.id)">Edit post</button><button class="btn btn-outline btn-sm" onclick="closePostPreview()">Tutup</button></div>`;
   document.getElementById('previewOverlay').classList.add('open');
+  if (canPublishToThreads(p)) initPublishBox(p.id);
 }
 function editFromDetail(platform, id) { closePostPreview(); openModal(platform, id); }
+
+/* ===== PUBLISH TO THREADS (button in the post detail) ===== */
+let THREADS_PUB = null;
+function canPublishToThreads(p) {
+  return p.platform === 'threads' && p.status !== 'posted' && p.status !== 'rejected' && !p.postedUrl && String(p.caption || '').trim().length > 0;
+}
+function threadsParts(caption) {
+  return String(caption || '').split(/\n\s*---\s*\n/).map(x => x.trim()).filter(Boolean);
+}
+function pubBox(id) {
+  const b = document.getElementById('pubBox');
+  return b && b.dataset.id === id ? b : null;
+}
+function pubSet(id, html, cls) {
+  const b = pubBox(id);
+  if (!b) return;
+  b.className = 'publish-box' + (cls ? ' ' + cls : '');
+  b.innerHTML = html;
+}
+async function initPublishBox(id) {
+  const p = state.posts.find(x => x.id === id);
+  if (!p) return;
+  let info = null;
+  try {
+    const r = await fetch('/api/threads-publish', {cache: 'no-store'});
+    info = r.ok ? await r.json() : null;
+  } catch (e) { info = null; }
+  THREADS_PUB = info;
+  const parts = threadsParts(p.caption);
+  const long = parts.findIndex(t => [...t].length > 500);
+  if (JomAuth.mode() !== 'server') return pubSet(id, '<strong>Post ke Threads dimatikan.</strong> Butang ni hanya hidup selepas kunci API Cloudflare aktif, supaya orang luar tak boleh post guna akaun kau.');
+  if (!info || !info.success) return pubSet(id, 'Tak dapat semak sambungan Threads. Cuba buka semula.');
+  if (!info.configured) return pubSet(id, '<strong>Token Threads belum disambung.</strong> Sambung token dulu, lepas tu butang Post hidup.');
+  if (long !== -1) return pubSet(id, `<strong>Bahagian ${long + 1} melebihi 500 aksara.</strong> Threads tak terima. Edit dulu.`);
+  const note = info.refreshError ? `<br>Token gagal diperbaharui: ${esc(info.refreshError)}` : '';
+  pubSet(id, `<strong>Post terus ke @${esc(info.username || 'Threads')}</strong> (${parts.length} bahagian${parts.length > 1 ? ', chain' : ''}).${note}<div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick="askPublish(this.dataset.id)">Post ke Threads</button></div>`);
+}
+function askPublish(id) {
+  const p = state.posts.find(x => x.id === id);
+  if (!p) return;
+  const n = threadsParts(p.caption).length;
+  pubSet(id, `<strong>Post ${n} bahagian ke @${esc((THREADS_PUB && THREADS_PUB.username) || 'Threads')} sekarang?</strong><br>Terus keluar di Threads dan tak boleh di-undo dari sini. Caption yang akan keluar ialah yang kau nampak di bawah.<div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick="doPublish(this.dataset.id)">Ya, post sekarang</button><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="initPublishBox(this.dataset.id)">Batal</button></div>`);
+}
+async function doPublish(id) {
+  const p = state.posts.find(x => x.id === id);
+  if (!p) return;
+  pubSet(id, '<strong>Tengah post ke Threads...</strong> Jangan tutup tab ni.');
+  let res = null;
+  try {
+    const r = await fetch('/api/threads-publish?id=' + encodeURIComponent(id), {
+      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({caption: p.caption}),
+      signal: AbortSignal.timeout(120000)
+    });
+    res = await r.json().catch(() => ({success: false, message: 'Jawapan server tak sah (HTTP ' + r.status + ').'}));
+  } catch (e) {
+    return pubSet(id, '<strong>Tak pasti post dah keluar atau belum.</strong> Sambungan terputus. Semak profil Threads kau dulu, jangan tekan lagi sebelum pasti.', 'err');
+  }
+  if (res.success) {
+    const links = (res.urls || []).filter(Boolean).map((u, i) => `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">Buka ${res.urls.length > 1 ? 'bahagian ' + (i + 1) : 'post'}</a>`).join(' &middot; ');
+    pubSet(id, `<strong>Dah diposkan ke Threads.</strong> ${links}`, 'ok');
+    showToast('Post dah keluar di Threads.', 'success');
+    apiFetchAll();
+    return;
+  }
+  const retry = res.error === 'publish_failed' ? `<div class="detail-actions"><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="askPublish(this.dataset.id)">Cuba lagi</button></div>` : '';
+  pubSet(id, `<strong>Tak jadi.</strong> ${esc(res.message || res.error || 'Ralat tak diketahui.')}${retry}`, 'err');
+}
 
 /* ===== CALENDAR (day / week / month) ===== */
 function getMonthDays(year, month) {
