@@ -1,57 +1,57 @@
 {
-  "generated_at": "2026-10-23T01:45:52.134165+00:00",
-  "median_weighted_30d": 0.0,
+  "generated_at": "2026-10-24T01:45:56.565074+00:00",
+  "median_weighted_30d": 0,
   "median_views_30d": 273.5,
   "weekly": {
     "engage": {
-      "posts": 41,
-      "inter": 58,
+      "posts": 40,
+      "inter": 57,
       "shares": 2,
-      "views": 2469,
-      "avg_score": 40.6,
+      "views": 3007,
+      "avg_score": 45.9,
       "avg_inter": 1.4
+    },
+    "agentic-ai": {
+      "posts": 15,
+      "inter": 33,
+      "shares": 1,
+      "views": 2975,
+      "avg_score": 54.9,
+      "avg_inter": 2.2
     },
     "google-ads-marketing": {
       "posts": 10,
-      "inter": 34,
+      "inter": 32,
       "shares": 2,
-      "views": 1391,
-      "avg_score": 69.7,
-      "avg_inter": 3.4
-    },
-    "agentic-ai": {
-      "posts": 14,
-      "inter": 40,
-      "shares": 1,
-      "views": 3912,
-      "avg_score": 62.8,
-      "avg_inter": 2.9
+      "views": 1988,
+      "avg_score": 61.5,
+      "avg_inter": 3.2
     }
   },
   "monthly": {
     "engage": {
-      "posts": 166,
-      "inter": 175,
+      "posts": 167,
+      "inter": 177,
       "shares": 4,
-      "views": 17261,
-      "avg_score": 40.1,
+      "views": 17561,
+      "avg_score": 40.2,
       "avg_inter": 1.1
-    },
-    "google-ads-marketing": {
-      "posts": 36,
-      "inter": 76,
-      "shares": 4,
-      "views": 14966,
-      "avg_score": 54.7,
-      "avg_inter": 2.1
     },
     "agentic-ai": {
       "posts": 56,
-      "inter": 868,
+      "inter": 871,
       "shares": 99,
-      "views": 28075,
-      "avg_score": 56.5,
-      "avg_inter": 15.5
+      "views": 26980,
+      "avg_score": 59.2,
+      "avg_inter": 15.6
+    },
+    "google-ads-marketing": {
+      "posts": 36,
+      "inter": 71,
+      "shares": 4,
+      "views": 15411,
+      "avg_score": 52.3,
+      "avg_inter": 2.0
     }
   },
   "pillars": [
@@ -61,8 +61,8 @@
       "pct": 14,
       "target": 35,
       "gap": -21,
-      "avg_score": 54.7,
-      "avg_inter": 2.1
+      "avg_score": 52.3,
+      "avg_inter": 2.0
     },
     {
       "pillar": "agentic-ai",
@@ -70,16 +70,16 @@
       "pct": 22,
       "target": 35,
       "gap": -13,
-      "avg_score": 56.5,
-      "avg_inter": 15.5
+      "avg_score": 59.2,
+      "avg_inter": 15.6
     },
     {
       "pillar": "engage",
-      "posts": 166,
+      "posts": 167,
       "pct": 64,
       "target": 30,
       "gap": 34,
-      "avg_score": 40.1,
+      "avg_score": 40.2,
       "avg_inter": 1.1
     }
   ],
@@ -89,11 +89,11 @@
     "engage": 0.3
   },
   "posts_7d": 65,
-  "posts_30d": 258,
+  "posts_30d": 259,
   "top_7d": [
     {
-      "id": 1679,
-      "published_at": "2026-10-22T11:45:06.000Z",
+      "id": 1686,
+      "published_at": "2026-10-23T17:16:51.000Z",
       "pillar": "engage",
       "pillar_source": "label",
       "format": "story-experience",
@@ -101,36 +101,64 @@
       "comments": 0,
       "shares": 0,
       "views": 0,
-      "text": "Offer masih menarik ke?\nService okay ke? Response time laju ke? Customer dapat experience yang dia expect ke?\n2/5\nView 3 more",
+      "text": "Sentiasa ada orang yang lagi pandai dan berpengalaman dari kita.\nTapi kalau kau jenis yang asyik duk pandang rendah kat orang, rasa diri tu yang terpaling, then kau tak akan grow.\nHidup kita ni dinamik. Sebab tu ada pepatah \u201chidup ibarat roda kadang diatas, kadang dibawah.\u201d",
       "weighted": 1,
       "score": 100.0
     },
     {
-      "id": 1678,
-      "published_at": "2026-10-22T11:45:00.000Z",
+      "id": 1687,
+      "published_at": "2026-10-23T16:10:14.000Z",
       "pillar": "engage",
       "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 2,
+      "format": "tutorial-howto",
+      "likes": 1,
       "comments": 0,
       "shares": 0,
       "views": 0,
-      "text": "Aku tak salahkan ads dulu bila sales jatuh.\nAku check benda lain dulu.\u00a01/5",
+      "text": "Aku tengah duk asah skill storytelling ni. Kita kasi tajam, lepas ni air liur pun jadi mahal \ud83d\ude02\nStorytelling adalah evegreen skill yang aku rasa semua orang patut ada. Nak deliver intent kita secara jelas -> storytelling.\n1/2",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1691,
+      "published_at": "2026-10-23T16:06:41.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 0,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Kau tak setel setup lagi ke hermes? Or ni kau setup kan device lain",
       "weighted": 2,
       "score": 100.0
     },
     {
-      "id": 1680,
-      "published_at": "2026-10-22T09:45:23.000Z",
-      "pillar": "google-ads-marketing",
+      "id": 1694,
+      "published_at": "2026-10-23T13:42:16.000Z",
+      "pillar": "engage",
       "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 7,
-      "comments": 0,
+      "format": "tutorial-howto",
+      "likes": 1,
+      "comments": 1,
       "shares": 0,
       "views": 0,
-      "text": "Aku pilih Google Ads bila customer dah search.\nBukan sebab Meta Ads tak bagus.\u00a01/5",
-      "weighted": 7,
+      "text": "Haha buat masa ni aku tak rasa ada setup acp. Tapi memang dia boleh invoke. Dia sendiri setup kot. Yg aku tahu flow lancar.",
+      "weighted": 3,
+      "score": 100.0
+    },
+    {
+      "id": 1695,
+      "published_at": "2026-10-23T13:29:44.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 1,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Benda tu? Aku ada agent to agent protocol. So kalau ada task sambungan hermes kena sambung, dia boleh suruh hermes execute. Tak sure lah menjawab soalan kau ni.\u00a0\u00a0Translate",
+      "weighted": 3,
       "score": 100.0
     },
     {
@@ -200,42 +228,14 @@
       "shares": 0,
       "views": 0,
       "text": "Tools no dua, masalah dulu. Tools bila2 boleh tukar",
-      "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1637,
-      "published_at": "2026-10-18T05:36:29.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 1,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Meh, tapi fee saya mahal.",
-      "weighted": 3,
-      "score": 100.0
-    },
-    {
-      "id": 1639,
-      "published_at": "2026-10-18T05:24:47.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 0,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Kalau dah add tester account then memang kena tunggu. Hari tu masa test pun dia tak detect segera.",
       "weighted": 2,
       "score": 100.0
     }
   ],
   "top_30d": [
     {
-      "id": 1679,
-      "published_at": "2026-10-22T11:45:06.000Z",
+      "id": 1686,
+      "published_at": "2026-10-23T17:16:51.000Z",
       "pillar": "engage",
       "pillar_source": "label",
       "format": "story-experience",
@@ -243,36 +243,64 @@
       "comments": 0,
       "shares": 0,
       "views": 0,
-      "text": "Offer masih menarik ke?\nService okay ke? Response time laju ke? Customer dapat experience yang dia expect ke?\n2/5\nView 3 more",
+      "text": "Sentiasa ada orang yang lagi pandai dan berpengalaman dari kita.\nTapi kalau kau jenis yang asyik duk pandang rendah kat orang, rasa diri tu yang terpaling, then kau tak akan grow.\nHidup kita ni dinamik. Sebab tu ada pepatah \u201chidup ibarat roda kadang diatas, kadang dibawah.\u201d",
       "weighted": 1,
       "score": 100.0
     },
     {
-      "id": 1678,
-      "published_at": "2026-10-22T11:45:00.000Z",
+      "id": 1687,
+      "published_at": "2026-10-23T16:10:14.000Z",
       "pillar": "engage",
       "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 2,
+      "format": "tutorial-howto",
+      "likes": 1,
       "comments": 0,
       "shares": 0,
       "views": 0,
-      "text": "Aku tak salahkan ads dulu bila sales jatuh.\nAku check benda lain dulu.\u00a01/5",
+      "text": "Aku tengah duk asah skill storytelling ni. Kita kasi tajam, lepas ni air liur pun jadi mahal \ud83d\ude02\nStorytelling adalah evegreen skill yang aku rasa semua orang patut ada. Nak deliver intent kita secara jelas -> storytelling.\n1/2",
+      "weighted": 1,
+      "score": 100.0
+    },
+    {
+      "id": 1691,
+      "published_at": "2026-10-23T16:06:41.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 0,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Kau tak setel setup lagi ke hermes? Or ni kau setup kan device lain",
       "weighted": 2,
       "score": 100.0
     },
     {
-      "id": 1680,
-      "published_at": "2026-10-22T09:45:23.000Z",
-      "pillar": "google-ads-marketing",
+      "id": 1694,
+      "published_at": "2026-10-23T13:42:16.000Z",
+      "pillar": "engage",
       "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 7,
-      "comments": 0,
+      "format": "tutorial-howto",
+      "likes": 1,
+      "comments": 1,
       "shares": 0,
       "views": 0,
-      "text": "Aku pilih Google Ads bila customer dah search.\nBukan sebab Meta Ads tak bagus.\u00a01/5",
-      "weighted": 7,
+      "text": "Haha buat masa ni aku tak rasa ada setup acp. Tapi memang dia boleh invoke. Dia sendiri setup kot. Yg aku tahu flow lancar.",
+      "weighted": 3,
+      "score": 100.0
+    },
+    {
+      "id": 1695,
+      "published_at": "2026-10-23T13:29:44.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 1,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "text": "Benda tu? Aku ada agent to agent protocol. So kalau ada task sambungan hermes kena sambung, dia boleh suruh hermes execute. Tak sure lah menjawab soalan kau ni.\u00a0\u00a0Translate",
+      "weighted": 3,
       "score": 100.0
     },
     {
@@ -342,34 +370,6 @@
       "shares": 0,
       "views": 0,
       "text": "Tools no dua, masalah dulu. Tools bila2 boleh tukar",
-      "weighted": 2,
-      "score": 100.0
-    },
-    {
-      "id": 1637,
-      "published_at": "2026-10-18T05:36:29.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 1,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Meh, tapi fee saya mahal.",
-      "weighted": 3,
-      "score": 100.0
-    },
-    {
-      "id": 1639,
-      "published_at": "2026-10-18T05:24:47.000Z",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 0,
-      "comments": 1,
-      "shares": 0,
-      "views": 0,
-      "text": "Kalau dah add tester account then memang kena tunggu. Hari tu masa test pun dia tak detect segera.",
       "weighted": 2,
       "score": 100.0
     }
@@ -379,7 +379,7 @@
       "type": "pillar-mix",
       "title": "Pillar mix vs target 35/35/30",
       "body": "google-ads-marketing 14% (target 35%) | agentic-ai 22% (target 35%) | engage 64% (target 30%)",
-      "metric": 258
+      "metric": 259
     },
     {
       "type": "pillar-under",
@@ -396,14 +396,14 @@
     {
       "type": "pillar-fix",
       "title": "Tingkatkan: engage",
-      "body": "engage avg score 40.1 dari 166 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
-      "metric": 40.1
+      "body": "engage avg score 40.2 dari 167 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
+      "metric": 40.2
     },
     {
       "type": "top-pillar-week",
       "title": "Pillar terbaik minggu ni: google-ads-marketing",
-      "body": "google-ads-marketing avg score 69.7 dari 10 posts. Kekalkan bentuk ni.",
-      "metric": 69.7
+      "body": "google-ads-marketing avg score 61.5 dari 10 posts. Kekalkan bentuk ni.",
+      "metric": 61.5
     }
   ]
 }
