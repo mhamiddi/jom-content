@@ -1,5 +1,11 @@
 const METRIC_NAMES = ['views', 'likes', 'replies', 'reposts', 'quotes', 'shares'];
 
+export function pageSize(requested) {
+  const n = Number(requested);
+  if (!Number.isFinite(n)) return 40;
+  return Math.max(1, Math.min(40, Math.floor(n)));
+}
+
 function numeric(value) {
   if (value === null || value === undefined || value === '') return null;
   const n = Number(value);

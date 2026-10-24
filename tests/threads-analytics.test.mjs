@@ -1,6 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { metricsFromInsights, threadItemFromApi } from '../functions/_lib/threads-analytics.mjs';
+import { metricsFromInsights, pageSize, threadItemFromApi } from '../functions/_lib/threads-analytics.mjs';
+
+test('caps one API collection page below the Cloudflare subrequest limit', () => {
+  assert.equal(pageSize(5), 5);
+  assert.equal(pageSize(40), 40);
+  assert.equal(pageSize(500), 40);
+});
 
 test('maps official Threads insight payload into dashboard metric fields', () => {
   const payload = {

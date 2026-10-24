@@ -12,11 +12,10 @@
  * The access token is never returned, logged, or included in the stored snapshot.
  */
 import { enforced, json } from '../_lib/auth.js';
-import { threadItemFromApi } from '../_lib/threads-analytics.mjs';
+import { pageSize, threadItemFromApi } from '../_lib/threads-analytics.mjs';
 
 const DEFAULT_BASE = 'https://graph.threads.net/v1.0';
 const MAX_LIMIT = 500;
-const MAX_PAGES = 20;
 const MAX_INSIGHT_CONCURRENCY = 4;
 
 const base = (env) => String(env.THREADS_API_BASE || DEFAULT_BASE).replace(/\/+$/, '');
@@ -73,22 +72,18 @@ async function maybeRefresh(env, auth) {
   }
 }
 
-async function listPosts(env, auth, limit) {
-  const posts = [];
-  let after = '';
-  for (let page = 0; page < MAX_PAGES && posts.length < limit; page += 1) {
+async function listPosts(env, auth, limit, after = '') {
     const data = await threads(env, 'GET', '/me/threads', {
       fields: 'id,text,timestamp,permalink,username',
-      limit: Math.min(100, limit - posts.length),
+      limit: pageSize(limit),
       after,
       access_token: auth.token,
     });
-    if (Array.isArray(data.data)) posts.push(...data.data);
-    const next = data?.paging?.cursors?.after;
-    if (!next || !data?.paging?.next || !data.data?.length) break;
-    after = next;
-  }
-  return posts.slice(0, limit);
+    return {
+      posts: Array.isArray(data.data) ? data.data.slice(0, pageSize(limit)) : [],
+      nextAfter: data?.paging?.cursors?.after || '',
+      hasNext: Boolean(data?.paging?.next && data?.paging?.cursors?.after),
+    };
 }
 
 async function mapWithConcurrency(items, worker, concurrency) {
@@ -106,9 +101,10 @@ async function mapWithConcurrency(items, worker, concurrency) {
   return output;
 }
 
-async function collect(env, auth, limit) {
+async function collect(env, auth, limit, after = '') {
   const collectedAt = new Date().toISOString();
-  const posts = await listPosts(env, auth, limit);
+  const page = await listPosts(env, auth, limit, after);
+  const posts = page.posts;
   const items = await mapWithConcurrency(posts, async (post) => {
     try {
       const insights = await threads(env, 'GET', `/${post.id}/insights`, {
@@ -130,6 +126,7 @@ async function collect(env, auth, limit) {
     account: { id: auth.userId || '', username: auth.username || '' },
     posts: items.filter((item) => item.platform_content_id),
     errors: items.filter((item) => item.insight_error).length,
+    next_after: page.hasNext ? page.nextAfter : '',
   };
 }
 
@@ -151,11 +148,12 @@ export async function onRequest(context) {
   const authBefore = await loadAuth(env);
   if (!authBefore?.token) return json({ success: false, error: 'not_configured' }, 409);
   const auth = await maybeRefresh(env, authBefore);
-  const requested = Number(url.searchParams.get('limit') || 100);
+  const requested = Number(url.searchParams.get('limit') || 40);
   const limit = Number.isFinite(requested) ? Math.max(1, Math.min(MAX_LIMIT, Math.floor(requested))) : MAX_LIMIT;
+  const after = url.searchParams.get('after') || '';
 
   try {
-    const snapshot = await collect(env, auth, limit);
+    const snapshot = await collect(env, auth, limit, after);
     await env.JOM_CONTENT.put('threads_analytics_latest', JSON.stringify(snapshot));
     return json(snapshot);
   } catch (error) {
