@@ -15,7 +15,7 @@ import { enforced, json } from '../_lib/auth.js';
 import { pageSize, threadItemFromApi } from '../_lib/threads-analytics.mjs';
 
 const DEFAULT_BASE = 'https://graph.threads.net/v1.0';
-const MAX_LIMIT = 500;
+const MAX_LIMIT = 600;
 const MAX_INSIGHT_CONCURRENCY = 4;
 
 const base = (env) => String(env.THREADS_API_BASE || DEFAULT_BASE).replace(/\/+$/, '');
