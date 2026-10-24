@@ -160,6 +160,7 @@ main{padding:var(--space-2xl);flex:1}
 .publish-box strong{color:var(--text)}.publish-box .detail-actions{margin-top:10px}
 .publish-box.ok{background:var(--success-bg);border-color:transparent;color:var(--success)}.publish-box.ok a{color:inherit;font-weight:600}
 .publish-box.err{background:var(--danger-bg);border-color:transparent;color:var(--danger)}
+.account-panel{max-width:780px}.account-intro{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}.account-intro p{max-width:620px;color:var(--text2);font-size:13px;line-height:1.55}.account-list{display:flex;flex-direction:column;gap:8px;margin-top:16px}.account-row{display:flex;align-items:center;gap:12px;padding:14px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm)}.account-avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--primary-bg);color:var(--primary);font-weight:800}.account-copy{flex:1;min-width:0}.account-copy strong{display:block;font-size:14px}.account-copy small{display:block;color:var(--text2);font-size:11px;margin-top:3px}.account-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end}.account-default{font-size:10px;padding:3px 8px;border-radius:var(--radius-full);background:var(--success-bg);color:var(--success);font-weight:700}.account-connect{margin-top:18px;padding-top:18px;border-top:1px solid var(--border-light)}.account-connect textarea,.account-connect input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font:inherit;background:var(--surface);color:var(--text)}.account-connect textarea{min-height:76px;resize:vertical;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}.account-connect textarea:focus,.account-connect input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.08)}.account-help{font-size:11px;color:var(--text3);line-height:1.5;margin-top:6px}.account-empty{padding:18px;border:1px dashed var(--border);border-radius:var(--radius-sm);color:var(--text2);font-size:13px}.publish-account-picker{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0}.publish-account-picker label{font-size:11px;font-weight:700;color:var(--text2)}.publish-account-picker select{padding:7px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--text);font:inherit;font-size:12px;min-width:190px}
 @media(max-width:1100px){.cal-week{grid-template-columns:1fr}.cal-wcol{min-height:0}}
 @media(max-width:480px){.perf-tile b{font-size:17px}.cal-card.full{padding:12px}.cal-toolbar{justify-content:center}}
 @media(prefers-reduced-motion:reduce){.cal-card,.cal-week,.cal-dayview{transition:none}.cal-card:hover{transform:none}}
@@ -485,6 +486,10 @@ canvas{display:block;max-width:100%}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M8 17v-5"/><path d="M13 17V7"/><path d="M18 17v-8"/></svg>
       Analytics
     </button>
+    <button class="nav-tab" data-tab="accounts">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c.5-3.3 2.5-5 6-5s5.5 1.7 6 5"/><path d="M16 4.5a3 3 0 0 1 0 6M17 15c2.2.6 3.5 2.2 4 5"/></svg>
+      Connected accounts
+    </button>
     <a class="nav-external" href="/topics.html" title="Daily topic bank">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 5.5v16"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
       Topic Bank
@@ -597,7 +602,22 @@ canvas{display:block;max-width:100%}
     <div class="tab-content" id="tab-tiktok"></div>
     <div class="tab-content" id="tab-threads"></div>
     <div class="tab-content" id="tab-analytics"><iframe src="/analytics.html" title="Threads Analytics"></iframe></div>
-
+    <div class="tab-content" id="tab-accounts">
+      <section class="section account-panel">
+        <div class="section-hdr"><div class="section-title"><h2>Connected accounts</h2><span class="badge" id="threadsAccountCount">0 account</span></div><button class="btn btn-outline btn-sm" onclick="fetchThreadsAccounts()">Refresh</button></div>
+        <div class="card">
+          <div class="account-intro"><div><h3 style="font-size:16px;margin-bottom:6px">Threads API accounts</h3><p>Sambung lebih daripada satu account Threads. Token dihantar terus ke server dan tak disimpan dalam browser atau dipaparkan semula.</p></div><span class="approval-badge approval-approved">Direct API</span></div>
+          <div id="threadsAccountStatus" class="account-help" aria-live="polite">Semak sambungan…</div>
+          <div id="threadsAccountList" class="account-list"></div>
+          <div class="account-connect">
+            <h3 style="font-size:14px;margin-bottom:6px">Sambung account baru</h3>
+            <p class="account-help" style="margin-top:0;margin-bottom:10px">Generate User Access Token dalam Meta Threads Developer Console, kemudian paste sekali sahaja di sini. Token tidak dipaparkan dalam response.</p>
+            <textarea id="threadsAccountToken" autocomplete="off" spellcheck="false" placeholder="Paste Threads access token"></textarea>
+            <div class="detail-actions"><button class="btn btn-primary btn-sm" id="connectThreadsAccountButton" onclick="connectThreadsAccount()">Sambung account</button></div>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 </div>
 
@@ -748,7 +768,7 @@ const WORKSPACES = {
   'jom-digital': {name:'Jom Digital', short:'Jom Digital', type:'Content OS', tagline:'TikTok & Threads: Google Ads & Marketing, Agentic AI dan Engage.', pillars:[...CANONICAL_PILLARS], targets:{...CANONICAL_TARGETS}}
 };
 const DEFAULT_WORKSPACE = 'jom-digital';
-const PAGE_TITLES = {dashboard:'Overview',tiktok:'TikTok',threads:'Threads',analytics:'Analytics'};
+const PAGE_TITLES = {dashboard:'Overview',tiktok:'TikTok',threads:'Threads',analytics:'Analytics',accounts:'Connected accounts'};
 const DEFAULT_PILLARS = WORKSPACES[DEFAULT_WORKSPACE].pillars;
 const DEFAULT_TARGETS = WORKSPACES[DEFAULT_WORKSPACE].targets;
 const PILLAR_COLORS = ['#6366f1','#22C55E','#06b6d4','#ec4899','#8b5cf6','#14b8a6','#f97316','#a855f7'];
@@ -837,6 +857,79 @@ async function apiFetchAll() {
   }
 }
 
+/* ===== THREADS CONNECTED ACCOUNTS ===== */
+let THREADS_ACCOUNTS = [];
+async function fetchThreadsAccounts() {
+  const status = document.getElementById('threadsAccountStatus');
+  if (status) status.textContent = 'Semak sambungan…';
+  try {
+    const response = await fetch('/api/threads-accounts', {cache:'no-store'});
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data.success) throw new Error(data.message || data.error || 'HTTP '+response.status);
+    THREADS_ACCOUNTS = Array.isArray(data.accounts) ? data.accounts : [];
+    renderThreadsAccounts();
+    return THREADS_ACCOUNTS;
+  } catch (error) {
+    THREADS_ACCOUNTS = [];
+    if (status) status.textContent = 'Tak dapat semak account Threads. Cuba refresh semula.';
+    renderThreadsAccounts();
+    return [];
+  }
+}
+function renderThreadsAccounts() {
+  const list = document.getElementById('threadsAccountList');
+  const count = document.getElementById('threadsAccountCount');
+  const status = document.getElementById('threadsAccountStatus');
+  if (!list) return;
+  if (count) count.textContent = THREADS_ACCOUNTS.length + (THREADS_ACCOUNTS.length === 1 ? ' account' : ' accounts');
+  if (status) status.textContent = THREADS_ACCOUNTS.length ? THREADS_ACCOUNTS.length + ' account disambung melalui Threads API.' : 'Belum ada account Threads disambung.';
+  if (!THREADS_ACCOUNTS.length) {
+    list.innerHTML = '<div class="account-empty">Belum ada account. Sambung account pertama di bawah.</div>';
+    return;
+  }
+  list.innerHTML = THREADS_ACCOUNTS.map(account => `<div class="account-row"><div class="account-avatar">@</div><div class="account-copy"><strong>@${esc(account.username || account.userId)}</strong><small>Threads API · ${account.isDefault ? 'Default untuk publish' : 'Boleh dipilih masa publish'}</small></div><div class="account-actions">${account.isDefault ? '<span class="account-default">Default</span>' : `<button class="btn btn-outline btn-sm" data-account-id="${esc(account.id)}" onclick="setDefaultThreadsAccount(this.dataset.accountId)">Jadikan default</button>`}<button class="btn-danger-ghost" data-account-id="${esc(account.id)}" data-username="${esc(account.username || account.userId)}" onclick="disconnectThreadsAccount(this.dataset.accountId,this.dataset.username)">Putuskan</button></div></div>`).join('');
+}
+async function connectThreadsAccount() {
+  const field = document.getElementById('threadsAccountToken');
+  const button = document.getElementById('connectThreadsAccountButton');
+  const token = field?.value.trim() || '';
+  if (!token) { showToast('Paste token Threads dulu.','error'); field?.focus(); return; }
+  if (button) { button.disabled = true; button.textContent = 'Menyambung…'; }
+  try {
+    const response = await fetch('/api/threads-accounts', {method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({token})});
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data.success) throw new Error(data.message || data.error || 'Token ditolak');
+    if (field) field.value = '';
+    showToast('@'+(data.account?.username || 'Threads')+' dah disambung.','success');
+    await fetchThreadsAccounts();
+  } catch (error) {
+    showToast('Tak dapat sambung account: '+error.message,'error');
+  } finally {
+    if (button) { button.disabled = false; button.textContent = 'Sambung account'; }
+  }
+}
+async function setDefaultThreadsAccount(accountId) {
+  try {
+    const response = await fetch('/api/threads-accounts?action=default', {method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({accountId})});
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data.success) throw new Error(data.message || data.error || 'Gagal tukar default');
+    THREADS_ACCOUNTS = data.accounts || [];
+    renderThreadsAccounts();
+    showToast('Default Threads account ditukar.','success');
+  } catch (error) { showToast('Tak dapat tukar default: '+error.message,'error'); }
+}
+async function disconnectThreadsAccount(accountId, username) {
+  if (!confirm('Putuskan @'+username+' daripada Jom Content? Token akan dipadam daripada account store.')) return;
+  try {
+    const response = await fetch('/api/threads-accounts?accountId='+encodeURIComponent(accountId), {method:'DELETE'});
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data.success) throw new Error(data.message || data.error || 'Gagal putuskan account');
+    THREADS_ACCOUNTS = data.accounts || [];
+    renderThreadsAccounts();
+    showToast('@'+username+' dah diputuskan.','success');
+  } catch (error) { showToast('Tak dapat putuskan account: '+error.message,'error'); }
+}
+
 /* ===== DATE HELPERS ===== */
 function localDateStr(d) {
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
@@ -908,6 +1001,7 @@ async function loginToDashboard() {
   closeLoginModal();
   renderAll();
   apiFetchAll();
+  fetchThreadsAccounts();
 }
 function logoutDashboard() { JomAuth.clear(); document.body.classList.add('auth-locked'); openLoginModal(); }
 JomAuth.onExpired = () => { document.body.classList.add('auth-locked'); openLoginModal(); showToast('Sesi tamat. Sila login semula.', 'info'); };
@@ -1600,8 +1694,11 @@ function editFromDetail(platform, id) { closePostPreview(); openModal(platform, 
 
 /* ===== PUBLISH TO THREADS (button in the post detail) ===== */
 let THREADS_PUB = null;
+function publishedAccountIds(post) {
+  return Array.isArray(post.publishedAccounts) ? post.publishedAccounts.map(item => item.accountId) : [];
+}
 function canPublishToThreads(p) {
-  return p.platform === 'threads' && p.status !== 'posted' && p.status !== 'rejected' && !p.postedUrl && String(p.caption || '').trim().length > 0;
+  return p.platform === 'threads' && p.status !== 'rejected' && String(p.caption || '').trim().length > 0 && (!p.postedUrl || Array.isArray(p.publishedAccounts));
 }
 function threadsParts(caption) {
   return String(caption || '').split(/\n\s*---\s*\n/).map(x => x.trim()).filter(Boolean);
@@ -1616,52 +1713,56 @@ function pubSet(id, html, cls) {
   b.className = 'publish-box' + (cls ? ' ' + cls : '');
   b.innerHTML = html;
 }
+function publishCandidates(post) {
+  const used = new Set(publishedAccountIds(post));
+  return THREADS_ACCOUNTS.filter(account => !used.has(account.id));
+}
 async function initPublishBox(id) {
   const p = state.posts.find(x => x.id === id);
   if (!p) return;
-  let info = null;
-  try {
-    const r = await fetch('/api/threads-publish', {cache: 'no-store'});
-    info = r.ok ? await r.json() : null;
-  } catch (e) { info = null; }
-  THREADS_PUB = info;
   const parts = threadsParts(p.caption);
   const long = parts.findIndex(t => [...t].length > 500);
-  if (JomAuth.mode() !== 'server') return pubSet(id, '<strong>Post ke Threads dimatikan.</strong> Butang ni hanya hidup selepas kunci API Cloudflare aktif, supaya orang luar tak boleh post guna akaun kau.');
-  if (!info || !info.success) return pubSet(id, 'Tak dapat semak sambungan Threads. Cuba buka semula.');
-  if (!info.configured) return pubSet(id, '<strong>Token Threads belum disambung.</strong> Sambung token dulu, lepas tu butang Post hidup.');
+  if (JomAuth.mode() !== 'server') return pubSet(id, '<strong>Post ke Threads dimatikan.</strong> Butang ni hanya hidup selepas kunci API Cloudflare aktif.');
+  const accounts = await fetchThreadsAccounts();
+  THREADS_PUB = accounts;
+  if (!accounts.length) return pubSet(id, '<strong>Tiada account Threads disambung.</strong> Buka Connected accounts dan sambung token dulu.');
+  const available = publishCandidates(p);
+  if (!available.length) return pubSet(id, '<strong>Content ni dah diposkan ke semua account Threads yang disambung.</strong>');
   if (long !== -1) return pubSet(id, `<strong>Bahagian ${long + 1} melebihi 500 aksara.</strong> Threads tak terima. Edit dulu.`);
-  const note = info.refreshError ? `<br>Token gagal diperbaharui: ${esc(info.refreshError)}` : '';
-  pubSet(id, `<strong>Post terus ke @${esc(info.username || 'Threads')}</strong> (${parts.length} bahagian${parts.length > 1 ? ', chain' : ''}).${note}<div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick="askPublish(this.dataset.id)">Post ke Threads</button></div>`);
+  const selected = available.find(account => account.isDefault) || available[0];
+  const picker = available.length > 1 ? `<div class="publish-account-picker"><label for="pubAccountSelect">Post sebagai</label><select id="pubAccountSelect" aria-label="Pilih Threads account">${available.map(account => `<option value="${esc(account.id)}" ${account.id === selected.id ? 'selected' : ''}>@${esc(account.username || account.userId)}${account.isDefault ? ' · default' : ''}</option>`).join('')}</select></div>` : '';
+  pubSet(id, `<strong>Post terus ke @${esc(selected.username || selected.userId)}</strong> (${parts.length} bahagian${parts.length > 1 ? ', chain' : ''}).${picker}<div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" data-account-id="${esc(selected.id)}" onclick="askPublish(this.dataset.id,document.getElementById('pubAccountSelect')?.value||this.dataset.accountId)">Post ke Threads</button></div>`);
 }
-function askPublish(id) {
+function askPublish(id, accountId) {
   const p = state.posts.find(x => x.id === id);
   if (!p) return;
+  const selected = THREADS_ACCOUNTS.find(account => account.id === accountId) || THREADS_ACCOUNTS.find(account => account.isDefault) || THREADS_ACCOUNTS[0];
   const n = threadsParts(p.caption).length;
-  pubSet(id, `<strong>Post ${n} bahagian ke @${esc((THREADS_PUB && THREADS_PUB.username) || 'Threads')} sekarang?</strong><br>Terus keluar di Threads dan tak boleh di-undo dari sini. Caption yang akan keluar ialah yang kau nampak di bawah.<div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick="doPublish(this.dataset.id)">Ya, post sekarang</button><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="initPublishBox(this.dataset.id)">Batal</button></div>`);
+  pubSet(id, `<strong>Post ${n} bahagian ke @${esc(selected?.username || selected?.userId || 'Threads')} sekarang?</strong><br>Terus keluar di Threads dan tak boleh di-undo dari sini. Caption yang akan keluar ialah yang kau nampak di bawah.<div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" data-account-id="${esc(selected?.id || accountId || '')}" onclick="doPublish(this.dataset.id,this.dataset.accountId)">Ya, post sekarang</button><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="initPublishBox(this.dataset.id)">Batal</button></div>`);
 }
-async function doPublish(id) {
+async function doPublish(id, accountId) {
   const p = state.posts.find(x => x.id === id);
   if (!p) return;
   pubSet(id, '<strong>Tengah post ke Threads...</strong> Jangan tutup tab ni.');
   let res = null;
   try {
-    const r = await fetch('/api/threads-publish?id=' + encodeURIComponent(id), {
-      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({caption: p.caption}),
+    const query = new URLSearchParams({id, accountId: accountId || ''});
+    const r = await fetch('/api/threads-publish?' + query.toString(), {
+      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({caption: p.caption, accountId}),
       signal: AbortSignal.timeout(120000)
     });
     res = await r.json().catch(() => ({success: false, message: 'Jawapan server tak sah (HTTP ' + r.status + ').'}));
   } catch (e) {
-    return pubSet(id, '<strong>Tak pasti post dah keluar atau belum.</strong> Sambungan terputus. Semak profil Threads kau dulu, jangan tekan lagi sebelum pasti.', 'err');
+    return pubSet(id, '<strong>Tak pasti post dah keluar atau belum.</strong> Sambungan terputus. Semak Threads account yang dipilih dulu, jangan tekan lagi sebelum pasti.', 'err');
   }
   if (res.success) {
     const links = (res.urls || []).filter(Boolean).map((u, i) => `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">Buka ${res.urls.length > 1 ? 'bahagian ' + (i + 1) : 'post'}</a>`).join(' &middot; ');
-    pubSet(id, `<strong>Dah diposkan ke Threads.</strong> ${links}`, 'ok');
-    showToast('Post dah keluar di Threads.', 'success');
+    pubSet(id, `<strong>Dah diposkan ke @${esc(res.username || 'Threads')}.</strong> ${links}`, 'ok');
+    showToast('Post dah keluar di Threads.','success');
     apiFetchAll();
     return;
   }
-  const retry = res.error === 'publish_failed' ? `<div class="detail-actions"><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="askPublish(this.dataset.id)">Cuba lagi</button></div>` : '';
+  const retry = res.error === 'publish_failed' ? `<div class="detail-actions"><button class="btn btn-outline btn-sm" data-id="${esc(id)}" data-account-id="${esc(accountId || '')}" onclick="askPublish(this.dataset.id,this.dataset.accountId)">Cuba lagi</button></div>` : '';
   pubSet(id, `<strong>Tak jadi.</strong> ${esc(res.message || res.error || 'Ralat tak diketahui.')}${retry}`, 'err');
 }
 
@@ -2089,6 +2190,8 @@ function initNav() {
       document.getElementById('tab-'+state.currentTab).classList.add('active');
       const titleEl = document.getElementById('pageTitle');
       if (titleEl) titleEl.textContent = PAGE_TITLES[state.currentTab] || state.currentTab;
+      const kbdHint = document.getElementById('kbdHint');
+      if (kbdHint) kbdHint.style.display = state.currentTab === 'accounts' ? 'none' : '';
       if (window.innerWidth <= 768) {
         document.getElementById('sidebar').classList.remove('open');
         document.getElementById('sidebarOverlay').classList.remove('open');
@@ -2143,6 +2246,8 @@ function renderAll() {
     renderCalendar(state.currentTab);
     renderPillars(state.currentTab);
     renderPostList(state.currentTab);
+  } else if (state.currentTab === 'accounts') {
+    renderThreadsAccounts();
   }
 }
 
@@ -2171,6 +2276,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   loadAnalytics();
   // Sync from API only after dashboard login
   if (JomAuth.isAuthed()) setTimeout(apiFetchAll, 500);
+  if (JomAuth.isAuthed()) setTimeout(fetchThreadsAccounts, 650);
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);

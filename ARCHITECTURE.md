@@ -56,6 +56,19 @@ Persist every curated daily Threads topic suggestion and let Hamiddi review the 
 - `PUT /api/topics?id=<id>` updates feedback, notes, and publication state.
 - Storage is isolated from the existing `posts` key in the same `JOM_CONTENT` KV namespace.
 
+## Threads connected accounts
+
+The dashboard publishes through the official Threads API without browser automation or a third-party scheduler.
+
+- `GET /api/threads-accounts` returns masked account metadata only.
+- `PUT /api/threads-accounts` validates a user token against `/me` and upserts the account by Threads user ID.
+- `PUT /api/threads-accounts?action=default` changes the default publishing account.
+- `DELETE /api/threads-accounts?accountId=<id>` disconnects an account and removes its stored token.
+- Tokens are stored only in the protected `JOM_CONTENT` KV namespace under `threads_accounts`; the legacy `threads_auth` key is read as a one-account migration fallback.
+- `POST /api/threads-publish?id=<postId>&accountId=<id>` publishes to the selected account and records per-account `publishedAccounts` plus an account-scoped idempotency key.
+
+The UI exposes `Connected accounts` in the sidebar and a per-post account selector. A token is never returned by an API response or written to browser storage.
+
 ## Compatibility
 
 The existing TikTok/Threads post calendar remains unchanged. A new `Topic Bank` link opens `topics.html`. Deployment is intentionally separate from this local implementation and requires the normal preview/user-approval gate.
