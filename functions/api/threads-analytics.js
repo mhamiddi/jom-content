@@ -15,7 +15,7 @@ import { enforced, json } from '../_lib/auth.js';
 import { threadItemFromApi } from '../_lib/threads-analytics.mjs';
 
 const DEFAULT_BASE = 'https://graph.threads.net/v1.0';
-const MAX_LIMIT = 100;
+const MAX_LIMIT = 500;
 const MAX_PAGES = 20;
 const MAX_INSIGHT_CONCURRENCY = 4;
 
