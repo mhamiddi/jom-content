@@ -71,14 +71,14 @@ header::after{content:'';position:absolute;right:-40px;top:-40px;width:200px;hei
 /* WEEKDAY VIEWS */
 .weekday-plot{height:196px;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;align-items:end;padding:8px 2px 0}
 .weekday-col{height:100%;min-width:0;display:grid;grid-template-rows:1fr 22px 16px;align-items:end;text-align:center}
-.weekday-value{position:absolute;left:50%;bottom:calc(100% + 4px);transform:translateX(-50%);font-size:11px;font-weight:800;color:var(--text);white-space:nowrap}
-.weekday-track{height:100%;display:flex;align-items:end;justify-content:center;background:linear-gradient(to top,rgba(37,99,235,.06),transparent);border-radius:7px 7px 3px 3px;overflow:visible}
-.weekday-bar{position:relative;width:min(34px,72%);min-height:0;border-radius:7px 7px 3px 3px;background:linear-gradient(180deg,var(--accent),#1E40AF);transition:height .45s var(--ease);box-shadow:0 4px 10px rgba(37,99,235,.16)}
-.weekday-bar.empty{height:3px!important;background:var(--border);box-shadow:none}
+.weekday-track{height:100%;display:flex;align-items:center;justify-content:center;background:rgba(37,99,235,var(--weekday-alpha,.08));border:1px solid rgba(37,99,235,.10);border-radius:10px;overflow:visible;transition:background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease);box-shadow:0 3px 10px rgba(15,23,42,.04)}
+.weekday-track.hot{color:#fff;border-color:rgba(30,64,175,.18);box-shadow:0 5px 14px rgba(37,99,235,.16)}
+.weekday-value{font-size:11px;font-weight:800;color:inherit;white-space:nowrap}
 .weekday-label{font-size:12px;font-weight:800;color:var(--text);align-self:end}
 .weekday-meta{font-size:10px;color:var(--text2);white-space:nowrap}
-.weekday-note{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:var(--text2)}
+.weekday-note{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:10px;font-size:11px;color:var(--text2)}
 .weekday-note strong{color:var(--text)}
+.weekday-key{display:inline-flex;align-items:center;gap:5px}.weekday-key i{width:12px;height:12px;border-radius:4px;background:linear-gradient(90deg,rgba(37,99,235,.10),rgba(37,99,235,.88));display:inline-block}
 
 /* TOP LIST */
 .top-list{display:flex;flex-direction:column;gap:10px}
@@ -288,19 +288,22 @@ function renderChart(d) {
 function renderWeekdayViews(d) {
   const rows = weekdayAverages(d.posts);
   const available = rows.filter(row => row.avgViews != null);
-  const max = Math.max(1, ...available.map(row => row.avgViews));
+  const min = available.length ? Math.min(...available.map(row => row.avgViews)) : 0;
+  const max = available.length ? Math.max(...available.map(row => row.avgViews)) : 1;
+  const range = Math.max(1, max - min);
   const best = available.slice().sort((a, b) => b.avgViews - a.avgViews)[0];
   $('weekdayPlot').innerHTML = rows.map(row => {
     const hasData = row.avgViews != null;
-    const height = hasData ? Math.max(6, row.avgViews / max * 100) : 3;
+    const alpha = hasData ? (0.10 + ((row.avgViews - min) / range) * 0.78).toFixed(2) : '0.06';
+    const hot = hasData && Number(alpha) >= 0.55 ? ' hot' : '';
     return `<div class="weekday-col" title="${esc(row.label)}: ${hasData ? fmt(row.avgViews) + ' purata views daripada ' + row.items + ' post' : 'Tiada data'}">
-      <div class="weekday-track"><div class="weekday-bar${hasData ? '' : ' empty'}" style="height:${height}%;opacity:${hasData ? (0.55 + row.avgViews / max * 0.45).toFixed(2) : 1}"><span class="weekday-value">${hasData ? short(row.avgViews) : '-'}</span></div></div>
+      <div class="weekday-track${hot}" style="--weekday-alpha:${alpha}"><span class="weekday-value">${hasData ? short(row.avgViews) : '-'}</span></div>
       <strong class="weekday-label">${esc(row.label)}</strong><small class="weekday-meta">${row.items} post</small>
     </div>`;
   }).join('');
   $('weekdayBadge').textContent = best ? 'tertinggi ' + best.label : 'tiada data';
   $('weekdayNote').innerHTML = best
-    ? `<span><strong>${esc(best.label)}</strong> paling tinggi: ${fmt(best.avgViews)} purata views</span><span>30 hari · ${available.reduce((sum, row) => sum + row.items, 0)} post dengan data views</span>`
+    ? `<span class="weekday-key"><i></i>Gelap = purata views lebih tinggi</span><span><strong>${esc(best.label)}</strong> paling tinggi: ${fmt(best.avgViews)} purata views</span><span>30 hari · ${available.reduce((sum, row) => sum + row.items, 0)} post dengan data views</span>`
     : '<span>Belum ada post dengan data views yang boleh dibandingkan.</span>';
 }
 
