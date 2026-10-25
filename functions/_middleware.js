@@ -1,7 +1,7 @@
 import { authorised, enforced, json } from './_lib/auth.js';
 
 // Open routes: the login flow itself, and CORS preflight.
-const OPEN = new Set(['/api/login', '/api/logout', '/api/session']);
+const OPEN = new Set(['/api/login', '/api/logout', '/api/session', '/api/password-reset']);
 
 export async function onRequest(context) {
   const { request, env } = context;

@@ -12,6 +12,7 @@
  */
 export const COOKIE = 'jc_session';
 export const SESSION_SECONDS = 60 * 60 * 24 * 30;
+export const PASSWORD_OVERRIDE_KEY = 'auth:login-password';
 const enc = new TextEncoder();
 
 export const enforced = (env) => Boolean(env && env.JOM_API_TOKEN);
@@ -41,6 +42,19 @@ function cookieValue(header, name) {
 export async function makeSession(env) {
   const exp = Math.floor(Date.now() / 1000) + SESSION_SECONDS;
   return `${exp}.${await hmacHex(env.JOM_API_TOKEN, 'v1.' + exp)}`;
+}
+
+// The Pages secret remains the bootstrap password. A successful reset stores
+// the replacement only in the private KV namespace, never in the response or
+// in a client-side file.
+export async function getLoginPassword(env) {
+  const override = env?.JOM_CONTENT ? await env.JOM_CONTENT.get(PASSWORD_OVERRIDE_KEY) : '';
+  return override || env?.JOM_LOGIN_PASSWORD || '';
+}
+
+export async function setLoginPassword(env, password) {
+  if (!env?.JOM_CONTENT) throw new Error('KV binding not available');
+  await env.JOM_CONTENT.put(PASSWORD_OVERRIDE_KEY, password);
 }
 
 export async function sessionValid(request, env) {

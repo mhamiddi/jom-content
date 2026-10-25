@@ -57,6 +57,18 @@
         return { ok: false, error: r.status === 429 ? 'Terlalu banyak cubaan. Cuba lagi dalam 15 minit.' : null };
       }).catch(function () { return { ok: false, error: 'Tak dapat hubungi server. Cuba lagi.' }; });
     },
+    resetPassword: function (u, code, p) {
+      if (mode !== 'server') return Promise.resolve({ ok: false, error: 'Reset password hanya tersedia dalam server mode.' });
+      return rawFetch('/api/password-reset', {
+        method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: u, resetCode: code, newPassword: p })
+      }).then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (j) {
+          if (r.ok) { serverAuthed = true; return { ok: true }; }
+          return { ok: false, error: r.status === 429 ? 'Terlalu banyak cubaan. Cuba lagi dalam 15 minit.' : (j.error || 'Reset password gagal.') };
+        });
+      }).catch(function () { return { ok: false, error: 'Tak dapat hubungi server. Cuba lagi.' }; });
+    },
     setAuthed: function () { if (mode !== 'server') KEYS.forEach(function (k) { localStorage.setItem(k, '1'); }); },
     clear: function () {
       KEYS.forEach(function (k) { localStorage.removeItem(k); });
