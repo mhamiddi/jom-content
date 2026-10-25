@@ -68,6 +68,18 @@ header::after{content:'';position:absolute;right:-40px;top:-40px;width:200px;hei
 .chart-legend{display:flex;gap:14px;font-size:11px;color:var(--text2);margin-top:8px;flex-wrap:wrap}
 .chart-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
 
+/* WEEKDAY VIEWS */
+.weekday-plot{height:196px;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;align-items:end;padding:8px 2px 0}
+.weekday-col{height:100%;min-width:0;display:grid;grid-template-rows:1fr 22px 16px;align-items:end;text-align:center}
+.weekday-value{position:absolute;left:50%;bottom:calc(100% + 4px);transform:translateX(-50%);font-size:11px;font-weight:800;color:var(--text);white-space:nowrap}
+.weekday-track{height:100%;display:flex;align-items:end;justify-content:center;background:linear-gradient(to top,rgba(37,99,235,.06),transparent);border-radius:7px 7px 3px 3px;overflow:visible}
+.weekday-bar{position:relative;width:min(34px,72%);min-height:0;border-radius:7px 7px 3px 3px;background:linear-gradient(180deg,var(--accent),#1E40AF);transition:height .45s var(--ease);box-shadow:0 4px 10px rgba(37,99,235,.16)}
+.weekday-bar.empty{height:3px!important;background:var(--border);box-shadow:none}
+.weekday-label{font-size:12px;font-weight:800;color:var(--text);align-self:end}
+.weekday-meta{font-size:10px;color:var(--text2);white-space:nowrap}
+.weekday-note{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:var(--text2)}
+.weekday-note strong{color:var(--text)}
+
 /* TOP LIST */
 .top-list{display:flex;flex-direction:column;gap:10px}
 .top-item{display:flex;gap:12px;align-items:flex-start;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;color:inherit;text-decoration:none;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
@@ -151,6 +163,12 @@ footer{text-align:center;font-size:11px;color:var(--text2);padding:18px 12px 30p
     <div class="chart-legend"><span><i style="background:var(--accent)"></i>Views harian</span><span><i style="background:#f59e0b"></i>Interactions harian</span></div>
   </div>
 
+  <div class="section">
+    <div class="section-hdr"><h2>Purata Views Ikut Hari</h2><span class="badge" id="weekdayBadge"></span></div>
+    <div class="weekday-plot" id="weekdayPlot" role="img" aria-label="Purata views mengikut hari dalam minggu"></div>
+    <div class="weekday-note" id="weekdayNote"></div>
+  </div>
+
   <div class="section" id="growthSec">
     <div class="section-hdr"><h2>Pertumbuhan Followers</h2><span class="badge" id="growthBadge"></span></div>
     <svg class="chart" id="growthChart" viewBox="0 0 600 150" preserveAspectRatio="none" role="img" aria-label="Carta pertumbuhan followers"></svg>
@@ -183,7 +201,9 @@ footer{text-align:center;font-size:11px;color:var(--text2);padding:18px 12px 30p
   <footer id="foot"></footer>
 </div>
 
-<script>
+<script type="module">
+import { weekdayAverages } from './analytics-weekday.mjs';
+
 const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const fmt = n => (n == null ? '-' : Number(n).toLocaleString('en-US'));
@@ -213,7 +233,7 @@ function render() {
   $('handleLine').textContent = '@' + d.handle + ' · Score 1-100 · Auto-update harian';
   const gen = new Date(DATA.generated_at);
   $('genInfo').textContent = 'Jana: ' + gen.toLocaleString('en-GB', {day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'});
-  renderNotice(d); renderKpis(d); renderChart(d); renderGrowth(d); renderTop(d); renderReplies(d);
+  renderNotice(d); renderKpis(d); renderChart(d); renderWeekdayViews(d); renderGrowth(d); renderTop(d); renderReplies(d);
   renderBars('pillarBars', d.by_pillar); renderBars('formatBars', d.by_format);
   renderRecs(d); renderPosts(d);
   $('foot').textContent = 'Score = 0.7 x engagement (like 1, comment 2, share 3 lawan median 30 hari) + 0.3 x reach (views). Kalau views tak ada, engagement sahaja.';
@@ -263,6 +283,25 @@ function renderChart(d) {
   out += `<polyline points="${pts}" fill="none" stroke="#f59e0b" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>`;
   svg.innerHTML = out;
   $('trendBadge').textContent = 'puncak ' + short(maxV) + ' views/hari';
+}
+
+function renderWeekdayViews(d) {
+  const rows = weekdayAverages(d.posts);
+  const available = rows.filter(row => row.avgViews != null);
+  const max = Math.max(1, ...available.map(row => row.avgViews));
+  const best = available.slice().sort((a, b) => b.avgViews - a.avgViews)[0];
+  $('weekdayPlot').innerHTML = rows.map(row => {
+    const hasData = row.avgViews != null;
+    const height = hasData ? Math.max(6, row.avgViews / max * 100) : 3;
+    return `<div class="weekday-col" title="${esc(row.label)}: ${hasData ? fmt(row.avgViews) + ' purata views daripada ' + row.items + ' post' : 'Tiada data'}">
+      <div class="weekday-track"><div class="weekday-bar${hasData ? '' : ' empty'}" style="height:${height}%;opacity:${hasData ? (0.55 + row.avgViews / max * 0.45).toFixed(2) : 1}"><span class="weekday-value">${hasData ? short(row.avgViews) : '-'}</span></div></div>
+      <strong class="weekday-label">${esc(row.label)}</strong><small class="weekday-meta">${row.items} post</small>
+    </div>`;
+  }).join('');
+  $('weekdayBadge').textContent = best ? 'tertinggi ' + best.label : 'tiada data';
+  $('weekdayNote').innerHTML = best
+    ? `<span><strong>${esc(best.label)}</strong> paling tinggi: ${fmt(best.avgViews)} purata views</span><span>30 hari · ${available.reduce((sum, row) => sum + row.items, 0)} post dengan data views</span>`
+    : '<span>Belum ada post dengan data views yang boleh dibandingkan.</span>';
 }
 
 function renderGrowth(d) {
