@@ -42,6 +42,19 @@ header::after{content:'';position:absolute;right:-40px;top:-40px;width:200px;hei
 .notice{display:none;margin:14px 0 0;padding:10px 14px;border-radius:var(--radius-sm);background:var(--amber-bg);color:#92400e;font-size:12px;border:1px solid #fcd34d}
 .notice.show{display:block}
 
+/* CONTENT BANK HEALTH */
+.health-overview{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.health-dot{width:12px;height:12px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px var(--green-bg);flex-shrink:0}
+.health-dot.attention{background:var(--amber);box-shadow:0 0 0 5px var(--amber-bg)}
+.health-dot.critical{background:var(--red);box-shadow:0 0 0 5px var(--red-bg)}
+.health-title{font-size:14px;font-weight:800}.health-sub{font-size:11px;color:var(--text2);margin-top:2px}
+.health-grid{display:grid;grid-template-columns:1fr;gap:8px}
+.health-check{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:9px;align-items:start;padding:10px 11px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.health-check .mini-dot{width:8px;height:8px;border-radius:50%;background:var(--green);margin-top:5px}.health-check .mini-dot.attention{background:var(--amber)}.health-check .mini-dot.critical{background:var(--red)}
+.health-check b{font-size:12px}.health-check p{font-size:10px;color:var(--text2);margin-top:2px;overflow-wrap:anywhere}.health-value{font-size:11px;font-weight:800;white-space:nowrap;text-align:right}
+.refine-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.refine-chip{font-size:10px;padding:5px 8px;border-radius:999px;background:var(--green-bg);color:#166534;font-weight:700}.refine-chip.attention{background:var(--amber-bg);color:#92400e}.refine-chip.critical{background:var(--red-bg);color:#991b1b}
+@media(min-width:700px){.health-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
 /* KPI */
 .kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0}
 .card{background:var(--surface);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);border:1px solid var(--border);min-width:0}
@@ -157,6 +170,11 @@ footer{text-align:center;font-size:11px;color:var(--text2);padding:18px 12px 30p
   <div class="notice" id="notice" role="status"></div>
   <div class="kpis" id="kpis"></div>
 
+  <div class="section" id="contentBankHealthSec">
+    <div class="section-hdr"><h2>Health of Content Bank</h2><span class="badge" id="contentBankHealthBadge"></span></div>
+    <div id="contentBankHealth"></div>
+  </div>
+
   <div class="section">
     <div class="section-hdr"><h2>Trend 30 Hari</h2><span class="badge" id="trendBadge"></span></div>
     <svg class="chart" id="chart" viewBox="0 0 600 150" preserveAspectRatio="none" role="img" aria-label="Carta views harian"></svg>
@@ -233,7 +251,7 @@ function render() {
   $('handleLine').textContent = '@' + d.handle + ' · Score 1-100 · Auto-update harian';
   const gen = new Date(DATA.generated_at);
   $('genInfo').textContent = 'Jana: ' + gen.toLocaleString('en-GB', {day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'});
-  renderNotice(d); renderKpis(d); renderChart(d); renderWeekdayViews(d); renderGrowth(d); renderTop(d); renderReplies(d);
+  renderNotice(d); renderKpis(d); renderContentBankHealth(DATA.content_bank_health); renderChart(d); renderWeekdayViews(d); renderGrowth(d); renderTop(d); renderReplies(d);
   renderBars('pillarBars', d.by_pillar); renderBars('formatBars', d.by_format);
   renderRecs(d); renderPosts(d);
   $('foot').textContent = 'Score = 0.7 x engagement (like 1, comment 2, share 3 lawan median 30 hari) + 0.3 x reach (views). Kalau views tak ada, engagement sahaja.';
@@ -266,6 +284,17 @@ function renderKpis(d) {
     cards.push(card('Followers', fmt(d.followers.latest), sub, 'hero'));
   } else cards.push(card('Replies (30 hari)', fmt(d.replies_30d && d.replies_30d.items), 'reply dihantar'));
   $('kpis').innerHTML = cards.join('');
+}
+
+function renderContentBankHealth(h) {
+  if (!h) { $('contentBankHealthSec').style.display = 'none'; return; }
+  const label = h.overall === 'healthy' ? 'Healthy' : h.overall === 'attention' ? 'Needs attention' : 'Critical';
+  $('contentBankHealthBadge').textContent = label;
+  const checks = h.checks || [];
+  const chips = (h.refinement || []).map(r => `<span class="refine-chip ${esc(r.status)}">${esc(r.name)} · ${esc(r.status === 'ready' ? 'ready' : r.status)}</span>`).join('');
+  $('contentBankHealth').innerHTML = `<div class="health-overview"><span class="health-dot ${esc(h.overall)}"></span><div><div class="health-title">${esc(label)}</div><div class="health-sub">Daily scrape → own-post bank → voice calibration → tone, spacing and structure QA</div></div></div>
+    <div class="health-grid">${checks.map(c => `<div class="health-check"><span class="mini-dot ${esc(c.status)}"></span><div><b>${esc(c.label)}</b><p>${esc(c.detail || '')}</p></div><span class="health-value">${esc(c.value || '')}</span></div>`).join('')}</div>
+    <div class="refine-row">${chips}</div>`;
 }
 
 function renderChart(d) {

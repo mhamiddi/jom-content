@@ -69,6 +69,17 @@ The dashboard publishes through the official Threads API without browser automat
 
 The UI exposes `Connected accounts` in the sidebar and a per-post account selector. A token is never returned by an API response or written to browser storage.
 
+## Analytics content-bank health
+
+`analytics.html` now includes a read-only `Health of Content Bank` section sourced from `analytics-data.json`. The daily dashboard refresh pipeline:
+
+1. rebuilds the dedicated own Threads bank from the latest analytics DB and raw scrape snapshots;
+2. runs the structural, freshness/provenance, and workflow verifier reports;
+3. regenerates the dashboard snapshot with scrape age, analytics collection state, own-bank freshness, voice-bank calibration age, and verifier status;
+4. exposes tone, spacing, writing and structure readiness without mutating source content.
+
+The source workflow remains the existing daily Threads scraper and `social-analytics.db`; the dashboard is a health/readiness view, not a replacement for the content bank or calendar.
+
 ## Compatibility
 
 The existing TikTok/Threads post calendar remains unchanged. A new `Topic Bank` link opens `topics.html`. Deployment is intentionally separate from this local implementation and requires the normal preview/user-approval gate.
