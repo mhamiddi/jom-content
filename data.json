@@ -1,86 +1,86 @@
 {
-  "generated_at": "2026-10-25T01:45:56.643421+00:00",
-  "median_weighted_30d": 2,
-  "median_views_30d": 279,
+  "generated_at": "2026-10-26T01:45:57.161278+00:00",
+  "median_weighted_30d": 2.0,
+  "median_views_30d": 265,
   "weekly": {
-    "agentic-ai": {
-      "posts": 51,
-      "inter": 337,
-      "shares": 13,
-      "views": 19142,
-      "avg_score": 56.3,
-      "avg_inter": 6.6
-    },
     "engage": {
-      "posts": 75,
-      "inter": 180,
+      "posts": 76,
+      "inter": 176,
       "shares": 3,
-      "views": 9339,
-      "avg_score": 30.2,
-      "avg_inter": 2.4
+      "views": 9573,
+      "avg_score": 30.1,
+      "avg_inter": 2.3
     },
     "google-ads-marketing": {
       "posts": 32,
-      "inter": 137,
+      "inter": 140,
       "shares": 5,
-      "views": 7145,
-      "avg_score": 52.7,
-      "avg_inter": 4.3
+      "views": 7437,
+      "avg_score": 54.0,
+      "avg_inter": 4.4
+    },
+    "agentic-ai": {
+      "posts": 55,
+      "inter": 378,
+      "shares": 13,
+      "views": 20774,
+      "avg_score": 57.0,
+      "avg_inter": 6.9
     }
   },
   "monthly": {
-    "agentic-ai": {
-      "posts": 174,
-      "inter": 5162,
-      "shares": 543,
-      "views": 177943,
-      "avg_score": 60.2,
-      "avg_inter": 29.7
-    },
     "engage": {
-      "posts": 320,
-      "inter": 5799,
-      "shares": 580,
-      "views": 217741,
-      "avg_score": 29.6,
-      "avg_inter": 18.1
+      "posts": 318,
+      "inter": 5344,
+      "shares": 474,
+      "views": 196531,
+      "avg_score": 29.7,
+      "avg_inter": 16.8
     },
     "google-ads-marketing": {
-      "posts": 129,
-      "inter": 717,
-      "shares": 50,
-      "views": 48754,
-      "avg_score": 53.2,
-      "avg_inter": 5.6
+      "posts": 127,
+      "inter": 595,
+      "shares": 37,
+      "views": 33752,
+      "avg_score": 53.5,
+      "avg_inter": 4.7
+    },
+    "agentic-ai": {
+      "posts": 179,
+      "inter": 2840,
+      "shares": 208,
+      "views": 102453,
+      "avg_score": 60.0,
+      "avg_inter": 15.9
     }
   },
   "pillars": [
     {
       "pillar": "google-ads-marketing",
-      "posts": 129,
-      "pct": 21,
+      "posts": 127,
+      "pct": 20,
       "target": 35,
-      "gap": -14,
-      "avg_score": 53.2,
-      "avg_inter": 5.6
+      "gap": -15,
+      "avg_score": 53.5,
+      "avg_inter": 4.7
     },
     {
       "pillar": "agentic-ai",
-      "posts": 174,
-      "pct": 28,
+      "posts": 179,
+      "pct": 29,
       "target": 35,
-      "gap": -7,
-      "avg_score": 60.2,
-      "avg_inter": 29.7
+      "gap": -6,
+      "avg_score": 60.0,
+      "avg_inter": 15.9
     },
     {
       "pillar": "engage",
-      "posts": 320,
+      "posts": 318,
       "pct": 51,
       "target": 30,
       "gap": 21,
-      "avg_score": 29.6,
-      "avg_inter": 18.1
+      "avg_score": 29.7,
+      "avg_inter": 16.8
     }
   ],
   "pillar_targets": {
@@ -88,8 +88,8 @@
     "agentic-ai": 0.35,
     "engage": 0.3
   },
-  "posts_7d": 158,
-  "posts_30d": 623,
+  "posts_7d": 163,
+  "posts_30d": 624,
   "top_7d": [
     {
       "id": 1738,
@@ -100,10 +100,10 @@
       "likes": 17,
       "comments": 20,
       "shares": 0,
-      "views": 4500,
+      "views": 4507,
       "text": "Kenapa tak guna Claude Code dalam PC ja?\n\nLeceh.",
       "weighted": 57,
-      "score": 95.9
+      "score": 96.0
     },
     {
       "id": 1790,
@@ -117,7 +117,35 @@
       "views": 1502,
       "text": "Kau subs claude/codex atau guna Hermes + Api tapi bila nak guna kau blur..\n\nPernah tak rasa macam ni?",
       "weighted": 31,
-      "score": 91.1
+      "score": 91.3
+    },
+    {
+      "id": 2323,
+      "published_at": "2026-10-25T03:01:08+0000",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 19,
+      "comments": 19,
+      "shares": 0,
+      "views": 969,
+      "text": "Aku still pilih WordPress untuk website client. Bukan sebab AI tak power. Aku nak benda yg senang handover, senang maintain dan tak bergantung pada satu vibe code session. Client kena boleh terus pakai bila aku dah tak pegang.",
+      "weighted": 57,
+      "score": 91.2
+    },
+    {
+      "id": 1714,
+      "published_at": "2026-10-24T11:38:02+0000",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 13,
+      "comments": 6,
+      "shares": 0,
+      "views": 1110,
+      "text": "Aku guna both linux pc dan macbook untuk hostkan Ai aku.\n\nLinux pc aku guna untuk hostkan Hermes. Macbook untuk claude code supaya dia boleh lenjan edit video.\n\nWorkflow orchestrator memang Hermes.",
+      "weighted": 25,
+      "score": 89.0
     },
     {
       "id": 1777,
@@ -131,7 +159,7 @@
       "views": 959,
       "text": "Still guna Chatgpt Auth dengan Hermes sebab dapat 1 bulan ChatGPT plus free.\n\nMemang guna untuk Hermes ja. Dia still reliable. Aku guna 5.6 Luna dgn 1mil context ja. Get the job done. Cuma untuk specific project memang aku guna T3 Code + Claude Opus 5.5.",
       "weighted": 27,
-      "score": 88.4
+      "score": 88.7
     },
     {
       "id": 1739,
@@ -142,24 +170,10 @@
       "likes": 13,
       "comments": 3,
       "shares": 1,
-      "views": 1013,
+      "views": 1016,
       "text": "Untuk setup agentic AI sendiri, aku tak suruh AI ikut aku bulat-bulat.\n\nAku ajar workflow aku dulu.",
       "weighted": 22,
-      "score": 87.7
-    },
-    {
-      "id": 1714,
-      "published_at": "2026-10-24T11:38:02+0000",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 10,
-      "comments": 5,
-      "shares": 0,
-      "views": 864,
-      "text": "Aku guna both linux pc dan macbook untuk hostkan Ai aku.\n\nLinux pc aku guna untuk hostkan Hermes. Macbook untuk claude code supaya dia boleh lenjan edit video.\n\nWorkflow orchestrator memang Hermes.",
-      "weighted": 20,
-      "score": 86.3
+      "score": 88.0
     },
     {
       "id": 1748,
@@ -173,7 +187,21 @@
       "views": 716,
       "text": "Aku pilih Google Ads bila customer dah search.\n\nBukan sebab Meta Ads tak bagus.",
       "weighted": 23,
-      "score": 86.0
+      "score": 86.3
+    },
+    {
+      "id": 1721,
+      "published_at": "2026-10-23T23:39:03+0000",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "comparison",
+      "likes": 17,
+      "comments": 3,
+      "shares": 1,
+      "views": 641,
+      "text": "Apa beza automation dan agentic Ai?",
+      "weighted": 26,
+      "score": 86.2
     },
     {
       "id": 1750,
@@ -184,24 +212,10 @@
       "likes": 12,
       "comments": 6,
       "shares": 1,
-      "views": 615,
+      "views": 619,
       "text": "Aku subs claude code just untuk guna model dia ja.\n\nEdit video, skang aku panggil dia dekat Hermes ja. Lagi best, dah tak payah susah2 claude RC.\n\nVibe coding? Aku guna T3 Code. Haha\n\nNext month upgrade 20x plan kot. Sebab dah boleh auth kan dgn Hermes. ChatGPT kita retired kan dulu sementara.\n\nDeepseek maintain OG.",
       "weighted": 27,
-      "score": 85.8
-    },
-    {
-      "id": 1721,
-      "published_at": "2026-10-23T23:39:03+0000",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "comparison",
-      "likes": 16,
-      "comments": 3,
-      "shares": 1,
-      "views": 617,
-      "text": "Apa beza automation dan agentic Ai?",
-      "weighted": 25,
-      "score": 85.5
+      "score": 86.2
     },
     {
       "id": 1761,
@@ -212,24 +226,10 @@
       "likes": 5,
       "comments": 12,
       "shares": 0,
-      "views": 465,
+      "views": 466,
       "text": "Aku bukak tuju, then aku tutup.\n\nDan guna Google Maps. I tried.",
       "weighted": 29,
-      "score": 84.2
-    },
-    {
-      "id": 1703,
-      "published_at": "2026-10-24T11:38:02.000Z",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 10,
-      "comments": 0,
-      "shares": 0,
-      "views": 0,
-      "text": "Aku guna both linux pc dan macbook untuk hostkan Ai aku.\nLinux pc aku guna untuk hostkan Hermes. Macbook untuk claude code supaya dia boleh lenjan edit video.\nWorkflow orchestrator memang Hermes.\n1/2",
-      "weighted": 10,
-      "score": 83.3
+      "score": 84.6
     }
   ],
   "top_30d": [
@@ -242,24 +242,10 @@
       "likes": 3900,
       "comments": 71,
       "shares": 447,
-      "views": 147009,
+      "views": 147036,
       "text": "Lain macam. Menyesal pulak tak gatekeep \ud83d\ude02 biar lambat sikit tersebar.",
       "weighted": 5383,
       "score": 99.9
-    },
-    {
-      "id": 2070,
-      "published_at": "2026-09-25T06:00:31+0000",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1967,
-      "comments": 56,
-      "shares": 334,
-      "views": 74814,
-      "text": "Meriah lah tiktok lepas ni. Hahaha\n\nSubscribe claude, opus 5.5, automate video creations, hermes manage, execute and optimise.",
-      "weighted": 3081,
-      "score": 99.8
     },
     {
       "id": 1598,
@@ -276,20 +262,6 @@
       "score": 99.6
     },
     {
-      "id": 2069,
-      "published_at": "2026-09-25T13:18:31+0000",
-      "pillar": "engage",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 285,
-      "comments": 55,
-      "shares": 106,
-      "views": 17774,
-      "text": "Hasil opus 5.5\n\nSimple and direct prompt. Mantap. Boleh refine lagi, tapi ni pun dah gila mantap. Let's go!!",
-      "weighted": 713,
-      "score": 99.3
-    },
-    {
       "id": 1916,
       "published_at": "2026-10-07T09:05:27+0000",
       "pillar": "agentic-ai",
@@ -298,24 +270,10 @@
       "likes": 85,
       "comments": 122,
       "shares": 0,
-      "views": 5024,
+      "views": 5025,
       "text": "Aku buat satu eksperimen dekat thread ni.\n\ndua minggu ni aku kurang kan komen dekat posting orang. So posting direct aku lagi banyak dari komen. Disebabkan posting Ai related aku dapat engagement tinggi, nampak macam okay tapi...",
       "weighted": 329,
-      "score": 98.0
-    },
-    {
-      "id": 2066,
-      "published_at": "2026-09-25T17:57:29+0000",
-      "pillar": "google-ads-marketing",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 84,
-      "comments": 28,
-      "shares": 13,
-      "views": 5785,
-      "text": "Hasil video edit guna Opus 5.5 versi lebih refine.\n\nCukup2 puas hati. Okay dah ni untuk content daily. Token usage pun tak makan banyak pun.\n\nPaling menarik kita boleh describe sound effect apa kita nak dan boleh tambah dalam ni. Fuhh, kalau aku buat storytelling, boleh tambah effect riser.",
-      "weighted": 179,
-      "score": 97.8
+      "score": 98.1
     },
     {
       "id": 1837,
@@ -326,10 +284,10 @@
       "likes": 68,
       "comments": 23,
       "shares": 13,
-      "views": 5024,
+      "views": 5030,
       "text": "Tengah hangat isu Foodie, tapi aku nak sentuh isu\n\u201cHIRE FOOD INFLUENCER TAPI TAKDA BEZA PUN, MEMBAZIR.\u201d",
       "weighted": 153,
-      "score": 97.5
+      "score": 97.6
     },
     {
       "id": 1886,
@@ -340,10 +298,10 @@
       "likes": 125,
       "comments": 14,
       "shares": 26,
-      "views": 3981,
+      "views": 3987,
       "text": "Aku nak share step by step cara aku edit video guna claude.\n\n1. Make sure guna claude pro.\n2. Pilih claude code, opus 5.5 high\n3. Create folder kerja (tempat dump video raw dan bahan2 b-roll).\n4. Bagitahu claude untuk sambung dengan folder tu.\n5. Masukkan video raw korang dalam tu.\n\nNow step paling penting.",
       "weighted": 231,
-      "score": 97.4
+      "score": 97.5
     },
     {
       "id": 1857,
@@ -354,7 +312,7 @@
       "likes": 71,
       "comments": 15,
       "shares": 5,
-      "views": 4761,
+      "views": 4763,
       "text": "Dalam Hermes aku,\n\nBerapa total Ai agent yg aku ada? 35 agents kesemuanya. Specific workflows.\n\nBerapa total skills? 294 skills.",
       "weighted": 116,
       "score": 97.2
@@ -368,24 +326,66 @@
       "likes": 97,
       "comments": 8,
       "shares": 27,
-      "views": 2952,
+      "views": 2953,
       "text": "Setup Hermes aku yang bagi ROI paling tinggi adalah;\n\n- Google ads management & monitoring\n- Web development (conversion optimised)\n- Onboarding / free audit analysis (including gap analysis) -> improve closing\n- Invoice generation automation (Client dapat inv laju).\n- Meta ada monitoring and optimisation. Ni termasuk poster generation sekali.\n- Content engine.\n\nNi dah setup dan bawak sales dah pu",
       "weighted": 194,
-      "score": 96.7
+      "score": 96.8
+    },
+    {
+      "id": 1738,
+      "published_at": "2026-10-23T07:15:34+0000",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 17,
+      "comments": 20,
+      "shares": 0,
+      "views": 4507,
+      "text": "Kenapa tak guna Claude Code dalam PC ja?\n\nLeceh.",
+      "weighted": 57,
+      "score": 96.0
+    },
+    {
+      "id": 1597,
+      "published_at": "2026-10-14T16:39:05.000Z",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 255,
+      "comments": 39,
+      "shares": 46,
+      "views": 1600,
+      "text": "Anyone cari guide video macam mana nak edit dengan claude boleh refer ni.\nOkay lah, nanti aku share video cara nak edit video guna claude code dari phone jugak.\nLaptop duk rumah, kau duk luar berjalan pun boleh hantar video kat claude suruh dia edit dan post kan.\n100 likes aku buat \ud83d\ude02",
+      "weighted": 471,
+      "score": 95.4
+    },
+    {
+      "id": 1948,
+      "published_at": "2026-10-06T03:38:06+0000",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 38,
+      "comments": 10,
+      "shares": 4,
+      "views": 2114,
+      "text": "Aku pun ada Agent OS sendiri. Untuk bisnes aku sendiri. Bukan benda fancy pun, just a few dashboard, Ai agents dan Hermes.\n\nPower by codex auth GPT6-Luna. Gpt Image 2 untuk poster creations. Opus 5.5 claude untuk video editing.\n\nCore harness - Hermes. Dedicated homelab PC.\n\nTakda credits limit. Token usage, fallback ke deepseek v4.1flash.\n\nPro - highly versatile, customisable.\nCons - Leceh nak set",
+      "weighted": 70,
+      "score": 94.7
     }
   ],
   "recommendations": [
     {
       "type": "pillar-mix",
       "title": "Pillar mix vs target 35/35/30",
-      "body": "google-ads-marketing 21% (target 35%) | agentic-ai 28% (target 35%) | engage 51% (target 30%)",
-      "metric": 623
+      "body": "google-ads-marketing 20% (target 35%) | agentic-ai 29% (target 35%) | engage 51% (target 30%)",
+      "metric": 624
     },
     {
       "type": "pillar-under",
       "title": "Pillar kurang: google-ads-marketing",
-      "body": "google-ads-marketing cuma 21% (target 35%). Naikkan volume je tak cukup. Kalau pillar ni engagement rendah, tukar bentuk: AI sebagai tool, masalah bisnes sebagai cerita.",
-      "metric": 21
+      "body": "google-ads-marketing cuma 20% (target 35%). Naikkan volume je tak cukup. Kalau pillar ni engagement rendah, tukar bentuk: AI sebagai tool, masalah bisnes sebagai cerita.",
+      "metric": 20
     },
     {
       "type": "pillar-over",
@@ -396,14 +396,14 @@
     {
       "type": "pillar-fix",
       "title": "Tingkatkan: engage",
-      "body": "engage avg score 29.6 dari 320 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
-      "metric": 29.6
+      "body": "engage avg score 29.7 dari 318 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
+      "metric": 29.7
     },
     {
       "type": "top-pillar-week",
       "title": "Pillar terbaik minggu ni: agentic-ai",
-      "body": "agentic-ai avg score 56.3 dari 51 posts. Kekalkan bentuk ni.",
-      "metric": 56.3
+      "body": "agentic-ai avg score 57.0 dari 55 posts. Kekalkan bentuk ni.",
+      "metric": 57.0
     }
   ]
 }
