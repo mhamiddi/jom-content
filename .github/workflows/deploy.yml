@@ -11,47 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Sync protected dashboard auth secrets
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-          JOM_API_TOKEN: ${{ secrets.JOM_API_TOKEN }}
-          JOM_LOGIN_PASSWORD: ${{ secrets.JOM_LOGIN_PASSWORD }}
-        run: |
-          printf '%s' "$JOM_API_TOKEN" | npx wrangler pages secret put JOM_API_TOKEN --project-name=jom-content
-          printf '%s' "$JOM_LOGIN_PASSWORD" | npx wrangler pages secret put JOM_LOGIN_PASSWORD --project-name=jom-content
-
-      - name: Clear stale password override
-        env:
-          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-        run: |
-          CF_API_TOKEN="$CF_API_TOKEN" CF_ACCOUNT_ID="$CF_ACCOUNT_ID" python3 - <<'PY'
-          import json, os, urllib.error, urllib.request
-          account = os.environ['CF_ACCOUNT_ID']
-          headers = {'Authorization': f"Bearer {os.environ['CF_API_TOKEN']}", 'Content-Type': 'application/json'}
-          base = f'https://api.cloudflare.com/client/v4/accounts/{account}'
-          request = urllib.request.Request(f'{base}/storage/kv/namespaces', headers=headers)
-          with urllib.request.urlopen(request, timeout=30) as response:
-              payload = json.load(response)
-          namespaces = payload.get('result') or []
-          target = next((item for item in namespaces if item.get('title') == 'jom-content-posts'), None)
-          if not target:
-              raise SystemExit('jom-content-posts KV namespace not found')
-          delete = urllib.request.Request(
-              f"{base}/storage/kv/namespaces/{target['id']}/values/auth:login-password",
-              headers=headers,
-              method='DELETE',
-          )
-          try:
-              with urllib.request.urlopen(delete, timeout=30) as response:
-                  print(f'KV override delete status: {response.status}')
-          except urllib.error.HTTPError as error:
-              if error.code == 404:
-                  print('KV override was already absent')
-              else:
-                  raise
-          PY
-
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
@@ -68,22 +27,4 @@ jobs:
           sleep 15
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://jom-content.pages.dev/)
           echo "Status: $STATUS"
-          [ "$STATUS" = "200" ] || exit 1
-
-      - name: Verify dashboard login
-        env:
-          JOM_LOGIN_PASSWORD: ${{ secrets.JOM_LOGIN_PASSWORD }}
-        run: |
-          STATUS=$(JOM_LOGIN_PASSWORD="$JOM_LOGIN_PASSWORD" python3 - <<'PY'
-          import json, os, urllib.error, urllib.request
-          body = json.dumps({'username': 'jomdigital', 'password': os.environ['JOM_LOGIN_PASSWORD']}).encode()
-          request = urllib.request.Request('https://jom-content.com/api/login', data=body, headers={'Content-Type': 'application/json'}, method='POST')
-          try:
-              with urllib.request.urlopen(request, timeout=20) as response:
-                  print(response.status)
-          except urllib.error.HTTPError as error:
-              print(error.code)
-          PY
-          )
-          echo "Login status: $STATUS"
           [ "$STATUS" = "200" ] || exit 1
