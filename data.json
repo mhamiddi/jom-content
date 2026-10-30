@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-10-30T12:38:37.455904+00:00",
+  "generated_at": "2026-10-30T12:42:02.707276+00:00",
   "median_weighted_30d": 2,
   "median_views_30d": 236.5,
   "weekly": {
     "google-ads-marketing": {
       "posts": 32,
-      "inter": 111,
+      "inter": 112,
       "shares": 4,
-      "views": 5881,
-      "avg_score": 52.5,
+      "views": 5904,
+      "avg_score": 52.6,
       "avg_inter": 3.5
     },
     "agentic-ai": {
       "posts": 54,
       "inter": 391,
       "shares": 27,
-      "views": 13879,
+      "views": 13889,
       "avg_score": 56.2,
       "avg_inter": 7.2
     },
@@ -23,7 +23,7 @@
       "posts": 58,
       "inter": 172,
       "shares": 0,
-      "views": 8091,
+      "views": 8101,
       "avg_score": 32.6,
       "avg_inter": 3.0
     }
@@ -31,9 +31,9 @@
   "monthly": {
     "google-ads-marketing": {
       "posts": 124,
-      "inter": 548,
+      "inter": 549,
       "shares": 31,
-      "views": 28659,
+      "views": 28682,
       "avg_score": 53.5,
       "avg_inter": 4.4
     },
@@ -41,7 +41,7 @@
       "posts": 197,
       "inter": 2932,
       "shares": 232,
-      "views": 102322,
+      "views": 102332,
       "avg_score": 61.1,
       "avg_inter": 14.9
     },
@@ -49,7 +49,7 @@
       "posts": 306,
       "inter": 921,
       "shares": 24,
-      "views": 43081,
+      "views": 43091,
       "avg_score": 29.9,
       "avg_inter": 3.0
     }
@@ -114,7 +114,7 @@
       "likes": 35,
       "comments": 11,
       "shares": 0,
-      "views": 1060,
+      "views": 1064,
       "text": "Aku bukan pembaca buku. Nak tengok koleksi buku aku?\n\nEmpat buku ni + dotcom secrect. Tu ja. Tapi jap lagi aku rasa nak shopping buku lah. Drop best book recommendations korang.",
       "weighted": 57,
       "score": 92.2
@@ -212,7 +212,7 @@
       "likes": 19,
       "comments": 4,
       "shares": 0,
-      "views": 434,
+      "views": 435,
       "text": "Nak buat sales tak semestinya kena buat ads. Fokus content, live, networking.\n\nAds untuk amplify. Kalau tanpa ads korang tak boleh buat sales, then check semula.\n\n\ud83d\udccc Content - Threads, Tiktok. Dua ni universal. Ada certain niche sangat strong di Fb/IG.\n\n\ud83d\udccc Live - No brainer. Konsisten content + live akan ada results. Sometimes tak perlu run ads dah pun.\n\n\ud83d\udccc Networking - Layan orang elok, engage dgn p",
       "weighted": 27,
       "score": 84.6
@@ -226,7 +226,7 @@
       "likes": 13,
       "comments": 3,
       "shares": 2,
-      "views": 458,
+      "views": 460,
       "text": "Ramai lagi tak percaya yang claude boleh edit video gempak2.",
       "weighted": 25,
       "score": 84.6
