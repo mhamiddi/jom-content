@@ -21,7 +21,7 @@ function httpUrl(value) {
   } catch { return ''; }
 }
 
-async function waitReady(env, token, creationId, attempts = 8) {
+async function waitReady(env, token, creationId, attempts = 8, delayMs = 1000) {
   for (let i = 0; i < attempts; i++) {
     try {
       const status = await threads(env, 'GET', '/' + creationId, { fields: 'status,error_message', access_token: token });
@@ -32,7 +32,7 @@ async function waitReady(env, token, creationId, attempts = 8) {
     } catch (error) {
       if (/container (ERROR|EXPIRED)/.test(error.message)) throw error;
     }
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, delayMs));
   }
 }
 
@@ -132,7 +132,7 @@ export async function onRequest(context) {
         : { media_type: 'TEXT', text: parts[i], access_token: auth.token };
       if (i > 0) create.reply_to_id = record.ids[i - 1];
       const container = await threads(env, 'POST', `/${auth.userId}/threads`, create);
-      await waitReady(env, auth.token, container.id, withMedia ? 20 : 8);
+      await waitReady(env, auth.token, container.id, withMedia ? 30 : 8, withMedia ? 1500 : 1000);
       const published = await threads(env, 'POST', `/${auth.userId}/threads_publish`, { creation_id: container.id, access_token: auth.token });
       record.ids.push(published.id);
       let link = '';
