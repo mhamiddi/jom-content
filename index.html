@@ -1829,13 +1829,11 @@ function openPostDetail(platform, id) {
     <div class="preview-caption">${esc(posted || p.caption || 'Tiada caption.')}</div>
     ${posted && p.caption && p.caption !== posted ? `<div class="preview-meta" style="margin:0">Caption asal (plan)</div><div class="preview-caption">${esc(p.caption)}</div>` : ''}
     ${canPublishToThreads(p) ? `<div class="publish-box" id="pubBox" data-id="${esc(p.id)}">Semak sambungan Threads...</div>` : ''}
-    <div class="publish-box" id="metaBox" data-id="${esc(p.id)}">Semak sambungan Facebook &amp; Instagram...</div>
-    <div class="publish-box" id="socialBox" data-id="${esc(p.id)}">Semak sambungan TikTok &amp; YouTube...</div>
+    <div class="publish-box" id="pubAllBox" data-id="${esc(p.id)}">Semak sambungan platform...</div>
     <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(p.id)}" data-platform="${esc(platform)}" onclick="editFromDetail(this.dataset.platform,this.dataset.id)">Edit post</button><button class="btn btn-outline btn-sm" onclick="closePostPreview()">Tutup</button></div>`;
   document.getElementById('previewOverlay').classList.add('open');
   if (canPublishToThreads(p)) initPublishBox(p.id);
-  initMetaBox(p.id);
-  initSocialBox(p.id);
+  initPlatformBox(p.id);
 }
 function editFromDetail(platform, id) { closePostPreview(); openModal(platform, id); }
 
@@ -1913,55 +1911,89 @@ async function doPublish(id, accountId) {
   pubSet(id, `<strong>Tak jadi.</strong> ${esc(res.message || res.error || 'Ralat tak diketahui.')}${retry}`, 'err');
 }
 
-/* ===== PUBLISH TO FACEBOOK + INSTAGRAM (button in the post detail) ===== */
-function metaBox(id) {
-  const b = document.getElementById('metaBox');
+/* ===== PUBLISH TO ALL PLATFORMS (one box) ===== */
+const PUB_PLATFORMS = {
+  threads:   {label: 'Threads',   needsMedia: false, group: 'threads'},
+  facebook:  {label: 'Facebook',  needsMedia: false, group: 'meta'},
+  instagram: {label: 'Instagram', needsMedia: true,  group: 'meta'},
+  tiktok:    {label: 'TikTok',    needsMedia: true,  group: 'zernio'},
+  youtube:   {label: 'YouTube',   needsMedia: true,  group: 'zernio'},
+};
+function pubAllBox(id) {
+  const b = document.getElementById('pubAllBox');
   return b && b.dataset.id === id ? b : null;
 }
-function metaSet(id, html, cls) {
-  const b = metaBox(id);
+function pubAllSet(id, html, cls) {
+  const b = pubAllBox(id);
   if (!b) return;
   b.className = 'publish-box' + (cls ? ' ' + cls : '');
   b.innerHTML = html;
 }
-function metaPublishedTargets(p) {
-  return Array.isArray(p.metaPublications) ? p.metaPublications.map(x => x.target) : [];
+function publishedTargets(p) {
+  const done = [];
+  (p.metaPublications || []).forEach(x => done.push(x.target));
+  (p.socialPublications || []).forEach(x => done.push(x.target));
+  if (Array.isArray(p.publishedAccounts) && p.publishedAccounts.length) done.push('threads');
+  return done;
 }
-async function initMetaBox(id) {
+function publishedLinks(p) {
+  const links = [];
+  (p.metaPublications || []).forEach(x => { if (x.url) links.push(`<a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${PUB_PLATFORMS[x.target]?.label || x.target}</a>`); });
+  (p.socialPublications || []).forEach(x => { if (x.url) links.push(`<a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${PUB_PLATFORMS[x.target]?.label || x.target}</a>`); });
+  (p.publishedAccounts || []).forEach(x => { const u = (x.urls || []).filter(Boolean)[0]; if (u) links.push(`<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">Threads</a>`); });
+  return links.join(' &middot; ');
+}
+async function postJson(url, body, timeout = 240000) {
+  const r = await fetch(url, {
+    method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body),
+    signal: AbortSignal.timeout(timeout)
+  });
+  return r.json().catch(() => ({success: false, message: 'Jawapan server tak sah (HTTP ' + r.status + ').'}));
+}
+async function initPlatformBox(id) {
   const p = state.posts.find(x => x.id === id);
   if (!p) return;
-  if (JomAuth.mode() !== 'server') return metaSet(id, '<strong>Post ke Facebook dan Instagram dimatikan.</strong> Butang ni hanya hidup selepas kunci API Cloudflare aktif.');
-  let info = null;
-  try {
-    const r = await fetch('/api/meta-publish', {cache:'no-store'});
-    info = await r.json();
-  } catch { return metaSet(id, '<strong>Tak dapat semak sambungan Meta.</strong> Cuba lagi.'); }
-  if (!info || !info.configured) {
-    return metaSet(id, '<strong>Facebook Page dan Instagram belum disambung.</strong> Buka Connected accounts dan sambung Page dulu.');
+  if (JomAuth.mode() !== 'server') return pubAllSet(id, '<strong>Butang post dimatikan.</strong> Butang ni hanya hidup selepas kunci API Cloudflare aktif.');
+  const [rm, rs, rt] = await Promise.allSettled([
+    fetch('/api/meta-publish', {cache: 'no-store'}).then(r => r.json()),
+    fetch('/api/social-publish', {cache: 'no-store'}).then(r => r.json()),
+    fetch('/api/threads-publish', {cache: 'no-store'}).then(r => r.json()),
+  ]);
+  const meta = rm.status === 'fulfilled' ? rm.value : null;
+  const social = rs.status === 'fulfilled' ? rs.value : null;
+  const threadsInfo = rt.status === 'fulfilled' ? rt.value : null;
+  const accounts = [];
+  if (threadsInfo && threadsInfo.configured) accounts.push({platform: 'threads', username: threadsInfo.username || threadsInfo.userId || 'Threads'});
+  if (meta && meta.configured) {
+    accounts.push({platform: 'facebook', username: meta.pageName || 'Facebook Page'});
+    if (meta.igUsername) accounts.push({platform: 'instagram', username: meta.igUsername});
   }
-  const done = metaPublishedTargets(p);
-  if (done.includes('facebook') && done.includes('instagram')) {
-    const links = (p.metaPublications || []).filter(x => x.url).map(x => `<a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${x.target === 'facebook' ? 'Buka Facebook' : 'Buka Instagram'}</a>`).join(' &middot; ');
-    return metaSet(id, `<strong>Dah diposkan ke Facebook dan Instagram.</strong> ${links}`, 'ok');
+  (social && social.accounts ? social.accounts : []).forEach(a => accounts.push({platform: a.platform, username: a.username}));
+  if (!accounts.length) return pubAllSet(id, '<strong>Tiada akaun social disambung.</strong> Semak Connected accounts.');
+  const done = publishedTargets(p);
+  const available = accounts.filter(a => !done.includes(a.platform));
+  if (!available.length) {
+    return pubAllSet(id, `<strong>Dah diposkan ke semua akaun yang disambung.</strong> ${publishedLinks(p)}`, 'ok');
   }
   const mediaUrl = p.mediaUrl || '';
   const kind = p.mediaType || (mediaUrl ? 'video' : 'text');
-  const targets = ['facebook', 'instagram'].filter(t => !done.includes(t));
-  const boxes = targets.map(t => `<label style="display:inline-flex;gap:6px;align-items:center;margin-right:14px"><input type="checkbox" class="metaTarget" value="${t}" checked> ${t === 'facebook' ? 'Facebook Page' : 'Instagram'}</label>`).join('');
-  metaSet(id, `<strong>Post ke ${esc(info.pageName || 'Facebook Page')}${info.igUsername ? ' + @' + esc(info.igUsername) : ''}</strong>
-    <div style="margin:8px 0"><span class="account-help">URL media (perlu https, Meta akan ambil sendiri):</span>
-    <input type="url" id="metaMediaUrl" value="${esc(mediaUrl)}" placeholder="https://…/video.mp4" style="width:100%;margin-top:4px"></div>
-    <div style="margin:8px 0"><span class="account-help">Atau upload terus ke R2 (max 90MB):</span>
-    <input type="file" id="metaFile" accept="video/mp4,video/quicktime,video/webm,image/jpeg,image/png,image/webp" data-id="${esc(id)}" onchange="uploadMetaFile(this)" style="margin-top:4px"></div>
-    <div class="publish-account-picker"><label for="metaMediaType">Jenis media</label>
-      <select id="metaMediaType"><option value="video" ${kind === 'video' ? 'selected' : ''}>Video / Reels</option><option value="image" ${kind === 'image' ? 'selected' : ''}>Gambar</option><option value="text" ${kind === 'text' ? 'selected' : ''}>Teks sahaja (Facebook)</option></select></div>
+  const boxes = available.map(a => `<label style="display:inline-flex;gap:6px;align-items:center;margin-right:14px"><input type="checkbox" class="pubAllTarget" value="${esc(a.platform)}" checked> ${PUB_PLATFORMS[a.platform]?.label || a.platform} <span class="account-help">${a.platform === 'facebook' ? '' : '@'}${esc(a.username)}</span></label>`).join('');
+  const needsTitle = available.some(a => a.platform === 'youtube');
+  pubAllSet(id, `<strong>Post ke ${available.map(a => (PUB_PLATFORMS[a.platform]?.label || a.platform)).join(' + ')}</strong>
+    <div style="margin:8px 0"><span class="account-help">URL media (https, wajib untuk Instagram, TikTok dan YouTube):</span>
+    <input type="url" id="pubAllMediaUrl" value="${esc(mediaUrl)}" placeholder="https://media.jom-content.com/…mp4" style="width:100%;margin-top:4px"></div>
+    <div style="margin:8px 0"><span class="account-help">Atau upload ke R2 (max 90MB):</span>
+    <input type="file" id="pubAllFile" accept="video/mp4,video/quicktime,video/webm,image/jpeg,image/png,image/webp" onchange="uploadMetaFile(this,'pubAllMediaUrl')" style="margin-top:4px"></div>
+    <div class="publish-account-picker"><label for="pubAllMediaType">Jenis media</label>
+      <select id="pubAllMediaType"><option value="video" ${kind === 'video' ? 'selected' : ''}>Video / Reels</option><option value="image" ${kind === 'image' ? 'selected' : ''}>Gambar</option><option value="text" ${kind === 'text' ? 'selected' : ''}>Teks sahaja</option></select></div>
+    ${needsTitle ? `<div style="margin:8px 0"><span class="account-help">Tajuk YouTube:</span><input type="text" id="pubAllTitle" value="${esc(p.title || '')}" placeholder="Tajuk video" style="width:100%;margin-top:4px"></div>` : ''}
     <div style="margin:8px 0">${boxes}</div>
-    <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick="askMetaPublish(this.dataset.id)">Post ke Facebook/Instagram</button></div>`);
+    <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick="askPlatformPublish(this.dataset.id,'publish')">Post sekarang</button><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="askPlatformPublish(this.dataset.id,'draft')">Draft TikTok/YouTube</button></div>`);
 }
 async function uploadMetaFile(input, targetId) {
   const file = input?.files?.[0];
   if (!file) return;
-  const field = document.getElementById(targetId || 'metaMediaUrl');
+  const field = document.getElementById(targetId || 'pubAllMediaUrl');
   const button = input.closest('.publish-box')?.querySelector('.btn-primary');
   if (button) { button.disabled = true; button.textContent = 'Upload ' + Math.round(file.size / 1048576) + 'MB…'; }
   try {
@@ -1973,161 +2005,109 @@ async function uploadMetaFile(input, targetId) {
     const data = await r.json().catch(() => ({}));
     if (!r.ok || !data.success) throw new Error(data.message || data.error || 'HTTP ' + r.status);
     if (field && data.url) field.value = data.url;
-    const select = document.getElementById('metaMediaType');
+    const select = document.getElementById('pubAllMediaType');
     if (select && String(data.type || '').startsWith('image/')) select.value = 'image';
     if (select && String(data.type || '').startsWith('video/')) select.value = 'video';
     showToast('Upload siap. URL media dah diisi.', 'success');
   } catch (error) {
     showToast('Upload gagal: ' + error.message, 'error');
   } finally {
-    if (button) { button.disabled = false; button.textContent = 'Post ke Facebook/Instagram'; }
+    if (button) { button.disabled = false; button.textContent = 'Post sekarang'; }
   }
 }
-function askMetaPublish(id) {
+function askPlatformPublish(id, mode) {
   const p = state.posts.find(x => x.id === id);
   if (!p) return;
-  const targets = [...document.querySelectorAll('.metaTarget:checked')].map(x => x.value);
-  const mediaUrl = (document.getElementById('metaMediaUrl')?.value || '').trim();
-  const mediaType = document.getElementById('metaMediaType')?.value || 'video';
-  if (!targets.length) return showToast('Pilih sekurang-kurangnya satu platform.','error');
-  if (targets.includes('instagram') && !mediaUrl) return showToast('Instagram perlukan URL media.','error');
-  if (targets.includes('instagram') && mediaType === 'text') return showToast('Instagram tak terima post teks sahaja.','error');
-  metaSet(id, `<strong>Post ke ${targets.join(' + ')} sekarang?</strong><br>Terus keluar dan tak boleh di-undo dari sini. Caption yang keluar ialah yang kau nampak di bawah.
-    <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick='doMetaPublish(this.dataset.id, ${JSON.stringify(targets)}, ${JSON.stringify(mediaUrl)}, ${JSON.stringify(mediaType)})'>Ya, post sekarang</button><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="initMetaBox(this.dataset.id)">Batal</button></div>`);
+  let targets = [...document.querySelectorAll('.pubAllTarget:checked')].map(x => x.value);
+  const mediaUrl = (document.getElementById('pubAllMediaUrl')?.value || '').trim();
+  const mediaType = document.getElementById('pubAllMediaType')?.value || 'video';
+  const title = (document.getElementById('pubAllTitle')?.value || '').trim();
+  if (!targets.length) return showToast('Pilih sekurang-kurangnya satu platform.', 'error');
+  if (mode === 'draft') {
+    targets = targets.filter(t => t === 'tiktok' || t === 'youtube');
+    if (!targets.length) return showToast('Draft hanya untuk TikTok dan YouTube.', 'error');
+  }
+  const mediaRequired = targets.filter(t => PUB_PLATFORMS[t]?.needsMedia && mediaType === 'text');
+  if (mediaRequired.length) return showToast(PUB_PLATFORMS[mediaRequired[0]].label + ' tak terima post teks sahaja.', 'error');
+  if (mediaType !== 'text' && !mediaUrl && targets.some(t => PUB_PLATFORMS[t]?.needsMedia)) return showToast('Platform yang dipilih perlukan URL media.', 'error');
+  if (mode === 'publish' && targets.includes('youtube') && !title) return showToast('YouTube perlukan tajuk.', 'error');
+  const verb = mode === 'draft' ? 'Simpan draft di' : 'Post ke';
+  pubAllSet(id, `<strong>${verb} ${targets.map(t => PUB_PLATFORMS[t].label).join(' + ')}?</strong><br>${mode === 'draft' ? 'Draft tak keluar di platform. Boleh publish kemudian dari Zernio.' : 'Terus keluar dan tak boleh di-undo dari sini.'}
+    <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick='doPlatformPublish(this.dataset.id, ${JSON.stringify(targets)}, ${JSON.stringify(mediaUrl)}, ${JSON.stringify(mediaType)}, ${JSON.stringify(title)}, ${JSON.stringify(mode)})'>Ya, teruskan</button><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="initPlatformBox(this.dataset.id)">Batal</button></div>`);
 }
-async function doMetaPublish(id, targets, mediaUrl, mediaType) {
-  const p = state.posts.find(x => x.id === id);
-  if (!p) return;
-  metaSet(id, '<strong>Tengah post ke Meta…</strong> Jangan tutup tab ni.');
-  let res = null;
+async function finishPlatformInstagram(id, containerId) {
+  if (!containerId) return initPlatformBox(id);
+  pubAllSet(id, '<strong>Tengah siapkan Instagram…</strong>');
   try {
-    const r = await fetch('/api/meta-publish?id=' + encodeURIComponent(id), {
-      method: 'POST', headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({caption: p.caption, targets, mediaUrl, mediaType}),
-      signal: AbortSignal.timeout(180000)
-    });
-    res = await r.json().catch(() => ({success: false, message: 'Jawapan server tak sah (HTTP ' + r.status + ').'}));
-  } catch (e) {
-    return metaSet(id, '<strong>Tak pasti post dah keluar atau belum.</strong> Sambungan terputus. Semak Page dan Instagram dulu, jangan tekan lagi sebelum pasti.', 'err');
-  }
-  const pending = (res.results || []).find(x => x.pending);
-  if (res.success) {
-    const links = (res.results || []).filter(x => x.url).map(x => `<a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${x.target === 'facebook' ? 'Buka Facebook' : 'Buka Instagram'}</a>`).join(' &middot; ');
-    metaSet(id, `<strong>Dah diposkan.</strong> ${links}`, 'ok');
-    showToast('Post dah keluar di Facebook/Instagram.','success');
-    apiFetchAll();
-    return;
-  }
-  if (pending) {
-    return metaSet(id, `<strong>Instagram tengah proses video.</strong> Container ${esc(pending.containerId || '')} status ${esc(pending.status || '')}. Tunggu sebentar, kemudian tekan butang siap di bawah.<div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" data-container="${esc(pending.containerId || '')}" onclick="finishMetaPublish(this.dataset.id,this.dataset.container)">Siapkan Instagram</button></div>`);
-  }
-  const retry = res.error === 'publish_failed' ? `<div class="detail-actions"><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="initMetaBox(this.dataset.id)">Cuba lagi</button></div>` : '';
-  metaSet(id, `<strong>Tak jadi.</strong> ${esc(res.message || res.error || 'Ralat tak diketahui.')}${retry}`, 'err');
-}
-async function finishMetaPublish(id, containerId) {
-  if (!containerId) return initMetaBox(id);
-  metaSet(id, '<strong>Tengah siapkan Instagram…</strong>');
-  try {
-    const r = await fetch('/api/meta-publish?action=finish', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({containerId}),signal:AbortSignal.timeout(120000)});
-    const res = await r.json().catch(() => ({}));
+    const res = await postJson('/api/meta-publish?action=finish', {containerId}, 120000);
     if (res.success) {
-      metaSet(id, `<strong>Instagram dah keluar.</strong> ${res.url ? `<a href="${esc(res.url)}" target="_blank" rel="noopener noreferrer">Buka Instagram</a>` : ''}`, 'ok');
+      pubAllSet(id, `<strong>Instagram dah keluar.</strong> ${res.url ? `<a href="${esc(res.url)}" target="_blank" rel="noopener noreferrer">Buka Instagram</a>` : ''}`, 'ok');
       apiFetchAll();
       return;
     }
-    metaSet(id, `<strong>Belum siap.</strong> Status ${esc(res.status || '-')}. Cuba lagi sekejap.`, 'err');
+    pubAllSet(id, `<strong>Belum siap.</strong> Status ${esc(res.status || '-')}. Cuba lagi sekejap.`, 'err');
   } catch (e) {
-    metaSet(id, '<strong>Tak dapat siapkan Instagram.</strong> Semak Instagram dulu sebelum ulang.', 'err');
+    pubAllSet(id, '<strong>Tak dapat siapkan Instagram.</strong> Semak Instagram dulu sebelum ulang.', 'err');
   }
 }
+async function doPlatformPublish(id, targets, mediaUrl, mediaType, title, mode) {
+  const p = state.posts.find(x => x.id === id);
+  if (!p) return;
+  pubAllSet(id, '<strong>Tengah hantar…</strong> Jangan tutup tab ni.');
+  const out = [];
+  const jobs = [];
+  let pendingContainer = '';
+  const zt = targets.filter(t => t === 'tiktok' || t === 'youtube');
+  const mt = targets.filter(t => t === 'facebook' || t === 'instagram');
+  const tt = targets.includes('threads');
+  const mediaBody = mediaType === 'text' ? {} : {mediaUrl, mediaType};
 
-/* ===== PUBLISH TO TIKTOK + YOUTUBE (Zernio) ===== */
-function socialBox(id) {
-  const b = document.getElementById('socialBox');
-  return b && b.dataset.id === id ? b : null;
-}
-function socialSet(id, html, cls) {
-  const b = socialBox(id);
-  if (!b) return;
-  b.className = 'publish-box' + (cls ? ' ' + cls : '');
-  b.innerHTML = html;
-}
-function socialDoneTargets(p) {
-  return Array.isArray(p.socialPublications) ? p.socialPublications.map(x => x.target) : [];
-}
-const SOCIAL_LABEL = {tiktok: 'TikTok', youtube: 'YouTube'};
-async function initSocialBox(id) {
-  const p = state.posts.find(x => x.id === id);
-  if (!p) return;
-  if (JomAuth.mode() !== 'server') return socialSet(id, '<strong>Post ke TikTok dan YouTube dimatikan.</strong> Butang ni hanya hidup selepas kunci API Cloudflare aktif.');
-  let info = null;
-  try {
-    const r = await fetch('/api/social-publish', {cache: 'no-store'});
-    info = await r.json();
-  } catch { return socialSet(id, '<strong>Tak dapat semak sambungan Zernio.</strong> Cuba lagi.'); }
-  if (!info || info.configured === false) {
-    return socialSet(id, '<strong>Zernio API key belum dipasang.</strong> TikTok dan YouTube belum boleh post dari sini.');
+  if (zt.length) {
+    jobs.push(postJson('/api/social-publish?id=' + encodeURIComponent(id), {
+      caption: p.caption, targets: zt, mediaUrl, mediaType, title, mode
+    }).then(res => {
+      if (res.success) {
+        (res.results || []).forEach(x => out.push({target: x.target, ok: true, url: x.url, note: mode === 'draft' ? 'draft' : (x.status || '')}));
+      } else {
+        out.push({target: zt.map(t => PUB_PLATFORMS[t].label).join(' + '), ok: false, message: res.message || res.error});
+      }
+    }).catch(() => out.push({target: zt.map(t => PUB_PLATFORMS[t].label).join(' + '), ok: false, message: 'Sambungan terputus.'})));
   }
-  const accounts = info.accounts || [];
-  if (!accounts.length) {
-    return socialSet(id, '<strong>Tiada akaun TikTok atau YouTube disambung di Zernio.</strong> Sambung dulu, kemudian muat semula.');
+  if (mt.length) {
+    jobs.push(postJson('/api/meta-publish?id=' + encodeURIComponent(id), {
+      caption: p.caption, targets: mt, mediaUrl, mediaType
+    }).then(res => {
+      const produced = (res.results || []);
+      produced.forEach(x => {
+        if (x.pending && x.containerId) pendingContainer = x.containerId;
+        out.push({target: x.target, ok: Boolean(x.id), url: x.url, note: x.pending ? 'tengah proses' : ''});
+      });
+      const missing = mt.filter(t => !produced.some(x => x.target === t));
+      missing.forEach(t => out.push({target: t, ok: false, message: res.message || res.error}));
+    }).catch(() => out.push({target: mt.map(t => PUB_PLATFORMS[t].label).join(' + '), ok: false, message: 'Sambungan terputus.'})));
   }
-  const done = socialDoneTargets(p);
-  const available = accounts.filter(a => !done.includes(a.platform));
-  if (!available.length) {
-    const links = (p.socialPublications || []).filter(x => x.url).map(x => `<a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">Buka ${SOCIAL_LABEL[x.target] || x.target}</a>`).join(' &middot; ');
-    return socialSet(id, `<strong>Dah diposkan ke semua akaun TikTok/YouTube.</strong> ${links}`, 'ok');
+  if (tt) {
+    jobs.push(postJson('/api/threads-publish?id=' + encodeURIComponent(id), {
+      caption: p.caption, ...mediaBody
+    }).then(res => {
+      if (res.success) out.push({target: 'threads', ok: true, url: (res.urls || [])[0] || ''});
+      else out.push({target: 'threads', ok: false, message: res.message || res.error});
+    }).catch(() => out.push({target: 'threads', ok: false, message: 'Sambungan terputus.'})));
   }
-  const mediaUrl = p.mediaUrl || '';
-  const boxes = available.map(a => `<label style="display:inline-flex;gap:6px;align-items:center;margin-right:14px"><input type="checkbox" class="socialTarget" value="${esc(a.platform)}" checked> ${SOCIAL_LABEL[a.platform] || a.platform} <span class="account-help">@${esc(a.username)}</span></label>`).join('');
-  const needsTitle = available.some(a => a.platform === 'youtube');
-  socialSet(id, `<strong>Post ke ${available.map(a => SOCIAL_LABEL[a.platform] + ' @' + esc(a.username)).join(' + ')}</strong>
-    <div style="margin:8px 0"><span class="account-help">URL media (https, wajib untuk TikTok/YouTube):</span>
-    <input type="url" id="socialMediaUrl" value="${esc(mediaUrl)}" placeholder="https://media.jom-content.com/…mp4" style="width:100%;margin-top:4px"></div>
-    <div style="margin:8px 0"><span class="account-help">Atau upload ke R2 (max 90MB):</span>
-    <input type="file" id="socialFile" accept="video/mp4,video/quicktime,video/webm" onchange="uploadMetaFile(this,'socialMediaUrl')" style="margin-top:4px"></div>
-    ${needsTitle ? `<div style="margin:8px 0"><span class="account-help">Tajuk YouTube:</span><input type="text" id="socialTitle" value="${esc(p.title || '')}" placeholder="Tajuk video" style="width:100%;margin-top:4px"></div>` : ''}
-    <div style="margin:8px 0">${boxes}</div>
-    <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick="askSocialPublish(this.dataset.id,'publish')">Post ke TikTok/YouTube</button><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="askSocialPublish(this.dataset.id,'draft')">Simpan draft</button></div>`);
-}
-function askSocialPublish(id, mode) {
-  const p = state.posts.find(x => x.id === id);
-  if (!p) return;
-  const targets = [...document.querySelectorAll('.socialTarget:checked')].map(x => x.value);
-  const mediaUrl = (document.getElementById('socialMediaUrl')?.value || '').trim();
-  const title = (document.getElementById('socialTitle')?.value || '').trim();
-  if (!targets.length) return showToast('Pilih sekurang-kurangnya satu platform.', 'error');
-  if (!mediaUrl) return showToast('TikTok dan YouTube perlukan URL media.', 'error');
-  if (mode === 'publish' && targets.includes('youtube') && !title) return showToast('YouTube perlukan tajuk.', 'error');
-  const verb = mode === 'draft' ? 'Simpan sebagai draft di' : 'Post ke';
-  socialSet(id, `<strong>${verb} ${targets.map(t => SOCIAL_LABEL[t]).join(' + ')}?</strong><br>${mode === 'draft' ? 'Draft tak keluar di platform. Boleh publish kemudian dari Zernio.' : 'Terus keluar dan tak boleh di-undo dari sini.'}
-    <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick='doSocialPublish(this.dataset.id, ${JSON.stringify(targets)}, ${JSON.stringify(mediaUrl)}, ${JSON.stringify(title)}, ${JSON.stringify(mode)})'>Ya, teruskan</button><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="initSocialBox(this.dataset.id)">Batal</button></div>`);
-}
-async function doSocialPublish(id, targets, mediaUrl, title, mode) {
-  const p = state.posts.find(x => x.id === id);
-  if (!p) return;
-  socialSet(id, '<strong>Tengah hantar ke Zernio…</strong> Jangan tutup tab ni.');
-  let res = null;
-  try {
-    const r = await fetch('/api/social-publish?id=' + encodeURIComponent(id), {
-      method: 'POST', headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({caption: p.caption, targets, mediaUrl, title, mediaType: 'video', mode}),
-      signal: AbortSignal.timeout(180000)
-    });
-    res = await r.json().catch(() => ({success: false, message: 'Jawapan server tak sah (HTTP ' + r.status + ').'}));
-  } catch (e) {
-    return socialSet(id, '<strong>Tak pasti post dah keluar atau belum.</strong> Semak TikTok dan YouTube dulu, jangan tekan lagi sebelum pasti.', 'err');
-  }
-  if (res.success) {
-    const links = (res.results || []).filter(x => x.url).map(x => `<a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">Buka ${SOCIAL_LABEL[x.target] || x.target}</a>`).join(' &middot; ');
-    socialSet(id, mode === 'draft'
-      ? `<strong>Draft dah disimpan di Zernio.</strong> ${links}`
-      : `<strong>Dah dihantar.</strong> ${links}${(res.results || []).some(x => x.status && x.status !== 'published') ? ' Status: ' + esc((res.results || []).map(x => x.target + '=' + (x.status || '?')).join(', ')) : ''}`, 'ok');
-    showToast(mode === 'draft' ? 'Draft disimpan.' : 'Post dah dihantar.', 'success');
-    if (mode === 'publish') apiFetchAll();
-    return;
-  }
-  socialSet(id, `<strong>Tak jadi.</strong> ${esc(res.message || res.error || 'Ralat tak diketahui.')}<div class="detail-actions"><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="initSocialBox(this.dataset.id)">Cuba lagi</button></div>`, 'err');
+
+  await Promise.allSettled(jobs);
+  const ok = out.filter(x => x.ok);
+  const bad = out.filter(x => !x.ok);
+  const lines = out.map(x => {
+    const label = PUB_PLATFORMS[x.target]?.label || x.target;
+    if (x.ok) return `<div>${esc(label)}: <strong>${mode === 'draft' ? 'draft disimpan' : 'dah keluar'}</strong>${x.note ? ' (' + esc(x.note) + ')' : ''}${x.url ? ` &middot; <a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">buka</a>` : ''}</div>`;
+    return `<div>${esc(label)}: <span style="color:var(--danger,#dc2626)">gagal</span>${x.message ? ' — ' + esc(x.message) : ''}</div>`;
+  }).join('');
+  const cls = bad.length ? (ok.length ? '' : 'err') : 'ok';
+  const finish = pendingContainer ? `<div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" data-container="${esc(pendingContainer)}" onclick="finishPlatformInstagram(this.dataset.id,this.dataset.container)">Siapkan Instagram</button></div>` : '';
+  pubAllSet(id, `<strong>${ok.length ? 'Selesai' : 'Tak jadi'}.</strong>${lines}${finish}
+    ${bad.length ? `<div class="detail-actions"><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="initPlatformBox(this.dataset.id)">Cuba lagi</button></div>` : ''}`, cls);
+  if (ok.length) { showToast(mode === 'draft' ? 'Draft disimpan.' : 'Post dah dihantar.', 'success'); apiFetchAll(); }
 }
 
 /* ===== CALENDAR (day / week / month) ===== */

@@ -14,8 +14,15 @@ function mytNow() {
   return { date: iso.slice(0, 10), time: iso.slice(11, 16) };
 }
 
-async function waitReady(env, token, creationId) {
-  for (let i = 0; i < 8; i++) {
+function httpUrl(value) {
+  try {
+    const url = new URL(String(value || ''));
+    return url.protocol === 'https:' || url.protocol === 'http:' ? url.toString() : '';
+  } catch { return ''; }
+}
+
+async function waitReady(env, token, creationId, attempts = 8) {
+  for (let i = 0; i < attempts; i++) {
     try {
       const status = await threads(env, 'GET', '/' + creationId, { fields: 'status,error_message', access_token: token });
       if (!status.status || status.status === 'FINISHED') return;
@@ -83,16 +90,19 @@ export async function onRequest(context) {
   const post = posts.find((item) => item.id === postId);
   if (!post) return json({ success: false, error: 'Post not found', message: 'Post belum disimpan ke server. Simpan dulu.' }, 404);
   if (body.caption.trim() !== String(post.caption || '').trim()) return json({ success: false, error: 'stale', message: 'Caption di server lain dari yang kau nampak. Refresh dashboard dulu.' }, 409);
-  if (post.platform !== 'threads') return json({ success: false, error: 'not_threads', message: 'Post ni bukan untuk Threads.' }, 422);
+  const mediaUrl = httpUrl(body.mediaUrl);
+  const mediaKind = String(body.mediaType || '').toLowerCase();
+  const withMedia = Boolean(mediaUrl) && (mediaKind === 'video' || mediaKind === 'image');
+  if (post.platform !== 'threads' && !withMedia) return json({ success: false, error: 'not_threads', message: 'Post ni bukan untuk Threads.' }, 422);
   if (post.status === 'rejected') return json({ success: false, error: 'rejected', message: 'Post ni berstatus rejected.' }, 422);
 
   const previousPublication = publicationFor(post, auth.id);
   if (previousPublication) return json({ success: false, error: 'already_posted', message: `Post ni dah diposkan ke @${auth.username || 'Threads'}.`, urls: previousPublication.urls || [] }, 409);
-  if (!Array.isArray(post.publishedAccounts) && (post.status === 'posted' || post.postedUrl)) {
+  if (post.platform === 'threads' && !Array.isArray(post.publishedAccounts) && (post.status === 'posted' || post.postedUrl)) {
     return json({ success: false, error: 'already_posted', message: 'Post ni dah diposkan. Rekod account lama belum boleh diulang.' }, 409);
   }
 
-  const parts = splitParts(post.caption);
+  const parts = withMedia ? [String(post.caption || '').trim()] : splitParts(post.caption);
   if (!parts.length) return json({ success: false, error: 'empty', message: 'Caption kosong.' }, 422);
   if (parts.length > MAX_PARTS) return json({ success: false, error: 'too_many_parts', message: `Maksimum ${MAX_PARTS} bahagian.` }, 422);
   const tooLong = parts.findIndex((part) => [...part].length > MAX_PART);
@@ -112,10 +122,17 @@ export async function onRequest(context) {
 
   try {
     for (let i = 0; i < parts.length; i++) {
-      const create = { media_type: 'TEXT', text: parts[i], access_token: auth.token };
+      const create = withMedia
+        ? {
+            media_type: mediaKind === 'video' ? 'VIDEO' : 'IMAGE',
+            text: parts[i],
+            access_token: auth.token,
+            ...(mediaKind === 'video' ? { video_url: mediaUrl } : { image_url: mediaUrl }),
+          }
+        : { media_type: 'TEXT', text: parts[i], access_token: auth.token };
       if (i > 0) create.reply_to_id = record.ids[i - 1];
       const container = await threads(env, 'POST', `/${auth.userId}/threads`, create);
-      await waitReady(env, auth.token, container.id);
+      await waitReady(env, auth.token, container.id, withMedia ? 20 : 8);
       const published = await threads(env, 'POST', `/${auth.userId}/threads_publish`, { creation_id: container.id, access_token: auth.token });
       record.ids.push(published.id);
       let link = '';
