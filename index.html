@@ -1934,10 +1934,37 @@ async function initMetaBox(id) {
   metaSet(id, `<strong>Post ke ${esc(info.pageName || 'Facebook Page')}${info.igUsername ? ' + @' + esc(info.igUsername) : ''}</strong>
     <div style="margin:8px 0"><span class="account-help">URL media (perlu https, Meta akan ambil sendiri):</span>
     <input type="url" id="metaMediaUrl" value="${esc(mediaUrl)}" placeholder="https://…/video.mp4" style="width:100%;margin-top:4px"></div>
+    <div style="margin:8px 0"><span class="account-help">Atau upload terus ke R2 (max 90MB):</span>
+    <input type="file" id="metaFile" accept="video/mp4,video/quicktime,video/webm,image/jpeg,image/png,image/webp" data-id="${esc(id)}" onchange="uploadMetaFile(this)" style="margin-top:4px"></div>
     <div class="publish-account-picker"><label for="metaMediaType">Jenis media</label>
       <select id="metaMediaType"><option value="video" ${kind === 'video' ? 'selected' : ''}>Video / Reels</option><option value="image" ${kind === 'image' ? 'selected' : ''}>Gambar</option><option value="text" ${kind === 'text' ? 'selected' : ''}>Teks sahaja (Facebook)</option></select></div>
     <div style="margin:8px 0">${boxes}</div>
     <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick="askMetaPublish(this.dataset.id)">Post ke Facebook/Instagram</button></div>`);
+}
+async function uploadMetaFile(input) {
+  const file = input?.files?.[0];
+  if (!file) return;
+  const field = document.getElementById('metaMediaUrl');
+  const button = document.querySelector('#metaBox .btn-primary');
+  if (button) { button.disabled = true; button.textContent = 'Upload ' + Math.round(file.size / 1048576) + 'MB…'; }
+  try {
+    const q = new URLSearchParams({filename: file.name, type: file.type || 'application/octet-stream'});
+    const r = await fetch('/api/media-upload?' + q.toString(), {
+      method: 'POST', headers: {'Content-Type': file.type || 'application/octet-stream'}, body: file,
+      signal: AbortSignal.timeout(300000)
+    });
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok || !data.success) throw new Error(data.message || data.error || 'HTTP ' + r.status);
+    if (field && data.url) field.value = data.url;
+    const select = document.getElementById('metaMediaType');
+    if (select && String(data.type || '').startsWith('image/')) select.value = 'image';
+    if (select && String(data.type || '').startsWith('video/')) select.value = 'video';
+    showToast('Upload siap. URL media dah diisi.', 'success');
+  } catch (error) {
+    showToast('Upload gagal: ' + error.message, 'error');
+  } finally {
+    if (button) { button.disabled = false; button.textContent = 'Post ke Facebook/Instagram'; }
+  }
 }
 function askMetaPublish(id) {
   const p = state.posts.find(x => x.id === id);
