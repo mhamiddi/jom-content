@@ -22,22 +22,22 @@ function httpUrl(value) {
   } catch { return ''; }
 }
 
-async function publishFacebook(record, { caption, mediaUrl, mediaType, title }) {
+async function publishFacebook(record, pageToken, { caption, mediaUrl, mediaType, title }) {
   if (mediaType === 'video') {
     const created = await graph('POST', record.pageId + '/videos', {
       file_url: mediaUrl,
       description: caption,
       title: title || '',
-    }, record.token);
-    return {
-      target: 'facebook',
-      id: created.id,
-      url: 'https://www.facebook.com/' + created.id,
-      kind: 'video',
-    };
+    }, pageToken);
+    let url = 'https://www.facebook.com/' + created.id;
+    try {
+      const video = await graph('GET', created.id, { fields: 'permalink_url' }, pageToken);
+      if (video.permalink_url) url = 'https://www.facebook.com' + video.permalink_url;
+    } catch { /* fall back to the numeric permalink */ }
+    return { target: 'facebook', id: created.id, url, kind: 'video' };
   }
   if (mediaType === 'image') {
-    const created = await graph('POST', record.pageId + '/photos', { url: mediaUrl, caption }, record.token);
+    const created = await graph('POST', record.pageId + '/photos', { url: mediaUrl, caption }, pageToken);
     return {
       target: 'facebook',
       id: created.id || created.post_id || '',
@@ -45,7 +45,7 @@ async function publishFacebook(record, { caption, mediaUrl, mediaType, title }) 
       kind: 'photo',
     };
   }
-  const created = await graph('POST', record.pageId + '/feed', { message: caption }, record.token);
+  const created = await graph('POST', record.pageId + '/feed', { message: caption }, pageToken);
   return {
     target: 'facebook',
     id: created.id,
@@ -185,9 +185,13 @@ export async function onRequest(context) {
   await env.JOM_CONTENT.put(lockKey, JSON.stringify(recordLock));
 
   const results = [];
+  let pageToken = '';
   try {
     if (targets.includes('facebook')) {
-      results.push(await publishFacebook(record, { caption: post.caption, mediaUrl, mediaType, title: post.title }));
+      const page = await graph('GET', record.pageId, { fields: 'access_token' }, record.token);
+      pageToken = page.access_token || '';
+      if (!pageToken) throw new Error('Tak dapat page access token. Semak semula sambungan Page.');
+      results.push(await publishFacebook(record, pageToken, { caption: post.caption, mediaUrl, mediaType, title: post.title }));
       recordLock.results = results;
       await env.JOM_CONTENT.put(lockKey, JSON.stringify(recordLock));
     }

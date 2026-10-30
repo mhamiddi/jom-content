@@ -79,7 +79,7 @@ test('rejects when no Page is connected', async () => {
 
 test('publishes a text post to the Facebook Page and records it', async () => {
   const kv = kvStore({ posts: JSON.stringify([post()]), 'meta:accounts': JSON.stringify(META) });
-  const calls = stubFetch({ '111/feed': { id: '111_999' } });
+  const calls = stubFetch({ '111': { access_token: 'page-token' }, '111/feed': { id: '111_999' } });
   const res = await onRequest({
     request: request({ caption: 'Caption panjang untuk ujian.', mediaType: 'text', targets: ['facebook'] }, '?id=p1'),
     env: env(kv),
@@ -89,7 +89,11 @@ test('publishes a text post to the Facebook Page and records it', async () => {
   assert.equal(data.success, true);
   assert.equal(data.results[0].target, 'facebook');
   assert.equal(data.results[0].id, '111_999');
-  assert.ok(calls.some((c) => c.path === '111/feed' && c.method === 'POST'));
+  // Facebook publishing must use the derived page token, never the system-user token.
+  const feedCall = calls.find((c) => c.path === '111/feed' && c.method === 'POST');
+  assert.ok(feedCall, 'expected a feed publish call');
+  assert.match(feedCall.body, /access_token=page-token/);
+  assert.ok(calls.some((c) => c.path === '111' && c.params.fields === 'access_token'));
   const saved = JSON.parse(kv.values.get('posts'));
   assert.equal(saved[0].metaPublications[0].target, 'facebook');
   assert.match(saved[0].notes, /PUBLISHED to facebook/);
@@ -97,7 +101,7 @@ test('publishes a text post to the Facebook Page and records it', async () => {
 
 test('rejects a stale caption before touching Meta', async () => {
   const kv = kvStore({ posts: JSON.stringify([post()]), 'meta:accounts': JSON.stringify(META) });
-  const calls = stubFetch({ '111/feed': { id: '111_999' } });
+  const calls = stubFetch({ '111': { access_token: 'page-token' }, '111/feed': { id: '111_999' } });
   const res = await onRequest({
     request: request({ caption: 'Caption lain sama sekali.' }, '?id=p1'),
     env: env(kv),
@@ -169,7 +173,7 @@ test('a second identical publish is refused by the lock', async () => {
     'meta:accounts': JSON.stringify(META),
     'meta_publish:p1': JSON.stringify({ state: 'published', startedAt: new Date().toISOString(), results: [{ target: 'facebook', id: '111_999' }] }),
   });
-  stubFetch({ '111/feed': { id: '111_1000' } });
+  stubFetch({ '111': { access_token: 'page-token' }, '111/feed': { id: '111_1000' } });
   const res = await onRequest({
     request: request({ caption: 'Caption panjang untuk ujian.', mediaType: 'text', targets: ['facebook'] }, '?id=p1'),
     env: env(kv),
