@@ -628,6 +628,18 @@ canvas{display:block;max-width:100%}
             <div class="detail-actions"><button class="btn btn-primary btn-sm" id="connectThreadsAccountButton" onclick="connectThreadsAccount()">Sambung account</button></div>
           </div>
         </div>
+        <div class="card" style="margin-top:16px">
+          <div class="account-intro"><div><h3 style="font-size:16px;margin-bottom:6px">Facebook Page &amp; Instagram</h3><p>Satu sambungan untuk Page dan Instagram business account yang link pada Page tu. Token disimpan di server dan tak dipaparkan semula.</p></div><span class="approval-badge approval-approved">Direct Graph API</span></div>
+          <div id="metaAccountStatus" class="account-help" aria-live="polite">Semak sambungan…</div>
+          <div id="metaAccountList" class="account-list"></div>
+          <div class="account-connect">
+            <h3 style="font-size:14px;margin-bottom:6px">Sambung Page</h3>
+            <p class="account-help" style="margin-top:0;margin-bottom:10px">Guna System User token yang ada <code>pages_manage_posts</code> dan <code>instagram_content_publish</code>. Masukkan Page ID sekali.</p>
+            <input type="text" id="metaPageId" inputmode="numeric" autocomplete="off" placeholder="Page ID (cth 982400581922991)" style="margin-bottom:8px">
+            <textarea id="metaToken" autocomplete="off" spellcheck="false" placeholder="Paste Meta access token"></textarea>
+            <div class="detail-actions"><button class="btn btn-primary btn-sm" id="connectMetaButton" onclick="connectMetaAccount()">Sambung Page</button><button class="btn btn-outline btn-sm" onclick="disconnectMetaAccount()">Putuskan</button></div>
+          </div>
+        </div>
       </section>
     </div>
   </main>
@@ -942,6 +954,71 @@ async function disconnectThreadsAccount(accountId, username) {
   } catch (error) { showToast('Tak dapat putuskan account: '+error.message,'error'); }
 }
 
+/* ===== META (FACEBOOK PAGE + INSTAGRAM) ===== */
+let META_ACCOUNT = null;
+async function fetchMetaAccount() {
+  const status = document.getElementById('metaAccountStatus');
+  if (status) status.textContent = 'Semak sambungan…';
+  try {
+    const response = await fetch('/api/meta-accounts', {cache:'no-store'});
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data.success) throw new Error(data.message || data.error || 'HTTP '+response.status);
+    META_ACCOUNT = data;
+    renderMetaAccount();
+    return META_ACCOUNT;
+  } catch (error) {
+    META_ACCOUNT = null;
+    if (status) status.textContent = 'Tak dapat semak sambungan Meta. Cuba refresh semula.';
+    renderMetaAccount();
+    return null;
+  }
+}
+function renderMetaAccount() {
+  const list = document.getElementById('metaAccountList');
+  const status = document.getElementById('metaAccountStatus');
+  if (!list) return;
+  if (!META_ACCOUNT || !META_ACCOUNT.configured) {
+    if (status) status.textContent = 'Belum ada Page atau Instagram disambung.';
+    list.innerHTML = '<div class="account-empty">Sambung Page di bawah untuk hidupkan butang post ke Facebook dan Instagram.</div>';
+    return;
+  }
+  if (status) status.textContent = 'Page dan Instagram sedia untuk publish terus melalui Graph API.';
+  list.innerHTML = `<div class="account-row"><div class="account-avatar">f</div><div class="account-copy"><strong>${esc(META_ACCOUNT.pageName || META_ACCOUNT.pageId)}</strong><small>Facebook Page · ${esc(META_ACCOUNT.pageId)}</small></div><span class="account-default">Page</span></div>
+    ${META_ACCOUNT.igId ? `<div class="account-row"><div class="account-avatar">@</div><div class="account-copy"><strong>@${esc(META_ACCOUNT.igUsername || META_ACCOUNT.igId)}</strong><small>Instagram business · ${esc(META_ACCOUNT.igId)}</small></div><span class="account-default">IG</span></div>` : '<div class="account-empty">Instagram business account belum link pada Page ni.</div>'}`;
+}
+async function connectMetaAccount() {
+  const idField = document.getElementById('metaPageId');
+  const tokenField = document.getElementById('metaToken');
+  const button = document.getElementById('connectMetaButton');
+  const pageId = idField?.value.trim() || '';
+  const token = tokenField?.value.trim() || '';
+  if (!pageId) { showToast('Masukkan Page ID dulu.','error'); idField?.focus(); return; }
+  if (!token) { showToast('Paste access token dulu.','error'); tokenField?.focus(); return; }
+  if (button) { button.disabled = true; button.textContent = 'Menyambung…'; }
+  try {
+    const response = await fetch('/api/meta-accounts', {method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({pageId, token})});
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data.success) throw new Error(data.message || data.error || 'Sambungan ditolak');
+    if (tokenField) tokenField.value = '';
+    showToast((data.pageName || 'Page')+' dah disambung.','success');
+    await fetchMetaAccount();
+  } catch (error) {
+    showToast('Tak dapat sambung Page: '+error.message,'error');
+  } finally {
+    if (button) { button.disabled = false; button.textContent = 'Sambung Page'; }
+  }
+}
+async function disconnectMetaAccount() {
+  if (!confirm('Putuskan sambungan Facebook Page dan Instagram daripada Jom Content?')) return;
+  try {
+    const response = await fetch('/api/meta-accounts', {method:'DELETE'});
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data.success) throw new Error(data.message || data.error || 'Gagal putuskan');
+    showToast('Sambungan Meta dah diputuskan.','success');
+    await fetchMetaAccount();
+  } catch (error) { showToast('Tak dapat putuskan sambungan: '+error.message,'error'); }
+}
+
 /* ===== DATE HELPERS ===== */
 function localDateStr(d) {
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
@@ -1010,6 +1087,7 @@ function finishDashboardLogin() {
   renderAll();
   apiFetchAll();
   fetchThreadsAccounts();
+  fetchMetaAccount();
 }
 async function loginToDashboard() {
   const user = (document.getElementById('loginUsername')?.value || '').trim();
@@ -1736,9 +1814,11 @@ function openPostDetail(platform, id) {
     <div class="preview-caption">${esc(posted || p.caption || 'Tiada caption.')}</div>
     ${posted && p.caption && p.caption !== posted ? `<div class="preview-meta" style="margin:0">Caption asal (plan)</div><div class="preview-caption">${esc(p.caption)}</div>` : ''}
     ${canPublishToThreads(p) ? `<div class="publish-box" id="pubBox" data-id="${esc(p.id)}">Semak sambungan Threads...</div>` : ''}
+    <div class="publish-box" id="metaBox" data-id="${esc(p.id)}">Semak sambungan Facebook &amp; Instagram...</div>
     <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(p.id)}" data-platform="${esc(platform)}" onclick="editFromDetail(this.dataset.platform,this.dataset.id)">Edit post</button><button class="btn btn-outline btn-sm" onclick="closePostPreview()">Tutup</button></div>`;
   document.getElementById('previewOverlay').classList.add('open');
   if (canPublishToThreads(p)) initPublishBox(p.id);
+  initMetaBox(p.id);
 }
 function editFromDetail(platform, id) { closePostPreview(); openModal(platform, id); }
 
@@ -1814,6 +1894,107 @@ async function doPublish(id, accountId) {
   }
   const retry = res.error === 'publish_failed' ? `<div class="detail-actions"><button class="btn btn-outline btn-sm" data-id="${esc(id)}" data-account-id="${esc(accountId || '')}" onclick="askPublish(this.dataset.id,this.dataset.accountId)">Cuba lagi</button></div>` : '';
   pubSet(id, `<strong>Tak jadi.</strong> ${esc(res.message || res.error || 'Ralat tak diketahui.')}${retry}`, 'err');
+}
+
+/* ===== PUBLISH TO FACEBOOK + INSTAGRAM (button in the post detail) ===== */
+function metaBox(id) {
+  const b = document.getElementById('metaBox');
+  return b && b.dataset.id === id ? b : null;
+}
+function metaSet(id, html, cls) {
+  const b = metaBox(id);
+  if (!b) return;
+  b.className = 'publish-box' + (cls ? ' ' + cls : '');
+  b.innerHTML = html;
+}
+function metaPublishedTargets(p) {
+  return Array.isArray(p.metaPublications) ? p.metaPublications.map(x => x.target) : [];
+}
+async function initMetaBox(id) {
+  const p = state.posts.find(x => x.id === id);
+  if (!p) return;
+  if (JomAuth.mode() !== 'server') return metaSet(id, '<strong>Post ke Facebook dan Instagram dimatikan.</strong> Butang ni hanya hidup selepas kunci API Cloudflare aktif.');
+  let info = null;
+  try {
+    const r = await fetch('/api/meta-publish', {cache:'no-store'});
+    info = await r.json();
+  } catch { return metaSet(id, '<strong>Tak dapat semak sambungan Meta.</strong> Cuba lagi.'); }
+  if (!info || !info.configured) {
+    return metaSet(id, '<strong>Facebook Page dan Instagram belum disambung.</strong> Buka Connected accounts dan sambung Page dulu.');
+  }
+  const done = metaPublishedTargets(p);
+  if (done.includes('facebook') && done.includes('instagram')) {
+    const links = (p.metaPublications || []).filter(x => x.url).map(x => `<a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${x.target === 'facebook' ? 'Buka Facebook' : 'Buka Instagram'}</a>`).join(' &middot; ');
+    return metaSet(id, `<strong>Dah diposkan ke Facebook dan Instagram.</strong> ${links}`, 'ok');
+  }
+  const mediaUrl = p.mediaUrl || '';
+  const kind = p.mediaType || (mediaUrl ? 'video' : 'text');
+  const targets = ['facebook', 'instagram'].filter(t => !done.includes(t));
+  const boxes = targets.map(t => `<label style="display:inline-flex;gap:6px;align-items:center;margin-right:14px"><input type="checkbox" class="metaTarget" value="${t}" checked> ${t === 'facebook' ? 'Facebook Page' : 'Instagram'}</label>`).join('');
+  metaSet(id, `<strong>Post ke ${esc(info.pageName || 'Facebook Page')}${info.igUsername ? ' + @' + esc(info.igUsername) : ''}</strong>
+    <div style="margin:8px 0"><span class="account-help">URL media (perlu https, Meta akan ambil sendiri):</span>
+    <input type="url" id="metaMediaUrl" value="${esc(mediaUrl)}" placeholder="https://…/video.mp4" style="width:100%;margin-top:4px"></div>
+    <div class="publish-account-picker"><label for="metaMediaType">Jenis media</label>
+      <select id="metaMediaType"><option value="video" ${kind === 'video' ? 'selected' : ''}>Video / Reels</option><option value="image" ${kind === 'image' ? 'selected' : ''}>Gambar</option><option value="text" ${kind === 'text' ? 'selected' : ''}>Teks sahaja (Facebook)</option></select></div>
+    <div style="margin:8px 0">${boxes}</div>
+    <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick="askMetaPublish(this.dataset.id)">Post ke Facebook/Instagram</button></div>`);
+}
+function askMetaPublish(id) {
+  const p = state.posts.find(x => x.id === id);
+  if (!p) return;
+  const targets = [...document.querySelectorAll('.metaTarget:checked')].map(x => x.value);
+  const mediaUrl = (document.getElementById('metaMediaUrl')?.value || '').trim();
+  const mediaType = document.getElementById('metaMediaType')?.value || 'video';
+  if (!targets.length) return showToast('Pilih sekurang-kurangnya satu platform.','error');
+  if (targets.includes('instagram') && !mediaUrl) return showToast('Instagram perlukan URL media.','error');
+  if (targets.includes('instagram') && mediaType === 'text') return showToast('Instagram tak terima post teks sahaja.','error');
+  metaSet(id, `<strong>Post ke ${targets.join(' + ')} sekarang?</strong><br>Terus keluar dan tak boleh di-undo dari sini. Caption yang keluar ialah yang kau nampak di bawah.
+    <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick='doMetaPublish(this.dataset.id, ${JSON.stringify(targets)}, ${JSON.stringify(mediaUrl)}, ${JSON.stringify(mediaType)})'>Ya, post sekarang</button><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="initMetaBox(this.dataset.id)">Batal</button></div>`);
+}
+async function doMetaPublish(id, targets, mediaUrl, mediaType) {
+  const p = state.posts.find(x => x.id === id);
+  if (!p) return;
+  metaSet(id, '<strong>Tengah post ke Meta…</strong> Jangan tutup tab ni.');
+  let res = null;
+  try {
+    const r = await fetch('/api/meta-publish?id=' + encodeURIComponent(id), {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({caption: p.caption, targets, mediaUrl, mediaType}),
+      signal: AbortSignal.timeout(180000)
+    });
+    res = await r.json().catch(() => ({success: false, message: 'Jawapan server tak sah (HTTP ' + r.status + ').'}));
+  } catch (e) {
+    return metaSet(id, '<strong>Tak pasti post dah keluar atau belum.</strong> Sambungan terputus. Semak Page dan Instagram dulu, jangan tekan lagi sebelum pasti.', 'err');
+  }
+  const pending = (res.results || []).find(x => x.pending);
+  if (res.success) {
+    const links = (res.results || []).filter(x => x.url).map(x => `<a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${x.target === 'facebook' ? 'Buka Facebook' : 'Buka Instagram'}</a>`).join(' &middot; ');
+    metaSet(id, `<strong>Dah diposkan.</strong> ${links}`, 'ok');
+    showToast('Post dah keluar di Facebook/Instagram.','success');
+    apiFetchAll();
+    return;
+  }
+  if (pending) {
+    return metaSet(id, `<strong>Instagram tengah proses video.</strong> Container ${esc(pending.containerId || '')} status ${esc(pending.status || '')}. Tunggu sebentar, kemudian tekan butang siap di bawah.<div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" data-container="${esc(pending.containerId || '')}" onclick="finishMetaPublish(this.dataset.id,this.dataset.container)">Siapkan Instagram</button></div>`);
+  }
+  const retry = res.error === 'publish_failed' ? `<div class="detail-actions"><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="initMetaBox(this.dataset.id)">Cuba lagi</button></div>` : '';
+  metaSet(id, `<strong>Tak jadi.</strong> ${esc(res.message || res.error || 'Ralat tak diketahui.')}${retry}`, 'err');
+}
+async function finishMetaPublish(id, containerId) {
+  if (!containerId) return initMetaBox(id);
+  metaSet(id, '<strong>Tengah siapkan Instagram…</strong>');
+  try {
+    const r = await fetch('/api/meta-publish?action=finish', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({containerId}),signal:AbortSignal.timeout(120000)});
+    const res = await r.json().catch(() => ({}));
+    if (res.success) {
+      metaSet(id, `<strong>Instagram dah keluar.</strong> ${res.url ? `<a href="${esc(res.url)}" target="_blank" rel="noopener noreferrer">Buka Instagram</a>` : ''}`, 'ok');
+      apiFetchAll();
+      return;
+    }
+    metaSet(id, `<strong>Belum siap.</strong> Status ${esc(res.status || '-')}. Cuba lagi sekejap.`, 'err');
+  } catch (e) {
+    metaSet(id, '<strong>Tak dapat siapkan Instagram.</strong> Semak Instagram dulu sebelum ulang.', 'err');
+  }
 }
 
 /* ===== CALENDAR (day / week / month) ===== */
