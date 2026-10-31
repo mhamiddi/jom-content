@@ -78,23 +78,25 @@ function call(path, body, environment) {
 
 test('plan stores slide copy without touching the caption', async () => {
   stubOpenAI({ plan: { slides: [
-    { kicker: 'Agentic ai', headline: 'AI bukan magic', sub: 'Dia kerja ikut arahan' },
-    { kicker: 'Realiti', headline: 'Data dulu', sub: '' },
+    { kind: 'hook', eyebrow: 'Agentic ai', headline: 'AI bukan magic', body: 'Dia kerja ikut arahan' },
+    { kind: 'lesson', eyebrow: 'Realiti', headline: 'Data dulu', body: 'Tanpa data, tiada ukuran' },
   ] } });
   const e = env();
   const { res, data } = await call('?id=p1&action=plan', { count: 2 }, e);
   assert.equal(res.status, 200);
   assert.equal(data.slides.length, 2);
-  assert.equal(data.slides[0].headline, 'AI BUKAN MAGIC');
-  assert.equal(data.slides[0].kicker, 'AGENTIC AI');
+  assert.equal(data.slides[0].headline, 'AI bukan magic');
+  assert.equal(data.slides[0].eyebrow, 'AGENTIC AI');
+  assert.equal(data.slides[0].kind, 'hook');
+  assert.equal(data.slides[1].kind, 'lesson');
   const posts = JSON.parse(e.JOM_CONTENT.values.get('posts'));
   assert.equal(posts[0].caption, POST.caption);
 });
 
 test('slide renders one image, uploads it to R2 and records the url', async () => {
   const calls = stubOpenAI({ plan: { slides: [
-    { kicker: 'Hook', headline: 'Satu', sub: '' },
-    { kicker: 'Isi', headline: 'Dua', sub: '' },
+    { kind: 'hook', eyebrow: 'Hook', headline: 'Satu', body: '' },
+    { kind: 'lesson', eyebrow: 'Isi', headline: 'Dua', body: '' },
   ] } });
   const e = env();
   await call('?id=p1&action=plan', { count: 2 }, e);
@@ -105,7 +107,7 @@ test('slide renders one image, uploads it to R2 and records the url', async () =
   assert.equal(e.JOM_MEDIA.store.size, 1);
   const generation = calls.find((c) => c.path.endsWith('/images/generations'));
   assert.equal(generation.body.model, 'gpt-image-2.5-flare');
-  assert.equal(generation.body.size, '1024x1536');
+  assert.equal(generation.body.size, '1024x1024');
   assert.match(generation.body.prompt, /DUA/);
   const state = JSON.parse(e.JOM_CONTENT.values.get('carousel:p1'));
   assert.equal(state.images.length, 1);
@@ -133,5 +135,18 @@ test('clear wipes the stored carousel and keeps the post caption', async () => {
   const { data } = await call('?id=p1&action=clear', {}, e);
   assert.equal(data.success, true);
   assert.deepEqual(data.state.images, []);
+  assert.equal(JSON.parse(e.JOM_CONTENT.values.get('posts'))[0].caption, POST.caption);
+});
+
+test('save records client-rendered slides without touching the caption', async () => {
+  const e = env();
+  const { res, data } = await call('?id=p1&action=save', {
+    images: [
+      { index: 1, url: 'https://media.jom-content.com/media/2026/10/b.png', key: 'media/2026/10/b.png', size: 1200 },
+      { index: 0, url: 'https://media.jom-content.com/media/2026/10/a.png', key: 'media/2026/10/a.png', size: 1100 },
+    ],
+  }, e);
+  assert.equal(res.status, 200);
+  assert.deepEqual(data.images.map((image) => image.index), [0, 1]);
   assert.equal(JSON.parse(e.JOM_CONTENT.values.get('posts'))[0].caption, POST.caption);
 });

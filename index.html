@@ -407,6 +407,11 @@ canvas{display:block;max-width:100%}
   }
 </style>
 <link rel="stylesheet" href="/dashboard-ui.css?v=20260925">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="/carousel-template.js?v=20261031"></script>
 </head>
 <body class="auth-locked">
 <script src="auth.js"></script>
@@ -2155,9 +2160,10 @@ function renderCarouselPanel(id) {
         <label style="font-size:12px" for="carouselCount">Slide</label>
         <select id="carouselCount" style="padding:4px 6px">${[3, 4, 5, 6].map((n) => `<option value="${n}" ${(state.count || 5) === n ? 'selected' : ''}>${n}</option>`).join('')}</select>
         <button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick="generateCarousel(this.dataset.id)">${slides.length ? 'Jana semula carousel' : 'Generate carousel'}</button>
+        <button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="generateCarouselGpt(this.dataset.id)" title="Guna GPT Image 2.5, bukan template skill">Gaya GPT Image</button>
         ${slides.length ? `<button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="clearCarousel(this.dataset.id)">Padam</button>` : ''}
       </div>
-      <div id="carouselStatus" class="account-help">${slides.length ? `${done.size}/${slides.length} slide siap. Caption tak diubah.` : 'Teks post kekal. Carousel cuma gambar untuk dipos bersama.'}</div>
+      <div id="carouselStatus" class="account-help">${slides.length ? `${done.size}/${slides.length} slide siap ikut template Jom Digital. Caption tak diubah.` : 'Guna template carousel skill (1080x1080, dark gold). Caption tak disentuh.'}</div>
       ${thumbs ? `<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">${thumbs}</div>` : ''}
       ${slides.length && done.size < slides.length ? `<div class="account-help" style="margin-top:8px">Slide belum siap: ${slides.map((_, i) => i + 1).filter((i) => !done.has(i - 1)).join(', ')}</div>` : ''}
     </div>`;
@@ -2173,7 +2179,28 @@ async function generateCarousel(id) {
   const count = Number(document.getElementById('carouselCount')?.value || 5);
   const state = carouselState(id);
   state.count = count;
-  carouselSay('AI tengah susun ' + count + ' slide…');
+  carouselSay('AI tengah susun ' + count + ' slide ikut template Jom Digital…');
+  try {
+    const plan = await postJson('/api/carousel-generate?id=' + encodeURIComponent(id) + '&action=plan', {count}, 180000);
+    if (!plan.success) throw new Error(plan.message || plan.error);
+    state.slides = plan.slides || [];
+    state.images = [];
+    renderCarouselPanel(id);
+    const images = await renderCarouselToR2(id);
+    const saved = await postJson('/api/carousel-generate?id=' + encodeURIComponent(id) + '&action=save', {images}, 60000);
+    if (!saved.success) throw new Error(saved.message || saved.error);
+    state.images = saved.images || images;
+    renderCarouselPanel(id);
+    carouselSay(state.slides.length + ' slide siap ikut template skill. Caption tak diubah.');
+  } catch (error) {
+    carouselSay('Gagal: ' + error.message);
+  }
+}
+async function generateCarouselGpt(id) {
+  const count = Number(document.getElementById('carouselCount')?.value || 5);
+  const state = carouselState(id);
+  state.count = count;
+  carouselSay('GPT Image 2.5 tengah susun ' + count + ' slide…');
   try {
     const plan = await postJson('/api/carousel-generate?id=' + encodeURIComponent(id) + '&action=plan', {count}, 180000);
     if (!plan.success) throw new Error(plan.message || plan.error);
@@ -2187,20 +2214,83 @@ async function generateCarousel(id) {
       state.images = result.images || state.images;
       renderCarouselPanel(id);
     }
-    carouselSay(state.slides.length + ' slide siap. Pilih "Carousel" sebagai jenis media dan tekan post.');
+    carouselSay(state.slides.length + ' slide GPT Image siap.');
   } catch (error) {
     carouselSay('Gagal: ' + error.message);
   }
 }
+/** Paint the skill template at 1080x1080 and push each PNG to R2. */
+async function renderCarouselToR2(id) {
+  const state = carouselState(id);
+  if (!window.JomCarousel) throw new Error('Template carousel tak dimuat. Refresh page.');
+  if (typeof html2canvas !== 'function') throw new Error('html2canvas tak dimuat. Semak sambungan internet.');
+  await document.fonts.ready;
+  const stage = document.createElement('div');
+  stage.style.cssText = 'position:fixed;left:0;top:0;width:1080px;height:1080px;z-index:-1;overflow:hidden;pointer-events:none';
+  const style = document.createElement('style');
+  style.textContent = window.JomCarousel.styles();
+  stage.appendChild(style);
+  document.body.appendChild(stage);
+  const images = [];
+  try {
+    for (let i = 0; i < state.slides.length; i++) {
+      carouselSay('Render slide ' + (i + 1) + '/' + state.slides.length + '…');
+      const holder = document.createElement('div');
+      holder.innerHTML = window.JomCarousel.slide(state.slides[i], i, state.slides.length);
+      stage.appendChild(holder);
+      const el = holder.firstElementChild;
+      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      const canvas = await html2canvas(el, {width: 1080, height: 1080, scale: 1, backgroundColor: '#0E0E10', logging: false, useCORS: true});
+      const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
+      if (!blob) throw new Error('Canvas tak jadi untuk slide ' + (i + 1));
+      const upload = await fetch('/api/media-upload?filename=carousel-' + (i + 1) + '.png&type=image/png', {
+        method: 'POST', headers: {'Content-Type': 'image/png'}, body: blob
+      });
+      const data = await upload.json().catch(() => ({}));
+      if (!upload.ok || !data.success) throw new Error(data.message || data.error || 'Upload slide gagal.');
+      images.push({index: i, url: data.url, key: data.key, size: data.size});
+      state.images = images.slice();
+      renderCarouselPanel(id);
+      holder.remove();
+    }
+  } finally {
+    stage.remove();
+  }
+  return images;
+}
 async function regenCarouselSlide(id, index) {
   const state = carouselState(id);
-  carouselSay('Render semula slide ' + (Number(index) + 1) + '…');
+  const slot = Number(index);
+  carouselSay('Render semula slide ' + (slot + 1) + '…');
   try {
-    const result = await postJson('/api/carousel-generate?id=' + encodeURIComponent(id) + '&action=slide', {index: Number(index)}, 300000);
-    if (!result.success) throw new Error(result.message || result.error);
-    state.images = result.images || state.images;
+    if (!window.JomCarousel || typeof html2canvas !== 'function') throw new Error('Template carousel tak dimuat. Refresh page.');
+    await document.fonts.ready;
+    const stage = document.createElement('div');
+    stage.style.cssText = 'position:fixed;left:0;top:0;width:1080px;height:1080px;z-index:-1;overflow:hidden;pointer-events:none';
+    const style = document.createElement('style');
+    style.textContent = window.JomCarousel.styles();
+    stage.appendChild(style);
+    const holder = document.createElement('div');
+    holder.innerHTML = window.JomCarousel.slide(state.slides[slot], slot, state.slides.length);
+    stage.appendChild(holder);
+    document.body.appendChild(stage);
+    await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    const el = holder.firstElementChild;
+    const canvas = await html2canvas(el, {width: 1080, height: 1080, scale: 1, backgroundColor: '#0E0E10', logging: false, useCORS: true});
+    const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
+    stage.remove();
+    if (!blob) throw new Error('Canvas tak jadi.');
+    const upload = await fetch('/api/media-upload?filename=carousel-' + (slot + 1) + '.png&type=image/png', {
+      method: 'POST', headers: {'Content-Type': 'image/png'}, body: blob
+    });
+    const data = await upload.json().catch(() => ({}));
+    if (!upload.ok || !data.success) throw new Error(data.message || 'Upload gagal.');
+    const images = (state.images || []).filter((image) => image.index !== slot).concat([{index: slot, url: data.url, key: data.key, size: data.size}]);
+    const saved = await postJson('/api/carousel-generate?id=' + encodeURIComponent(id) + '&action=save', {images}, 60000);
+    if (!saved.success) throw new Error(saved.message || saved.error);
+    state.images = saved.images || images;
     renderCarouselPanel(id);
-    carouselSay('Slide ' + (Number(index) + 1) + ' dah diganti.');
+    carouselSay('Slide ' + (slot + 1) + ' dah dirender semula.');
   } catch (error) {
     carouselSay('Gagal: ' + error.message);
   }

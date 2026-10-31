@@ -25,6 +25,13 @@ function stateKey(postId) {
   return 'carousel:' + postId;
 }
 
+function httpUrl(value) {
+  try {
+    const url = new URL(String(value || ''));
+    return url.protocol === 'https:' || url.protocol === 'http:' ? url.toString() : '';
+  } catch { return ''; }
+}
+
 function clean(value, max) {
   return String(value == null ? '' : value).replace(/\s+/g, ' ').trim().slice(0, max);
 }
@@ -54,50 +61,88 @@ async function openai(env, path, body) {
 
 function planPrompt(caption, count, title, pillar) {
   return [
-    'Buat copy untuk carousel sosial Malaysian creator (Middi, Jom Digital).',
-    'Caption asal (JANGAN ubah, cuma ambil idea):',
+    'Buat copy carousel sosial untuk @hamiddi_ (Middi, Jom Digital).',
+    'Caption asal (JANGAN ubah, ambil idea sahaja):',
     '"""' + caption + '"""',
     title ? 'Tajuk post: ' + title : '',
     pillar ? 'Pillar: ' + pillar : '',
-    `Hasilkan tepat ${count} slide.`,
+    `Hasilkan tepat ${count} slide ikut arc: hook -> tension -> data -> mekanisme -> lesson.`,
+    'Setiap slide pilih kind:',
+    '- "hook": pembuka, ada hero number atau soalan. Tiada items.',
+    '- "stat": satu nombor besar (hero) + heroLabel, guna bila ada data.',
+    '- "cards": 2 hingga 4 kad ringkas (items: title + body).',
+    '- "bars": 2 hingga 4 bar dengan peratus (items: title + value 0-100).',
+    '- "lesson": penutup, body jadi callout.',
     'Peraturan:',
+    '- Slide pertama kind hook, slide terakhir kind lesson.',
     '- Bahasa Melayu santai profesional, ayat pendek, macam orang bercakap.',
-    '- Slide 1 mesti hook kuat. Slide terakhir mesti kesimpulan atau ajakan halus, bukan jualan keras.',
-    '- headline: maksimum 5 patah perkataan, HURUF BESAR semua.',
-    '- kicker: 1-2 patah perkataan label kecil (contoh: AGENTIC AI, GOOGLE ADS, REALITI).',
-    '- sub: satu baris pendek maksimum 10 patah perkataan, boleh kosong.',
-    '- Tiada emoji, tiada em dash, tiada tanda petikan, tiada nama brand selain Jom Digital.',
-    '- Jangan ulang ayat yang sama antara slide.',
-    'Balas JSON sahaja: {"slides":[{"kicker":"...","headline":"...","sub":"..."}]}',
+    '- headline: maksimum 8 patah perkataan, sentence case, bukan semua huruf besar.',
+    '- eyebrow: 1-3 patah perkataan label topik.',
+    '- body: maksimum 22 patah perkataan, satu perenggan pendek.',
+    '- hero: nombor atau angka sahaja (contoh "RM1,720.45", "57%"), kosongkan kalau tiada.',
+    '- source: wajib kalau slide ada angka statistik. Tulis nama sumber ringkas. Kalau tiada sumber sahih, kosongkan dan jangan reka angka.',
+    '- Tiada emoji, tiada em dash, tiada CTA (jangan tulis follow/save/share), tiada tanda petikan.',
+    '- Jangan ulang ayat sama antara slide.',
+    'Balas JSON sahaja: {"slides":[{"kind":"hook","eyebrow":"...","headline":"...","body":"...","hero":"...","heroLabel":"...","items":[{"title":"...","body":"...","value":0}],"source":"..."}]}',
   ].filter(Boolean).join('\n');
 }
 
 function slidePrompt(slide, index, total, style) {
+  const kicker = String(slide.eyebrow || '').toUpperCase();
+  const headline = String(slide.headline || '').toUpperCase();
+  const body = String(slide.body || '');
   const lines = [
-    'Editorial social carousel slide, portrait 2:3, premium Malaysian business creator aesthetic.',
-    'Background: matte near-black #0B0B0C with a soft warm gold radial glow near the top and a subtle film grain.',
-    'Reserve the top 15 percent and the bottom 15 percent of the frame as empty background: no text or graphics there, so a 4:5 crop keeps every word.',
-    'Layout: near the top left, about 18 percent down, a small uppercase gold kicker with a thin gold hairline under it, reading exactly: "' + slide.kicker + '".',
-    'Centre: very large bold condensed sans-serif headline in warm cream #F5EFE6, uppercase, at most three lines, reading exactly: "' + slide.headline + '".',
+    'Editorial social carousel slide, square 1:1, premium Malaysian business creator aesthetic.',
+    'Background: matte near-black #0E0E10 with a soft warm gold radial glow near the top and a subtle film grain.',
+    'Layout: near the top left, about 18 percent down, a small uppercase gold kicker with a thin gold hairline under it, reading exactly: "' + kicker + '".',
+    'Centre: very large bold sans-serif headline in warm cream #F5F5F2, uppercase, at most three lines, reading exactly: "' + headline + '".',
   ];
-  if (slide.sub) {
-    lines.push('Under the headline: one small light grey sans-serif line reading exactly: "' + slide.sub + '".');
+  if (body) {
+    lines.push('Under the headline: one small light grey sans-serif line reading exactly: "' + body + '".');
   }
-  // No slide counter: the bottom band must stay empty so a 4:5 crop never clips it.
+  lines.push('Reserve the top 12 percent and the bottom 12 percent as empty background.');
   if (style) lines.push('Extra art direction: ' + style);
-  lines.push('No logos, no watermark, no emoji, no extra words, no lorem ipsum, high contrast, generous negative space, sharp typography.');
+  lines.push('No logos, no watermark, no emoji, no extra words, high contrast, generous negative space, sharp typography.');
   return lines.join(' ');
+}
+
+const KIND_MAP = new Set(['hook', 'stat', 'cards', 'bars', 'lesson']);
+
+function cleanItems(raw, kind) {
+  if (!Array.isArray(raw)) return [];
+  const limit = kind === 'cards' ? 4 : 4;
+  return raw.slice(0, limit).map((item) => {
+    const title = clean(item && item.title, 40);
+    if (!title) return null;
+    if (kind === 'bars') {
+      const value = Math.max(0, Math.min(100, Math.round(Number(item && item.value) || 0)));
+      return { title, value, emerald: Boolean(item && item.emerald) };
+    }
+    return { title, body: clean(item && item.body, 90) };
+  }).filter(Boolean);
 }
 
 function normalisePlan(raw, count) {
   const slides = Array.isArray(raw && raw.slides) ? raw.slides : [];
-  const cleaned = slides
-    .map((slide) => ({
-      kicker: clean(slide && slide.kicker, 28).toUpperCase(),
-      headline: clean(slide && slide.headline, 60).toUpperCase(),
-      sub: clean(slide && slide.sub, 80),
-    }))
-    .filter((slide) => slide.headline);
+  const cleaned = slides.map((slide, index) => {
+    const kindRaw = String((slide && slide.kind) || '').toLowerCase();
+    const kind = KIND_MAP.has(kindRaw) ? kindRaw : (index === 0 ? 'hook' : 'stat');
+    const items = cleanItems(slide && slide.items, kind);
+    return {
+      kind,
+      eyebrow: clean(slide && slide.eyebrow, 32).toUpperCase(),
+      headline: clean(slide && slide.headline, 80),
+      body: clean(slide && slide.body, 190),
+      hero: clean(slide && slide.hero, 18),
+      heroLabel: clean(slide && slide.heroLabel, 40),
+      items,
+      source: clean(slide && slide.source, 90),
+    };
+  }).filter((slide) => slide.headline);
+  if (cleaned.length >= 2) {
+    cleaned[0].kind = 'hook';
+    cleaned[cleaned.length - 1].kind = 'lesson';
+  }
   return cleaned.slice(0, count);
 }
 
@@ -177,6 +222,24 @@ export async function onRequest(context) {
     }
   }
 
+  if (action === 'save') {
+    const incoming = Array.isArray(body.images) ? body.images : [];
+    if (!incoming.length) return json({ success: false, error: 'no_images', message: 'Tiada gambar untuk disimpan.' }, 400);
+    const state = await readState(env, postId);
+    const images = incoming
+      .map((image) => ({
+        index: Number(image && image.index),
+        url: httpUrl(image && image.url),
+        key: String((image && image.key) || ''),
+        size: Number((image && image.size) || 0),
+        at: new Date().toISOString(),
+      }))
+      .filter((image) => Number.isInteger(image.index) && image.url);
+    if (!images.length) return json({ success: false, error: 'bad_images', message: 'URL gambar tak sah.' }, 400);
+    const next = await writeState(env, postId, { ...state, images: images.sort((a, b) => a.index - b.index) });
+    return json({ success: true, images: next.images });
+  }
+
   if (action === 'slide') {
     if (!env.JOM_MEDIA) return json({ success: false, error: 'not_configured', message: 'R2 binding JOM_MEDIA belum dipasang.' }, 500);
     const state = await readState(env, postId);
@@ -192,7 +255,7 @@ export async function onRequest(context) {
       const generated = await openai(env, '/images/generations', {
         model: IMAGE_MODEL,
         prompt: slidePrompt(slide, index, slides.length, style),
-        size: '1024x1536',
+        size: '1024x1024',
         quality: body.quality === 'medium' ? 'medium' : 'high',
         n: 1,
       });
