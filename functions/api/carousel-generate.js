@@ -83,7 +83,7 @@ function slidePrompt(slide, index, total, style) {
   if (slide.sub) {
     lines.push('Under the headline: one small light grey sans-serif line reading exactly: "' + slide.sub + '".');
   }
-  lines.push('Near the bottom right, about 18 percent from the bottom, a tiny gold slide number "' + String(index + 1).padStart(2, '0') + '/' + String(total).padStart(2, '0') + '".');
+  // No slide counter: the bottom band must stay empty so a 4:5 crop never clips it.
   if (style) lines.push('Extra art direction: ' + style);
   lines.push('No logos, no watermark, no emoji, no extra words, no lorem ipsum, high contrast, generous negative space, sharp typography.');
   return lines.join(' ');
