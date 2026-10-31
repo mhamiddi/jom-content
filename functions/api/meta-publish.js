@@ -86,6 +86,60 @@ async function publishInstagram(record, { caption, mediaUrl, mediaType }) {
   return { target: 'instagram', id: published.id, url, kind: mediaType };
 }
 
+async function publishInstagramCarousel(record, { caption, images }) {
+  if (!record.igId) throw new Error('Instagram business account belum disambung ke Page ni.');
+  const children = [];
+  for (const imageUrl of images) {
+    const child = await graph('POST', record.igId + '/media', {
+      image_url: imageUrl,
+      is_carousel_item: 'true',
+    }, record.token);
+    children.push(child.id);
+  }
+  const container = await graph('POST', record.igId + '/media', {
+    media_type: 'CAROUSEL',
+    children: children.join(','),
+    caption,
+  }, record.token);
+  const state = await waitContainer(record.igId, container.id, record.token, { attempts: 20, gapMs: 2000 });
+  if (state.status === 'ERROR' || state.status === 'EXPIRED') {
+    throw new Error('Instagram reject carousel tu (' + state.status + '). Semak saiz dan nisbah gambar.');
+  }
+  if (state.status !== 'FINISHED') {
+    return { target: 'instagram', pending: true, containerId: container.id, status: state.status, url: '', kind: 'carousel' };
+  }
+  const published = await graph('POST', record.igId + '/media_publish', { creation_id: container.id }, record.token);
+  let url = '';
+  try {
+    const media = await graph('GET', published.id, { fields: 'permalink' }, record.token);
+    url = media.permalink || '';
+  } catch { /* permalink is nice-to-have */ }
+  return { target: 'instagram', id: published.id, url, kind: 'carousel', items: images.length };
+}
+
+async function publishFacebookCarousel(record, pageToken, { caption, images }) {
+  const attached = [];
+  for (const imageUrl of images) {
+    const photo = await graph('POST', record.pageId + '/photos', {
+      url: imageUrl,
+      published: 'false',
+    }, pageToken);
+    if (!photo || !photo.id) throw new Error('Facebook tak terima gambar carousel.');
+    attached.push({ media_fbid: photo.id });
+  }
+  const created = await graph('POST', record.pageId + '/feed', {
+    message: caption,
+    attached_media: JSON.stringify(attached),
+  }, pageToken);
+  return {
+    target: 'facebook',
+    id: created.id || '',
+    url: created.id ? 'https://www.facebook.com/' + created.id : 'https://www.facebook.com/' + record.pageId,
+    kind: 'carousel',
+    items: attached.length,
+  };
+}
+
 async function finishInstagram(record, containerId) {
   const state = await waitContainer(record.igId, containerId, record.token, { attempts: 15, gapMs: 2000 });
   if (state.status !== 'FINISHED') {
@@ -162,7 +216,11 @@ export async function onRequest(context) {
   const mediaType = ['video', 'image', 'text'].includes(body.mediaType)
     ? body.mediaType
     : (post.mediaType || (mediaUrl ? 'video' : 'text'));
-  if (targets.includes('instagram') && !mediaUrl) {
+  const carouselImages = Array.isArray(body.carouselImages)
+    ? body.carouselImages.map(httpUrl).filter(Boolean).slice(0, 10)
+    : [];
+  const isCarousel = carouselImages.length >= 2;
+  if (targets.includes('instagram') && !mediaUrl && !isCarousel) {
     return json({ success: false, error: 'media_required', message: 'Instagram perlukan URL media (video/gambar).' }, 422);
   }
 
@@ -191,12 +249,16 @@ export async function onRequest(context) {
       const page = await graph('GET', record.pageId, { fields: 'access_token' }, record.token);
       pageToken = page.access_token || '';
       if (!pageToken) throw new Error('Tak dapat page access token. Semak semula sambungan Page.');
-      results.push(await publishFacebook(record, pageToken, { caption: post.caption, mediaUrl, mediaType, title: post.title }));
+      results.push(isCarousel
+        ? await publishFacebookCarousel(record, pageToken, { caption: post.caption, images: carouselImages })
+        : await publishFacebook(record, pageToken, { caption: post.caption, mediaUrl, mediaType, title: post.title }));
       recordLock.results = results;
       await env.JOM_CONTENT.put(lockKey, JSON.stringify(recordLock));
     }
     if (targets.includes('instagram')) {
-      results.push(await publishInstagram(record, { caption: post.caption, mediaUrl, mediaType }));
+      results.push(isCarousel
+        ? await publishInstagramCarousel(record, { caption: post.caption, images: carouselImages })
+        : await publishInstagram(record, { caption: post.caption, mediaUrl, mediaType }));
       recordLock.results = results;
       await env.JOM_CONTENT.put(lockKey, JSON.stringify(recordLock));
     }

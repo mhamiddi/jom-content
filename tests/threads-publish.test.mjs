@@ -100,3 +100,37 @@ test('a non-threads post still cannot publish as text-only Threads', async () =>
   assert.equal(res.status, 422);
   assert.equal(data.error, 'not_threads');
 });
+
+test('a carousel publish creates child containers then a CAROUSEL parent', async () => {
+  const calls = stubThreads();
+  let seq = 0;
+  globalThis.fetch = async (url, init = {}) => {
+    const parsed = new URL(String(url));
+    const path = parsed.pathname.replace('/v1.0', '');
+    const params = init.method === 'GET'
+      ? Object.fromEntries(parsed.searchParams.entries())
+      : Object.fromEntries(new URLSearchParams(init.body || '').entries());
+    calls.push({ path, method: init.method || 'GET', params });
+    let body = {};
+    if (path.endsWith('/threads') && init.method === 'POST') {
+      seq += 1;
+      body = params.media_type === 'CAROUSEL' ? { id: 'carousel-1' } : { id: 'child-' + seq };
+    } else if (path.endsWith('/threads_publish')) body = { id: 'media-9' };
+    else if (path.endsWith('/media-9')) body = { permalink: 'https://www.threads.com/@hamiddi_/post/media-9' };
+    else body = { status: 'FINISHED' };
+    return { ok: true, status: 200, json: async () => body };
+  };
+  const { res, data } = await run({
+    caption: 'Caption video.',
+    carouselImages: ['https://media.jom-content.com/a.png', 'https://media.jom-content.com/b.png', 'https://media.jom-content.com/c.png'],
+  });
+  assert.equal(res.status, 200);
+  assert.equal(data.success, true);
+  assert.equal(data.urls[0], 'https://www.threads.com/@hamiddi_/post/media-9');
+  const creates = calls.filter((c) => c.path.endsWith('/threads') && c.method === 'POST');
+  assert.equal(creates.length, 4);
+  assert.deepEqual(creates.slice(0, 3).map((c) => c.params.is_carousel_item), ['true', 'true', 'true']);
+  assert.equal(creates[3].params.media_type, 'CAROUSEL');
+  assert.equal(creates[3].params.children, 'child-1,child-2,child-3');
+  assert.equal(creates[3].params.is_made_with_ai, 'true');
+});

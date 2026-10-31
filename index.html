@@ -1954,11 +1954,14 @@ async function initPlatformBox(id) {
   const p = state.posts.find(x => x.id === id);
   if (!p) return;
   if (JomAuth.mode() !== 'server') return pubAllSet(id, '<strong>Butang post dimatikan.</strong> Butang ni hanya hidup selepas kunci API Cloudflare aktif.');
-  const [rm, rs, rt] = await Promise.allSettled([
+  const [rm, rs, rt, rc] = await Promise.allSettled([
     fetch('/api/meta-publish', {cache: 'no-store'}).then(r => r.json()),
     fetch('/api/social-publish', {cache: 'no-store'}).then(r => r.json()),
     fetch('/api/threads-publish', {cache: 'no-store'}).then(r => r.json()),
+    fetch('/api/carousel-generate?id=' + encodeURIComponent(id), {cache: 'no-store'}).then(r => r.json()),
   ]);
+  const carouselInfo = rc.status === 'fulfilled' ? rc.value : null;
+  if (carouselInfo && carouselInfo.state) CAROUSEL_CACHE[id] = carouselInfo.state;
   const meta = rm.status === 'fulfilled' ? rm.value : null;
   const social = rs.status === 'fulfilled' ? rs.value : null;
   const threadsInfo = rt.status === 'fulfilled' ? rt.value : null;
@@ -1977,6 +1980,7 @@ async function initPlatformBox(id) {
   }
   const mediaUrl = p.mediaUrl || '';
   const kind = p.mediaType || (mediaUrl ? 'video' : 'text');
+  CAROUSEL_CACHE[id] = CAROUSEL_CACHE[id] || { slides: [], images: [] };
   const boxes = available.map(a => `<label style="display:inline-flex;gap:6px;align-items:center;margin-right:14px"><input type="checkbox" class="pubAllTarget" value="${esc(a.platform)}" checked> ${PUB_PLATFORMS[a.platform]?.label || a.platform} <span class="account-help">${a.platform === 'facebook' ? '' : '@'}${esc(a.username)}</span></label>`).join('');
   const needsTitle = available.some(a => a.platform === 'youtube');
   pubAllSet(id, `<strong>Post ke ${available.map(a => (PUB_PLATFORMS[a.platform]?.label || a.platform)).join(' + ')}</strong>
@@ -1985,10 +1989,13 @@ async function initPlatformBox(id) {
     <div style="margin:8px 0"><span class="account-help">Atau upload ke R2 (max 90MB):</span>
     <input type="file" id="pubAllFile" accept="video/mp4,video/quicktime,video/webm,image/jpeg,image/png,image/webp" onchange="uploadMetaFile(this,'pubAllMediaUrl')" style="margin-top:4px"></div>
     <div class="publish-account-picker"><label for="pubAllMediaType">Jenis media</label>
-      <select id="pubAllMediaType"><option value="video" ${kind === 'video' ? 'selected' : ''}>Video / Reels</option><option value="image" ${kind === 'image' ? 'selected' : ''}>Gambar</option><option value="text" ${kind === 'text' ? 'selected' : ''}>Teks sahaja</option></select></div>
+      <select id="pubAllMediaType" data-id="${esc(id)}" onchange="carouselModeChanged(this.dataset.id)"><option value="video" ${kind === 'video' ? 'selected' : ''}>Video / Reels</option><option value="image" ${kind === 'image' ? 'selected' : ''}>Gambar</option><option value="carousel" ${kind === 'carousel' ? 'selected' : ''}>Carousel (gambar AI)</option><option value="text" ${kind === 'text' ? 'selected' : ''}>Teks sahaja</option></select></div>
+    <div id="carouselPanel" style="display:none;margin:8px 0"></div>
     ${needsTitle ? `<div style="margin:8px 0"><span class="account-help">Tajuk YouTube:</span><input type="text" id="pubAllTitle" value="${esc(p.title || '')}" placeholder="Tajuk video" style="width:100%;margin-top:4px"></div>` : ''}
     <div style="margin:8px 0">${boxes}</div>
     <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick="askPlatformPublish(this.dataset.id,'publish')">Post sekarang</button><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="askPlatformPublish(this.dataset.id,'draft')">Draft TikTok/YouTube</button></div>`);
+  renderCarouselPanel(id);
+  carouselModeChanged(id);
 }
 async function uploadMetaFile(input, targetId) {
   const file = input?.files?.[0];
@@ -2022,10 +2029,17 @@ function askPlatformPublish(id, mode) {
   const mediaUrl = (document.getElementById('pubAllMediaUrl')?.value || '').trim();
   const mediaType = document.getElementById('pubAllMediaType')?.value || 'video';
   const title = (document.getElementById('pubAllTitle')?.value || '').trim();
+  const carouselImages = mediaType === 'carousel'
+    ? (CAROUSEL_CACHE[id]?.images || []).slice().sort((a, b) => a.index - b.index).map(x => x.url)
+    : [];
   if (!targets.length) return showToast('Pilih sekurang-kurangnya satu platform.', 'error');
   if (mode === 'draft') {
     targets = targets.filter(t => t === 'tiktok' || t === 'youtube');
     if (!targets.length) return showToast('Draft hanya untuk TikTok dan YouTube.', 'error');
+  }
+  if (mediaType === 'carousel') {
+    if (carouselImages.length < 2) return showToast('Carousel perlukan sekurang-kurangnya 2 slide. Tekan Generate carousel dulu.', 'error');
+    if (targets.includes('youtube')) return showToast('YouTube tak terima carousel. Untick YouTube.', 'error');
   }
   const mediaRequired = targets.filter(t => PUB_PLATFORMS[t]?.needsMedia && mediaType === 'text');
   if (mediaRequired.length) return showToast(PUB_PLATFORMS[mediaRequired[0]].label + ' tak terima post teks sahaja.', 'error');
@@ -2033,7 +2047,7 @@ function askPlatformPublish(id, mode) {
   if (mode === 'publish' && targets.includes('youtube') && !title) return showToast('YouTube perlukan tajuk.', 'error');
   const verb = mode === 'draft' ? 'Simpan draft di' : 'Post ke';
   pubAllSet(id, `<strong>${verb} ${targets.map(t => PUB_PLATFORMS[t].label).join(' + ')}?</strong><br>${mode === 'draft' ? 'Draft tak keluar di platform. Boleh publish kemudian dari Zernio.' : 'Terus keluar dan tak boleh di-undo dari sini.'}
-    <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick='doPlatformPublish(this.dataset.id, ${JSON.stringify(targets)}, ${JSON.stringify(mediaUrl)}, ${JSON.stringify(mediaType)}, ${JSON.stringify(title)}, ${JSON.stringify(mode)})'>Ya, teruskan</button><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="initPlatformBox(this.dataset.id)">Batal</button></div>`);
+    <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick='doPlatformPublish(this.dataset.id, ${JSON.stringify(targets)}, ${JSON.stringify(mediaUrl)}, ${JSON.stringify(mediaType)}, ${JSON.stringify(title)}, ${JSON.stringify(mode)}, ${JSON.stringify(carouselImages)})'>Ya, teruskan</button><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="initPlatformBox(this.dataset.id)">Batal</button></div>`);
 }
 async function finishPlatformInstagram(id, containerId) {
   if (!containerId) return initPlatformBox(id);
@@ -2050,7 +2064,7 @@ async function finishPlatformInstagram(id, containerId) {
     pubAllSet(id, '<strong>Tak dapat siapkan Instagram.</strong> Semak Instagram dulu sebelum ulang.', 'err');
   }
 }
-async function doPlatformPublish(id, targets, mediaUrl, mediaType, title, mode) {
+async function doPlatformPublish(id, targets, mediaUrl, mediaType, title, mode, carouselImages = []) {
   const p = state.posts.find(x => x.id === id);
   if (!p) return;
   pubAllSet(id, '<strong>Tengah hantar…</strong> Jangan tutup tab ni.');
@@ -2061,10 +2075,11 @@ async function doPlatformPublish(id, targets, mediaUrl, mediaType, title, mode) 
   const mt = targets.filter(t => t === 'facebook' || t === 'instagram');
   const tt = targets.includes('threads');
   const mediaBody = mediaType === 'text' ? {} : {mediaUrl, mediaType};
+  const carouselBody = mediaType === 'carousel' && carouselImages.length >= 2 ? {carouselImages} : {};
 
   if (zt.length) {
     jobs.push(postJson('/api/social-publish?id=' + encodeURIComponent(id), {
-      caption: p.caption, targets: zt, mediaUrl, mediaType, title, mode
+      caption: p.caption, targets: zt, mediaUrl, mediaType, title, mode, ...carouselBody
     }).then(res => {
       if (res.success) {
         (res.results || []).forEach(x => out.push({target: x.target, ok: true, url: x.url, note: mode === 'draft' ? 'draft' : (x.status || '')}));
@@ -2075,7 +2090,7 @@ async function doPlatformPublish(id, targets, mediaUrl, mediaType, title, mode) 
   }
   if (mt.length) {
     jobs.push(postJson('/api/meta-publish?id=' + encodeURIComponent(id), {
-      caption: p.caption, targets: mt, mediaUrl, mediaType
+      caption: p.caption, targets: mt, mediaUrl, mediaType, ...carouselBody
     }).then(res => {
       const produced = (res.results || []);
       produced.forEach(x => {
@@ -2088,7 +2103,7 @@ async function doPlatformPublish(id, targets, mediaUrl, mediaType, title, mode) 
   }
   if (tt) {
     jobs.push(postJson('/api/threads-publish?id=' + encodeURIComponent(id), {
-      caption: p.caption, ...mediaBody
+      caption: p.caption, ...mediaBody, ...carouselBody
     }).then(res => {
       if (res.success) out.push({target: 'threads', ok: true, url: (res.urls || [])[0] || ''});
       else out.push({target: 'threads', ok: false, message: res.message || res.error});
@@ -2108,6 +2123,98 @@ async function doPlatformPublish(id, targets, mediaUrl, mediaType, title, mode) 
   pubAllSet(id, `<strong>${ok.length ? 'Selesai' : 'Tak jadi'}.</strong>${lines}${finish}
     ${bad.length ? `<div class="detail-actions"><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="initPlatformBox(this.dataset.id)">Cuba lagi</button></div>` : ''}`, cls);
   if (ok.length) { showToast(mode === 'draft' ? 'Draft disimpan.' : 'Post dah dihantar.', 'success'); apiFetchAll(); }
+}
+
+/* ===== CAROUSEL GENERATION (GPT Image) ===== */
+const CAROUSEL_CACHE = {};
+function carouselState(id) {
+  if (!CAROUSEL_CACHE[id]) CAROUSEL_CACHE[id] = { slides: [], images: [], count: 5 };
+  return CAROUSEL_CACHE[id];
+}
+function carouselSay(text) {
+  const el = document.getElementById('carouselStatus');
+  if (el) el.textContent = text;
+}
+function renderCarouselPanel(id) {
+  const panel = document.getElementById('carouselPanel');
+  if (!panel) return;
+  const state = carouselState(id);
+  const slides = state.slides || [];
+  const images = (state.images || []).slice().sort((a, b) => a.index - b.index);
+  const done = new Set(images.map((image) => image.index));
+  const thumbs = images.map((image) => `<figure style="margin:0;position:relative">
+      <img src="${esc(image.url)}" alt="Slide ${image.index + 1}" style="width:132px;height:198px;object-fit:cover;border-radius:8px;border:1px solid var(--line,#e5e7eb);display:block">
+      <figcaption style="font-size:11px;color:var(--muted,#6b7280);margin-top:4px;display:flex;justify-content:space-between;align-items:center">
+        <span>${image.index + 1}/${slides.length}</span>
+        <button class="btn btn-outline btn-xs" style="font-size:10px;padding:2px 6px" data-id="${esc(id)}" data-index="${image.index}" onclick="regenCarouselSlide(this.dataset.id,this.dataset.index)">Ulang</button>
+      </figcaption>
+    </figure>`).join('');
+  panel.innerHTML = `<div class="publish-box" style="background:var(--panel,#f8fafc);padding:10px 12px">
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px">
+        <strong>Carousel AI</strong>
+        <label style="font-size:12px" for="carouselCount">Slide</label>
+        <select id="carouselCount" style="padding:4px 6px">${[3, 4, 5, 6].map((n) => `<option value="${n}" ${(state.count || 5) === n ? 'selected' : ''}>${n}</option>`).join('')}</select>
+        <button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick="generateCarousel(this.dataset.id)">${slides.length ? 'Jana semula carousel' : 'Generate carousel'}</button>
+        ${slides.length ? `<button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="clearCarousel(this.dataset.id)">Padam</button>` : ''}
+      </div>
+      <div id="carouselStatus" class="account-help">${slides.length ? `${done.size}/${slides.length} slide siap. Caption tak diubah.` : 'Teks post kekal. Carousel cuma gambar untuk dipos bersama.'}</div>
+      ${thumbs ? `<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">${thumbs}</div>` : ''}
+      ${slides.length && done.size < slides.length ? `<div class="account-help" style="margin-top:8px">Slide belum siap: ${slides.map((_, i) => i + 1).filter((i) => !done.has(i - 1)).join(', ')}</div>` : ''}
+    </div>`;
+}
+function carouselModeChanged(id) {
+  const select = document.getElementById('pubAllMediaType');
+  const panel = document.getElementById('carouselPanel');
+  if (!select || !panel) return;
+  panel.style.display = select.value === 'carousel' ? 'block' : 'none';
+  if (select.value === 'carousel') renderCarouselPanel(id);
+}
+async function generateCarousel(id) {
+  const count = Number(document.getElementById('carouselCount')?.value || 5);
+  const state = carouselState(id);
+  state.count = count;
+  carouselSay('AI tengah susun ' + count + ' slide…');
+  try {
+    const plan = await postJson('/api/carousel-generate?id=' + encodeURIComponent(id) + '&action=plan', {count}, 180000);
+    if (!plan.success) throw new Error(plan.message || plan.error);
+    state.slides = plan.slides || [];
+    state.images = [];
+    renderCarouselPanel(id);
+    for (let i = 0; i < state.slides.length; i++) {
+      carouselSay('Render slide ' + (i + 1) + ' dari ' + state.slides.length + '… (15-20s)');
+      const result = await postJson('/api/carousel-generate?id=' + encodeURIComponent(id) + '&action=slide', {index: i}, 300000);
+      if (!result.success) throw new Error(result.message || result.error);
+      state.images = result.images || state.images;
+      renderCarouselPanel(id);
+    }
+    carouselSay(state.slides.length + ' slide siap. Pilih "Carousel" sebagai jenis media dan tekan post.');
+  } catch (error) {
+    carouselSay('Gagal: ' + error.message);
+  }
+}
+async function regenCarouselSlide(id, index) {
+  const state = carouselState(id);
+  carouselSay('Render semula slide ' + (Number(index) + 1) + '…');
+  try {
+    const result = await postJson('/api/carousel-generate?id=' + encodeURIComponent(id) + '&action=slide', {index: Number(index)}, 300000);
+    if (!result.success) throw new Error(result.message || result.error);
+    state.images = result.images || state.images;
+    renderCarouselPanel(id);
+    carouselSay('Slide ' + (Number(index) + 1) + ' dah diganti.');
+  } catch (error) {
+    carouselSay('Gagal: ' + error.message);
+  }
+}
+async function clearCarousel(id) {
+  try {
+    const result = await postJson('/api/carousel-generate?id=' + encodeURIComponent(id) + '&action=clear', {}, 60000);
+    if (!result.success) throw new Error(result.message || result.error);
+    CAROUSEL_CACHE[id] = { slides: [], images: [], count: carouselState(id).count || 5 };
+    renderCarouselPanel(id);
+    carouselSay('Carousel dipadam. Caption tak disentuh.');
+  } catch (error) {
+    carouselSay('Gagal padam: ' + error.message);
+  }
 }
 
 /* ===== CALENDAR (day / week / month) ===== */

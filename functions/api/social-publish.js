@@ -61,7 +61,14 @@ export async function onRequest(context) {
 
   const mode = body.mode === 'draft' ? 'draft' : 'publish';
   const mediaUrl = httpUrl(body.mediaUrl);
-  if (!mediaUrl) return json({ success: false, error: 'media_required', message: 'TikTok dan YouTube perlukan URL media https.' }, 400);
+  const carouselImages = Array.isArray(body.carouselImages)
+    ? body.carouselImages.map(httpUrl).filter(Boolean).slice(0, 10)
+    : [];
+  const isCarousel = carouselImages.length >= 2;
+  if (isCarousel && targets.includes('youtube')) {
+    return json({ success: false, error: 'carousel_unsupported', message: 'YouTube tak terima carousel. Pilih TikTok sahaja atau guna video.' }, 400);
+  }
+  if (!mediaUrl && !isCarousel) return json({ success: false, error: 'media_required', message: 'TikTok dan YouTube perlukan URL media https.' }, 400);
 
   const posts = (await env.JOM_CONTENT.get('posts', { type: 'json' })) || [];
   const post = posts.find((item) => item.id === postId);
@@ -91,10 +98,13 @@ export async function onRequest(context) {
     return json({ success: false, error: 'title_required', message: 'YouTube perlukan tajuk.' }, 400);
   }
 
+  const mediaItems = isCarousel
+    ? carouselImages.map((imageUrl) => ({ type: 'image', url: imageUrl }))
+    : [{ type: body.mediaType === 'image' ? 'image' : 'video', url: mediaUrl }];
   const payload = {
     content: caption,
     platforms,
-    mediaItems: [{ type: body.mediaType === 'image' ? 'image' : 'video', url: mediaUrl }],
+    mediaItems,
     isDraft: mode === 'draft',
   };
   if (mode === 'publish') payload.publishNow = true;

@@ -181,3 +181,58 @@ test('a second identical publish is refused by the lock', async () => {
   assert.equal(res.status, 409);
   assert.equal((await res.json()).error, 'already_posted');
 });
+
+test('Instagram carousel builds children then a CAROUSEL parent', async () => {
+  const kv = kvStore({ posts: JSON.stringify([post()]), 'meta:accounts': JSON.stringify(META) });
+  let n = 0;
+  const calls = stubFetch({
+    '222/media': () => ({ id: 'c' + (++n) }),
+    'c4': { status_code: 'FINISHED' },
+    '222/media_publish': { id: 'ig-1' },
+    'ig-1': { permalink: 'https://www.instagram.com/p/ig-1/' },
+  });
+  const res = await onRequest({
+    request: request({
+      caption: 'Caption panjang untuk ujian.',
+      targets: ['instagram'],
+      carouselImages: ['https://media.jom-content.com/a.png', 'https://media.jom-content.com/b.png', 'https://media.jom-content.com/c.png'],
+    }, '?id=p1'),
+    env: env(kv),
+  });
+  const data = await res.json();
+  assert.equal(res.status, 200);
+  assert.equal(data.success, true);
+  assert.equal(data.results[0].kind, 'carousel');
+  const mediaCalls = calls.filter((c) => c.path === '222/media' && c.method === 'POST');
+  assert.equal(mediaCalls.length, 4);
+  assert.match(mediaCalls[0].body, /is_carousel_item=true/);
+  assert.match(mediaCalls[3].body, /media_type=CAROUSEL/);
+  assert.match(mediaCalls[3].body, /children=c1%2Cc2%2Cc3/);
+});
+
+test('Facebook carousel uploads unpublished photos then attaches them to one feed post', async () => {
+  const kv = kvStore({ posts: JSON.stringify([post()]), 'meta:accounts': JSON.stringify(META) });
+  let n = 0;
+  const calls = stubFetch({
+    '111': { access_token: 'page-token' },
+    '111/photos': () => ({ id: 'ph' + (++n) }),
+    '111/feed': { id: '111_777' },
+  });
+  const res = await onRequest({
+    request: request({
+      caption: 'Caption panjang untuk ujian.',
+      targets: ['facebook'],
+      carouselImages: ['https://media.jom-content.com/a.png', 'https://media.jom-content.com/b.png'],
+    }, '?id=p1'),
+    env: env(kv),
+  });
+  const data = await res.json();
+  assert.equal(res.status, 200);
+  assert.equal(data.results[0].kind, 'carousel');
+  const photos = calls.filter((c) => c.path === '111/photos');
+  assert.equal(photos.length, 2);
+  assert.match(photos[0].body, /published=false/);
+  const feed = calls.find((c) => c.path === '111/feed');
+  assert.match(feed.body, /attached_media=/);
+  assert.match(decodeURIComponent(feed.body), /\[{"media_fbid":"ph1"},{"media_fbid":"ph2"}\]/);
+});

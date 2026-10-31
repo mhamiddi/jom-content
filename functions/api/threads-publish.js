@@ -93,7 +93,11 @@ export async function onRequest(context) {
   const mediaUrl = httpUrl(body.mediaUrl);
   const mediaKind = String(body.mediaType || '').toLowerCase();
   const withMedia = Boolean(mediaUrl) && (mediaKind === 'video' || mediaKind === 'image');
-  if (post.platform !== 'threads' && !withMedia) return json({ success: false, error: 'not_threads', message: 'Post ni bukan untuk Threads.' }, 422);
+  const carouselImages = Array.isArray(body.carouselImages)
+    ? body.carouselImages.map(httpUrl).filter(Boolean).slice(0, 20)
+    : [];
+  const isCarousel = carouselImages.length >= 2;
+  if (post.platform !== 'threads' && !withMedia && !isCarousel) return json({ success: false, error: 'not_threads', message: 'Post ni bukan untuk Threads.' }, 422);
   if (post.status === 'rejected') return json({ success: false, error: 'rejected', message: 'Post ni berstatus rejected.' }, 422);
 
   const previousPublication = publicationFor(post, auth.id);
@@ -102,7 +106,7 @@ export async function onRequest(context) {
     return json({ success: false, error: 'already_posted', message: 'Post ni dah diposkan. Rekod account lama belum boleh diulang.' }, 409);
   }
 
-  const parts = withMedia ? [String(post.caption || '').trim()] : splitParts(post.caption);
+  const parts = (withMedia || isCarousel) ? [String(post.caption || '').trim()] : splitParts(post.caption);
   if (!parts.length) return json({ success: false, error: 'empty', message: 'Caption kosong.' }, 422);
   if (parts.length > MAX_PARTS) return json({ success: false, error: 'too_many_parts', message: `Maksimum ${MAX_PARTS} bahagian.` }, 422);
   const tooLong = parts.findIndex((part) => [...part].length > MAX_PART);
@@ -121,7 +125,35 @@ export async function onRequest(context) {
   await env.JOM_CONTENT.put(lockKey, JSON.stringify(record));
 
   try {
-    for (let i = 0; i < parts.length; i++) {
+    if (isCarousel) {
+      const children = [];
+      for (const imageUrl of carouselImages) {
+        const child = await threads(env, 'POST', `/${auth.userId}/threads`, {
+          media_type: 'IMAGE',
+          image_url: imageUrl,
+          is_carousel_item: 'true',
+          access_token: auth.token,
+        });
+        children.push(child.id);
+      }
+      const parent = await threads(env, 'POST', `/${auth.userId}/threads`, {
+        media_type: 'CAROUSEL',
+        children: children.join(','),
+        text: parts[0],
+        is_made_with_ai: 'true',
+        access_token: auth.token,
+      });
+      await waitReady(env, auth.token, parent.id, 30, 1500);
+      const published = await threads(env, 'POST', `/${auth.userId}/threads_publish`, { creation_id: parent.id, access_token: auth.token });
+      record.ids.push(published.id);
+      let carouselLink = '';
+      try {
+        carouselLink = (await threads(env, 'GET', '/' + published.id, { fields: 'permalink', access_token: auth.token })).permalink || '';
+      } catch { /* permalink is nice-to-have */ }
+      record.urls.push(carouselLink);
+      await env.JOM_CONTENT.put(lockKey, JSON.stringify(record));
+    }
+    for (let i = 0; isCarousel ? false : i < parts.length; i++) {
       const create = withMedia
         ? {
             media_type: mediaKind === 'video' ? 'VIDEO' : 'IMAGE',
