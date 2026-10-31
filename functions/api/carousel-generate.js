@@ -76,14 +76,14 @@ function slidePrompt(slide, index, total, style) {
   const lines = [
     'Editorial social carousel slide, portrait 2:3, premium Malaysian business creator aesthetic.',
     'Background: matte near-black #0B0B0C with a soft warm gold radial glow near the top and a subtle film grain.',
-    'Keep every word inside the central safe area so a 4:5 crop never cuts text. Plain background margins top and bottom.',
-    'Layout: top-left small uppercase gold kicker with a thin gold hairline under it, reading exactly: "' + slide.kicker + '".',
+    'Reserve the top 15 percent and the bottom 15 percent of the frame as empty background: no text or graphics there, so a 4:5 crop keeps every word.',
+    'Layout: near the top left, about 18 percent down, a small uppercase gold kicker with a thin gold hairline under it, reading exactly: "' + slide.kicker + '".',
     'Centre: very large bold condensed sans-serif headline in warm cream #F5EFE6, uppercase, at most three lines, reading exactly: "' + slide.headline + '".',
   ];
   if (slide.sub) {
     lines.push('Under the headline: one small light grey sans-serif line reading exactly: "' + slide.sub + '".');
   }
-  lines.push('Bottom right: tiny gold slide number "' + String(index + 1).padStart(2, '0') + '/' + String(total).padStart(2, '0') + '".');
+  lines.push('Near the bottom right, about 18 percent from the bottom, a tiny gold slide number "' + String(index + 1).padStart(2, '0') + '/' + String(total).padStart(2, '0') + '".');
   if (style) lines.push('Extra art direction: ' + style);
   lines.push('No logos, no watermark, no emoji, no extra words, no lorem ipsum, high contrast, generous negative space, sharp typography.');
   return lines.join(' ');
