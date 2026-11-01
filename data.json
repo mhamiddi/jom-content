@@ -59,8 +59,8 @@
       "pillar": "google-ads-marketing",
       "posts": 118,
       "pct": 19,
-      "target": 35,
-      "gap": -16,
+      "target": 20,
+      "gap": -1,
       "avg_score": 50.3,
       "avg_inter": 4.8
     },
@@ -68,8 +68,8 @@
       "pillar": "agentic-ai",
       "posts": 204,
       "pct": 33,
-      "target": 35,
-      "gap": -2,
+      "target": 70,
+      "gap": -37,
       "avg_score": 58.1,
       "avg_inter": 14.9
     },
@@ -77,16 +77,16 @@
       "pillar": "engage",
       "posts": 296,
       "pct": 48,
-      "target": 30,
-      "gap": 18,
+      "target": 10,
+      "gap": 38,
       "avg_score": 27.9,
       "avg_inter": 7.9
     }
   ],
   "pillar_targets": {
-    "google-ads-marketing": 0.35,
-    "agentic-ai": 0.35,
-    "engage": 0.3
+    "google-ads-marketing": 0.2,
+    "agentic-ai": 0.7,
+    "engage": 0.1
   },
   "posts_7d": 125,
   "posts_30d": 618,
@@ -199,7 +199,7 @@
       "comments": 5,
       "shares": 9,
       "views": 787,
-      "text": "Aku share rahsia nak setup workflow Meta Ads agentic Ai guna claude yang akan significantly improve output campaign meta ads korang. \ud83d\udc47\n\nX nak baca sudah. Tak rugi.",
+      "text": "Aku share rahsia nak setup workflow Meta Ads agentic Ai guna claude yang akan significantly improve output campaign meta ads korang. 👇\n\nX nak baca sudah. Tak rugi.",
       "weighted": 55,
       "score": 89.0
     },
@@ -227,7 +227,7 @@
       "comments": 1,
       "shares": 4,
       "views": 1091,
-      "text": "Sales advisor atau bisnes yang handle LEADS hilang sales RIBUAN ringgit sebab takda CRM. Meh aku ajar setup baik punya.\n\nSetup Hermes > sambung kan whatsapp kau ke baileys > lepas tu cakap kat dia,\n\u201cManage semua leads yang masuk melalui WhatsApp, susun by temperature, go thru chat untuk dapatkan context, notify aku leads yang kena close, susun kanban style, buat dedicated dashboard untuk aku.\u201d -> ",
+      "text": "Sales advisor atau bisnes yang handle LEADS hilang sales RIBUAN ringgit sebab takda CRM. Meh aku ajar setup baik punya.\n\nSetup Hermes > sambung kan whatsapp kau ke baileys > lepas tu cakap kat dia,\n“Manage semua leads yang masuk melalui WhatsApp, susun by temperature, go thru chat untuk dapatkan context, notify aku leads yang kena close, susun kanban style, buat dedicated dashboard untuk aku.” -> ",
       "weighted": 27,
       "score": 87.3
     }
@@ -257,7 +257,7 @@
       "comments": 39,
       "shares": 46,
       "views": 0,
-      "text": "akid.ahmad\nAku edit video ni guna Claude + HyperFrames.\nBagi satu prompt simple je, dia transcribe, buang pause & yang repeat, letak motion graphics, SFX & music. 20\u201330 minit siap.\nKau cuma perlukan 3 benda:\n1\ufe0f\u20e3 Claude Pro (dalam $20 sebulan)\n2\ufe0f\u20e3 Prompt yang simple\n3\ufe0f\u20e3 Guide aku: Claude Video for Dummies\nLink guide ada dekat bio \ud83d\udd17",
+      "text": "akid.ahmad\nAku edit video ni guna Claude + HyperFrames.\nBagi satu prompt simple je, dia transcribe, buang pause & yang repeat, letak motion graphics, SFX & music. 20–30 minit siap.\nKau cuma perlukan 3 benda:\n1️⃣ Claude Pro (dalam $20 sebulan)\n2️⃣ Prompt yang simple\n3️⃣ Guide aku: Claude Video for Dummies\nLink guide ada dekat bio 🔗",
       "weighted": 471,
       "score": 99.4
     },
@@ -299,7 +299,7 @@
       "comments": 23,
       "shares": 13,
       "views": 5063,
-      "text": "Tengah hangat isu Foodie, tapi aku nak sentuh isu\n\u201cHIRE FOOD INFLUENCER TAPI TAKDA BEZA PUN, MEMBAZIR.\u201d",
+      "text": "Tengah hangat isu Foodie, tapi aku nak sentuh isu\n“HIRE FOOD INFLUENCER TAPI TAKDA BEZA PUN, MEMBAZIR.”",
       "weighted": 153,
       "score": 97.2
     },
@@ -341,7 +341,7 @@
       "comments": 39,
       "shares": 46,
       "views": 1600,
-      "text": "Anyone cari guide video macam mana nak edit dengan claude boleh refer ni.\nOkay lah, nanti aku share video cara nak edit video guna claude code dari phone jugak.\nLaptop duk rumah, kau duk luar berjalan pun boleh hantar video kat claude suruh dia edit dan post kan.\n100 likes aku buat \ud83d\ude02",
+      "text": "Anyone cari guide video macam mana nak edit dengan claude boleh refer ni.\nOkay lah, nanti aku share video cara nak edit video guna claude code dari phone jugak.\nLaptop duk rumah, kau duk luar berjalan pun boleh hantar video kat claude suruh dia edit dan post kan.\n100 likes aku buat 😂",
       "weighted": 471,
       "score": 95.4
     },
@@ -369,7 +369,7 @@
       "comments": 5,
       "shares": 6,
       "views": 1755,
-      "text": "Anyone cari guide video macam mana nak edit dengan claude boleh refer ni.\n\nOkay lah, nanti aku share video cara nak edit video guna claude code dari phone jugak. \n\nLaptop duk rumah, kau duk luar berjalan pun boleh hantar video kat claude suruh dia edit dan post kan.\n\n100 likes aku buat \ud83d\ude02",
+      "text": "Anyone cari guide video macam mana nak edit dengan claude boleh refer ni.\n\nOkay lah, nanti aku share video cara nak edit video guna claude code dari phone jugak. \n\nLaptop duk rumah, kau duk luar berjalan pun boleh hantar video kat claude suruh dia edit dan post kan.\n\n100 likes aku buat 😂",
       "weighted": 93,
       "score": 94.0
     }

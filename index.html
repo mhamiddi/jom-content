@@ -787,7 +787,7 @@ const PLATFORM_NAMES = {tiktok:'TikTok',threads:'Threads'};
 const PLATFORM_COLORS = {tiktok:'#fe2c55',threads:'#888'};
 const PLATFORM_ICONS = {tiktok:'TikTok',threads:'Threads'};
 const CANONICAL_PILLARS = ['Google Ads & Marketing','Agentic AI','Engage'];
-const CANONICAL_TARGETS = {'Google Ads & Marketing':35,'Agentic AI':35,'Engage':30};
+const CANONICAL_TARGETS = {'Agentic AI':70,'Google Ads & Marketing':20,'Engage':10};
 const SVG_PATHS = {"film": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4\"/>", "camera": "<rect x=\"3\" y=\"7\" width=\"18\" height=\"13\" rx=\"2\"/><path d=\"M9 7l1.5-3h3L15 7\"/><circle cx=\"12\" cy=\"13.5\" r=\"3.5\"/>", "moon": "<path d=\"M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z\"/>", "sun": "<circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4\"/>", "check": "<path d=\"M5 12.5l4.5 4.5L19 7.5\"/>", "cross": "<path d=\"M6 6l12 12M18 6L6 18\"/>", "info": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 11v6M12 7.5h.01\"/>", "search": "<circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"M20 20l-3.5-3.5\"/>", "list": "<path d=\"M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01\"/>", "board": "<rect x=\"3\" y=\"3\" width=\"7\" height=\"18\" rx=\"1.5\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"11\" rx=\"1.5\"/>", "doc": "<rect x=\"4\" y=\"3\" width=\"16\" height=\"18\" rx=\"2\"/><path d=\"M8 8h8M8 12h8M8 16h5\"/>", "edit": "<path d=\"M4 20h4L19 9l-4-4L4 16v4zM13.5 6.5l4 4\"/>", "clock": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/>", "note": "<path d=\"M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5\"/><path d=\"M14 4c.4 2.4 2 4 4.5 4.2\"/>"};
 function svgIcon(name, size = 16) {
   return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-3px">' + (SVG_PATHS[name] || '') + '</svg>';
@@ -800,6 +800,14 @@ const PILLAR_ALIASES = {
   'website-cro':'Google Ads & Marketing',
   'hermes agentic ai':'Agentic AI',
   'agentic ai':'Agentic AI',
+  'hermes':'Agentic AI',
+  'hermes agent':'Agentic AI',
+  'claude':'Agentic AI',
+  'claude code':'Agentic AI',
+  'codex':'Agentic AI',
+  'ai automation':'Agentic AI',
+  'automation':'Agentic AI',
+  'ai agent':'Agentic AI',
   'personal':'Engage',
   'personal & mindset':'Engage',
   'others':'Engage'
@@ -809,7 +817,7 @@ function canonicalPillarName(value) {
   return PILLAR_ALIASES[label.toLowerCase().replace(/[-_]+/g, ' ')] || PILLAR_ALIASES[label.toLowerCase()] || label || 'Engage';
 }
 const WORKSPACES = {
-  'jom-digital': {name:'Jom Digital', short:'Jom Digital', type:'Content OS', tagline:'TikTok & Threads: Google Ads & Marketing, Agentic AI dan Engage.', pillars:[...CANONICAL_PILLARS], targets:{...CANONICAL_TARGETS}}
+  'jom-digital': {name:'Jom Digital', short:'Jom Digital', type:'Content OS', tagline:'TikTok & Threads: 70% Agentic AI (Hermes, Claude Code, Codex, automation), 20% Google Ads, 10% lain-lain.', pillars:[...CANONICAL_PILLARS], targets:{...CANONICAL_TARGETS}}
 };
 const DEFAULT_WORKSPACE = 'jom-digital';
 const PAGE_TITLES = {dashboard:'Overview',tiktok:'TikTok',threads:'Threads',analytics:'Analytics',accounts:'Connected accounts'};
