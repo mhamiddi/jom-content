@@ -98,6 +98,8 @@ main{padding:var(--space-2xl);flex:1}
 .post-chip{font-size:10px;padding:3px 6px;border-radius:4px;margin-bottom:2px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;display:block;font-weight:500;border-left:4px solid var(--status-accent,#94a3b8);transition:opacity var(--trans-fast),transform var(--trans-fast);max-width:100%;width:100%;box-sizing:border-box}
 .post-chip.status-draft{--status-accent:#94a3b8}.post-chip.status-scheduled{--status-accent:#3b82f6}.post-chip.status-posted{--status-accent:#22c55e}.post-chip.status-failed{--status-accent:#ef4444}.post-chip.status-rejected{--status-accent:#7c3aed}
 .post-chip:hover{opacity:.85;transform:translateX(2px)}
+/* Chips sit on the pillar colour, so the status classes must not recolour the text (light and dark). */
+.post-chip.post-chip[class*="status-"]{color:#fff}
 .more-chip{font-size:10px;color:var(--text2);padding:2px 6px;font-weight:500}
 
 /* SIDEBAR SOCIAL LINKS */
