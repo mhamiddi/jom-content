@@ -1,86 +1,86 @@
 {
-  "generated_at": "2026-11-02T01:45:15.026247+00:00",
-  "median_weighted_30d": 3,
-  "median_views_30d": 263.0,
+  "generated_at": "2026-11-03T01:45:13.961711+00:00",
+  "median_weighted_30d": 3.0,
+  "median_views_30d": 269.5,
   "weekly": {
-    "engage": {
-      "posts": 51,
-      "inter": 2021,
-      "shares": 271,
-      "views": 60139,
-      "avg_score": 33.7,
-      "avg_inter": 39.6
-    },
     "agentic-ai": {
-      "posts": 47,
-      "inter": 672,
+      "posts": 48,
+      "inter": 808,
       "shares": 48,
-      "views": 26303,
-      "avg_score": 64.6,
-      "avg_inter": 14.3
+      "views": 30447,
+      "avg_score": 64.7,
+      "avg_inter": 16.8
+    },
+    "engage": {
+      "posts": 46,
+      "inter": 2033,
+      "shares": 272,
+      "views": 60718,
+      "avg_score": 35.6,
+      "avg_inter": 44.2
     },
     "google-ads-marketing": {
-      "posts": 21,
-      "inter": 106,
-      "shares": 6,
-      "views": 6605,
-      "avg_score": 54.3,
-      "avg_inter": 5.0
+      "posts": 18,
+      "inter": 95,
+      "shares": 4,
+      "views": 5997,
+      "avg_score": 54.1,
+      "avg_inter": 5.3
     }
   },
   "monthly": {
-    "engage": {
-      "posts": 303,
-      "inter": 2781,
-      "shares": 294,
-      "views": 96404,
-      "avg_score": 27.8,
-      "avg_inter": 9.2
-    },
     "agentic-ai": {
       "posts": 210,
-      "inter": 3239,
-      "shares": 237,
-      "views": 113285,
-      "avg_score": 58.8,
-      "avg_inter": 15.4
+      "inter": 3362,
+      "shares": 240,
+      "views": 115833,
+      "avg_score": 59.3,
+      "avg_inter": 16.0
+    },
+    "engage": {
+      "posts": 287,
+      "inter": 2778,
+      "shares": 295,
+      "views": 94603,
+      "avg_score": 27.9,
+      "avg_inter": 9.7
     },
     "google-ads-marketing": {
-      "posts": 116,
-      "inter": 569,
+      "posts": 107,
+      "inter": 537,
       "shares": 36,
-      "views": 30171,
-      "avg_score": 50.7,
-      "avg_inter": 4.9
+      "views": 28418,
+      "avg_score": 51.2,
+      "avg_inter": 5.0
     }
   },
   "pillars": [
     {
       "pillar": "google-ads-marketing",
-      "posts": 116,
+      "posts": 107,
       "pct": 18,
       "target": 20,
       "gap": -2,
-      "avg_score": 50.7,
-      "avg_inter": 4.9
+      "avg_score": 51.2,
+      "avg_inter": 5.0
     },
     {
       "pillar": "agentic-ai",
       "posts": 210,
-      "pct": 33,
+      "pct": 35,
       "target": 70,
-      "gap": -37,
-      "avg_score": 58.8,
-      "avg_inter": 15.4
+      "gap": -35,
+      "avg_score": 59.3,
+      "avg_inter": 16.0
     },
     {
       "pillar": "engage",
-      "posts": 303,
+      "posts": 287,
       "pct": 48,
       "target": 10,
       "gap": 38,
-      "avg_score": 27.8,
-      "avg_inter": 9.2
+      "avg_score": 27.9,
+      "avg_inter": 9.7
     }
   ],
   "pillar_targets": {
@@ -88,8 +88,8 @@
     "google-ads-marketing": 0.2,
     "engage": 0.1
   },
-  "posts_7d": 119,
-  "posts_30d": 629,
+  "posts_7d": 112,
+  "posts_30d": 604,
   "top_7d": [
     {
       "id": 2442,
@@ -97,12 +97,12 @@
       "pillar": "engage",
       "pillar_source": "label",
       "format": "story-experience",
-      "likes": 1426,
+      "likes": 1434,
       "comments": 55,
-      "shares": 269,
-      "views": 46915,
+      "shares": 270,
+      "views": 47361,
       "text": "Semalam aku decide untuk keluarkan ja high value sharing. Malas dah nak gatekeep.\n\nYg ni baru level surface je guys. Tu pun specific untuk threads sahaja. Follow kalau nak sharing yang lagi atas atas dia.",
-      "weighted": 2343,
+      "weighted": 2354,
       "score": 99.7
     },
     {
@@ -111,13 +111,27 @@
       "pillar": "agentic-ai",
       "pillar_source": "label",
       "format": "tutorial-howto",
-      "likes": 79,
+      "likes": 82,
       "comments": 41,
       "shares": 3,
-      "views": 3603,
+      "views": 3663,
       "text": "Kalau korang ada apa2 nak tahu pasal cara nak setup Hermes, nak setup certain workflow, nak setup ai agent atau agentic Ai, cara macam mana, apa kena setup\n\nTanya ja. Aku share free.",
-      "weighted": 170,
-      "score": 96.7
+      "weighted": 173,
+      "score": 96.8
+    },
+    {
+      "id": 2456,
+      "published_at": "2026-11-01T04:49:24+0000",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 57,
+      "comments": 2,
+      "shares": 2,
+      "views": 1894,
+      "text": "Another day another sharing. Korang konfius pasal Ai, harness, agentic Ai, automation apa semua, tanya sini. Aku malas dah nak gatekeep.\n\n\u201cNi bukan gatekeep dah bang, ni telanjang terus\u201d. -> real testimoni.\n\nSampai ada yang tak puas hati kot aku share pasal content Ai automation tu. Apadahal.",
+      "weighted": 67,
+      "score": 93.3
     },
     {
       "id": 2455,
@@ -128,10 +142,10 @@
       "likes": 38,
       "comments": 14,
       "shares": 0,
-      "views": 1702,
+      "views": 1859,
       "text": "Weekend ni saja 700+ followers baru \ud83d\ude02 terima kasih lah guys follow. Semog bermanfaat.",
       "weighted": 66,
-      "score": 92.9
+      "score": 93.2
     },
     {
       "id": 2437,
@@ -139,13 +153,13 @@
       "pillar": "agentic-ai",
       "pillar_source": "label",
       "format": "tutorial-howto",
-      "likes": 25,
+      "likes": 26,
       "comments": 3,
       "shares": 6,
-      "views": 1661,
+      "views": 1741,
       "text": "Sales advisor atau bisnes yang handle LEADS hilang sales RIBUAN ringgit sebab takda CRM. Meh aku ajar setup baik punya.\n\nSetup Hermes > sambung kan whatsapp kau ke baileys > lepas tu cakap kat dia,\n\u201cManage semua leads yang masuk melalui WhatsApp, susun by temperature, go thru chat untuk dapatkan context, notify aku leads yang kena close, susun kanban style, buat dedicated dashboard untuk aku.\u201d -> ",
-      "weighted": 49,
-      "score": 91.9
+      "weighted": 50,
+      "score": 92.0
     },
     {
       "id": 2421,
@@ -154,12 +168,26 @@
       "pillar_source": "label",
       "format": "tutorial-howto",
       "likes": 29,
-      "comments": 10,
+      "comments": 11,
       "shares": 2,
-      "views": 1509,
+      "views": 1513,
       "text": "Current setup aku.\n\nLocal Linux PC + Hermes + Opus 5.5 video editing + VPS + Pi Dedicated Agent + Deepseek + T3 Code Alpha.\n\nPlan nak tambah another Mac Mini 16gb Ram untuk dedicated video editing machine.",
-      "weighted": 55,
-      "score": 91.9
+      "weighted": 57,
+      "score": 92.0
+    },
+    {
+      "id": 2447,
+      "published_at": "2026-11-01T13:10:52+0000",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 41,
+      "comments": 6,
+      "shares": 0,
+      "views": 1394,
+      "text": "Benda yang korang KENA TAHU untuk jadikan journey AI korang lebih lancar.\n\n1. Agentic Ai adalah setup Ai yang boleh buat apa yg korang buat dalam laptop.\n\n2. Hermes adalah shell, dia sendiri takda apa. Sambung ke model Ai, dia jadi Ai Harness -> Agentic Ai\n\n3. VPS atau Local Device (Laptop PC) adalah rumah dimana shell tu diletakkan. Takda rumah, tak boleh guna.",
+      "weighted": 53,
+      "score": 91.4
     },
     {
       "id": 2436,
@@ -170,10 +198,10 @@
       "likes": 24,
       "comments": 9,
       "shares": 1,
-      "views": 1507,
+      "views": 1528,
       "text": "Terkejut aku dekat 300 followers baru tak sampai 24 jam. Meh lah follow, janji tak gatekeep. Apadahal.",
       "weighted": 45,
-      "score": 91.2
+      "score": 91.1
     },
     {
       "id": 2389,
@@ -184,23 +212,9 @@
       "likes": 36,
       "comments": 11,
       "shares": 0,
-      "views": 1199,
+      "views": 1208,
       "text": "Aku bukan pembaca buku. Nak tengok koleksi buku aku?\n\nEmpat buku ni + dotcom secrect. Tu ja. Tapi jap lagi aku rasa nak shopping buku lah. Drop best book recommendations korang.",
       "weighted": 58,
-      "score": 91.2
-    },
-    {
-      "id": 2456,
-      "published_at": "2026-11-01T04:49:24+0000",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 41,
-      "comments": 0,
-      "shares": 2,
-      "views": 1414,
-      "text": "Another day another sharing. Korang konfius pasal Ai, harness, agentic Ai, automation apa semua, tanya sini. Aku malas dah nak gatekeep.\n\n\u201cNi bukan gatekeep dah bang, ni telanjang terus\u201d. -> real testimoni.\n\nSampai ada yang tak puas hati kot aku share pasal content Ai automation tu. Apadahal.",
-      "weighted": 47,
       "score": 91.1
     },
     {
@@ -212,24 +226,10 @@
       "likes": 25,
       "comments": 8,
       "shares": 1,
-      "views": 1376,
+      "views": 1399,
       "text": "Kat Threads ni kau tak boleh bercakap pasal kau. \n\nKau kena bercakap benda yang bawak manfaat pada orang.\n\nKita tak tahu apa posting kita yg bawak manfaat pada orang lain.",
       "weighted": 44,
       "score": 90.7
-    },
-    {
-      "id": 2422,
-      "published_at": "2026-10-30T17:48:18+0000",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 18,
-      "comments": 5,
-      "shares": 9,
-      "views": 860,
-      "text": "Aku share rahsia nak setup workflow Meta Ads agentic Ai guna claude yang akan significantly improve output campaign meta ads korang. \ud83d\udc47\n\nX nak baca sudah. Tak rugi.",
-      "weighted": 55,
-      "score": 89.4
     }
   ],
   "top_30d": [
@@ -239,12 +239,12 @@
       "pillar": "engage",
       "pillar_source": "label",
       "format": "story-experience",
-      "likes": 1426,
+      "likes": 1434,
       "comments": 55,
-      "shares": 269,
-      "views": 46915,
+      "shares": 270,
+      "views": 47361,
       "text": "Semalam aku decide untuk keluarkan ja high value sharing. Malas dah nak gatekeep.\n\nYg ni baru level surface je guys. Tu pun specific untuk threads sahaja. Follow kalau nak sharing yang lagi atas atas dia.",
-      "weighted": 2343,
+      "weighted": 2354,
       "score": 99.7
     },
     {
@@ -273,7 +273,7 @@
       "views": 5036,
       "text": "Aku buat satu eksperimen dekat thread ni.\n\ndua minggu ni aku kurang kan komen dekat posting orang. So posting direct aku lagi banyak dari komen. Disebabkan posting Ai related aku dapat engagement tinggi, nampak macam okay tapi...",
       "weighted": 329,
-      "score": 97.9
+      "score": 97.8
     },
     {
       "id": 1886,
@@ -284,10 +284,10 @@
       "likes": 125,
       "comments": 14,
       "shares": 26,
-      "views": 4046,
+      "views": 4055,
       "text": "Aku nak share step by step cara aku edit video guna claude.\n\n1. Make sure guna claude pro.\n2. Pilih claude code, opus 5.5 high\n3. Create folder kerja (tempat dump video raw dan bahan2 b-roll).\n4. Bagitahu claude untuk sambung dengan folder tu.\n5. Masukkan video raw korang dalam tu.\n\nNow step paling penting.",
       "weighted": 231,
-      "score": 97.3
+      "score": 97.2
     },
     {
       "id": 1837,
@@ -298,10 +298,10 @@
       "likes": 68,
       "comments": 23,
       "shares": 13,
-      "views": 5085,
+      "views": 5091,
       "text": "Tengah hangat isu Foodie, tapi aku nak sentuh isu\n\u201cHIRE FOOD INFLUENCER TAPI TAKDA BEZA PUN, MEMBAZIR.\u201d",
       "weighted": 153,
-      "score": 97.2
+      "score": 97.1
     },
     {
       "id": 2435,
@@ -309,13 +309,13 @@
       "pillar": "agentic-ai",
       "pillar_source": "label",
       "format": "tutorial-howto",
-      "likes": 79,
+      "likes": 82,
       "comments": 41,
       "shares": 3,
-      "views": 3603,
+      "views": 3663,
       "text": "Kalau korang ada apa2 nak tahu pasal cara nak setup Hermes, nak setup certain workflow, nak setup ai agent atau agentic Ai, cara macam mana, apa kena setup\n\nTanya ja. Aku share free.",
-      "weighted": 170,
-      "score": 96.7
+      "weighted": 173,
+      "score": 96.8
     },
     {
       "id": 1857,
@@ -326,10 +326,10 @@
       "likes": 71,
       "comments": 15,
       "shares": 5,
-      "views": 4775,
+      "views": 4776,
       "text": "Dalam Hermes aku,\n\nBerapa total Ai agent yg aku ada? 35 agents kesemuanya. Specific workflows.\n\nBerapa total skills? 294 skills.",
       "weighted": 116,
-      "score": 96.7
+      "score": 96.6
     },
     {
       "id": 1597,
@@ -343,7 +343,7 @@
       "views": 1600,
       "text": "Anyone cari guide video macam mana nak edit dengan claude boleh refer ni.\nOkay lah, nanti aku share video cara nak edit video guna claude code dari phone jugak.\nLaptop duk rumah, kau duk luar berjalan pun boleh hantar video kat claude suruh dia edit dan post kan.\n100 likes aku buat \ud83d\ude02",
       "weighted": 471,
-      "score": 95.3
+      "score": 95.2
     },
     {
       "id": 1738,
@@ -357,7 +357,7 @@
       "views": 4529,
       "text": "Kenapa tak guna Claude Code dalam PC ja?\n\nLeceh.",
       "weighted": 57,
-      "score": 94.9
+      "score": 94.8
     },
     {
       "id": 1827,
@@ -371,21 +371,21 @@
       "views": 1761,
       "text": "Anyone cari guide video macam mana nak edit dengan claude boleh refer ni.\n\nOkay lah, nanti aku share video cara nak edit video guna claude code dari phone jugak. \n\nLaptop duk rumah, kau duk luar berjalan pun boleh hantar video kat claude suruh dia edit dan post kan.\n\n100 likes aku buat \ud83d\ude02",
       "weighted": 93,
-      "score": 93.9
+      "score": 93.8
     }
   ],
   "recommendations": [
     {
       "type": "pillar-mix",
       "title": "Pillar mix vs target 35/35/30",
-      "body": "google-ads-marketing 18% (target 20%) | agentic-ai 33% (target 70%) | engage 48% (target 10%)",
-      "metric": 629
+      "body": "google-ads-marketing 18% (target 20%) | agentic-ai 35% (target 70%) | engage 48% (target 10%)",
+      "metric": 604
     },
     {
       "type": "pillar-under",
       "title": "Pillar kurang: agentic-ai",
-      "body": "agentic-ai cuma 33% (target 70%). Naikkan volume je tak cukup. Kalau pillar ni engagement rendah, tukar bentuk: AI sebagai tool, masalah bisnes sebagai cerita.",
-      "metric": 33
+      "body": "agentic-ai cuma 35% (target 70%). Naikkan volume je tak cukup. Kalau pillar ni engagement rendah, tukar bentuk: AI sebagai tool, masalah bisnes sebagai cerita.",
+      "metric": 35
     },
     {
       "type": "pillar-over",
@@ -396,14 +396,14 @@
     {
       "type": "pillar-fix",
       "title": "Tingkatkan: engage",
-      "body": "engage avg score 27.8 dari 303 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
-      "metric": 27.8
+      "body": "engage avg score 27.9 dari 287 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
+      "metric": 27.9
     },
     {
       "type": "top-pillar-week",
       "title": "Pillar terbaik minggu ni: agentic-ai",
-      "body": "agentic-ai avg score 64.6 dari 47 posts. Kekalkan bentuk ni.",
-      "metric": 64.6
+      "body": "agentic-ai avg score 64.7 dari 48 posts. Kekalkan bentuk ni.",
+      "metric": 64.7
     }
   ]
 }
