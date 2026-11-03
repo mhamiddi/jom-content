@@ -4,7 +4,7 @@ let plannerView = localStorage.getItem('jomContentPlannerView') === 'board' ? 'b
 let plannerPage = 1, plannerFilterKey = '', selectedPlannerDate = '';
 let editorSaving = false, editorBaseline = '', editorDraftKey = '', editorReturnFocus = null;
 let editorCreateId = '', editorCreateAttempted = false;
-const editorFields = ['mPostId','mPlatform','mTitle','mCaption','mActualTitle','mActualContent','mPostedUrl','mRejectedReason','mRejectedTags','mDate','mTime','mPillar','mStatus','mNotes'];
+const editorFields = ['mPostId','mPlatform','mTitle','mCaption','mPostCaption','mActualTitle','mActualContent','mPostedUrl','mRejectedReason','mRejectedTags','mDate','mTime','mPillar','mStatus','mNotes'];
 const statusLabels = {draft:'Draft',scheduled:'Scheduled',posted:'Posted',failed:'Failed',rejected:'Rejected'};
 const statusOf = post => post.status === 'published' ? 'posted' : (post.status || 'draft');
 const isDone = post => statusOf(post) === 'posted';
@@ -129,10 +129,10 @@ function initEditorSession(){
     ui('mStatus').value=status;
   }
   editorBaseline=editorSnapshot();editorDraftKey='jomContentEditor:'+state.workspace+':'+(ui('mPostId').value||'new');
-  updateCaptionCount();toggleRejectedField();setEditorBusy(false);
+  updateCaptionCount();syncPostCaptionField();toggleRejectedField();setEditorBusy(false);
   let recovered;try{recovered=JSON.parse(sessionStorage.getItem(editorDraftKey));}catch{}
   ui('draftRecovery').hidden=!recovered;
-  if(recovered){ui('draftRecovery').innerHTML='Ada draft belum disimpan dalam tab ini. <button class="text-button" id="restoreDraft">Pulihkan</button> <button class="text-button" id="discardDraft">Abaikan</button>';ui('restoreDraft').onclick=()=>{editorFields.forEach(id=>{if(id!=='mPostId')ui(id).value=recovered.values[id]||'';});ui('mApproved').checked=!!recovered.approved;_modalImages=recovered.images||[];editorCreateId=recovered.createId||editorCreateId;editorCreateAttempted=!!recovered.createAttempted;renderMediaPreview(_modalImages);ui('draftRecovery').hidden=true;updateCaptionCount();toggleRejectedField();};ui('discardDraft').onclick=()=>{clearEditorDraft();ui('draftRecovery').hidden=true;};}
+  if(recovered){ui('draftRecovery').innerHTML='Ada draft belum disimpan dalam tab ini. <button class="text-button" id="restoreDraft">Pulihkan</button> <button class="text-button" id="discardDraft">Abaikan</button>';ui('restoreDraft').onclick=()=>{editorFields.forEach(id=>{if(id!=='mPostId')ui(id).value=recovered.values[id]||'';});ui('mApproved').checked=!!recovered.approved;_modalImages=recovered.images||[];editorCreateId=recovered.createId||editorCreateId;editorCreateAttempted=!!recovered.createAttempted;renderMediaPreview(_modalImages);ui('draftRecovery').hidden=true;updateCaptionCount();syncPostCaptionField();toggleRejectedField();};ui('discardDraft').onclick=()=>{clearEditorDraft();ui('draftRecovery').hidden=true;};}
 }
 function rememberEditorDraft(){if(editorDraftKey && editorSnapshot()!==editorBaseline)try{sessionStorage.setItem(editorDraftKey,editorSnapshot());}catch{}}
 function clearEditorDraft(){try{sessionStorage.removeItem(editorDraftKey);}catch{}}
@@ -144,7 +144,9 @@ function closeEditorSafely(){
   ui('postModal').classList.remove('open');restoreEditorFocus();return true;
 }
 function setEditorBusy(busy){editorSaving=busy;ui('postModal').setAttribute('aria-busy',String(busy));ui('postModal').querySelectorAll('input,textarea,select,button').forEach(el=>el.disabled=busy);ui('savePostButton').textContent=busy?'Menyimpan…':'Simpan post';}
-function updateCaptionCount(){const count=Array.from(ui('mCaption').value).length;ui('captionCount').textContent=count+' aksara';ui('actualCount').textContent=Array.from(ui('mActualContent').value).length+' aksara';}
+function updateCaptionCount(){const count=Array.from(ui('mCaption').value).length;ui('captionCount').textContent=count+' aksara';ui('actualCount').textContent=Array.from(ui('mActualContent').value).length+' aksara';ui('postCaptionCount').textContent=Array.from(ui('mPostCaption').value).length+' aksara';}
+// Only TikTok plans need a separate post caption (their caption field holds the script).
+function syncPostCaptionField(){ui('postCaptionGroup').hidden=ui('mPlatform').value!=='tiktok';}
 const REJECT_TAGS=[['too_short','Terlalu pendek'],['generic','Generik / takda value'],['ai_tone','Bunyi macam AI'],['off_tone','Tak ikut tone aku'],['wrong_topic','Topik tak sesuai'],['inaccurate','Fakta tak tepat'],['repeated','Dah banyak cover'],['bad_timing','Timing tak sesuai']];
 function renderRejectTags(){const box=ui('rejectTags');if(!box)return;const on=new Set(ui('mRejectedTags').value.split(',').filter(Boolean));
   const known=new Set(REJECT_TAGS.map(t=>t[0]));const extra=[...on].filter(k=>!known.has(k)).map(k=>[k,k.replace(/_/g,' ')]);
@@ -152,7 +154,7 @@ function renderRejectTags(){const box=ui('rejectTags');if(!box)return;const on=n
   if(!box.dataset.wired){box.dataset.wired='1';box.addEventListener('click',e=>{const b=e.target.closest('.reject-tag');if(!b)return;const set=new Set(ui('mRejectedTags').value.split(',').filter(Boolean));const k=b.dataset.tag;set.has(k)?set.delete(k):set.add(k);ui('mRejectedTags').value=[...set].join(',');renderRejectTags();rememberEditorDraft();});}}
 function toggleRejectedField(){const group=ui('rejectedGroup');if(!group)return;renderRejectTags();const on=ui('mStatus').value==='rejected';group.hidden=!on;if(on&&!ui('mRejectedReason').value&&document.activeElement===ui('mStatus'))setTimeout(()=>ui('mRejectedReason').focus(),0);}
 function copySuggestedToActual(){const box=ui('mActualContent');if(box.value.trim()&&!confirm('Gantikan content sebenar dgn cadangan?'))return;box.value=ui('mCaption').value;if(!ui('mActualTitle').value.trim())ui('mActualTitle').value=ui('mTitle').value;updateCaptionCount();rememberEditorDraft();showToast('Cadangan disalin. Edit ikut apa yang kau post.','info');}
-function changeEditorPlatform(){const value=ui('mPillar').value;ui('mPillar').replaceChildren(...workspacePillars(ui('mPlatform').value).map(p=>new Option(p,p)));if([...ui('mPillar').options].some(o=>o.value===value))ui('mPillar').value=value;rememberEditorDraft();}
+function changeEditorPlatform(){const value=ui('mPillar').value;ui('mPillar').replaceChildren(...workspacePillars(ui('mPlatform').value).map(p=>new Option(p,p)));if([...ui('mPillar').options].some(o=>o.value===value))ui('mPillar').value=value;syncPostCaptionField();rememberEditorDraft();}
 async function copyCaption(){try{await navigator.clipboard.writeText(ui('mCaption').value);showToast('Caption disalin.','success');}catch{ui('mCaption').select();showToast('Pilih Copy untuk salin caption.','info');}}
 
 duplicatePost=function(){

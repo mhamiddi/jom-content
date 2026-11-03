@@ -690,6 +690,11 @@ canvas{display:block;max-width:100%}
     <textarea id="mCaption" placeholder="Tulis caption penuh..."></textarea>
     <div class="editor-caption-meta"><span id="captionCount">0 aksara</span><button type="button" class="text-button" onclick="copyCaption()">Salin caption</button></div>
   </div>
+  <div class="form-group" id="postCaptionGroup" hidden>
+    <label for="mPostCaption">Caption post (TikTok, Instagram, Facebook, YouTube)</label>
+    <textarea id="mPostCaption" placeholder="Caption yang keluar bawah video. Skrip di atas tak dihantar."></textarea>
+    <div class="editor-caption-meta"><span id="postCaptionCount">0 aksara</span></div>
+  </div>
   <div class="form-group actual-group" id="actualGroup">
     <div class="actual-head">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
@@ -825,6 +830,7 @@ const DEFAULT_WORKSPACE = 'jom-digital';
 const PAGE_TITLES = {dashboard:'Overview',tiktok:'TikTok',threads:'Threads',analytics:'Analytics',accounts:'Connected accounts'};
 const DEFAULT_PILLARS = WORKSPACES[DEFAULT_WORKSPACE].pillars;
 const DEFAULT_TARGETS = WORKSPACES[DEFAULT_WORKSPACE].targets;
+const CANONICAL_PILLAR_COLORS = {'Google Ads & Marketing':'#ec4899','Agentic AI':'#22C55E','Engage':'#1E3A8A'};
 const PILLAR_COLORS = ['#6366f1','#22C55E','#06b6d4','#ec4899','#8b5cf6','#14b8a6','#f97316','#a855f7'];
 
 /* ===== CANVAS POLYFILL ===== */
@@ -1075,6 +1081,8 @@ function formatDate(d) {
 }
 function getPillarColor(name) {
   if (state.pillarColors && state.pillarColors[name]) return state.pillarColors[name];
+  // Fixed colours for the 3 canonical pillars: the name hash gave Agentic AI and Engage the same green.
+  if (CANONICAL_PILLAR_COLORS[name]) return CANONICAL_PILLAR_COLORS[name];
   const colors = PILLAR_COLORS;
   let hash = 0;
   for (let i=0;i<(name||'').length;i++) hash = name.charCodeAt(i)+((hash<<5)-hash);
@@ -1468,6 +1476,7 @@ function openModal(platform, postId, prefillDate) {
     document.getElementById('mPostId').value = postId;
     document.getElementById('mTitle').value = post.title || '';
     document.getElementById('mCaption').value = post.caption || '';
+    document.getElementById('mPostCaption').value = post.postCaption || '';
     document.getElementById('mActualTitle').value = post.actualTitle || '';
     document.getElementById('mActualContent').value = post.actualContent || '';
     document.getElementById('mRejectedReason').value = post.rejectedReason || '';
@@ -1488,6 +1497,7 @@ function openModal(platform, postId, prefillDate) {
     document.getElementById('mPostId').value = '';
     document.getElementById('mTitle').value = '';
     document.getElementById('mCaption').value = '';
+    document.getElementById('mPostCaption').value = '';
     document.getElementById('mActualTitle').value = '';
     document.getElementById('mActualContent').value = '';
     document.getElementById('mRejectedReason').value = '';
@@ -1534,6 +1544,7 @@ async function savePost() {
   const data = {
     title, date,
     caption: document.getElementById('mCaption').value.trim(),
+    postCaption: document.getElementById('mPostCaption').value.trim(),
     actualTitle: document.getElementById('mActualTitle').value.trim(),
     actualContent: document.getElementById('mActualContent').value.trim(),
     rejectedReason: document.getElementById('mRejectedReason').value.trim(),
@@ -1840,9 +1851,10 @@ function openPostDetail(platform, id) {
     <div><span class="p-status status-${esc(st)}">${esc(CAL_STATUS[st] || st)}</span> <span class="p-pillar" style="background:${getPillarColor(p.pillar)}">${esc(p.pillar || '')}</span></div>
     <div class="preview-meta">${esc(PLATFORM_NAMES[platform] || platform)} &middot; ${esc(when)}${p.time ? ' &middot; ' + esc(p.time) : ''}</div>
     ${perf}
-    <div class="preview-meta" style="margin:0">${posted ? 'Yang diposkan' : 'Caption'}</div>
-    <div class="preview-caption">${esc(posted || p.caption || 'Tiada caption.')}</div>
-    ${posted && p.caption && p.caption !== posted ? `<div class="preview-meta" style="margin:0">Caption asal (plan)</div><div class="preview-caption">${esc(p.caption)}</div>` : ''}
+    <div class="preview-meta" style="margin:0">${posted ? 'Yang diposkan' : (p.platform === 'tiktok' ? 'Skrip' : 'Caption')}</div>
+    <div class="preview-caption">${esc(posted || p.caption || (p.platform === 'tiktok' ? 'Tiada skrip.' : 'Tiada caption.'))}</div>
+    ${posted && p.caption && p.caption !== posted ? `<div class="preview-meta" style="margin:0">${p.platform === 'tiktok' ? 'Skrip asal (plan)' : 'Caption asal (plan)'}</div><div class="preview-caption">${esc(p.caption)}</div>` : ''}
+    ${p.platform === 'tiktok' ? `<div class="preview-meta" style="margin:0">Caption post</div><div class="preview-caption">${esc(p.postCaption || 'Belum diisi. Tekan Edit post untuk tulis caption.')}</div>` : ''}
     ${canPublishToThreads(p) ? `<div class="publish-box" id="pubBox" data-id="${esc(p.id)}">Semak sambungan Threads...</div>` : ''}
     <div class="publish-box" id="pubAllBox" data-id="${esc(p.id)}">Semak sambungan platform...</div>
     <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(p.id)}" data-platform="${esc(platform)}" onclick="editFromDetail(this.dataset.platform,this.dataset.id)">Edit post</button><button class="btn btn-outline btn-sm" onclick="closePostPreview()">Tutup</button></div>`;
@@ -1856,6 +1868,10 @@ function editFromDetail(platform, id) { closePostPreview(); openModal(platform, 
 let THREADS_PUB = null;
 function publishedAccountIds(post) {
   return Array.isArray(post.publishedAccounts) ? post.publishedAccounts.map(item => item.accountId) : [];
+}
+// TikTok plans keep the script in caption; the text under the video is postCaption.
+function publishCaptionOf(p) {
+  return String((p.platform === 'tiktok' ? p.postCaption : p.caption) || '').trim();
 }
 function canPublishToThreads(p) {
   return p.platform === 'threads' && p.status !== 'rejected' && String(p.caption || '').trim().length > 0 && (!p.postedUrl || Array.isArray(p.publishedAccounts));
@@ -2007,6 +2023,8 @@ async function initPlatformBox(id) {
       <select id="pubAllMediaType" data-id="${esc(id)}" onchange="carouselModeChanged(this.dataset.id)"><option value="video" ${kind === 'video' ? 'selected' : ''}>Video / Reels</option><option value="image" ${kind === 'image' ? 'selected' : ''}>Gambar</option><option value="carousel" ${kind === 'carousel' ? 'selected' : ''}>Carousel (gambar AI)</option><option value="text" ${kind === 'text' ? 'selected' : ''}>Teks sahaja</option></select></div>
     <div id="carouselPanel" style="display:none;margin:8px 0"></div>
     ${needsTitle ? `<div style="margin:8px 0"><span class="account-help">Tajuk YouTube:</span><input type="text" id="pubAllTitle" value="${esc(p.title || '')}" placeholder="Tajuk video" style="width:100%;margin-top:4px"></div>` : ''}
+    <div style="margin:8px 0"><span class="account-help">${p.platform === 'tiktok' ? 'Caption post (bukan skrip)' : 'Caption'} yang akan keluar:</span>
+      ${publishCaptionOf(p) ? `<div class="preview-caption" style="margin:4px 0 0;max-height:140px;overflow:auto">${esc(publishCaptionOf(p))}</div>` : '<div class="account-help" style="margin-top:4px;color:var(--danger,#dc2626)">Caption post belum diisi. Tekan Edit post dan isi "Caption post" dulu.</div>'}</div>
     <div style="margin:8px 0">${boxes}</div>
     <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick="askPlatformPublish(this.dataset.id,'publish')">Post sekarang</button><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="askPlatformPublish(this.dataset.id,'draft')">Draft TikTok/YouTube</button></div>`);
   renderCarouselPanel(id);
@@ -2048,6 +2066,7 @@ function askPlatformPublish(id, mode) {
     ? (CAROUSEL_CACHE[id]?.images || []).slice().sort((a, b) => a.index - b.index).map(x => x.url)
     : [];
   if (!targets.length) return showToast('Pilih sekurang-kurangnya satu platform.', 'error');
+  if (!publishCaptionOf(p)) return showToast('Isi "Caption post" dulu (Edit post). Skrip tak dihantar sebagai caption.', 'error');
   if (mode === 'draft') {
     targets = targets.filter(t => t === 'tiktok' || t === 'youtube');
     if (!targets.length) return showToast('Draft hanya untuk TikTok dan YouTube.', 'error');
@@ -2094,7 +2113,7 @@ async function doPlatformPublish(id, targets, mediaUrl, mediaType, title, mode, 
 
   if (zt.length) {
     jobs.push(postJson('/api/social-publish?id=' + encodeURIComponent(id), {
-      caption: p.caption, targets: zt, mediaUrl, mediaType, title, mode, ...carouselBody
+      caption: publishCaptionOf(p), targets: zt, mediaUrl, mediaType, title, mode, ...carouselBody
     }).then(res => {
       if (res.success) {
         (res.results || []).forEach(x => out.push({target: x.target, ok: true, url: x.url, note: mode === 'draft' ? 'draft' : (x.status || '')}));
@@ -2105,7 +2124,7 @@ async function doPlatformPublish(id, targets, mediaUrl, mediaType, title, mode, 
   }
   if (mt.length) {
     jobs.push(postJson('/api/meta-publish?id=' + encodeURIComponent(id), {
-      caption: p.caption, targets: mt, mediaUrl, mediaType, ...carouselBody
+      caption: publishCaptionOf(p), targets: mt, mediaUrl, mediaType, ...carouselBody
     }).then(res => {
       const produced = (res.results || []);
       produced.forEach(x => {
@@ -2118,7 +2137,7 @@ async function doPlatformPublish(id, targets, mediaUrl, mediaType, title, mode, 
   }
   if (tt) {
     jobs.push(postJson('/api/threads-publish?id=' + encodeURIComponent(id), {
-      caption: p.caption, ...mediaBody, ...carouselBody
+      caption: publishCaptionOf(p), ...mediaBody, ...carouselBody
     }).then(res => {
       if (res.success) out.push({target: 'threads', ok: true, url: (res.urls || [])[0] || ''});
       else out.push({target: 'threads', ok: false, message: res.message || res.error});
@@ -2857,6 +2876,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 });
 </script>
-<script src="/dashboard-ui.js?v=20260925"></script>
+<script src="/dashboard-ui.js?v=20261103"></script>
 </body>
 </html>

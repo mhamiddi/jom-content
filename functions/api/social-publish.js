@@ -1,5 +1,6 @@
 import { enforced, json } from '../_lib/auth.js';
 import { SOCIAL_PLATFORMS, configured, createPost, getPost, listAccounts, platformResult } from '../_lib/zernio.js';
+import { MISSING_POST_CAPTION, publishCaption } from '../_lib/caption.js';
 
 /**
  * Publish an existing calendar post to TikTok and/or YouTube through Zernio.
@@ -74,8 +75,12 @@ export async function onRequest(context) {
   const post = posts.find((item) => item.id === postId);
   if (!post) return json({ success: false, error: 'post_not_found' }, 404);
 
-  const caption = String(body.caption || post.caption || '').trim();
-  if (!caption) return json({ success: false, error: 'caption_required', message: 'Caption kosong.' }, 400);
+  // The server copy is the source of truth; the client echo only catches a stale tab.
+  const caption = publishCaption(post);
+  if (!caption) return json({ success: false, error: 'caption_required', message: MISSING_POST_CAPTION }, 422);
+  if (typeof body.caption === 'string' && body.caption.trim() && body.caption.trim() !== caption) {
+    return json({ success: false, error: 'stale', message: 'Caption di server lain dari yang kau nampak. Refresh dashboard dulu.' }, 409);
+  }
 
   let accounts = [];
   try {

@@ -1,5 +1,6 @@
 import { enforced, json } from '../_lib/auth.js';
 import { graph, loadMeta, waitContainer } from '../_lib/meta.js';
+import { MISSING_POST_CAPTION, publishCaption } from '../_lib/caption.js';
 
 /**
  * Publish an existing calendar post to the connected Facebook Page and/or the
@@ -202,7 +203,9 @@ export async function onRequest(context) {
   const posts = (await env.JOM_CONTENT.get('posts', { type: 'json' })) || [];
   const post = posts.find((item) => item.id === postId);
   if (!post) return json({ success: false, error: 'Post not found', message: 'Post belum disimpan ke server. Simpan dulu.' }, 404);
-  if (body.caption.trim() !== String(post.caption || '').trim()) {
+  const caption = publishCaption(post);
+  if (!caption) return json({ success: false, error: 'caption_required', message: MISSING_POST_CAPTION }, 422);
+  if (body.caption.trim() !== caption) {
     return json({ success: false, error: 'stale', message: 'Caption di server lain dari yang kau nampak. Refresh dashboard dulu.' }, 409);
   }
   if (post.status === 'rejected') return json({ success: false, error: 'rejected', message: 'Post ni berstatus rejected.' }, 422);
@@ -250,15 +253,15 @@ export async function onRequest(context) {
       pageToken = page.access_token || '';
       if (!pageToken) throw new Error('Tak dapat page access token. Semak semula sambungan Page.');
       results.push(isCarousel
-        ? await publishFacebookCarousel(record, pageToken, { caption: post.caption, images: carouselImages })
-        : await publishFacebook(record, pageToken, { caption: post.caption, mediaUrl, mediaType, title: post.title }));
+        ? await publishFacebookCarousel(record, pageToken, { caption, images: carouselImages })
+        : await publishFacebook(record, pageToken, { caption, mediaUrl, mediaType, title: post.title }));
       recordLock.results = results;
       await env.JOM_CONTENT.put(lockKey, JSON.stringify(recordLock));
     }
     if (targets.includes('instagram')) {
       results.push(isCarousel
-        ? await publishInstagramCarousel(record, { caption: post.caption, images: carouselImages })
-        : await publishInstagram(record, { caption: post.caption, mediaUrl, mediaType }));
+        ? await publishInstagramCarousel(record, { caption, images: carouselImages })
+        : await publishInstagram(record, { caption, mediaUrl, mediaType }));
       recordLock.results = results;
       await env.JOM_CONTENT.put(lockKey, JSON.stringify(recordLock));
     }

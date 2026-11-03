@@ -132,6 +132,7 @@ export async function onRequest(context) {
         workspace: body.workspace || body.client || 'jom-digital',
         client: body.client || body.workspace || 'jom-digital',
         caption: body.caption || '',
+        postCaption: cleanActual(body.postCaption),
         pillar: canonicalPillar(body.pillar || 'Google Ads & Marketing'),
         date: body.date || '',
         time: body.time || '',
@@ -186,6 +187,7 @@ export async function onRequest(context) {
           posts[index][key] = body[key];
         }
       }
+      if (body.postCaption !== undefined) posts[index].postCaption = cleanActual(body.postCaption);
       if (body.rejectedReason !== undefined) posts[index].rejectedReason = cleanReason(body.rejectedReason);
       if (body.rejectedTags !== undefined) posts[index].rejectedTags = cleanTags(body.rejectedTags);
       if (posts[index].status === 'rejected') {

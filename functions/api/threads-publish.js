@@ -1,4 +1,5 @@
 import { enforced, json } from '../_lib/auth.js';
+import { MISSING_POST_CAPTION, publishCaption } from '../_lib/caption.js';
 import { loadAccounts, maybeRefresh, publicAccount, resolveAccount, saveAccounts, threads } from '../_lib/threads.js';
 
 const MAX_PART = 500;
@@ -89,7 +90,9 @@ export async function onRequest(context) {
   const posts = (await env.JOM_CONTENT.get('posts', { type: 'json' })) || [];
   const post = posts.find((item) => item.id === postId);
   if (!post) return json({ success: false, error: 'Post not found', message: 'Post belum disimpan ke server. Simpan dulu.' }, 404);
-  if (body.caption.trim() !== String(post.caption || '').trim()) return json({ success: false, error: 'stale', message: 'Caption di server lain dari yang kau nampak. Refresh dashboard dulu.' }, 409);
+  const caption = publishCaption(post);
+  if (!caption) return json({ success: false, error: 'caption_required', message: MISSING_POST_CAPTION }, 422);
+  if (body.caption.trim() !== caption) return json({ success: false, error: 'stale', message: 'Caption di server lain dari yang kau nampak. Refresh dashboard dulu.' }, 409);
   const mediaUrl = httpUrl(body.mediaUrl);
   const mediaKind = String(body.mediaType || '').toLowerCase();
   const withMedia = Boolean(mediaUrl) && (mediaKind === 'video' || mediaKind === 'image');
@@ -106,7 +109,7 @@ export async function onRequest(context) {
     return json({ success: false, error: 'already_posted', message: 'Post ni dah diposkan. Rekod account lama belum boleh diulang.' }, 409);
   }
 
-  const parts = (withMedia || isCarousel) ? [String(post.caption || '').trim()] : splitParts(post.caption);
+  const parts = (withMedia || isCarousel) ? [caption] : splitParts(caption);
   if (!parts.length) return json({ success: false, error: 'empty', message: 'Caption kosong.' }, 422);
   if (parts.length > MAX_PARTS) return json({ success: false, error: 'too_many_parts', message: `Maksimum ${MAX_PARTS} bahagian.` }, 422);
   const tooLong = parts.findIndex((part) => [...part].length > MAX_PART);
@@ -221,7 +224,7 @@ export async function onRequest(context) {
       approved: true,
       date: now.date,
       time: now.time,
-      actualContent: post.caption,
+      actualContent: caption,
       actualUpdatedAt: record.publishedAt,
       updatedAt: record.publishedAt,
       publishedAccounts,
