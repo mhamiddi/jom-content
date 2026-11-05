@@ -162,6 +162,74 @@ main{padding:var(--space-2xl);flex:1}
 .publish-box strong{color:var(--text)}.publish-box .detail-actions{margin-top:10px}
 .publish-box.ok{background:var(--success-bg);border-color:transparent;color:var(--success)}.publish-box.ok a{color:inherit;font-weight:600}
 .publish-box.err{background:var(--danger-bg);border-color:transparent;color:var(--danger)}
+/* Post detail popup (calendar / planner). Scoped to .post-detail so the editor preview keeps its own look. */
+.social-preview.post-detail{padding:0;width:min(560px,100%);border-radius:20px;overflow:auto;overscroll-behavior:contain;animation:pdIn .25s cubic-bezier(0.22,1,0.36,1)}
+@keyframes pdIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pd-accent{height:4px;background:var(--pc,var(--primary))}
+.pd-head{padding:18px 24px 18px;border-bottom:1px solid var(--border-light)}
+.pd-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.pd-platform{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--text2);background:var(--surface2);padding:5px 11px 5px 9px;border-radius:var(--radius-full)}
+.pd-platform svg{width:14px;height:14px;color:var(--text)}
+.post-detail .preview-close{position:static;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;transition:background var(--trans-fast)}
+.post-detail .preview-close:hover{background:var(--surface3)}
+.pd-title{font-family:'Montserrat',var(--font);font-size:21px;line-height:1.3;font-weight:800;letter-spacing:-.3px;overflow-wrap:anywhere}
+.pd-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.pd-chips .p-status,.pd-chips .p-pillar{font-size:11px;padding:4px 10px}
+.pd-when{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:12px;font-size:12.5px;color:var(--text2)}
+.pd-when span{display:inline-flex;align-items:center;gap:6px}.pd-when svg{color:var(--text3)}
+.pd-body{padding:6px 24px 8px}
+.pd-section{padding:18px 0;border-bottom:1px solid var(--border-light)}
+.pd-section:last-child{border-bottom:0}
+.pd-label{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:var(--text2);margin-bottom:10px}
+.pd-label small{font-size:11px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--text3)}
+.pd-text{font-size:14px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;background:var(--surface2);border-radius:14px;padding:14px 16px}
+.pd-text.empty{color:var(--text3);font-style:italic}
+.pd-chain{display:flex;flex-direction:column;gap:8px}
+.pd-chain .pd-text{position:relative;padding-left:46px}
+.pd-chain .pd-text::before{content:attr(data-n);position:absolute;left:12px;top:13px;width:24px;height:24px;border-radius:50%;background:var(--surface);border:1px solid var(--border);font-size:11px;font-weight:700;color:var(--text2);display:flex;align-items:center;justify-content:center;font-style:normal}
+.pd-more{margin-top:10px;font-size:12.5px}
+.pd-more summary{cursor:pointer;color:var(--primary);font-weight:600;list-style:none;display:inline-flex;align-items:center;gap:6px}
+.pd-more summary::-webkit-details-marker{display:none}
+.pd-more summary::before{content:'';width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);transition:transform var(--trans-fast)}
+.pd-more[open] summary::before{transform:rotate(45deg)}
+.pd-more .pd-text{margin-top:10px}
+.pd-score{display:flex;align-items:center;gap:16px;padding:16px 18px;border-radius:16px;color:#fff;background:linear-gradient(135deg,#1E3A8A 0%,#2563EB 100%);box-shadow:0 8px 20px rgba(37,99,235,.22)}
+.pd-score-num{font-family:'Montserrat',var(--font);font-size:36px;font-weight:800;line-height:1;letter-spacing:-1px}
+.pd-score-meta{flex:1;min-width:0;font-size:12px;opacity:.9}
+.pd-score-meta b{display:block;font-size:13px;opacity:1;margin-bottom:8px}
+.pd-score-bar{height:6px;background:rgba(255,255,255,.22);border-radius:var(--radius-full);overflow:hidden}
+.pd-score-bar i{display:block;height:100%;background:#fff;border-radius:inherit}
+.pd-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+.pd-stat{background:linear-gradient(180deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border);border-radius:12px;padding:11px 12px}
+.pd-stat span{display:block;font-size:10.5px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.4px}
+.pd-stat b{display:block;font-family:'Montserrat',var(--font);font-size:19px;font-weight:800;line-height:1.2;margin-top:3px;overflow-wrap:anywhere}
+.pd-parts{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.pd-part{display:flex;align-items:center;gap:10px;padding:9px 10px 9px 12px;border:1px solid var(--border);border-radius:12px;font-size:12px;color:var(--text2)}
+.pd-part-n{flex-shrink:0;font-size:11px;font-weight:700;color:var(--text)}
+.pd-part-stats{flex:1;min-width:0;display:flex;flex-wrap:wrap;gap:2px 10px}
+.pd-part-stats b{color:var(--text);font-weight:700}
+.pd-part-score{flex-shrink:0;font-size:11px;font-weight:700;color:var(--primary);background:var(--primary-bg);padding:3px 8px;border-radius:var(--radius-full)}
+.pd-part a{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;color:var(--text2);background:var(--surface2)}
+.pd-part a:hover{color:var(--primary);background:var(--primary-bg)}
+.pd-note{margin-top:10px;font-size:11px;line-height:1.55;color:var(--text3)}
+.pd-empty{font-size:12.5px;line-height:1.6;color:var(--text2);background:var(--surface2);border-radius:14px;padding:14px 16px}
+.post-detail .publish-box{margin:0;padding:16px;border-radius:14px;background:var(--surface);box-shadow:var(--shadow-sm)}
+.post-detail .publish-box + .publish-box{margin-top:10px}
+.post-detail .publish-box.ok{background:var(--success-bg)}.post-detail .publish-box.err{background:var(--danger-bg)}
+.post-detail .publish-box input[type=url],.post-detail .publish-box input[type=text],.post-detail .publish-box select{border:1px solid var(--border);border-radius:10px;padding:8px 10px;font:inherit;font-size:13px;background:var(--surface);color:var(--text);max-width:100%}
+.post-detail .publish-box input[type=file]{max-width:100%;font-size:12px}
+.pd-foot{position:sticky;bottom:0;display:flex;gap:8px;padding:14px 24px;background:var(--surface);border-top:1px solid var(--border-light);z-index:1}
+.pd-foot .btn{flex:0 0 auto}
+@media(max-width:480px){
+  .preview-overlay:has(.post-detail){align-items:flex-end;padding:0}
+  .social-preview.post-detail{width:100%;max-height:92vh;border-radius:20px 20px 0 0;animation:pdFade .2s ease}
+  .pd-head{padding:16px 18px}.pd-body{padding:4px 18px 8px}.pd-foot{padding:12px 18px calc(12px + env(safe-area-inset-bottom))}
+  .pd-title{font-size:19px}
+  .pd-score{padding:14px 16px;gap:14px}.pd-score-num{font-size:30px}
+  .pd-stat{padding:9px 10px}.pd-stat b{font-size:16px}
+}
+@keyframes pdFade{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.social-preview.post-detail{animation:none}.pd-more summary::before{transition:none}}
 .account-panel{max-width:780px}.account-intro{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}.account-intro p{max-width:620px;color:var(--text2);font-size:13px;line-height:1.55}.account-list{display:flex;flex-direction:column;gap:8px;margin-top:16px}.account-row{display:flex;align-items:center;gap:12px;padding:14px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm)}.account-avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--primary-bg);color:var(--primary);font-weight:800}.account-copy{flex:1;min-width:0}.account-copy strong{display:block;font-size:14px}.account-copy small{display:block;color:var(--text2);font-size:11px;margin-top:3px}.account-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end}.account-default{font-size:10px;padding:3px 8px;border-radius:var(--radius-full);background:var(--success-bg);color:var(--success);font-weight:700}.account-connect{margin-top:18px;padding-top:18px;border-top:1px solid var(--border-light)}.account-connect textarea,.account-connect input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font:inherit;background:var(--surface);color:var(--text)}.account-connect textarea{min-height:76px;resize:vertical;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}.account-connect textarea:focus,.account-connect input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.08)}.account-help{font-size:11px;color:var(--text3);line-height:1.5;margin-top:6px}.account-empty{padding:18px;border:1px dashed var(--border);border-radius:var(--radius-sm);color:var(--text2);font-size:13px}.publish-account-picker{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0}.publish-account-picker label{font-size:11px;font-weight:700;color:var(--text2)}.publish-account-picker select{padding:7px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--text);font:inherit;font-size:12px;min-width:190px}
 @media(max-width:1100px){.cal-week{grid-template-columns:1fr}.cal-wcol{min-height:0}}
 @media(max-width:480px){.perf-tile b{font-size:17px}.cal-card.full{padding:12px}.cal-toolbar{justify-content:center}}
@@ -795,7 +863,7 @@ const PLATFORM_COLORS = {tiktok:'#fe2c55',threads:'#888'};
 const PLATFORM_ICONS = {tiktok:'TikTok',threads:'Threads'};
 const CANONICAL_PILLARS = ['Google Ads & Marketing','Agentic AI','Engage'];
 const CANONICAL_TARGETS = {'Agentic AI':70,'Google Ads & Marketing':20,'Engage':10};
-const SVG_PATHS = {"film": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4\"/>", "camera": "<rect x=\"3\" y=\"7\" width=\"18\" height=\"13\" rx=\"2\"/><path d=\"M9 7l1.5-3h3L15 7\"/><circle cx=\"12\" cy=\"13.5\" r=\"3.5\"/>", "moon": "<path d=\"M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z\"/>", "sun": "<circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4\"/>", "check": "<path d=\"M5 12.5l4.5 4.5L19 7.5\"/>", "cross": "<path d=\"M6 6l12 12M18 6L6 18\"/>", "info": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 11v6M12 7.5h.01\"/>", "search": "<circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"M20 20l-3.5-3.5\"/>", "list": "<path d=\"M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01\"/>", "board": "<rect x=\"3\" y=\"3\" width=\"7\" height=\"18\" rx=\"1.5\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"11\" rx=\"1.5\"/>", "doc": "<rect x=\"4\" y=\"3\" width=\"16\" height=\"18\" rx=\"2\"/><path d=\"M8 8h8M8 12h8M8 16h5\"/>", "edit": "<path d=\"M4 20h4L19 9l-4-4L4 16v4zM13.5 6.5l4 4\"/>", "clock": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/>", "note": "<path d=\"M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5\"/><path d=\"M14 4c.4 2.4 2 4 4.5 4.2\"/>"};
+const SVG_PATHS = {"film": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4\"/>", "camera": "<rect x=\"3\" y=\"7\" width=\"18\" height=\"13\" rx=\"2\"/><path d=\"M9 7l1.5-3h3L15 7\"/><circle cx=\"12\" cy=\"13.5\" r=\"3.5\"/>", "moon": "<path d=\"M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z\"/>", "sun": "<circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4\"/>", "check": "<path d=\"M5 12.5l4.5 4.5L19 7.5\"/>", "cross": "<path d=\"M6 6l12 12M18 6L6 18\"/>", "info": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 11v6M12 7.5h.01\"/>", "search": "<circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"M20 20l-3.5-3.5\"/>", "list": "<path d=\"M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01\"/>", "board": "<rect x=\"3\" y=\"3\" width=\"7\" height=\"18\" rx=\"1.5\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"11\" rx=\"1.5\"/>", "doc": "<rect x=\"4\" y=\"3\" width=\"16\" height=\"18\" rx=\"2\"/><path d=\"M8 8h8M8 12h8M8 16h5\"/>", "edit": "<path d=\"M4 20h4L19 9l-4-4L4 16v4zM13.5 6.5l4 4\"/>", "clock": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/>", "note": "<path d=\"M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5\"/><path d=\"M14 4c.4 2.4 2 4 4.5 4.2\"/>", "calendar": "<rect x=\"3\" y=\"5\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M3 10h18M8 3v4M16 3v4\"/>", "external": "<path d=\"M14 4h6v6M20 4l-9 9\"/><path d=\"M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5\"/>"};
 function svgIcon(name, size = 16) {
   return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-3px">' + (SVG_PATHS[name] || '') + '</svg>';
 }
@@ -1616,7 +1684,8 @@ function showPostPreview() {
   const media=(_modalImages||[]).map(m=>m.type==='video'
     ? `<video src="${esc(m.src)}" controls preload="metadata"></video>`
     : `<img src="${esc(m.src)}" alt="Media post">`).join('');
-  document.getElementById('previewCard').innerHTML=`<button class="preview-close" onclick="closePostPreview()" aria-label="Tutup">×</button><h3>${esc(title)}</h3><div><span class="p-status status-${esc(status)}">${labels[status]||esc(status)}</span> <span class="p-pillar" style="background:${getPillarColor(pillar)}">${esc(pillar)}</span></div><div class="preview-meta">${esc(date)}${time?' · '+esc(time):''}</div><div class="preview-caption">${esc(caption)}</div>${media?'<div class="preview-media">'+media+'</div>':''}`;
+  const previewCard=document.getElementById('previewCard');previewCard.className='social-preview';
+  previewCard.innerHTML=`<button class="preview-close" onclick="closePostPreview()" aria-label="Tutup">×</button><h3>${esc(title)}</h3><div><span class="p-status status-${esc(status)}">${labels[status]||esc(status)}</span> <span class="p-pillar" style="background:${getPillarColor(pillar)}">${esc(pillar)}</span></div><div class="preview-meta">${esc(date)}${time?' · '+esc(time):''}</div><div class="preview-caption">${esc(caption)}</div>${media?'<div class="preview-media">'+media+'</div>':''}`;
   document.getElementById('previewOverlay').classList.add('open');
 }
 function closePostPreview(){document.getElementById('previewOverlay').classList.remove('open')}
@@ -1824,6 +1893,17 @@ function calCardKey(e, el) {
   if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPostDetail(el.dataset.platform, el.dataset.id); }
 }
 
+// Reuse the real logos from the sidebar social links.
+function platformLogo(platform) {
+  const svg = document.querySelector(`.nav-social[href*="${platform === 'tiktok' ? 'tiktok.com' : 'threads.com'}"] svg`);
+  return svg ? svg.outerHTML : '';
+}
+function detailTextHtml(text, platform, emptyText) {
+  if (!text) return `<div class="pd-text empty">${esc(emptyText)}</div>`;
+  const parts = platform === 'threads' ? threadsParts(text) : [text];
+  if (parts.length < 2) return `<div class="pd-text">${esc(text)}</div>`;
+  return `<div class="pd-chain">${parts.map((x, i) => `<div class="pd-text" data-n="${i + 1}">${esc(x)}</div>`).join('')}</div>`;
+}
 function openPostDetail(platform, id) {
   const p = state.posts.find(x => x.id === id);
   if (!p) return;
@@ -1831,34 +1911,48 @@ function openPostDetail(platform, id) {
   const st = p.status || 'draft';
   const when = parseLocalDate(p.date).toLocaleDateString('ms-MY', {weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'});
   const posted = p.actualContent || '';
-  let perf;
+  const isTiktok = p.platform === 'tiktok';
+  let perf = '';
   if (m) {
     const asOf = ANALYTICS && ANALYTICS.generated_at ? new Date(ANALYTICS.generated_at).toLocaleString('ms-MY', {timeZone: 'Asia/Kuala_Lumpur', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'}) : '';
     const tiles = [['Views', fmtViews(m)], ['Likes', fmtNum(m.likes)], ['Komen', fmtNum(m.comments)], ['Kongsi', fmtNum(m.shares)], ['Simpan', fmtNum(m.saves)], ['Eng. rate', m.rate == null ? '-' : m.rate.toFixed(1) + '%']];
-    const parts = m.items.map((it, i) => `<div class="perf-part"><span>${m.items.length > 1 ? 'Bahagian ' + (i + 1) + ': ' : ''}${it.views_missing ? 'views belum ada' : fmtNum(it.views) + ' views'}</span><span>${fmtNum(it.likes)} likes</span><span>${fmtNum(it.comments)} komen</span><span>${fmtNum(it.shares)} kongsi</span><span>skor ${it.score}</span>${it.url ? `<a href="${esc(it.url)}" target="_blank" rel="noopener noreferrer">Buka post</a>` : ''}</div>`).join('');
-    perf = `<div class="perf-panel"><h4>Prestasi sekarang</h4>
-      <div class="perf-grid">${tiles.map(t => `<div class="perf-tile"><b>${t[1]}</b><span>${t[0]}</span></div>`).join('')}</div>
-      <div class="perf-score-row"><span>Skor${m.items.length > 1 ? ' purata' : ''}</span><div class="perf-bar"><i style="width:${Math.max(0, Math.min(100, m.score))}%"></i></div><b>${m.score}</b></div>
-      <div class="perf-parts">${parts}</div>
-      <div class="perf-foot">Dipadankan ikut ${m.how === 'url' ? 'URL post' : 'teks caption'}. Data analytics dikemas kini setiap hari${asOf ? ', terkini ' + esc(asOf) : ''}. Views kosong bermakna platform belum bagi angka, jadi skor dikira dari interaksi sahaja.${st !== 'posted' ? ' Status plan ni masih ' + esc(CAL_STATUS[st] || st) + ' tapi post sepadan dah ada dalam analytics, kemungkinan dah diposkan.' : ''}</div></div>`;
+    const parts = m.items.length > 1 ? `<div class="pd-parts">${m.items.map((it, i) => `<div class="pd-part"><span class="pd-part-n">${i + 1}</span><span class="pd-part-stats"><span>${it.views_missing ? 'views belum ada' : '<b>' + fmtNum(it.views) + '</b> views'}</span><span><b>${fmtNum(it.likes)}</b> likes</span><span><b>${fmtNum(it.comments)}</b> komen</span><span><b>${fmtNum(it.shares)}</b> kongsi</span></span><span class="pd-part-score">${it.score}</span>${it.url ? `<a href="${esc(it.url)}" target="_blank" rel="noopener noreferrer" aria-label="Buka bahagian ${i + 1}" title="Buka post">${svgIcon('external', 14)}</a>` : ''}</div>`).join('')}</div>` : '';
+    const single = m.items.length === 1 && m.items[0].url ? `<a class="text-button" href="${esc(m.items[0].url)}" target="_blank" rel="noopener noreferrer">Buka post ${svgIcon('external', 12)}</a>` : '';
+    perf = `<section class="pd-section"><div class="pd-label">Prestasi sekarang${single ? ' ' + single : ''}</div>
+      <div class="pd-score"><div class="pd-score-num">${m.score}</div><div class="pd-score-meta"><b>Skor${m.items.length > 1 ? ' purata ' + m.items.length + ' bahagian' : ''}</b><div class="pd-score-bar"><i style="width:${Math.max(0, Math.min(100, m.score))}%"></i></div></div></div>
+      <div class="pd-stats">${tiles.map(t => `<div class="pd-stat"><span>${t[0]}</span><b>${t[1]}</b></div>`).join('')}</div>
+      ${parts}
+      <div class="pd-note">Dipadankan ikut ${m.how === 'url' ? 'URL post' : 'teks caption'}. Data analytics dikemas kini setiap hari${asOf ? ', terkini ' + esc(asOf) : ''}. Views kosong bermakna platform belum bagi angka, jadi skor dikira dari interaksi sahaja.${st !== 'posted' ? ' Status plan ni masih ' + esc(CAL_STATUS[st] || st) + ' tapi post sepadan dah ada dalam analytics, kemungkinan dah diposkan.' : ''}</div></section>`;
   } else if (st === 'posted' || p.date <= todayStr()) {
-    perf = `<div class="perf-panel"><h4>Prestasi sekarang</h4><div class="perf-foot" style="margin-top:0">Belum ada data analytics untuk post ni. Analytics dikemas kini sekali sehari, dan post yang baru keluar akan muncul esok pagi. Kalau post dah lama dan masih kosong, collector belum tangkap post tu.</div></div>`;
-  } else {
-    perf = '';
+    perf = `<section class="pd-section"><div class="pd-label">Prestasi sekarang</div><div class="pd-empty">Belum ada data analytics untuk post ni. Analytics dikemas kini sekali sehari, dan post yang baru keluar akan muncul esok pagi. Kalau post dah lama dan masih kosong, collector belum tangkap post tu.</div></section>`;
   }
-  document.getElementById('previewCard').innerHTML = `<button class="preview-close" onclick="closePostPreview()" aria-label="Tutup">&#215;</button>
-    <h3>${esc(p.title || 'Post')}</h3>
-    <div><span class="p-status status-${esc(st)}">${esc(CAL_STATUS[st] || st)}</span> <span class="p-pillar" style="background:${getPillarColor(p.pillar)}">${esc(p.pillar || '')}</span></div>
-    <div class="preview-meta">${esc(PLATFORM_NAMES[platform] || platform)} &middot; ${esc(when)}${p.time ? ' &middot; ' + esc(p.time) : ''}</div>
-    ${perf}
-    <div class="preview-meta" style="margin:0">${posted ? 'Yang diposkan' : (p.platform === 'tiktok' ? 'Skrip' : 'Caption')}</div>
-    <div class="preview-caption">${esc(posted || p.caption || (p.platform === 'tiktok' ? 'Tiada skrip.' : 'Tiada caption.'))}</div>
-    ${posted && p.caption && p.caption !== posted ? `<div class="preview-meta" style="margin:0">${p.platform === 'tiktok' ? 'Skrip asal (plan)' : 'Caption asal (plan)'}</div><div class="preview-caption">${esc(p.caption)}</div>` : ''}
-    ${p.platform === 'tiktok' ? `<div class="preview-meta" style="margin:0">Caption post</div><div class="preview-caption">${esc(p.postCaption || 'Belum diisi. Tekan Edit post untuk tulis caption.')}</div>` : ''}
-    ${canPublishToThreads(p) ? `<div class="publish-box" id="pubBox" data-id="${esc(p.id)}">Semak sambungan Threads...</div>` : ''}
-    <div class="publish-box" id="pubAllBox" data-id="${esc(p.id)}">Semak sambungan platform...</div>
-    <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(p.id)}" data-platform="${esc(platform)}" onclick="editFromDetail(this.dataset.platform,this.dataset.id)">Edit post</button><button class="btn btn-outline btn-sm" onclick="closePostPreview()">Tutup</button></div>`;
+  const mainLabel = posted ? 'Yang diposkan' : (isTiktok ? 'Skrip' : 'Caption');
+  const chainCount = !isTiktok ? threadsParts(posted || p.caption).length : 0;
+  const card = document.getElementById('previewCard');
+  card.className = 'social-preview post-detail';
+  card.style.setProperty('--pc', getPillarColor(p.pillar));
+  card.innerHTML = `<div class="pd-accent"></div>
+    <header class="pd-head">
+      <div class="pd-top"><span class="pd-platform">${platformLogo(platform)}${esc(PLATFORM_NAMES[platform] || platform)}</span><button class="preview-close" onclick="closePostPreview()" aria-label="Tutup">&#215;</button></div>
+      <h3 class="pd-title">${esc(p.title || 'Post')}</h3>
+      <div class="pd-chips"><span class="p-status status-${esc(st)}">${esc(CAL_STATUS[st] || st)}</span>${p.pillar ? `<span class="p-pillar" style="background:${getPillarColor(p.pillar)}">${esc(p.pillar)}</span>` : ''}</div>
+      <div class="pd-when"><span>${svgIcon('calendar', 14)}${esc(when)}</span>${p.time ? `<span>${svgIcon('clock', 14)}${esc(p.time)}</span>` : ''}</div>
+    </header>
+    <div class="pd-body">
+      ${perf}
+      <section class="pd-section"><div class="pd-label">${mainLabel}${chainCount > 1 ? `<small>${chainCount} bahagian</small>` : ''}</div>
+        ${detailTextHtml(posted || p.caption, platform, isTiktok ? 'Tiada skrip.' : 'Tiada caption.')}
+        ${posted && p.caption && p.caption !== posted ? `<details class="pd-more"><summary>${isTiktok ? 'Lihat skrip asal (plan)' : 'Lihat caption asal (plan)'}</summary>${detailTextHtml(p.caption, platform, '')}</details>` : ''}
+      </section>
+      ${isTiktok ? `<section class="pd-section"><div class="pd-label">Caption post</div>${detailTextHtml(p.postCaption, 'tiktok', 'Belum diisi. Tekan Edit post untuk tulis caption.')}</section>` : ''}
+      <section class="pd-section"><div class="pd-label">Post ke platform</div>
+        ${canPublishToThreads(p) ? `<div class="publish-box" id="pubBox" data-id="${esc(p.id)}">Semak sambungan Threads...</div>` : ''}
+        <div class="publish-box" id="pubAllBox" data-id="${esc(p.id)}">Semak sambungan platform...</div>
+      </section>
+    </div>
+    <footer class="pd-foot"><button class="btn btn-primary btn-sm" data-id="${esc(p.id)}" data-platform="${esc(platform)}" onclick="editFromDetail(this.dataset.platform,this.dataset.id)">${svgIcon('edit', 14)} Edit post</button><button class="btn btn-outline btn-sm" onclick="closePostPreview()">Tutup</button></footer>`;
   document.getElementById('previewOverlay').classList.add('open');
+  card.scrollTop = 0;
   if (canPublishToThreads(p)) initPublishBox(p.id);
   initPlatformBox(p.id);
 }
