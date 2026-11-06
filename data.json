@@ -1,86 +1,86 @@
 {
-  "generated_at": "2026-11-05T01:45:34.460069+00:00",
-  "median_weighted_30d": 3.0,
-  "median_views_30d": 269.0,
+  "generated_at": "2026-11-06T01:45:33.611097+00:00",
+  "median_weighted_30d": 3,
+  "median_views_30d": 273,
   "weekly": {
-    "engage": {
-      "posts": 49,
-      "inter": 2050,
-      "shares": 273,
-      "views": 61086,
-      "avg_score": 36.1,
-      "avg_inter": 41.8
-    },
-    "google-ads-marketing": {
-      "posts": 18,
-      "inter": 94,
-      "shares": 4,
-      "views": 6204,
-      "avg_score": 52.9,
-      "avg_inter": 5.2
-    },
     "agentic-ai": {
       "posts": 51,
-      "inter": 1547,
-      "shares": 175,
-      "views": 38613,
-      "avg_score": 69.4,
-      "avg_inter": 30.3
+      "inter": 1739,
+      "shares": 196,
+      "views": 43914,
+      "avg_score": 71.9,
+      "avg_inter": 34.1
+    },
+    "engage": {
+      "posts": 42,
+      "inter": 2003,
+      "shares": 274,
+      "views": 59299,
+      "avg_score": 38.8,
+      "avg_inter": 47.7
+    },
+    "google-ads-marketing": {
+      "posts": 10,
+      "inter": 75,
+      "shares": 4,
+      "views": 4239,
+      "avg_score": 58.8,
+      "avg_inter": 7.5
     }
   },
   "monthly": {
+    "agentic-ai": {
+      "posts": 214,
+      "inter": 4158,
+      "shares": 383,
+      "views": 120201,
+      "avg_score": 59.6,
+      "avg_inter": 19.4
+    },
     "engage": {
-      "posts": 283,
-      "inter": 2778,
-      "shares": 296,
-      "views": 94363,
-      "avg_score": 28.0,
-      "avg_inter": 9.8
+      "posts": 274,
+      "inter": 2780,
+      "shares": 297,
+      "views": 94284,
+      "avg_score": 28.7,
+      "avg_inter": 10.1
     },
     "google-ads-marketing": {
-      "posts": 94,
-      "inter": 477,
-      "shares": 34,
-      "views": 24316,
-      "avg_score": 51.0,
-      "avg_inter": 5.1
-    },
-    "agentic-ai": {
-      "posts": 215,
-      "inter": 4041,
-      "shares": 366,
-      "views": 118817,
-      "avg_score": 59.7,
-      "avg_inter": 18.8
+      "posts": 87,
+      "inter": 430,
+      "shares": 31,
+      "views": 22200,
+      "avg_score": 50.3,
+      "avg_inter": 4.9
     }
   },
   "pillars": [
     {
       "pillar": "google-ads-marketing",
-      "posts": 94,
-      "pct": 16,
+      "posts": 87,
+      "pct": 15,
       "target": 20,
-      "gap": -4,
-      "avg_score": 51.0,
-      "avg_inter": 5.1
+      "gap": -5,
+      "avg_score": 50.3,
+      "avg_inter": 4.9
     },
     {
       "pillar": "agentic-ai",
-      "posts": 215,
-      "pct": 36,
+      "posts": 214,
+      "pct": 37,
       "target": 70,
-      "gap": -34,
-      "avg_score": 59.7,
-      "avg_inter": 18.8
+      "gap": -33,
+      "avg_score": 59.6,
+      "avg_inter": 19.4
     },
     {
       "pillar": "engage",
-      "posts": 283,
+      "posts": 274,
       "pct": 48,
       "target": 10,
       "gap": 38,
-      "avg_score": 28.0,
-      "avg_inter": 9.8
+      "avg_score": 28.7,
+      "avg_inter": 10.1
     }
   ],
   "pillar_targets": {
@@ -88,8 +88,8 @@
     "google-ads-marketing": 0.2,
     "engage": 0.1
   },
-  "posts_7d": 118,
-  "posts_30d": 592,
+  "posts_7d": 103,
+  "posts_30d": 575,
   "top_7d": [
     {
       "id": 2442,
@@ -100,7 +100,7 @@
       "likes": 1434,
       "comments": 55,
       "shares": 271,
-      "views": 47602,
+      "views": 47670,
       "text": "Semalam aku decide untuk keluarkan ja high value sharing. Malas dah nak gatekeep.\n\nYg ni baru level surface je guys. Tu pun specific untuk threads sahaja. Follow kalau nak sharing yang lagi atas atas dia.",
       "weighted": 2357,
       "score": 99.7
@@ -120,6 +120,20 @@
       "score": 99.5
     },
     {
+      "id": 2499,
+      "published_at": "2026-11-04T01:21:02+0000",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 143,
+      "comments": 58,
+      "shares": 38,
+      "views": 4040,
+      "text": "Aku nak ajar korang cara pasang Hermes. Cara ni sapa2 pun boleh buat. Easy.\n\n1. Search Hermes Ai Agent, Download Hermes.\n2. Install dalam pc/laptop korang. Tunggu dia siap.\n3. Dah sial, bukak terminal/powershell, type \u201chermes model\u201d.\n4. Pilih Api key yang korang nak.\n\nTips \ud83d\udc49 aku rekomen korang subs ja chatgpt plus RM100 tu. Ambik no 8, Codex Auth > dia akan bagi link > copy paste dekat browser > m",
+      "weighted": 373,
+      "score": 97.5
+    },
+    {
       "id": 2435,
       "published_at": "2026-10-31T10:29:48+0000",
       "pillar": "agentic-ai",
@@ -128,23 +142,9 @@
       "likes": 82,
       "comments": 41,
       "shares": 3,
-      "views": 3695,
+      "views": 3705,
       "text": "Kalau korang ada apa2 nak tahu pasal cara nak setup Hermes, nak setup certain workflow, nak setup ai agent atau agentic Ai, cara macam mana, apa kena setup\n\nTanya ja. Aku share free.",
       "weighted": 173,
-      "score": 96.8
-    },
-    {
-      "id": 2499,
-      "published_at": "2026-11-04T01:21:02+0000",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 92,
-      "comments": 49,
-      "shares": 28,
-      "views": 2846,
-      "text": "Aku nak ajar korang cara pasang Hermes. Cara ni sapa2 pun boleh buat. Easy.\n\n1. Search Hermes Ai Agent, Download Hermes.\n2. Install dalam pc/laptop korang. Tunggu dia siap.\n3. Dah sial, bukak terminal/powershell, type \u201chermes model\u201d.\n4. Pilih Api key yang korang nak.\n\nTips \ud83d\udc49 aku rekomen korang subs ja chatgpt plus RM100 tu. Ambik no 8, Codex Auth > dia akan bagi link > copy paste dekat browser > m",
-      "weighted": 274,
       "score": 96.7
     },
     {
@@ -153,13 +153,13 @@
       "pillar": "agentic-ai",
       "pillar_source": "label",
       "format": "tutorial-howto",
-      "likes": 70,
+      "likes": 71,
       "comments": 6,
-      "shares": 8,
-      "views": 2598,
+      "shares": 9,
+      "views": 2786,
       "text": "Another ungatekeeping yang korang wajib explore. Kalau korang layan posting aku, wajib check out account ni jugak \n\n1. @zakwan77__ all around Hermes Business OS setup & coaching. Tagline dia \u201cpakai hermes pun boleh buat.\u201d\n2. @akid.ahmad sesuai untuk beginner. Tapi sekarang dia banyak share pasal editing guna Claude. Banyak gold dia drop pasal claude editing video.\n3. @izzat.digital dia ni OG dari ",
-      "weighted": 106,
-      "score": 95.3
+      "weighted": 110,
+      "score": 95.5
     },
     {
       "id": 2483,
@@ -170,10 +170,24 @@
       "likes": 44,
       "comments": 17,
       "shares": 3,
-      "views": 1890,
+      "views": 1907,
       "text": "Bila korang guna Hermes dan nak bagi dia ability untuk generate image/poster utk carousel/ ads kau, kau kena buat ni \ud83d\udc47",
       "weighted": 87,
       "score": 93.9
+    },
+    {
+      "id": 2504,
+      "published_at": "2026-11-05T12:03:27+0000",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 39,
+      "comments": 10,
+      "shares": 1,
+      "views": 2187,
+      "text": "\u201cKalau tak nak guna Hermes, nak guna Claude Code atau Codex tak boleh ke tuan?\u201d\n\nBoleh. Dah familiar dengan claude/chatgpt, tiba2 ramai cakap Hermes best. Jangan fomo nak tukar.\n\nStay ja dengan Claude dan Chatgpt tu. syaratnya..",
+      "weighted": 62,
+      "score": 93.4
     },
     {
       "id": 2456,
@@ -184,10 +198,10 @@
       "likes": 58,
       "comments": 2,
       "shares": 2,
-      "views": 1932,
+      "views": 1936,
       "text": "Another day another sharing. Korang konfius pasal Ai, harness, agentic Ai, automation apa semua, tanya sini. Aku malas dah nak gatekeep.\n\n\u201cNi bukan gatekeep dah bang, ni telanjang terus\u201d. -> real testimoni.\n\nSampai ada yang tak puas hati kot aku share pasal content Ai automation tu. Apadahal.",
       "weighted": 68,
-      "score": 93.4
+      "score": 93.3
     },
     {
       "id": 2455,
@@ -198,7 +212,7 @@
       "likes": 38,
       "comments": 14,
       "shares": 0,
-      "views": 1882,
+      "views": 1884,
       "text": "Weekend ni saja 700+ followers baru \ud83d\ude02 terima kasih lah guys follow. Semog bermanfaat.",
       "weighted": 66,
       "score": 93.2
@@ -212,24 +226,10 @@
       "likes": 27,
       "comments": 3,
       "shares": 6,
-      "views": 1763,
+      "views": 1766,
       "text": "Sales advisor atau bisnes yang handle LEADS hilang sales RIBUAN ringgit sebab takda CRM. Meh aku ajar setup baik punya.\n\nSetup Hermes > sambung kan whatsapp kau ke baileys > lepas tu cakap kat dia,\n\u201cManage semua leads yang masuk melalui WhatsApp, susun by temperature, go thru chat untuk dapatkan context, notify aku leads yang kena close, susun kanban style, buat dedicated dashboard untuk aku.\u201d -> ",
       "weighted": 51,
       "score": 92.1
-    },
-    {
-      "id": 2421,
-      "published_at": "2026-10-30T18:07:51+0000",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 29,
-      "comments": 11,
-      "shares": 2,
-      "views": 1524,
-      "text": "Current setup aku.\n\nLocal Linux PC + Hermes + Opus 5.5 video editing + VPS + Pi Dedicated Agent + Deepseek + T3 Code Alpha.\n\nPlan nak tambah another Mac Mini 16gb Ram untuk dedicated video editing machine.",
-      "weighted": 57,
-      "score": 92.0
     }
   ],
   "top_30d": [
@@ -242,7 +242,7 @@
       "likes": 1434,
       "comments": 55,
       "shares": 271,
-      "views": 47602,
+      "views": 47670,
       "text": "Semalam aku decide untuk keluarkan ja high value sharing. Malas dah nak gatekeep.\n\nYg ni baru level surface je guys. Tu pun specific untuk threads sahaja. Follow kalau nak sharing yang lagi atas atas dia.",
       "weighted": 2357,
       "score": 99.7
@@ -284,10 +284,24 @@
       "likes": 85,
       "comments": 122,
       "shares": 0,
-      "views": 5038,
+      "views": 5039,
       "text": "Aku buat satu eksperimen dekat thread ni.\n\ndua minggu ni aku kurang kan komen dekat posting orang. So posting direct aku lagi banyak dari komen. Disebabkan posting Ai related aku dapat engagement tinggi, nampak macam okay tapi...",
       "weighted": 329,
       "score": 97.8
+    },
+    {
+      "id": 2499,
+      "published_at": "2026-11-04T01:21:02+0000",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "tutorial-howto",
+      "likes": 143,
+      "comments": 58,
+      "shares": 38,
+      "views": 4040,
+      "text": "Aku nak ajar korang cara pasang Hermes. Cara ni sapa2 pun boleh buat. Easy.\n\n1. Search Hermes Ai Agent, Download Hermes.\n2. Install dalam pc/laptop korang. Tunggu dia siap.\n3. Dah sial, bukak terminal/powershell, type \u201chermes model\u201d.\n4. Pilih Api key yang korang nak.\n\nTips \ud83d\udc49 aku rekomen korang subs ja chatgpt plus RM100 tu. Ambik no 8, Codex Auth > dia akan bagi link > copy paste dekat browser > m",
+      "weighted": 373,
+      "score": 97.5
     },
     {
       "id": 1886,
@@ -298,7 +312,7 @@
       "likes": 125,
       "comments": 14,
       "shares": 26,
-      "views": 4074,
+      "views": 4083,
       "text": "Aku nak share step by step cara aku edit video guna claude.\n\n1. Make sure guna claude pro.\n2. Pilih claude code, opus 5.5 high\n3. Create folder kerja (tempat dump video raw dan bahan2 b-roll).\n4. Bagitahu claude untuk sambung dengan folder tu.\n5. Masukkan video raw korang dalam tu.\n\nNow step paling penting.",
       "weighted": 231,
       "score": 97.2
@@ -326,23 +340,9 @@
       "likes": 82,
       "comments": 41,
       "shares": 3,
-      "views": 3695,
+      "views": 3705,
       "text": "Kalau korang ada apa2 nak tahu pasal cara nak setup Hermes, nak setup certain workflow, nak setup ai agent atau agentic Ai, cara macam mana, apa kena setup\n\nTanya ja. Aku share free.",
       "weighted": 173,
-      "score": 96.8
-    },
-    {
-      "id": 2499,
-      "published_at": "2026-11-04T01:21:02+0000",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 92,
-      "comments": 49,
-      "shares": 28,
-      "views": 2846,
-      "text": "Aku nak ajar korang cara pasang Hermes. Cara ni sapa2 pun boleh buat. Easy.\n\n1. Search Hermes Ai Agent, Download Hermes.\n2. Install dalam pc/laptop korang. Tunggu dia siap.\n3. Dah sial, bukak terminal/powershell, type \u201chermes model\u201d.\n4. Pilih Api key yang korang nak.\n\nTips \ud83d\udc49 aku rekomen korang subs ja chatgpt plus RM100 tu. Ambik no 8, Codex Auth > dia akan bagi link > copy paste dekat browser > m",
-      "weighted": 274,
       "score": 96.7
     },
     {
@@ -365,27 +365,27 @@
       "pillar": "agentic-ai",
       "pillar_source": "label",
       "format": "tutorial-howto",
-      "likes": 70,
+      "likes": 71,
       "comments": 6,
-      "shares": 8,
-      "views": 2598,
+      "shares": 9,
+      "views": 2786,
       "text": "Another ungatekeeping yang korang wajib explore. Kalau korang layan posting aku, wajib check out account ni jugak \n\n1. @zakwan77__ all around Hermes Business OS setup & coaching. Tagline dia \u201cpakai hermes pun boleh buat.\u201d\n2. @akid.ahmad sesuai untuk beginner. Tapi sekarang dia banyak share pasal editing guna Claude. Banyak gold dia drop pasal claude editing video.\n3. @izzat.digital dia ni OG dari ",
-      "weighted": 106,
-      "score": 95.3
+      "weighted": 110,
+      "score": 95.5
     }
   ],
   "recommendations": [
     {
       "type": "pillar-mix",
       "title": "Pillar mix vs target 35/35/30",
-      "body": "google-ads-marketing 16% (target 20%) | agentic-ai 36% (target 70%) | engage 48% (target 10%)",
-      "metric": 592
+      "body": "google-ads-marketing 15% (target 20%) | agentic-ai 37% (target 70%) | engage 48% (target 10%)",
+      "metric": 575
     },
     {
       "type": "pillar-under",
       "title": "Pillar kurang: agentic-ai",
-      "body": "agentic-ai cuma 36% (target 70%). Naikkan volume je tak cukup. Kalau pillar ni engagement rendah, tukar bentuk: AI sebagai tool, masalah bisnes sebagai cerita.",
-      "metric": 36
+      "body": "agentic-ai cuma 37% (target 70%). Naikkan volume je tak cukup. Kalau pillar ni engagement rendah, tukar bentuk: AI sebagai tool, masalah bisnes sebagai cerita.",
+      "metric": 37
     },
     {
       "type": "pillar-over",
@@ -396,14 +396,14 @@
     {
       "type": "pillar-fix",
       "title": "Tingkatkan: engage",
-      "body": "engage avg score 28.0 dari 283 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
-      "metric": 28.0
+      "body": "engage avg score 28.7 dari 274 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
+      "metric": 28.7
     },
     {
       "type": "top-pillar-week",
       "title": "Pillar terbaik minggu ni: agentic-ai",
-      "body": "agentic-ai avg score 69.4 dari 51 posts. Kekalkan bentuk ni.",
-      "metric": 69.4
+      "body": "agentic-ai avg score 71.9 dari 51 posts. Kekalkan bentuk ni.",
+      "metric": 71.9
     }
   ]
 }
