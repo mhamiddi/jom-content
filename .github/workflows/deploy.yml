@@ -41,7 +41,7 @@ jobs:
             sleep 10
           done
           for ROUTE in / /topics.html /analytics.html /api/health; do
-            STATUS=$(curl -sS -o /dev/null -w "%{http_code}" "https://jom-content.pages.dev${ROUTE}")
+            STATUS=$(curl -sS -L -o /dev/null -w "%{http_code}" "https://jom-content.pages.dev${ROUTE}")
             echo "${ROUTE}: ${STATUS}"
             [ "$STATUS" = "200" ] || exit 1
           done
