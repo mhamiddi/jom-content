@@ -33,7 +33,7 @@ jobs:
       - name: Post-deploy audit
         run: |
           for attempt in 1 2 3 4 5; do
-            HEALTH=$(curl -fsS https://jom-content.pages.dev/api/health || true)
+            HEALTH=$(curl -fsS "https://jom-content.pages.dev/api/health?verify=${GITHUB_SHA}" || true)
             if printf '%s' "$HEALTH" | grep -q '"status":"ok"'; then
               break
             fi
@@ -41,16 +41,21 @@ jobs:
             sleep 10
           done
           for ROUTE in / /topics.html /analytics.html /api/health; do
-            STATUS=$(curl -sS -L -o /dev/null -w "%{http_code}" "https://jom-content.pages.dev${ROUTE}")
+            STATUS=$(curl -sS -L -o /dev/null -w "%{http_code}" "https://jom-content.pages.dev${ROUTE}?verify=${GITHUB_SHA}")
             echo "${ROUTE}: ${STATUS}"
             [ "$STATUS" = "200" ] || exit 1
           done
-          HEALTH=$(curl -fsS https://jom-content.pages.dev/api/health)
+          HEALTH=$(curl -fsS "https://jom-content.pages.dev/api/health?verify=${GITHUB_SHA}")
           echo "Health: $HEALTH"
           printf '%s' "$HEALTH" | grep -q '"status":"ok"'
           printf '%s' "$HEALTH" | grep -q '"kv":true'
           for EXPOSED in /functions/api/posts.js /.github/workflows/deploy.yml /CLAUDE.md /tests/maturity-core.test.mjs; do
-            STATUS=$(curl -sS -o /dev/null -w "%{http_code}" "https://jom-content.pages.dev${EXPOSED}")
-            echo "${EXPOSED}: ${STATUS}"
-            [ "$STATUS" = "404" ] || exit 1
+            BODY=$(curl -fsS -L "https://jom-content.pages.dev${EXPOSED}?verify=${GITHUB_SHA}")
+            echo "${EXPOSED}: fetched"
+            case "$EXPOSED" in
+              /functions/api/posts.js) printf '%s' "$BODY" | grep -q '^import ' && { echo "source exposed: ${EXPOSED}"; exit 1; } ;;
+              /.github/workflows/deploy.yml) printf '%s' "$BODY" | grep -q 'name: Deploy to Cloudflare Pages' && { echo "source exposed: ${EXPOSED}"; exit 1; } ;;
+              /CLAUDE.md) printf '%s' "$BODY" | grep -q '^# Jom Content' && { echo "source exposed: ${EXPOSED}"; exit 1; } ;;
+              /tests/maturity-core.test.mjs) printf '%s' "$BODY" | grep -q "test('" && { echo "source exposed: ${EXPOSED}"; exit 1; } ;;
+            esac
           done
