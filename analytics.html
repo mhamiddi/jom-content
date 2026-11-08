@@ -42,6 +42,7 @@ header::after{content:'';position:absolute;right:-40px;top:-40px;width:200px;hei
 .notice{display:none;margin:14px 0 0;padding:10px 14px;border-radius:var(--radius-sm);background:var(--amber-bg);color:#92400e;font-size:12px;border:1px solid #fcd34d}
 .notice.show{display:block}
 .load-state{display:flex;align-items:center;gap:10px;margin:14px 0 0;padding:12px 14px;border-radius:var(--radius-sm);background:var(--primary-bg);color:var(--primary-dark);font-size:12px;font-weight:700;border:1px solid #bfdbfe}
+.load-state[hidden]{display:none}
 .load-state.error{background:var(--red-bg);color:#991b1b;border-color:#fecaca}
 .load-spinner{width:14px;height:14px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .8s linear infinite;flex:0 0 auto}
 .load-state.error .load-spinner{display:none}
