@@ -35,6 +35,8 @@ test('threads search requires Hera token and returns redacted public results', a
   assert.equal(response.status, 200);
   assert.equal(data.success, true);
   assert.equal(data.posts[0].id, 'p1');
+  assert.equal(data.paging.has_next, true);
+  assert.equal('next' in data.paging, false);
   assert.equal(JSON.stringify(data).includes('thread-token'), false);
   assert.equal(calls[0].pathname, '/v1.0/keyword_search');
   assert.equal(calls[0].searchParams.get('q'), 'agentic AI');

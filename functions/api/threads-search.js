@@ -55,7 +55,11 @@ export async function onRequest(context) {
       search_type: searchType,
       account: { id: refreshed.account.id, username: refreshed.account.username },
       posts: Array.isArray(data.data) ? data.data : [],
-      paging: data.paging || {},
+      paging: {
+        cursors: data.paging?.cursors || {},
+        has_next: Boolean(data.paging?.next),
+        has_previous: Boolean(data.paging?.previous),
+      },
     });
   } catch (error) {
     return json({ success: false, source: 'threads_api', error: String(error.message || error).slice(0, 300) }, 502);
