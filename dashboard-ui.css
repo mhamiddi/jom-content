@@ -50,3 +50,53 @@ main{max-width:1550px;width:100%;margin:auto;padding:30px 34px 60px}.section{mar
 .reject-tag.on{background:#ede9fe;border-color:#7c3aed;color:#5b21b6}
 .reject-tag:focus-visible{outline:3px solid #c4b5fd;outline-offset:2px}
 @media(pointer:coarse){.reject-tag{min-height:44px}}
+
+/* Postiz-inspired workspace polish: Jom blue, tighter editorial density. */
+#tab-dashboard{max-width:1480px;margin:0 auto}
+#tab-dashboard>.section{margin-bottom:22px}
+#summarySection{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:0 8px 24px rgba(24,34,57,.035)}
+#summarySection>.section-hdr{padding-bottom:16px;border-bottom:1px solid var(--border-light);margin-bottom:18px}
+#summarySection>.section-hdr h2{font-size:17px}
+#summarySection>.section-hdr>div{display:flex;align-items:center;gap:6px;background:var(--bg);padding:4px;border:1px solid var(--border);border-radius:10px}
+#summarySection>.section-hdr .btn{min-width:32px;height:32px;padding:6px 9px;border:0;background:transparent}
+#summarySection>.section-hdr .btn:hover{background:var(--surface);box-shadow:var(--shadow-sm)}
+#summarySection>.section-hdr .btn-outline{border:1px solid var(--border);background:var(--surface);color:var(--primary)}
+#summarySection>.section-hdr .badge{background:transparent;font-weight:700}
+#dashStats{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+#dashStats .card-stat{min-height:132px;background:linear-gradient(145deg,var(--surface) 0%,var(--bg) 100%);border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:none}
+#dashStats .card-stat:hover{border-color:#b9cdf5;box-shadow:0 10px 24px rgba(37,99,235,.08);transform:translateY(-2px)}
+#dashStats .card-stat .num{font-size:31px;font-weight:700;color:var(--text)}
+#dashStats .card-stat .label{font-weight:600}
+#dashStats .card-stat .sub{line-height:1.45}
+#contentLibrary{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:0 8px 24px rgba(24,34,57,.035)}
+#contentLibrary>.section-hdr{padding-bottom:16px;border-bottom:1px solid var(--border-light);margin-bottom:14px}
+#contentLibrary .section-title{gap:9px}
+#contentLibrary .section-title h2{font-size:17px}
+#contentLibrary .section-title .badge{background:var(--primary-bg);color:var(--primary);min-width:28px;text-align:center}
+#contentLibrary .view-switch{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:3px;gap:3px}
+#contentLibrary .view-switch button{min-height:32px;padding:7px 12px;border-radius:7px;font-weight:600}
+#contentLibrary .view-switch button[aria-pressed=true]{background:var(--primary);color:#fff;box-shadow:0 3px 8px rgba(37,99,235,.2)}
+#contentLibrary .planner-toolbar{display:grid;grid-template-columns:minmax(220px,1.6fr) repeat(3,minmax(130px,.7fr));gap:8px;padding:12px;background:var(--bg);border:1px solid var(--border-light);border-radius:14px}
+#contentLibrary .planner-toolbar .search-input,#contentLibrary .planner-toolbar select{width:100%;height:40px;min-height:40px;background:var(--surface);border:1px solid var(--border);border-radius:9px;color:var(--text);font-size:12px;box-shadow:inset 0 1px 1px rgba(24,34,57,.025)}
+#contentLibrary .planner-toolbar .search-input{padding:10px 13px}
+#contentLibrary .planner-toolbar select{appearance:none;padding:9px 30px 9px 12px;background-image:linear-gradient(45deg,transparent 50%,var(--text2) 50%),linear-gradient(135deg,var(--text2) 50%,transparent 50%);background-position:calc(100% - 15px) 17px,calc(100% - 11px) 17px;background-size:4px 4px,4px 4px;background-repeat:no-repeat}
+#contentLibrary .planner-toolbar .search-input:focus,#contentLibrary .planner-toolbar select:focus{border-color:var(--primary-light);box-shadow:0 0 0 3px var(--primary-glow)}
+#contentLibrary .planner-meta{margin:12px 2px 10px;font-size:11px}
+#contentLibrary .planner-meta .text-button{padding:6px 9px;border:1px solid var(--border);border-radius:7px;background:var(--surface);font-weight:600}
+#contentLibrary .planner-meta .text-button:hover{background:var(--primary-bg);text-decoration:none}
+#contentLibrary .planner-list{border:1px solid var(--border-light);border-radius:12px;overflow:hidden}
+#contentLibrary .planner-row{padding:14px 16px;background:var(--surface)}
+#contentLibrary .planner-row:first-child{border-top:0}
+#contentLibrary .planner-row:hover{background:var(--primary-bg)}
+#contentLibrary .planner-board{padding-top:2px}
+#contentLibrary .empty-planner{min-height:250px;border:1px dashed #bfd0ee;border-radius:14px;background:linear-gradient(180deg,var(--primary-bg) 0%,var(--surface) 100%);display:flex;align-items:center;justify-content:center}
+.empty-planner-icon{width:52px;height:52px;border-radius:16px;background:var(--surface);color:var(--primary);display:grid;place-items:center;box-shadow:0 8px 18px rgba(37,99,235,.12);margin-bottom:14px}
+.empty-planner-icon svg{width:25px;height:25px}
+.empty-planner strong{font-size:16px}
+.empty-planner p{max-width:390px;margin:0 auto 16px;line-height:1.65}
+.empty-planner-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+#focusPanel .focus-card{box-shadow:0 8px 24px rgba(24,34,57,.035)}
+#focusPanel .queue-card{box-shadow:0 10px 26px rgba(21,44,88,.16)}
+@media(max-width:1100px){#contentLibrary .planner-toolbar{grid-template-columns:minmax(180px,1fr) repeat(2,minmax(130px,.7fr))}#contentLibrary .planner-toolbar select:last-child{grid-column:auto}}
+@media(max-width:768px){#summarySection,#contentLibrary{padding:16px;border-radius:15px}#summarySection>.section-hdr{align-items:flex-start}#summarySection>.section-hdr>div{width:100%;justify-content:space-between}#dashStats{grid-template-columns:repeat(2,minmax(0,1fr))}#contentLibrary .planner-toolbar{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:10px}#contentLibrary .planner-toolbar .search-input{grid-column:1/-1}#contentLibrary .planner-meta{align-items:flex-start}#contentLibrary>.section-hdr{align-items:flex-start}#contentLibrary .view-switch{width:100%;justify-content:stretch}#contentLibrary .view-switch button{flex:1}.empty-planner{min-height:230px;padding:30px 16px}}
+@media(max-width:390px){#dashStats{grid-template-columns:1fr}.planner-toolbar{grid-template-columns:1fr!important}.planner-toolbar .search-input{grid-column:auto!important}}

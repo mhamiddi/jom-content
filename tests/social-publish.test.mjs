@@ -40,7 +40,7 @@ function stubFetch(handler) {
 }
 
 function postRecord() {
-  return { id: 'p1', title: 'Tajuk video', caption: 'Caption TikTok.', status: 'draft', platform: 'tiktok' };
+  return { id: 'p1', title: 'Tajuk video', caption: 'Skrip TikTok.', postCaption: 'Caption TikTok.', status: 'draft', platform: 'tiktok' };
 }
 
 test('social publish reports itself unconfigured without a Zernio key', async () => {
@@ -112,7 +112,7 @@ test('social publish in draft mode never sets publishNow', async () => {
   const kv = kvStore({ posts: JSON.stringify([postRecord()]) });
   const res = await onRequest({
     request: new Request('https://x.com/api/social-publish?id=p1', {
-      method: 'POST', body: JSON.stringify({ targets: ['youtube'], caption: 'Caption.', mediaUrl: 'https://media.jom-content.com/a.mp4', title: 'Tajuk', mode: 'draft' }),
+      method: 'POST', body: JSON.stringify({ targets: ['youtube'], caption: 'Caption TikTok.', mediaUrl: 'https://media.jom-content.com/a.mp4', title: 'Tajuk', mode: 'draft' }),
     }),
     env: { JOM_API_TOKEN: 't', JOM_CONTENT: kv, ZERNIO_API_KEY: 'z' },
   });
@@ -130,10 +130,29 @@ test('social publish refuses YouTube without a title', async () => {
   const kv = kvStore({ posts: JSON.stringify([{ ...postRecord(), title: '' }]) });
   const res = await onRequest({
     request: new Request('https://x.com/api/social-publish?id=p1', {
-      method: 'POST', body: JSON.stringify({ targets: ['youtube'], caption: 'Caption.', mediaUrl: 'https://media.jom-content.com/a.mp4', mode: 'publish' }),
+      method: 'POST', body: JSON.stringify({ targets: ['youtube'], caption: 'Caption TikTok.', mediaUrl: 'https://media.jom-content.com/a.mp4', mode: 'publish' }),
     }),
     env: { JOM_API_TOKEN: 't', JOM_CONTENT: kv, ZERNIO_API_KEY: 'z' },
   });
   assert.equal(res.status, 400);
   assert.equal((await res.json()).error, 'title_required');
+});
+
+test('social publish fails closed when Zernio returns no post id', async () => {
+  stubFetch((call) => {
+    if (call.path === '/accounts') return { body: ACCOUNTS };
+    if (call.path === '/posts' && call.method === 'POST') return { status: 201, body: { post: { status: 'published' } } };
+    return {};
+  });
+  const kv = kvStore({ posts: JSON.stringify([postRecord()]) });
+  const res = await onRequest({
+    request: new Request('https://x.com/api/social-publish?id=p1', {
+      method: 'POST', body: JSON.stringify({ targets: ['tiktok'], caption: 'Caption TikTok.', mediaUrl: 'https://media.jom-content.com/a.mp4', mode: 'publish' }),
+    }),
+    env: { JOM_API_TOKEN: 't', JOM_CONTENT: kv, ZERNIO_API_KEY: 'z' },
+  });
+  assert.equal(res.status, 502);
+  assert.equal((await res.json()).error, 'reconciliation_required');
+  assert.equal(JSON.parse(kv.values.get('social_publish:p1:tiktok')).state, 'uncertain');
+  assert.equal(JSON.parse(kv.values.get('posts'))[0].status, 'reconciliation_required');
 });

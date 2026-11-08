@@ -11,20 +11,46 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Run offline tests
+        run: node --test tests/maturity-core.test.mjs tests/social-publish.test.mjs tests/threads-publish.test.mjs tests/meta-publish.test.mjs
+
+      - name: Stage public Pages files
+        run: |
+          rm -rf .deploy
+          mkdir -p .deploy
+          cp index.html topics.html analytics.html login.css dashboard-ui.css dashboard-ui.js auth.js carousel-template.js threads-approval-ui.js analytics-data.json .deploy/
+          cp -R functions .deploy/functions
+
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
         run: |
-          npx wrangler pages deploy . \
+          trap 'rm -rf .deploy' EXIT
+          npx wrangler pages deploy .deploy \
             --project-name=jom-content \
             --branch=master
 
       - name: Post-deploy audit
-        env:
-          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
         run: |
-          sleep 15
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://jom-content.pages.dev/)
-          echo "Status: $STATUS"
-          [ "$STATUS" = "200" ] || exit 1
+          for attempt in 1 2 3 4 5; do
+            HEALTH=$(curl -fsS https://jom-content.pages.dev/api/health || true)
+            if printf '%s' "$HEALTH" | grep -q '"status":"ok"'; then
+              break
+            fi
+            echo "Health not ready (attempt ${attempt}): ${HEALTH}"
+            sleep 10
+          done
+          for ROUTE in / /topics.html /analytics.html /api/health; do
+            STATUS=$(curl -sS -o /dev/null -w "%{http_code}" "https://jom-content.pages.dev${ROUTE}")
+            echo "${ROUTE}: ${STATUS}"
+            [ "$STATUS" = "200" ] || exit 1
+          done
+          HEALTH=$(curl -fsS https://jom-content.pages.dev/api/health)
+          echo "Health: $HEALTH"
+          printf '%s' "$HEALTH" | grep -q '"status":"ok"'
+          printf '%s' "$HEALTH" | grep -q '"kv":true'
+          for EXPOSED in /functions/api/posts.js /.github/workflows/deploy.yml /CLAUDE.md /tests/maturity-core.test.mjs; do
+            STATUS=$(curl -sS -o /dev/null -w "%{http_code}" "https://jom-content.pages.dev${EXPOSED}")
+            echo "${EXPOSED}: ${STATUS}"
+            [ "$STATUS" = "404" ] || exit 1
+          done

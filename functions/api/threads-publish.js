@@ -1,6 +1,12 @@
 import { enforced, json } from '../_lib/auth.js';
 import { MISSING_POST_CAPTION, publishCaption } from '../_lib/caption.js';
 import { loadAccounts, maybeRefresh, publicAccount, resolveAccount, saveAccounts, threads } from '../_lib/threads.js';
+import { approvalDigest } from '../_lib/threads-approval.js';
+import { validateMedia } from '../_lib/threads-media.js';
+import { guardCall } from '../_lib/threads-guard.js';
+import { mergePublications } from '../_lib/publications.js';
+import { transitionPost, updateStoredPostStatus } from '../_lib/post-state.js';
+import { redactError } from '../_lib/redact-error.js';
 
 const MAX_PART = 500;
 const MAX_PARTS = 10;
@@ -80,13 +86,6 @@ export async function onRequest(context) {
   let accounts = await loadAccounts(env);
   let auth = resolveAccount(accounts, accountIdFrom(url, body));
   if (!auth) return json({ success: false, error: 'not_configured', message: 'Tiada account Threads yang disambung.' }, 409);
-  const refreshed = await maybeRefresh(env, auth);
-  auth = refreshed.account;
-  if (refreshed.changed) {
-    accounts = accounts.map((account) => account.id === auth.id ? auth : account);
-    await saveAccounts(env, accounts);
-  }
-
   const posts = (await env.JOM_CONTENT.get('posts', { type: 'json' })) || [];
   const post = posts.find((item) => item.id === postId);
   if (!post) return json({ success: false, error: 'Post not found', message: 'Post belum disimpan ke server. Simpan dulu.' }, 404);
@@ -121,11 +120,42 @@ export async function onRequest(context) {
     const fresh = Date.now() - Date.parse(prior.startedAt || 0) < STALE_LOCK_MS;
     if (prior.state === 'published') return json({ success: false, error: 'already_posted', message: 'Post ni dah diposkan.', urls: prior.urls || [] }, 409);
     if (prior.state === 'publishing' && fresh) return json({ success: false, error: 'in_progress', message: 'Post ni sedang diterbitkan.' }, 409);
-    if ((prior.urls || []).length) return json({ success: false, error: 'partial', message: 'Sebahagian chain dah keluar. Semak Threads dan jangan ulang.', urls: prior.urls }, 409);
+    if ((prior.ids || []).length || (prior.urls || []).length) {
+      // A container may have been published even when its permalink write failed.
+      return json({ success: false, error: 'partial', message: 'Sebahagian chain dah keluar. Semak Threads dan jangan ulang.', urls: prior.urls || [] }, 409);
+    }
+    // Any earlier attempt that is neither clearly published nor clearly unsent may
+    // already exist on Threads. Legacy records predate the durable guard, so fail
+    // closed instead of letting a fresh approval publish a duplicate.
+    return json({ success: false, error: 'reconciliation_required', message: 'Ada cubaan lama untuk post ni yang statusnya tak pasti. Semak Threads dulu; jangan publish semula sehingga reconciled.' }, 409);
+  }
+
+  if (!env.THREADS_GUARD) return json({success:false,error:'publish_guard_unavailable'},503);
+  try { await validateMedia(env, body, url.origin); }
+  catch { return json({success:false,error:'media_integrity',message:'Media berubah atau bukan snapshot yang diluluskan.'},422); }
+  const attemptId = crypto.randomUUID();
+  const claimed = await guardCall(env, auth.userId, postId, 'claim', {digest:await approvalDigest(post,auth,body),attemptId});
+  if (!claimed.data.success) return json(claimed.data,claimed.status);
+  // The durable barrier is committed BEFORE any Graph call. No expiry/reapproval
+  // can retry an ambiguous remote outcome. KV below is only a compatibility log.
+  const refreshed = await maybeRefresh(env, auth);
+  auth = refreshed.account;
+  if (refreshed.changed) {
+    accounts = accounts.map((account) => account.id === auth.id ? auth : account);
+    await saveAccounts(env, accounts);
   }
 
   const record = { state: 'publishing', accountId: auth.id, username: auth.username, startedAt: new Date().toISOString(), total: parts.length, urls: [], ids: [] };
   await env.JOM_CONTENT.put(lockKey, JSON.stringify(record));
+  try {
+    await updateStoredPostStatus(env, postId, 'publishing', { platform: 'threads', accountId: auth.id });
+  } catch (error) {
+    record.state = 'uncertain';
+    record.error = redactError(error, env, [auth.token]);
+    await env.JOM_CONTENT.put(lockKey, JSON.stringify(record));
+    try { await guardCall(env, auth.userId, postId, 'finish', { attemptId, state: 'uncertain', ids: [], urls: [] }); } catch { /* preserve fail-closed state */ }
+    return json({ success: false, error: 'state_update_failed', message: 'Status post tak dapat dikemas kini. Tiada Threads call dihantar.' }, 503);
+  }
 
   try {
     if (isCarousel) {
@@ -177,8 +207,10 @@ export async function onRequest(context) {
     }
   } catch (error) {
     record.state = 'failed';
-    record.error = String(error.message || error).replace(auth.token, '[token]').slice(0, 300);
+    record.error = redactError(error, env, [auth.token]);
+    await guardCall(env, auth.userId, postId, 'finish', {attemptId,state:'uncertain',ids:record.ids,urls:record.urls});
     await env.JOM_CONTENT.put(lockKey, JSON.stringify(record));
+    try { await updateStoredPostStatus(env, postId, record.ids.length ? 'partial' : 'failed', { platform: 'threads', accountId: auth.id }); } catch { /* preserve the original publish error */ }
     const partial = record.ids.length > 0;
     if (partial) {
       const current = (await env.JOM_CONTENT.get('posts', { type: 'json' })) || [];
@@ -204,12 +236,15 @@ export async function onRequest(context) {
 
   record.state = 'published';
   record.publishedAt = new Date().toISOString();
+  const finished = await guardCall(env, auth.userId, postId, 'finish', {attemptId,state:'published',ids:record.ids,urls:record.urls});
+  if (!finished.data.success) return json({success:false,error:'reconciliation_required',message:'Threads mungkin sudah diterbitkan. Jangan retry; semak dan reconcile dahulu.',ids:record.ids,urls:record.urls},503);
   await env.JOM_CONTENT.put(lockKey, JSON.stringify(record));
 
   const fresh = (await env.JOM_CONTENT.get('posts', { type: 'json' })) || [];
   const index = fresh.findIndex((item) => item.id === postId);
   const now = mytNow();
   if (index !== -1) {
+    const transitioned = transitionPost(fresh[index], 'posted', { platform: 'threads', accountId: auth.id });
     const existing = Array.isArray(fresh[index].publishedAccounts) ? fresh[index].publishedAccounts : [];
     const publishedAccounts = [...existing.filter((item) => item.accountId !== auth.id), {
       accountId: auth.id,
@@ -219,8 +254,7 @@ export async function onRequest(context) {
       urls: record.urls,
       publishedAt: record.publishedAt,
     }];
-    Object.assign(fresh[index], {
-      status: 'posted',
+    Object.assign(fresh[index], transitioned, {
       approved: true,
       date: now.date,
       time: now.time,
@@ -229,6 +263,16 @@ export async function onRequest(context) {
       updatedAt: record.publishedAt,
       publishedAccounts,
       postedUrl: fresh[index].postedUrl || record.urls[0] || '',
+      publications: mergePublications(fresh[index].publications, record.ids.map((id, i) => ({
+        platform: 'threads',
+        accountId: auth.id,
+        accountUsername: auth.username,
+        externalId: id,
+        url: record.urls[i] || '',
+        status: 'published',
+        kind: parts.length > 1 ? 'chain' : 'text',
+        publishedAt: record.publishedAt,
+      }))),
       notes: (fresh[index].notes ? fresh[index].notes + '\n' : '') + `PUBLISHED via dashboard to @${auth.username || auth.id} ${now.date} ${now.time} MYT (${parts.length} bahagian).`,
     });
     await env.JOM_CONTENT.put('posts', JSON.stringify(fresh));

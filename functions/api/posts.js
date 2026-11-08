@@ -1,3 +1,5 @@
+import { canonicalPostStatus, transitionPost } from '../_lib/post-state.js';
+
 /**
  * Jom Content API — Posts
  * CF Pages Function
@@ -97,7 +99,13 @@ export async function onRequest(context) {
       let filtered = [...posts];
       if (platform) filtered = filtered.filter(p => p.platform === platform);
       if (workspace) filtered = filtered.filter(p => (p.workspace || p.client || 'jom-digital') === workspace);
-      if (status) filtered = filtered.filter(p => p.status === status);
+      if (status) {
+        let canonicalFilter = status;
+        try { canonicalFilter = canonicalPostStatus(status); } catch { canonicalFilter = status; }
+        filtered = filtered.filter(p => {
+          try { return canonicalPostStatus(p.status) === canonicalFilter; } catch { return p.status === status; }
+        });
+      }
       if (pillar) filtered = filtered.filter(p => canonicalPillar(p.pillar) === canonicalPillar(pillar));
       if (month) filtered = filtered.filter(p => p.date && p.date.startsWith(month));
 
@@ -136,7 +144,7 @@ export async function onRequest(context) {
         pillar: canonicalPillar(body.pillar || 'Google Ads & Marketing'),
         date: body.date || '',
         time: body.time || '',
-        status: body.status || 'draft',
+        status: canonicalPostStatus(body.status || 'draft'),
         approved: body.approved || false,
         notes: body.notes || '',
         images: body.images || [],
@@ -180,11 +188,14 @@ export async function onRequest(context) {
         });
       }
 
-      const previousStatus = posts[index].status;
-      const updatable = ['title', 'caption', 'platform', 'workspace', 'client', 'pillar', 'date', 'time', 'status', 'approved', 'notes', 'images'];
+      const previousStatus = canonicalPostStatus(posts[index].status);
+      const updatable = ['title', 'caption', 'platform', 'workspace', 'client', 'pillar', 'date', 'time', 'approved', 'notes', 'images'];
+      if (body.status !== undefined) {
+        posts[index] = transitionPost(posts[index], canonicalPostStatus(body.status), { actor: 'dashboard' });
+      }
       for (const key of updatable) {
         if (body[key] !== undefined) {
-          posts[index][key] = body[key];
+          posts[index][key] = key === 'status' ? canonicalPostStatus(body[key]) : body[key];
         }
       }
       if (body.postCaption !== undefined) posts[index].postCaption = cleanActual(body.postCaption);
@@ -246,8 +257,9 @@ export async function onRequest(context) {
     });
 
   } catch (err) {
-    return new Response(JSON.stringify({ success: false, error: err.message }), {
-      status: 500,
+    const clientError = /^invalid_post_(status|transition):?/.test(String(err.message || ''));
+    return new Response(JSON.stringify({ success: false, error: clientError ? err.message : 'internal_error' }), {
+      status: clientError ? 400 : 500,
       headers: { 'Content-Type': 'application/json', ...corsHeaders }
     });
   }

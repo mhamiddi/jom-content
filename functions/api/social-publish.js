@@ -1,6 +1,9 @@
 import { enforced, json } from '../_lib/auth.js';
 import { SOCIAL_PLATFORMS, configured, createPost, getPost, listAccounts, platformResult } from '../_lib/zernio.js';
 import { MISSING_POST_CAPTION, publishCaption } from '../_lib/caption.js';
+import { mergePublications } from '../_lib/publications.js';
+import { transitionPost, updateStoredPostStatus } from '../_lib/post-state.js';
+import { redactError } from '../_lib/redact-error.js';
 
 /**
  * Publish an existing calendar post to TikTok and/or YouTube through Zernio.
@@ -74,6 +77,7 @@ export async function onRequest(context) {
   const posts = (await env.JOM_CONTENT.get('posts', { type: 'json' })) || [];
   const post = posts.find((item) => item.id === postId);
   if (!post) return json({ success: false, error: 'post_not_found' }, 404);
+  if (post.status === 'rejected') return json({ success: false, error: 'rejected', message: 'Post ni berstatus rejected.' }, 422);
 
   // The server copy is the source of truth; the client echo only catches a stale tab.
   const caption = publishCaption(post);
@@ -118,15 +122,44 @@ export async function onRequest(context) {
   // One stable key per post + platform set: a retry within 24h returns the same
   // Zernio post instead of a duplicate upload.
   const idempotencyKey = postId + ':' + targets.slice().sort().join('+');
+  const lockKey = 'social_publish:' + postId + ':' + targets.slice().sort().join('+');
+  if (mode === 'publish') {
+    const prior = await env.JOM_CONTENT.get(lockKey, { type: 'json' });
+    if (prior?.state === 'publishing') return json({ success: false, error: 'in_progress', message: 'Post ni sedang diterbitkan ke Zernio.' }, 409);
+    if (prior?.state === 'published') return json({ success: false, error: 'already_posted', message: 'Post ni dah diterbitkan ke Zernio.', id: prior.id || '' }, 409);
+    const existingPublications = [
+      ...(Array.isArray(post.publications) ? post.publications : []),
+      ...(Array.isArray(post.socialPublications) ? post.socialPublications : []),
+    ];
+    if (existingPublications.some((item) => targets.includes(item.platform || item.target) && item.status === 'published')) {
+      return json({ success: false, error: 'already_posted', message: 'Post ni dah ada publication Zernio untuk target yang dipilih.' }, 409);
+    }
+    await env.JOM_CONTENT.put(lockKey, JSON.stringify({ state: 'publishing', startedAt: new Date().toISOString(), targets }));
+    try {
+      await updateStoredPostStatus(env, postId, 'publishing', { platform: 'zernio', accountId: platforms[0]?.accountId || '' });
+    } catch (error) {
+      await env.JOM_CONTENT.put(lockKey, JSON.stringify({ state: 'failed', error: redactError(error, env), startedAt: new Date().toISOString(), targets }));
+      return json({ success: false, error: 'state_update_failed', message: 'Status post tak dapat dikemas kini. Tiada publication dihantar.' }, 503);
+    }
+  }
 
   let created;
   try {
     created = await createPost(env, payload, idempotencyKey);
   } catch (error) {
-    return json({ success: false, error: 'publish_failed', message: 'Zernio tolak: ' + String(error.message || error).slice(0, 300) }, 502);
+    if (mode === 'publish') {
+      try { await updateStoredPostStatus(env, postId, 'failed', { platform: 'zernio', accountId: platforms[0]?.accountId || '' }); } catch { /* preserve provider error */ }
+      await env.JOM_CONTENT.put(lockKey, JSON.stringify({ state: 'failed', error: redactError(error, env), startedAt: new Date().toISOString(), targets }));
+    }
+    return json({ success: false, error: 'publish_failed', message: 'Zernio tolak: ' + redactError(error, env) }, 502);
   }
 
   const id = created._id || created.id || '';
+  if (mode === 'publish' && !id) {
+    try { await updateStoredPostStatus(env, postId, 'reconciliation_required', { platform: 'zernio', accountId: platforms[0]?.accountId || '' }); } catch { /* keep the fail-closed response */ }
+    await env.JOM_CONTENT.put(lockKey, JSON.stringify({ state: 'uncertain', error: 'provider_missing_id', startedAt: new Date().toISOString(), targets }));
+    return json({ success: false, error: 'reconciliation_required', message: 'Zernio terima request tetapi tiada post ID. Semak Zernio sebelum retry.' }, 502);
+  }
   let final = created;
   if (id) {
     try { final = await getPost(env, id); } catch { /* keep the create response */ }
@@ -134,6 +167,7 @@ export async function onRequest(context) {
 
   const results = targets.map((platform) => platformResult(final, platform));
   const now = mytNow();
+  let publishState = 'published';
 
   if (mode === 'publish' && id) {
     const fresh = (await env.JOM_CONTENT.get('posts', { type: 'json' })) || [];
@@ -141,13 +175,23 @@ export async function onRequest(context) {
     if (index !== -1) {
       const existing = Array.isArray(fresh[index].socialPublications) ? fresh[index].socialPublications : [];
       const stamped = results.map((r) => ({ ...r, publishedAt: new Date().toISOString() }));
-      Object.assign(fresh[index], {
+      const hasFailure = stamped.some((item) => item.status === 'failed' || item.error);
+      publishState = hasFailure ? 'partial' : 'published';
+      const transitioned = transitionPost(fresh[index], hasFailure ? 'partial' : 'posted', { platform: 'zernio', accountId: platforms[0]?.accountId || '' });
+      Object.assign(fresh[index], transitioned, {
         socialPublications: [...existing.filter((item) => !targets.includes(item.target)), ...stamped],
+        publications: mergePublications(fresh[index].publications, stamped.map((item) => ({
+          ...item,
+          platform: item.target,
+          accountId: platforms.find((p) => p.platform === item.target)?.accountId || '',
+          externalId: item.id,
+        }))),
         updatedAt: new Date().toISOString(),
         notes: (fresh[index].notes ? fresh[index].notes + '\n' : '') + 'PUBLISHED to ' + targets.join(' + ') + ' ' + now.date + ' ' + now.time + ' MYT.',
       });
       await env.JOM_CONTENT.put('posts', JSON.stringify(fresh));
     }
+    await env.JOM_CONTENT.put(lockKey, JSON.stringify({ state: publishState, id, results, publishedAt: new Date().toISOString() }));
   }
 
   return json({

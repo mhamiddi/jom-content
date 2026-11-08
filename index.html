@@ -476,7 +476,7 @@ canvas{display:block;max-width:100%}
     #mImgUrl,#mVideoUrl{font-size:12px}
   }
 </style>
-<link rel="stylesheet" href="/dashboard-ui.css?v=20260925">
+<link rel="stylesheet" href="/dashboard-ui.css?v=20261108">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
@@ -690,11 +690,11 @@ canvas{display:block;max-width:100%}
         <div class="planner-toolbar">
           <input class="search-input" id="dashSearch" aria-label="Cari dalam planner" placeholder="Cari tajuk, caption atau pillar…" oninput="debounceSearch('dashboard')">
           <select id="plannerPlatform" aria-label="Filter platform" onchange="renderDashTimeline()"><option value="all">Semua platform</option><option value="threads">Threads</option><option value="tiktok">TikTok</option></select>
-          <select id="plannerStatus" aria-label="Filter status" onchange="renderDashTimeline()"><option value="all">Semua status</option><option value="draft">Draft</option><option value="scheduled">Scheduled</option><option value="posted">Posted</option><option value="failed">Failed</option><option value="rejected">Rejected</option></select>
+          <select id="plannerStatus" aria-label="Filter status" onchange="renderDashTimeline()"><option value="all">Semua status</option><option value="draft">Draft</option><option value="approved">Approved</option><option value="scheduled">Scheduled</option><option value="publishing">Publishing…</option><option value="posted">Posted</option><option value="partial">Partial publish</option><option value="failed">Failed</option><option value="reconciliation_required">Perlu reconcile</option><option value="rejected">Rejected</option></select>
           <select id="plannerRange" aria-label="Tempoh content" onchange="renderDashTimeline()"><option value="month">Bulan dipilih</option><option value="week">7 hari akan datang</option><option value="all">Semua tarikh</option><option value="attention">Perlu perhatian</option><option value="today">Hari ini</option></select>
           <select id="plannerSort" aria-label="Susun content" onchange="renderDashTimeline()"><option value="asc">Tarikh terawal</option><option value="desc">Tarikh terbaru</option><option value="title">Tajuk A–Z</option></select>
         </div>
-        <div class="planner-meta"><span id="filterSummary" aria-live="polite"></span><button class="text-button" onclick="resetPlannerFilters()">Reset filter</button></div>
+        <div class="planner-meta"><span id="filterSummary" aria-live="polite"></span><button class="text-button" onclick="resetPlannerFilters()">Set semula filter</button></div>
         <div id="dashTimeline" class="post-list"></div>
         <div id="plannerPagination" class="planner-pagination"></div>
       </div>
@@ -786,9 +786,13 @@ canvas{display:block;max-width:100%}
       <label>Status</label>
       <select id="mStatus" onchange="toggleRejectedField()">
         <option value="draft">Draft</option>
+        <option value="approved">Approved</option>
         <option value="scheduled">Scheduled</option>
+        <option value="publishing">Publishing…</option>
         <option value="posted">Posted</option>
+        <option value="partial">Partial publish</option>
         <option value="failed">Failed</option>
+        <option value="reconciliation_required">Perlu reconcile</option>
         <option value="rejected">Rejected</option>
       </select>
     </div>
@@ -2008,17 +2012,31 @@ function askPublish(id, accountId) {
   if (!p) return;
   const selected = THREADS_ACCOUNTS.find(account => account.id === accountId) || THREADS_ACCOUNTS.find(account => account.isDefault) || THREADS_ACCOUNTS[0];
   const n = threadsParts(p.caption).length;
-  pubSet(id, `<strong>Post ${n} bahagian ke @${esc(selected?.username || selected?.userId || 'Threads')} sekarang?</strong><br>Terus keluar di Threads dan tak boleh di-undo dari sini. Caption yang akan keluar ialah yang kau nampak di bawah.<div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" data-account-id="${esc(selected?.id || accountId || '')}" onclick="doPublish(this.dataset.id,this.dataset.accountId)">Ya, post sekarang</button><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="initPublishBox(this.dataset.id)">Batal</button></div>`);
+  pubSet(id, `<strong>Post ${n} bahagian ke @${esc(selected?.username || selected?.userId || 'Threads')} sekarang?</strong><br>Terus keluar di Threads dan tak boleh di-undo dari sini. Caption yang akan keluar ialah yang kau nampak di bawah.<div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" data-account-id="${esc(selected?.id || accountId || '')}" onclick="doPublish(this.dataset.id,this.dataset.accountId)">Approve &amp; post sekarang</button><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="initPublishBox(this.dataset.id)">Batal</button></div>`);
+}
+async function threadsApprovedBody(id, body) {
+  // Freeze media bytes, show the owner exactly what will be posted, then approve that version.
+  let prepared = null;
+  const frozen = await window.reviewThreadsMedia(id, body, async () => {
+    prepared = await postJson('/api/threads-media-prepare?id=' + encodeURIComponent(id), body, 120000);
+    return prepared;
+  });
+  if (!frozen) return null;
+  const approval = await postJson('/api/threads-approval?id=' + encodeURIComponent(id), frozen, 120000);
+  if (!approval.success) throw new Error(approval.message || approval.error || 'approval_required');
+  return frozen;
 }
 async function doPublish(id, accountId) {
   const p = state.posts.find(x => x.id === id);
   if (!p) return;
-  pubSet(id, '<strong>Tengah post ke Threads...</strong> Jangan tutup tab ni.');
+  pubSet(id, '<strong>Sediakan media dan semakan…</strong>');
   let res = null;
   try {
     const query = new URLSearchParams({id, accountId: accountId || ''});
+    const frozen = await threadsApprovedBody(id, {caption: p.caption, accountId});
+    if (!frozen) return pubSet(id, '<strong>Dibatalkan.</strong> Tiada post keluar.');
     const r = await fetch('/api/threads-publish?' + query.toString(), {
-      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({caption: p.caption, accountId}),
+      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(frozen),
       signal: AbortSignal.timeout(120000)
     });
     res = await r.json().catch(() => ({success: false, message: 'Jawapan server tak sah (HTTP ' + r.status + ').'}));
@@ -2037,6 +2055,7 @@ async function doPublish(id, accountId) {
 }
 
 /* ===== PUBLISH TO ALL PLATFORMS (one box) ===== */
+let THREADS_PLATFORM_ACCOUNT = null;
 const PUB_PLATFORMS = {
   threads:   {label: 'Threads',   needsMedia: false, group: 'threads'},
   facebook:  {label: 'Facebook',  needsMedia: false, group: 'meta'},
@@ -2090,6 +2109,7 @@ async function initPlatformBox(id) {
   const meta = rm.status === 'fulfilled' ? rm.value : null;
   const social = rs.status === 'fulfilled' ? rs.value : null;
   const threadsInfo = rt.status === 'fulfilled' ? rt.value : null;
+  THREADS_PLATFORM_ACCOUNT = threadsInfo?.configured ? {id: threadsInfo.accountId, username: threadsInfo.username || threadsInfo.userId} : null;
   const accounts = [];
   if (threadsInfo && threadsInfo.configured) accounts.push({platform: 'threads', username: threadsInfo.username || threadsInfo.userId || 'Threads'});
   if (meta && meta.configured) {
@@ -2175,7 +2195,8 @@ function askPlatformPublish(id, mode) {
   if (mode === 'publish' && targets.includes('youtube') && !title) return showToast('YouTube perlukan tajuk.', 'error');
   const verb = mode === 'draft' ? 'Simpan draft di' : 'Post ke';
   pubAllSet(id, `<strong>${verb} ${targets.map(t => PUB_PLATFORMS[t].label).join(' + ')}?</strong><br>${mode === 'draft' ? 'Draft tak keluar di platform. Boleh publish kemudian dari Zernio.' : 'Terus keluar dan tak boleh di-undo dari sini.'}
-    <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick='doPlatformPublish(this.dataset.id, ${JSON.stringify(targets)}, ${JSON.stringify(mediaUrl)}, ${JSON.stringify(mediaType)}, ${JSON.stringify(title)}, ${JSON.stringify(mode)}, ${JSON.stringify(carouselImages)})'>Ya, teruskan</button><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="initPlatformBox(this.dataset.id)">Batal</button></div>`);
+    ${targets.includes('threads') ? `<div>Approve Threads @${esc(THREADS_PLATFORM_ACCOUNT?.username || '')}<br>Caption: ${esc(publishCaptionOf(p))}<br>Media: ${esc(mediaType === 'carousel' ? carouselImages.join(' | ') : mediaType === 'text' ? 'Teks sahaja' : mediaType + ' ' + mediaUrl)}</div>` : ''}
+    <div class="detail-actions"><button class="btn btn-primary btn-sm" data-id="${esc(id)}" onclick='doPlatformPublish(this.dataset.id, ${JSON.stringify(targets)}, ${JSON.stringify(mediaUrl)}, ${JSON.stringify(mediaType)}, ${JSON.stringify(title)}, ${JSON.stringify(mode)}, ${JSON.stringify(carouselImages)})'>Approve &amp; teruskan</button><button class="btn btn-outline btn-sm" data-id="${esc(id)}" onclick="initPlatformBox(this.dataset.id)">Batal</button></div>`);
 }
 async function finishPlatformInstagram(id, containerId) {
   if (!containerId) return initPlatformBox(id);
@@ -2204,6 +2225,15 @@ async function doPlatformPublish(id, targets, mediaUrl, mediaType, title, mode, 
   const tt = targets.includes('threads');
   const mediaBody = mediaType === 'text' ? {} : {mediaUrl, mediaType};
   const carouselBody = mediaType === 'carousel' && carouselImages.length >= 2 ? {carouselImages} : {};
+  const threadsBody = {caption: publishCaptionOf(p), accountId: THREADS_PLATFORM_ACCOUNT?.id || '', ...mediaBody, ...carouselBody};
+  let threadsSend = null;
+  if (tt) {
+    try {
+      if (!threadsBody.accountId) throw new Error('Account Threads tidak tersedia.');
+      threadsSend = await threadsApprovedBody(id, threadsBody);
+      if (!threadsSend) return pubAllSet(id, '<strong>Dibatalkan.</strong> Tiada platform dipost.', 'err');
+    } catch (error) { return pubAllSet(id, '<strong>Approval Threads gagal.</strong> ' + esc(error.message), 'err'); }
+  }
 
   if (zt.length) {
     jobs.push(postJson('/api/social-publish?id=' + encodeURIComponent(id), {
@@ -2230,9 +2260,7 @@ async function doPlatformPublish(id, targets, mediaUrl, mediaType, title, mode, 
     }).catch(() => out.push({target: mt.map(t => PUB_PLATFORMS[t].label).join(' + '), ok: false, message: 'Sambungan terputus.'})));
   }
   if (tt) {
-    jobs.push(postJson('/api/threads-publish?id=' + encodeURIComponent(id), {
-      caption: publishCaptionOf(p), ...mediaBody, ...carouselBody
-    }).then(res => {
+    jobs.push(postJson('/api/threads-publish?id=' + encodeURIComponent(id), threadsSend).then(res => {
       if (res.success) out.push({target: 'threads', ok: true, url: (res.urls || [])[0] || ''});
       else out.push({target: 'threads', ok: false, message: res.message || res.error});
     }).catch(() => out.push({target: 'threads', ok: false, message: 'Sambungan terputus.'})));
@@ -2970,6 +2998,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 });
 </script>
-<script src="/dashboard-ui.js?v=20261103"></script>
+<script src="/threads-approval-ui.js?v=20261105"></script>
+<script src="/dashboard-ui.js?v=20261108c"></script>
 </body>
 </html>

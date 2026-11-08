@@ -5,7 +5,7 @@ let plannerPage = 1, plannerFilterKey = '', selectedPlannerDate = '';
 let editorSaving = false, editorBaseline = '', editorDraftKey = '', editorReturnFocus = null;
 let editorCreateId = '', editorCreateAttempted = false;
 const editorFields = ['mPostId','mPlatform','mTitle','mCaption','mPostCaption','mActualTitle','mActualContent','mPostedUrl','mRejectedReason','mRejectedTags','mDate','mTime','mPillar','mStatus','mNotes'];
-const statusLabels = {draft:'Draft',scheduled:'Scheduled',posted:'Posted',failed:'Failed',rejected:'Rejected'};
+const statusLabels = {draft:'Draft',approved:'Approved',scheduled:'Scheduled',publishing:'Publishing…',posted:'Posted',partial:'Partial publish',failed:'Failed',reconciliation_required:'Perlu reconcile',rejected:'Rejected'};
 const statusOf = post => post.status === 'published' ? 'posted' : (post.status || 'draft');
 const isDone = post => statusOf(post) === 'posted';
 const isRejected = post => statusOf(post) === 'rejected';
@@ -29,7 +29,7 @@ renderWorkspaceIntro = function() {
   const hour = new Date().getHours();
   const greeting = hour < 12 ? 'Selamat pagi' : hour < 18 ? 'Selamat petang' : 'Selamat malam';
   const date = new Date().toLocaleDateString('ms-MY',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-  ui('workspaceIntro').innerHTML = `<div class="workspace-intro"><div class="welcome"><div class="eyebrow">${esc(currentWorkspace().name)} / Content workspace</div><h1>${greeting}. Jom cipta content.</h1><p>Susun idea, siapkan draft, dan nampak apa yang perlu dibuat seterusnya.</p></div><div class="date-stamp">${esc(date)}</div></div>`;
+  ui('workspaceIntro').innerHTML = `<div class="workspace-intro"><div class="welcome"><div class="eyebrow">${esc(currentWorkspace().name)} / Content workspace</div><h1>${greeting}. Jom cipta content.</h1><p>Susun idea, siapkan draft, nampak apa yang perlu dibuat.</p></div><div class="date-stamp">${esc(date)}</div></div>`;
 };
 
 function renderFocus() {
@@ -56,7 +56,7 @@ renderDashboard = function() {
     {label:'Jumlah content',num:posts.length,sub:'Dalam bulan dipilih',icon:UI_ICONS.doc,status:'all'},
     {label:'Draft untuk disiapkan',num:posts.filter(p=>statusOf(p)==='draft').length,sub:'Sambung idea yang belum siap',icon:UI_ICONS.edit,status:'draft'},
     {label:'Dalam perancangan',num:posts.filter(p=>statusOf(p)==='scheduled').length,sub:'Status scheduled dalam planner',icon:UI_ICONS.clock,status:'scheduled',class:'stat-warning'},
-    {label:'Sudah posted',num:done,sub:(posts.length?Math.round(done/posts.length*100):0)+'% daripada content bulan ini',icon:UI_ICONS.check,status:'posted',class:'stat-success'}
+    {label:'Sudah posted',num:done,sub:posts.length?Math.round(done/posts.length*100)+'% daripada content bulan ini':'Belum ada content bulan ini',icon:UI_ICONS.check,status:'posted',class:'stat-success'}
   ];
   ui('dashStats').innerHTML=stats.map(s=>`<button class="card card-stat ${s.class||''}" data-stat="${s.status}"><div class="stat-top"><span class="label">${s.label}</span><span class="stat-icon">${s.icon}</span></div><div class="num">${s.num}</div><div class="sub">${s.sub}</div><div class="stat-track"><span style="width:${posts.length?s.num/posts.length*100:0}%"></span></div></button>`).join('');
   ui('dashStats').querySelectorAll('[data-stat]').forEach(b=>b.onclick=()=>{resetPlannerFilters(false);ui('plannerStatus').value=b.dataset.stat;showPlanner();});
@@ -99,7 +99,7 @@ renderDashTimeline = function() {
   const range=selectedPlannerDate?formatDate(selectedPlannerDate)+' '+selectedPlannerDate.slice(0,4):ui('plannerRange').selectedOptions[0].textContent+(ui('plannerRange').value==='month'?' · '+ui('dashPeriod').textContent:'');
   ui('filterSummary').textContent=posts.length+' content · '+range;
   ['list','board'].forEach(v=>ui('view-'+v).setAttribute('aria-pressed',String(v===plannerView)));
-  if(!posts.length){container.className='';container.innerHTML='<div class="empty-planner"><strong>Belum ada content di sini.</strong><p>Cuba ubah filter, atau mulakan dengan satu idea baru.</p><button class="btn btn-outline btn-sm" onclick="resetPlannerFilters()">Reset filter</button> <button class="btn btn-primary btn-sm" onclick="newPost()">+ Cipta post</button></div>';ui('plannerPagination').innerHTML='';return;}
+  if(!posts.length){container.className='';container.innerHTML='<div class="empty-planner"><div class="empty-planner-icon" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h5M8 16h3"/><path d="M16 15v5M13.5 17.5h5"/></svg></div><strong>Belum ada content di sini.</strong><p>Cuba ubah filter, atau mulakan dengan satu idea baru untuk calendar Jom Content.</p><div class="empty-planner-actions"><button class="btn btn-primary btn-sm" onclick="newPost()">+ Cipta post</button></div></div>';ui('plannerPagination').innerHTML='';return;}
   if(plannerView==='board'){
     container.className='planner-board';
     const statuses=[...new Set([...Object.keys(statusLabels),...posts.map(statusOf)])];

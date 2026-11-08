@@ -83,3 +83,24 @@ The source workflow remains the existing daily Threads scraper and `social-analy
 ## Compatibility
 
 The existing TikTok/Threads post calendar remains unchanged. A new `Topic Bank` link opens `topics.html`. Deployment is intentionally separate from this local implementation and requires the normal preview/user-approval gate.
+
+## Lightweight maturity layer
+
+The dashboard remains a static Cloudflare Pages app; it does not adopt Postiz's
+React, PostgreSQL, Redis, or Temporal stack. The mature parts are kept as small
+shared contracts:
+
+- `functions/_lib/post-state.js` owns the allowed post lifecycle and bounded
+  `statusHistory` records.
+- `functions/_lib/publications.js` owns canonical per-platform publication
+  records while legacy provider-specific fields remain for compatibility.
+- `functions/_lib/provider-registry.js` is the public capability registry for
+  Threads, Meta, and Zernio without exposing credentials.
+- `functions/api/health.js` is a safe public readiness check for deployment
+  smoke tests; it reports binding presence, not secret values.
+- Publishing routes keep their provider-specific implementations, but update
+  the shared post lifecycle and canonical publication list.
+
+The current KV data layout remains the storage boundary. A D1 migration is not
+part of this layer; it should only be considered if post volume, concurrent
+editing, or query requirements exceed the single-array KV model.

@@ -1,6 +1,9 @@
 import { enforced, json } from '../_lib/auth.js';
 import { graph, loadMeta, waitContainer } from '../_lib/meta.js';
 import { MISSING_POST_CAPTION, publishCaption } from '../_lib/caption.js';
+import { mergePublications } from '../_lib/publications.js';
+import { transitionPost, updateStoredPostStatus } from '../_lib/post-state.js';
+import { redactError } from '../_lib/redact-error.js';
 
 /**
  * Publish an existing calendar post to the connected Facebook Page and/or the
@@ -244,6 +247,14 @@ export async function onRequest(context) {
 
   const recordLock = { state: 'publishing', startedAt: new Date().toISOString(), targets, results: [] };
   await env.JOM_CONTENT.put(lockKey, JSON.stringify(recordLock));
+  try {
+    await updateStoredPostStatus(env, postId, 'publishing', { platform: 'meta' });
+  } catch (error) {
+    recordLock.state = 'uncertain';
+    recordLock.error = redactError(error, env, [record.token]);
+    await env.JOM_CONTENT.put(lockKey, JSON.stringify(recordLock));
+    return json({ success: false, error: 'state_update_failed', message: 'Status post tak dapat dikemas kini. Tiada Meta call dihantar.' }, 503);
+  }
 
   const results = [];
   let pageToken = '';
@@ -267,10 +278,11 @@ export async function onRequest(context) {
     }
   } catch (error) {
     recordLock.state = 'failed';
-    recordLock.error = String(error.message || error).slice(0, 300);
+    recordLock.error = redactError(error, env, [record.token, pageToken]);
     recordLock.results = results;
     await env.JOM_CONTENT.put(lockKey, JSON.stringify(recordLock));
     const done = results.filter((r) => r.id);
+    try { await updateStoredPostStatus(env, postId, done.length ? 'partial' : 'failed', { platform: 'meta' }); } catch { /* preserve the original publish error */ }
     return json({
       success: false,
       error: done.length ? 'partial' : 'publish_failed',
@@ -292,10 +304,16 @@ export async function onRequest(context) {
     const index = fresh.findIndex((item) => item.id === postId);
     if (index !== -1) {
       const now = mytNow();
+      const transitioned = transitionPost(fresh[index], 'posted', { platform: 'meta' });
       const existing = Array.isArray(fresh[index].metaPublications) ? fresh[index].metaPublications : [];
       const stamped = results.map((r) => ({ ...r, publishedAt: recordLock.publishedAt }));
-      Object.assign(fresh[index], {
+      Object.assign(fresh[index], transitioned, {
         metaPublications: [...existing.filter((item) => !results.some((r) => r.target === item.target)), ...stamped],
+        publications: mergePublications(fresh[index].publications, stamped.map((item) => ({
+          ...item,
+          platform: item.target,
+          externalId: item.id,
+        }))),
         metaPublishedAt: recordLock.publishedAt,
         updatedAt: recordLock.publishedAt,
         notes: (fresh[index].notes ? fresh[index].notes + '\n' : '') + 'PUBLISHED to ' + results.map((r) => r.target).join(' + ') + ' ' + now.date + ' ' + now.time + ' MYT.',

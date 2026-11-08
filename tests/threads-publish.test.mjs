@@ -1,6 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { onRequest } from '../functions/api/threads-publish.js';
+import { onRequest as approve } from '../functions/api/threads-approval.js';
+import { makeSession } from '../functions/_lib/auth.js';
+import { fixture, testBindings } from './helpers/threads-test-env.mjs';
+const [video, image, chainVideo, a, b, c] = [['video','mp4'], ['image','jpg'], ['chain','mp4'], ['a','png'], ['b','png'], ['c','png']].map(([name,ext]) => fixture(name,ext,'https://x.com'));
 
 function kvStore(seed = {}) {
   const values = new Map(Object.entries(seed));
@@ -52,12 +56,16 @@ function post(overrides = {}) {
   return { id: 'p1', platform: 'tiktok', title: 'Tajuk', caption: 'Caption video.', status: 'draft', ...overrides };
 }
 
-function run(body, postRecord) {
-  const record = postRecord || { ...post(), caption: body.caption };
+async function run(body, postRecord) {
+  const record = postRecord || { ...post(), caption: body.caption, postCaption: body.caption };
   const kv = kvStore({ posts: JSON.stringify([record]), threads_accounts: JSON.stringify([account()]) });
+  const env = { ...testBindings([video, image, chainVideo, a, b, c]), JOM_API_TOKEN: 't', JOM_SESSION_SECRET: 'owner-secret', JOM_CONTENT: kv, THREADS_API_BASE: 'https://graph.threads.net/v1.0' };
+  const session = await makeSession(env);
+  const approval = await approve({request: new Request('https://x.com/api/threads-approval?id=p1', {method:'POST', headers:{Cookie:`jc_session=${session}`,Origin:'https://x.com'},body:JSON.stringify(body)}),env});
+  assert.equal(approval.status, 200, await approval.text());
   return onRequest({
     request: new Request('https://x.com/api/threads-publish?id=p1', { method: 'POST', body: JSON.stringify(body) }),
-    env: { JOM_API_TOKEN: 't', JOM_CONTENT: kv, THREADS_API_BASE: 'https://graph.threads.net/v1.0' },
+    env,
   }).then(async (res) => ({ res, data: await res.json(), kv }));
 }
 
@@ -65,29 +73,29 @@ test('threads media publish builds a VIDEO container with the media url', async 
   const calls = stubThreads();
   const { res, data } = await run({
     caption: 'Caption video.',
-    mediaUrl: 'https://media.jom-content.com/media/2026/10/c1131_style3_fb.mp4',
+    mediaUrl: video.url,
     mediaType: 'video',
   });
   assert.equal(res.status, 200);
   assert.equal(data.success, true);
   const create = calls.find((c) => c.path.endsWith('/threads') && c.method === 'POST');
   assert.equal(create.params.media_type, 'VIDEO');
-  assert.equal(create.params.video_url, 'https://media.jom-content.com/media/2026/10/c1131_style3_fb.mp4');
+  assert.equal(create.params.video_url, video.url);
   assert.equal(create.params.text, 'Caption video.');
 });
 
 test('threads image publish builds an IMAGE container', async () => {
   const calls = stubThreads();
-  await run({ caption: 'Gambar.', mediaUrl: 'https://media.jom-content.com/a.jpg', mediaType: 'image' });
+  await run({ caption: 'Gambar.', mediaUrl: image.url, mediaType: 'image' });
   const create = calls.find((c) => c.path.endsWith('/threads') && c.method === 'POST');
   assert.equal(create.params.media_type, 'IMAGE');
-  assert.equal(create.params.image_url, 'https://media.jom-content.com/a.jpg');
+  assert.equal(create.params.image_url, image.url);
 });
 
 test('a media publish ignores chain separators and posts a single container', async () => {
   const calls = stubThreads();
   const { data } = await run(
-    { caption: 'Satu.\n---\nDua.', mediaUrl: 'https://media.jom-content.com/a.mp4', mediaType: 'video' },
+    { caption: 'Satu.\n---\nDua.', mediaUrl: chainVideo.url, mediaType: 'video' },
     { ...post(), platform: 'threads', caption: 'Satu.\n---\nDua.' },
   );
   assert.equal(data.parts, 1);
@@ -122,15 +130,29 @@ test('a carousel publish creates child containers then a CAROUSEL parent', async
   };
   const { res, data } = await run({
     caption: 'Caption video.',
-    carouselImages: ['https://media.jom-content.com/a.png', 'https://media.jom-content.com/b.png', 'https://media.jom-content.com/c.png'],
+    carouselImages: [a.url, b.url, c.url],
   });
   assert.equal(res.status, 200);
   assert.equal(data.success, true);
   assert.equal(data.urls[0], 'https://www.threads.com/@hamiddi_/post/media-9');
   const creates = calls.filter((c) => c.path.endsWith('/threads') && c.method === 'POST');
   assert.equal(creates.length, 4);
+  assert.deepEqual(creates.slice(0, 3).map(c => c.params.image_url), [a.url, b.url, c.url]);
   assert.deepEqual(creates.slice(0, 3).map((c) => c.params.is_carousel_item), ['true', 'true', 'true']);
   assert.equal(creates[3].params.media_type, 'CAROUSEL');
   assert.equal(creates[3].params.children, 'child-1,child-2,child-3');
   assert.equal(creates[3].params.is_made_with_ai, 'true');
+});
+
+test('text-only Threads chain publishes ordered parts and links the reply', async () => {
+  const calls = stubThreads();
+  const caption = 'Satu.\n---\nDua.';
+  const {res, data} = await run({caption}, {...post(), platform:'threads', caption});
+  assert.equal(res.status, 200);
+  assert.equal(data.parts, 2);
+  const creates = calls.filter(c => c.path.endsWith('/threads') && c.method === 'POST');
+  assert.equal(creates.length, 2);
+  assert.deepEqual(creates.map(c => c.params.text), ['Satu.', 'Dua.']);
+  assert.deepEqual(creates.map(c => c.params.media_type), ['TEXT', 'TEXT']);
+  assert.equal(creates[1].params.reply_to_id, 'media-1');
 });

@@ -8,7 +8,8 @@
  *             OR a signed session cookie from POST /api/login (the dashboard)
  *
  * Login credentials live only in Pages env vars: JOM_LOGIN_PASSWORD (required) and JOM_LOGIN_USER (default jomdigital).
- * Session cookie = "<expiry>.<HMAC-SHA256(JOM_API_TOKEN, 'v1.' + expiry)>", HttpOnly, SameSite=Strict.
+ * Session cookie = "<expiry>.<HMAC-SHA256(JOM_SESSION_SECRET || JOM_API_TOKEN, 'v1.' + expiry)>", HttpOnly, SameSite=Strict.
+ * Threads owner approvals require a distinct JOM_SESSION_SECRET; enabling it invalidates old sessions.
  */
 export const COOKIE = 'jc_session';
 export const SESSION_SECONDS = 60 * 60 * 24 * 30;
@@ -41,7 +42,7 @@ function cookieValue(header, name) {
 
 export async function makeSession(env) {
   const exp = Math.floor(Date.now() / 1000) + SESSION_SECONDS;
-  return `${exp}.${await hmacHex(env.JOM_API_TOKEN, 'v1.' + exp)}`;
+  return `${exp}.${await hmacHex(env.JOM_SESSION_SECRET || env.JOM_API_TOKEN, 'v1.' + exp)}`;
 }
 
 // The Pages secret remains the bootstrap password. A successful reset stores
@@ -61,7 +62,8 @@ export async function sessionValid(request, env) {
   const raw = cookieValue(request.headers.get('Cookie'), COOKIE);
   const [exp, sig] = raw.split('.');
   if (!exp || !sig || !/^\d+$/.test(exp) || Number(exp) < Date.now() / 1000) return false;
-  return safeEqual(sig, await hmacHex(env.JOM_API_TOKEN, 'v1.' + exp), env.JOM_API_TOKEN);
+  const secret = env.JOM_SESSION_SECRET || env.JOM_API_TOKEN;
+  return safeEqual(sig, await hmacHex(secret, 'v1.' + exp), secret);
 }
 
 export async function authorised(request, env) {
