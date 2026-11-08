@@ -53,9 +53,9 @@ jobs:
             BODY=$(curl -fsS -L "https://jom-content.pages.dev${EXPOSED}?verify=${GITHUB_SHA}")
             echo "${EXPOSED}: fetched"
             case "$EXPOSED" in
-              /functions/api/posts.js) printf '%s' "$BODY" | grep -q '^import ' && { echo "source exposed: ${EXPOSED}"; exit 1; } ;;
-              /.github/workflows/deploy.yml) printf '%s' "$BODY" | grep -q 'name: Deploy to Cloudflare Pages' && { echo "source exposed: ${EXPOSED}"; exit 1; } ;;
-              /CLAUDE.md) printf '%s' "$BODY" | grep -q '^# Jom Content' && { echo "source exposed: ${EXPOSED}"; exit 1; } ;;
-              /tests/maturity-core.test.mjs) printf '%s' "$BODY" | grep -q "test('" && { echo "source exposed: ${EXPOSED}"; exit 1; } ;;
+              /functions/api/posts.js) if printf '%s' "$BODY" | grep -q '^import '; then echo "source exposed: ${EXPOSED}"; exit 1; fi ;;
+              /.github/workflows/deploy.yml) if printf '%s' "$BODY" | grep -q 'name: Deploy to Cloudflare Pages'; then echo "source exposed: ${EXPOSED}"; exit 1; fi ;;
+              /CLAUDE.md) if printf '%s' "$BODY" | grep -q '^# Jom Content'; then echo "source exposed: ${EXPOSED}"; exit 1; fi ;;
+              /tests/maturity-core.test.mjs) if printf '%s' "$BODY" | grep -q "test('"; then echo "source exposed: ${EXPOSED}"; exit 1; fi ;;
             esac
           done
