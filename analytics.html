@@ -185,8 +185,8 @@ footer{text-align:center;font-size:11px;color:var(--text2);padding:18px 12px 30p
 
   <div class="section">
     <div class="section-hdr"><h2>Trend 30 Hari</h2><span class="badge" id="trendBadge"></span></div>
-    <svg class="chart" id="chart" viewBox="0 0 600 150" preserveAspectRatio="none" role="img" aria-label="Carta views harian"></svg>
-    <div class="chart-legend"><span><i style="background:var(--accent)"></i>Views harian</span><span><i style="background:#f59e0b"></i>Interactions harian</span></div>
+    <svg class="chart" id="chart" viewBox="0 0 600 150" preserveAspectRatio="none" role="img" aria-label="Views terkumpul mengikut tarikh post"></svg>
+    <div class="chart-legend"><span><i style="background:var(--accent)"></i>Views ikut tarikh post</span><span><i style="background:#f59e0b"></i>Interactions terkumpul</span></div>
   </div>
 
   <div class="section">
@@ -243,7 +243,7 @@ const PLATFORM = {threads: {name: 'Threads', accent: '#111827'}, tiktok: {name: 
 let DATA = null, plat = 'threads', topRange = 'top_week', pillarFilter = 'all';
 
 function trend(v, suffix) {
-  if (v == null) return '<span class="sub">tiada data bulan lepas</span>';
+  if (v == null) return '<span class="sub">tiada perbandingan lengkap</span>';
   return `<span class="${v >= 0 ? 'up' : 'down'}">${v >= 0 ? '+' : ''}${v}%</span> ${suffix}`;
 }
 
@@ -268,7 +268,7 @@ function load() {
 function render() {
   const d = DATA.platforms[plat];
   document.documentElement.style.setProperty('--accent', PLATFORM[plat].accent === '#111827' ? '#2563EB' : PLATFORM[plat].accent);
-  $('handleLine').textContent = '@' + d.handle + ' · Score 1-100 · Auto-update harian';
+  $('handleLine').textContent = '@' + d.handle + (plat === 'threads' ? ' · Threads API-only' : ' · TikTok public snapshot') + ' · Auto-update harian';
   const gen = new Date(DATA.generated_at);
   const dateOptions = {timeZone:'Asia/Kuala_Lumpur', day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'};
   const collected = d.last_collected ? new Date(d.last_collected).toLocaleString('en-GB', dateOptions) : 'tak diketahui';
@@ -277,6 +277,7 @@ function render() {
   renderBars('pillarBars', d.by_pillar); renderBars('formatBars', d.by_format);
   renderRecs(d); renderPosts(d);
   $('foot').textContent = 'Score = 0.7 x engagement (like 1, comment 2, share 3 lawan median 30 hari) + 0.3 x reach (views). Kalau views tak ada, engagement sahaja.';
+  if (plat === 'threads') $('foot').textContent += ' Views dan interactions ialah nilai terkumpul bagi post diterbitkan dalam 30 hari, bukan aktiviti seluruh akaun dalam tempoh itu. Interactions = likes + replies + reposts + quotes + shares. Rekod scraping lama tidak dikira.';
   document.querySelectorAll('.section,.card').forEach(el => { el.classList.remove('fade'); void el.offsetWidth; el.classList.add('fade'); });
 }
 
@@ -285,6 +286,8 @@ function renderNotice(d) {
   const age = d.last_collected ? (Date.now() - new Date(d.last_collected)) / 3600000 : null;
   if (age == null || age > 48) msgs.push('Data ' + PLATFORM[plat].name + ' last collected ' + (age == null ? 'tak diketahui' : Math.round(age / 24) + ' hari lepas') + '. Semak cron collector.');
   if (d.followers && (Date.now() - new Date(d.followers.collected_at || d.followers.as_of)) / 3600000 > 36) msgs.push('Followers snapshot belum dikemas kini. Last direkod ' + d.followers.as_of + '. Semak account insights collector.');
+  if (d.metric_source === 'threads_api' && d.month?.partial_insights) msgs.push(d.month.partial_insights + ' post mempunyai insights tidak lengkap. Jumlah hanya merangkumi metrik yang API sediakan; tiada fallback scraping.');
+  if (d.metric_source === 'threads_api' && d.coverage?.comparison_complete === false) msgs.push('Liputan API bagi tempoh perbandingan 30 hari sebelum ini tidak lengkap; peratus perbandingan 30 hari disembunyikan.');
   const n = $('notice'); n.textContent = msgs.join(' '); n.classList.toggle('show', msgs.length > 0);
 }
 
@@ -292,10 +295,10 @@ function card(label, value, sub, cls) { return `<div class="card ${cls || ''}"><
 
 function renderKpis(d) {
   const m = d.month, w = d.week, perWeek = (m.items / (30 / 7)).toFixed(1);
-  const inter = m.likes + m.comments + m.shares;
+  const inter = m.interactions ?? (m.likes + m.comments + m.shares);
   const cards = [
-    card('Views (30 hari)', fmt(m.views), trend(m.trend_views_pct, 'vs 30 hari sebelum'), 'hero'),
-    card('Interactions', fmt(inter), `${fmt(m.likes)} likes · ${fmt(m.comments)} cmt · ${fmt(m.shares)} share` + (plat === 'tiktok' ? ` · ${fmt(m.saves)} saves` : '')),
+    card('Views post (30 hari)', fmt(m.views), (plat === 'threads' ? 'Terkumpul bagi post diterbitkan 30 hari<br>' : '') + trend(m.trend_views_pct, 'vs 30 hari sebelum'), 'hero'),
+    card('Interactions', fmt(inter), `${fmt(m.likes)} likes · ${fmt(m.comments)} replies · ${fmt(m.shares)} share` + (plat === 'tiktok' ? ` · ${fmt(m.saves)} saves` : ` · ${fmt(m.reposts)} repost · ${fmt(m.quotes)} quote`)),
     `<div class="card"><div class="label">Avg Score (30 hari)</div><div class="ring-row"><div class="ring" style="background:${scoreColor(m.avg_score || 0)}">${m.avg_score == null ? '-' : Math.round(m.avg_score)}</div><div><div style="font-weight:700;font-size:15px">${m.items} post</div><div class="sub">${trend(m.trend_score_pct, 'vs sebelum')}</div></div></div></div>`,
     `<div class="card"><div class="label">Minggu Ini</div><div class="ring-row"><div class="ring" style="background:${scoreColor(w.avg_score || 0)}">${w.avg_score == null ? '-' : Math.round(w.avg_score)}</div><div><div style="font-weight:700;font-size:15px">${w.items} post</div><div class="sub">${trend(w.trend_score_pct, 'vs minggu lepas')}</div></div></div></div>`,
     card('Kadar Posting', perWeek, 'post seminggu (purata 30 hari)')
@@ -334,7 +337,7 @@ function renderChart(d) {
   const pts = days.map((x, i) => `${(pad + i * bw + bw / 2).toFixed(1)},${(H - 4 - (x.interactions / maxI) * (H - 24)).toFixed(1)}`).join(' ');
   out += `<polyline points="${pts}" fill="none" stroke="#f59e0b" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>`;
   svg.innerHTML = out;
-  $('trendBadge').textContent = 'puncak ' + short(maxV) + ' views/hari';
+  $('trendBadge').textContent = 'puncak ' + short(maxV) + ' views';
 }
 
 function renderWeekdayViews(d) {
@@ -363,10 +366,12 @@ function renderGrowth(d) {
   const f = d.followers, svg = $('growthChart'), note = $('growthNote');
   if (!f || f.history.length < 2) {
     svg.innerHTML = '';
+    svg.style.display = 'none';
     $('growthBadge').textContent = f ? fmt(f.latest) + ' followers' : 'tiada data';
     note.textContent = f ? 'Rekod followers bermula ' + f.as_of + '. Graf pertumbuhan muncul selepas beberapa hari collection.' : 'Followers belum direkod.';
     return;
   }
+  svg.style.display = '';
   const h = f.history, W = 600, H = 150, pad = 6;
   const t0 = new Date(h[0].date), t1 = new Date(h[h.length - 1].date), span = Math.max(1, t1 - t0);
   const min = Math.min(...h.map(x => x.value)), max = Math.max(...h.map(x => x.value)), rng = Math.max(1, max - min);
@@ -385,6 +390,7 @@ function renderGrowth(d) {
 function metaLine(p) {
   const bits = [`<span><b>${fmt(p.likes)}</b> likes</span>`, `<span><b>${fmt(p.comments)}</b> cmt</span>`, `<span><b>${fmt(p.shares)}</b> share</span>`];
   if (plat === 'tiktok') bits.push(`<span><b>${fmt(p.saves)}</b> saves</span>`);
+  if (plat === 'threads') bits.push(`<span><b>${fmt(p.reposts)}</b> repost</span>`, `<span><b>${fmt(p.quotes)}</b> quote</span>`);
   bits.push(p.views_missing ? '<span>views n/a</span>' : `<span><b>${fmt(p.views)}</b> views</span>`);
   if (p.duration) bits.push(`<span>${Math.round(p.duration)}s</span>`);
   bits.push(`<span>${esc(p.date.slice(5).split('-').reverse().join('/'))}</span>`, `<span>${esc(p.pillar)}</span>`);
@@ -395,7 +401,7 @@ function topItem(p, i) {
   const cls = i === 0 ? 'r1' : i === 1 ? 'r2' : i === 2 ? 'r3' : '';
   return `<a class="top-item" href="${esc(p.url)}" target="_blank" rel="noopener"><div class="rank ${cls}">${i + 1}</div>
     <div class="top-body"><div class="top-text">${esc(p.text)}</div><div class="meta">${metaLine(p)}</div></div>
-    <div class="score"><div class="sc" style="color:${scoreColor(p.score)}">${Math.round(p.score)}</div><div class="lb">score</div></div></a>`;
+    <div class="score"><div class="sc" style="color:${scoreColor(p.score)}">${p.score == null ? '-' : Math.round(p.score)}</div><div class="lb">score</div></div></a>`;
 }
 
 function renderTop(d) {
@@ -431,7 +437,7 @@ function renderPosts(d) {
   $('postList').innerHTML = rows.map(p => `<a class="pl" href="${esc(p.url)}" target="_blank" rel="noopener"><span class="pl-date">${esc(p.date.slice(5).split('-').reverse().join('/'))}</span>
     <span class="pl-text">${esc(p.text.replace(/\s+/g, ' '))}</span>
     <span class="pl-m"><span>${fmt(p.likes)} lk</span><span>${fmt(p.comments)} cm</span><span>${p.views_missing ? 'n/a' : short(p.views)} vw</span></span>
-    <span class="pl-sc" style="color:${scoreColor(p.score)}">${Math.round(p.score)}</span></a>`).join('') || '<div class="empty">Tiada item</div>';
+    <span class="pl-sc" style="color:${scoreColor(p.score)}">${p.score == null ? '-' : Math.round(p.score)}</span></a>`).join('') || '<div class="empty">Tiada item</div>';
 }
 
 document.querySelectorAll('.switch button').forEach(b => b.addEventListener('click', () => {

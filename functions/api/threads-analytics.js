@@ -75,7 +75,7 @@ async function maybeRefresh(env, auth) {
 
 async function listPosts(env, auth, limit, after = '') {
     const data = await threads(env, 'GET', '/me/threads', {
-      fields: 'id,text,timestamp,permalink,username',
+      fields: 'id,text,timestamp,permalink,username,media_type,is_reply',
       limit: pageSize(limit),
       after,
       access_token: auth.token,
@@ -124,6 +124,9 @@ async function collect(env, auth, limit, after = '') {
   const page = await listPosts(env, auth, limit, after);
   const posts = page.posts;
   const items = await mapWithConcurrency(posts, async (post) => {
+    if (post.media_type === 'REPOST_FACADE') {
+      return { ...threadItemFromApi(post, { data: [] }), insight_error: '', insight_status: 'not_applicable_repost' };
+    }
     try {
       const insights = await threads(env, 'GET', `/${post.id}/insights`, {
         metric: 'views,likes,replies,reposts,quotes,shares',

@@ -42,7 +42,7 @@ export function threadItemFromApi(post, insights) {
     content_text: String(post?.text || ''),
     published_at: post?.timestamp || null,
     duration_seconds: null,
-    content_type: 'thread_post',
+    content_type: post?.media_type === 'REPOST_FACADE' ? 'thread_repost' : post?.is_reply === true ? 'thread_reply' : 'thread_post',
     parent_platform_content_id: null,
     metrics: metricsFromInsights(insights),
   };

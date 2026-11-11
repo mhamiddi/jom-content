@@ -45,6 +45,11 @@ test('no insight data is unavailable, not zero interactions', () => {
   assert.equal(metricsFromInsights({ data: [] }).interactions, null);
 });
 
+test('distinguishes repost facades from original posts and owned replies', () => {
+  assert.equal(threadItemFromApi({id:'123',media_type:'REPOST_FACADE'},{data:[]}).content_type,'thread_repost');
+  assert.equal(threadItemFromApi({id:'124',is_reply:true},{data:[]}).content_type,'thread_reply');
+});
+
 test('normalizes an owned Threads post for the existing analytics database', () => {
   const item = threadItemFromApi({
     id: 'post-123',
