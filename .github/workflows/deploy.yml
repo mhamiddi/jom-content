@@ -18,7 +18,7 @@ jobs:
         run: |
           rm -rf .deploy
           mkdir -p .deploy
-          cp index.html topics.html analytics.html login.css dashboard-ui.css dashboard-ui.js auth.js carousel-template.js threads-approval-ui.js analytics-data.json .deploy/
+          cp index.html topics.html analytics.html login.css dashboard-ui.css dashboard-ui.js auth.js carousel-template.js threads-approval-ui.js analytics-weekday.mjs analytics-data.json .deploy/
           cp -R functions .deploy/functions
 
       - name: Deploy to Cloudflare Pages
@@ -49,6 +49,13 @@ jobs:
           echo "Health: $HEALTH"
           printf '%s' "$HEALTH" | grep -q '"status":"ok"'
           printf '%s' "$HEALTH" | grep -q '"kv":true'
+          # Scripts the pages import must be served as JavaScript. A missing file falls back to
+          # HTML, which makes the browser drop the whole module and leaves the page stuck loading.
+          for ASSET in /analytics-weekday.mjs /dashboard-ui.js /auth.js; do
+            TYPE=$(curl -fsS -L -o /dev/null -w "%{content_type}" "https://jom-content.pages.dev${ASSET}?verify=${GITHUB_SHA}")
+            echo "${ASSET}: ${TYPE}"
+            case "$TYPE" in *javascript*) ;; *) echo "asset not served as JavaScript: ${ASSET}"; exit 1 ;; esac
+          done
           for EXPOSED in /functions/api/posts.js /.github/workflows/deploy.yml /CLAUDE.md /tests/maturity-core.test.mjs; do
             BODY=$(curl -fsS -L "https://jom-content.pages.dev${EXPOSED}?verify=${GITHUB_SHA}")
             echo "${EXPOSED}: fetched"
