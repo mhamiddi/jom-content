@@ -25,6 +25,7 @@ test('maps official Threads insight payload into dashboard metric fields', () =>
     likes: 42,
     comments: 7,
     shares: 5,
+    reposts: 3,
     quotes: 2,
     saves: null,
     interactions: 59,
@@ -38,6 +39,10 @@ test('keeps unavailable metrics as null and never turns them into zero', () => {
   assert.equal(metrics.comments, null);
   assert.equal(metrics.shares, null);
   assert.equal(metrics.interactions, 2);
+});
+
+test('no insight data is unavailable, not zero interactions', () => {
+  assert.equal(metricsFromInsights({ data: [] }).interactions, null);
 });
 
 test('normalizes an owned Threads post for the existing analytics database', () => {
@@ -62,6 +67,7 @@ test('normalizes an owned Threads post for the existing analytics database', () 
       likes: 2,
       comments: null,
       shares: null,
+      reposts: null,
       saves: null,
       quotes: null,
       interactions: 2,

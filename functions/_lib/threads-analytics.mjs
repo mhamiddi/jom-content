@@ -13,7 +13,7 @@ function numeric(value) {
 }
 
 export function metricsFromInsights(payload) {
-  const out = { views: null, likes: null, comments: null, shares: null, quotes: null, saves: null };
+  const out = { views: null, likes: null, comments: null, shares: null, reposts: null, quotes: null, saves: null };
   const rows = Array.isArray(payload?.data) ? payload.data : [];
   const values = {};
   for (const row of rows) {
@@ -26,10 +26,11 @@ export function metricsFromInsights(payload) {
   out.likes = values.likes ?? null;
   out.comments = values.replies ?? null;
   out.shares = values.shares ?? null;
+  out.reposts = values.reposts ?? null;
   out.quotes = values.quotes ?? null;
   const interactionValues = [values.likes, values.replies, values.reposts, values.quotes, values.shares]
     .filter((value) => value !== null && value !== undefined);
-  out.interactions = interactionValues.length ? interactionValues.reduce((sum, value) => sum + value, 0) : 0;
+  out.interactions = interactionValues.length ? interactionValues.reduce((sum, value) => sum + value, 0) : null;
   return out;
 }
 
