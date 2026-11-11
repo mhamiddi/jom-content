@@ -270,7 +270,9 @@ function render() {
   document.documentElement.style.setProperty('--accent', PLATFORM[plat].accent === '#111827' ? '#2563EB' : PLATFORM[plat].accent);
   $('handleLine').textContent = '@' + d.handle + ' · Score 1-100 · Auto-update harian';
   const gen = new Date(DATA.generated_at);
-  $('genInfo').textContent = 'Jana: ' + gen.toLocaleString('en-GB', {day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'});
+  const dateOptions = {timeZone:'Asia/Kuala_Lumpur', day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'};
+  const collected = d.last_collected ? new Date(d.last_collected).toLocaleString('en-GB', dateOptions) : 'tak diketahui';
+  $('genInfo').textContent = 'Data: ' + collected + ' MYT · Jana: ' + gen.toLocaleString('en-GB', dateOptions) + ' MYT';
   renderNotice(d); renderKpis(d); renderContentBankHealth(DATA.content_bank_health); renderChart(d); renderWeekdayViews(d); renderGrowth(d); renderTop(d); renderReplies(d);
   renderBars('pillarBars', d.by_pillar); renderBars('formatBars', d.by_format);
   renderRecs(d); renderPosts(d);
@@ -282,7 +284,7 @@ function renderNotice(d) {
   const msgs = [];
   const age = d.last_collected ? (Date.now() - new Date(d.last_collected)) / 3600000 : null;
   if (age == null || age > 48) msgs.push('Data ' + PLATFORM[plat].name + ' last collected ' + (age == null ? 'tak diketahui' : Math.round(age / 24) + ' hari lepas') + '. Semak cron collector.');
-  if (d.followers && (Date.now() - new Date(d.followers.as_of)) / 86400000 > 7) msgs.push('Followers count last direkod ' + d.followers.as_of + ' (collector tak simpan followers sejak tarikh tu).');
+  if (d.followers && (Date.now() - new Date(d.followers.collected_at || d.followers.as_of)) / 3600000 > 36) msgs.push('Followers snapshot belum dikemas kini. Last direkod ' + d.followers.as_of + '. Semak account insights collector.');
   const n = $('notice'); n.textContent = msgs.join(' '); n.classList.toggle('show', msgs.length > 0);
 }
 
@@ -301,7 +303,8 @@ function renderKpis(d) {
   if (d.followers) {
     const c = d.followers.change;
     const sub = c ? `<span class="${c.delta >= 0 ? 'up' : 'down'}">${c.delta >= 0 ? '+' : ''}${fmt(c.delta)}${c.pct != null ? ' (' + (c.pct >= 0 ? '+' : '') + c.pct + '%)' : ''}</span> sejak ${esc(c.since)}` : 'rekod bermula ' + esc(d.followers.as_of);
-    cards.push(card('Followers', fmt(d.followers.latest), sub, 'hero'));
+    const source = d.followers.source === 'threads_api' ? 'Threads API' : 'Snapshot';
+    cards.push(card('Followers', fmt(d.followers.latest), sub + '<br>' + source + ' · ' + esc(d.followers.as_of), 'hero'));
   } else cards.push(card('Replies (30 hari)', fmt(d.replies_30d && d.replies_30d.items), 'reply dihantar'));
   $('kpis').innerHTML = cards.join('');
 }
