@@ -13,6 +13,7 @@
  */
 import { enforced, json } from '../_lib/auth.js';
 import { pageSize, threadItemFromApi } from '../_lib/threads-analytics.mjs';
+import { redactError } from '../_lib/redact-error.js';
 
 const DEFAULT_BASE = 'https://graph.threads.net/v1.0';
 const MAX_LIMIT = 600;
@@ -103,6 +104,23 @@ async function mapWithConcurrency(items, worker, concurrency) {
 
 async function collect(env, auth, limit, after = '') {
   const collectedAt = new Date().toISOString();
+  let accountMetrics = null;
+  let accountMetricsError = '';
+  if (!after) {
+    accountMetrics = { followers: null, collected_at: collectedAt, source: 'threads_api' };
+    try {
+      const insight = await threads(env, 'GET', '/me/threads_insights', {
+        metric: 'followers_count', access_token: auth.token,
+      });
+      const row = (insight.data || []).find(item => item.name === 'followers_count');
+      const raw = row?.total_value?.value;
+      const count = raw === null || raw === undefined || raw === '' ? NaN : Number(raw);
+      if (!Number.isSafeInteger(count) || count < 0) throw new Error('followers_count unavailable');
+      accountMetrics.followers = count;
+    } catch (error) {
+      accountMetricsError = redactError(error.message || error);
+    }
+  }
   const page = await listPosts(env, auth, limit, after);
   const posts = page.posts;
   const items = await mapWithConcurrency(posts, async (post) => {
@@ -124,6 +142,8 @@ async function collect(env, auth, limit, after = '') {
     source: 'threads_api',
     collected_at: collectedAt,
     account: { id: auth.userId || '', username: auth.username || '' },
+    account_metrics: accountMetrics,
+    account_metrics_error: accountMetricsError,
     posts: items.filter((item) => item.platform_content_id),
     errors: items.filter((item) => item.insight_error).length,
     next_after: page.hasNext ? page.nextAfter : '',

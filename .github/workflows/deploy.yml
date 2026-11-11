@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run offline tests
-        run: node --test tests/maturity-core.test.mjs tests/social-publish.test.mjs tests/threads-publish.test.mjs tests/threads-search.test.mjs tests/meta-publish.test.mjs
+        run: node --test tests/maturity-core.test.mjs tests/social-publish.test.mjs tests/threads-publish.test.mjs tests/threads-search.test.mjs tests/meta-publish.test.mjs tests/threads-analytics.test.mjs tests/threads-account-analytics.test.mjs
 
       - name: Stage public Pages files
         run: |
