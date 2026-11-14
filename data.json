@@ -1,86 +1,86 @@
 {
-  "generated_at": "2026-11-13T03:36:02.482810+00:00",
-  "median_weighted_30d": 10,
-  "median_views_30d": 336,
+  "generated_at": "2026-11-14T01:45:34.783698+00:00",
+  "median_weighted_30d": 10.0,
+  "median_views_30d": 358.5,
   "weekly": {
     "agentic-ai": {
-      "posts": 46,
-      "inter": 2782,
-      "shares": 487,
-      "views": 92887,
-      "avg_score": 66.4,
-      "avg_inter": 60.5
+      "posts": 54,
+      "inter": 2939,
+      "shares": 529,
+      "views": 99480,
+      "avg_score": 66.9,
+      "avg_inter": 54.4
     },
     "engage": {
-      "posts": 16,
-      "inter": 471,
+      "posts": 19,
+      "inter": 486,
       "shares": 9,
-      "views": 28082,
-      "avg_score": 56.7,
-      "avg_inter": 29.4
+      "views": 30186,
+      "avg_score": 52.8,
+      "avg_inter": 25.6
     },
     "google-ads-marketing": {
       "posts": 8,
       "inter": 88,
       "shares": 5,
-      "views": 4677,
-      "avg_score": 52.9,
+      "views": 4762,
+      "avg_score": 52.7,
       "avg_inter": 11.0
     }
   },
   "monthly": {
     "agentic-ai": {
-      "posts": 182,
-      "inter": 5036,
-      "shares": 654,
-      "views": 176981,
-      "avg_score": 54.0,
+      "posts": 191,
+      "inter": 5286,
+      "shares": 703,
+      "views": 188503,
+      "avg_score": 54.7,
       "avg_inter": 27.7
     },
     "engage": {
-      "posts": 93,
-      "inter": 2855,
-      "shares": 286,
-      "views": 105308,
-      "avg_score": 46.4,
-      "avg_inter": 30.7
+      "posts": 97,
+      "inter": 2877,
+      "shares": 287,
+      "views": 107745,
+      "avg_score": 45.6,
+      "avg_inter": 29.7
     },
     "google-ads-marketing": {
-      "posts": 60,
-      "inter": 397,
-      "shares": 25,
-      "views": 20622,
-      "avg_score": 40.2,
-      "avg_inter": 6.6
+      "posts": 56,
+      "inter": 336,
+      "shares": 13,
+      "views": 19129,
+      "avg_score": 39.2,
+      "avg_inter": 6.0
     }
   },
   "pillars": [
     {
       "pillar": "google-ads-marketing",
-      "posts": 60,
-      "pct": 18,
+      "posts": 56,
+      "pct": 16,
       "target": 20,
-      "gap": -2,
-      "avg_score": 40.2,
-      "avg_inter": 6.6
+      "gap": -4,
+      "avg_score": 39.2,
+      "avg_inter": 6.0
     },
     {
       "pillar": "agentic-ai",
-      "posts": 182,
-      "pct": 54,
+      "posts": 191,
+      "pct": 56,
       "target": 70,
-      "gap": -16,
-      "avg_score": 54.0,
+      "gap": -14,
+      "avg_score": 54.7,
       "avg_inter": 27.7
     },
     {
       "pillar": "engage",
-      "posts": 93,
+      "posts": 97,
       "pct": 28,
       "target": 10,
       "gap": 18,
-      "avg_score": 46.4,
-      "avg_inter": 30.7
+      "avg_score": 45.6,
+      "avg_inter": 29.7
     }
   ],
   "pillar_targets": {
@@ -88,8 +88,8 @@
     "google-ads-marketing": 0.2,
     "engage": 0.1
   },
-  "posts_7d": 70,
-  "posts_30d": 335,
+  "posts_7d": 81,
+  "posts_30d": 344,
   "top_7d": [
     {
       "id": 2569,
@@ -97,15 +97,15 @@
       "pillar": "agentic-ai",
       "pillar_source": "label",
       "format": "commentary",
-      "likes": 1054,
+      "likes": 1056,
       "comments": 87,
-      "shares": 351,
-      "views": 40973,
+      "shares": 356,
+      "views": 41466,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
+      "collected_at": "2026-11-13T19:00:49+00:00",
       "text": "Korang tengah explore claude atau chatGPT? Maybe baru subs yang 20usd tu. Cuba buat ni.",
-      "weighted": 2281,
-      "score": 99.5
+      "weighted": 2298,
+      "score": 99.4
     },
     {
       "id": 2526,
@@ -116,9 +116,9 @@
       "likes": 147,
       "comments": 85,
       "shares": 2,
-      "views": 14384,
+      "views": 14390,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
+      "collected_at": "2026-11-13T19:00:49+00:00",
       "text": "Aku dah decide nak beli Nintendo Switch 2 Zelda edition tu. Racun sikit supaya aku tak ubah fikiran.\n\nSila flex di reply.",
       "weighted": 323,
       "score": 97.2
@@ -132,12 +132,12 @@
       "likes": 91,
       "comments": 20,
       "shares": 19,
-      "views": 4789,
+      "views": 4800,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
+      "collected_at": "2026-11-13T19:00:49+00:00",
       "text": "Kau guna Hermes dan subs Claude Pro & ChatGPT Plus. Masalahnya Hermes boleh codex auth dengan ChatGPT Plus ja. Macam mana nak guna Claude Pro?\n\nGuna 9router.",
       "weighted": 188,
-      "score": 94.5
+      "score": 94.4
     },
     {
       "id": 2557,
@@ -145,15 +145,15 @@
       "pillar": "agentic-ai",
       "pillar_source": "label",
       "format": "tutorial-howto",
-      "likes": 113,
+      "likes": 114,
       "comments": 8,
       "shares": 18,
-      "views": 3899,
+      "views": 3918,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
+      "collected_at": "2026-11-13T19:00:49+00:00",
       "text": "Aku malas nak tulis balik. Nah cara untuk kau guna Codex tanpa perlu congek macbook kau atau hidupkan laptop 24/7.",
-      "weighted": 183,
-      "score": 94.0
+      "weighted": 184,
+      "score": 93.9
     },
     {
       "id": 2541,
@@ -164,12 +164,12 @@
       "likes": 96,
       "comments": 13,
       "shares": 4,
-      "views": 7193,
+      "views": 7199,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
+      "collected_at": "2026-11-13T19:00:49+00:00",
       "text": "Bukan susah pun nak ubah persepsi orang. Pernah dengar pasal Comformity Waiting Room Experiment? Meh aku cerita.",
       "weighted": 134,
-      "score": 93.8
+      "score": 93.7
     },
     {
       "id": 2566,
@@ -180,28 +180,28 @@
       "likes": 101,
       "comments": 14,
       "shares": 12,
-      "views": 3682,
+      "views": 3697,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
+      "collected_at": "2026-11-13T19:00:49+00:00",
       "text": "Bulan ni, sekarang, kau subscribe ja Claude Pro. Lepas subs cancel supaya dia tak caj hujung bulan. Lenjan claude code.\n- Mesti guna claude code \n- claude dekstop\n\nNanti kalau ChatGPT Plus pulak yg hype, kau tukar lah ke sana pulak.\n\nMasa nak migrate, pergi claude code cakap \u201cAku nak migrate, \u201ccompile semua memory kau untuk smooth transition dan takda satu pun yang tertinggal.\u201d",
       "weighted": 165,
-      "score": 93.5
+      "score": 93.3
     },
     {
-      "id": 2523,
-      "published_at": "2026-11-06T04:38:50+0000",
+      "id": 2614,
+      "published_at": "2026-11-13T08:43:42+0000",
       "pillar": "agentic-ai",
       "pillar_source": "label",
-      "format": "story-experience",
-      "likes": 79,
-      "comments": 18,
-      "shares": 5,
-      "views": 5085,
+      "format": "tutorial-howto",
+      "likes": 60,
+      "comments": 11,
+      "shares": 23,
+      "views": 2654,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
-      "text": "Aku guna 3 model ni hari2. Claude, Codex, DeepSeek.\n\nRamai tanya mana satu best.\n\nJawapan dia: ikut kerja.",
-      "weighted": 130,
-      "score": 93.1
+      "collected_at": "2026-11-13T19:00:49+00:00",
+      "text": "Cara nak setup Threads AI agent automation guna Claude.\n\nKalau kau selalu stuck fikir nak post apa, sistem ni boleh bantu dari cari idea, tulis draft sampai track performance.\n\nAku akan pecahkan flow dia satu-satu supaya kau nampak apa yang perlu disediakan.",
+      "weighted": 151,
+      "score": 92.1
     },
     {
       "id": 2582,
@@ -209,14 +209,14 @@
       "pillar": "agentic-ai",
       "pillar_source": "label",
       "format": "commentary",
-      "likes": 82,
+      "likes": 84,
       "comments": 23,
-      "shares": 16,
-      "views": 2007,
+      "shares": 17,
+      "views": 2076,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
+      "collected_at": "2026-11-13T19:00:49+00:00",
       "text": "Kalau korang baru nak guna Hermes untuk marketing, jangan terus suruh dia buat 100 content.\n\nStart dengan 7 benda ni dulu.\n\nBenda yang memang ulang setiap hari dan selalu tercicir.",
-      "weighted": 176,
+      "weighted": 181,
       "score": 91.9
     },
     {
@@ -226,49 +226,33 @@
       "pillar_source": "label",
       "format": "tutorial-howto",
       "likes": 23,
-      "comments": 14,
+      "comments": 15,
       "shares": 4,
-      "views": 3040,
+      "views": 3059,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
+      "collected_at": "2026-11-13T19:00:49+00:00",
       "text": "Kalau kau business owner, Hermes ni bukan sekadar untuk suruh dia tulis content.\n\n7 sebab kenapa kau patut setup Hermes untuk bisnes kau.",
-      "weighted": 63,
-      "score": 87.4
+      "weighted": 65,
+      "score": 87.5
     },
     {
-      "id": 2530,
-      "published_at": "2026-11-07T05:55:09+0000",
+      "id": 2628,
+      "published_at": "2026-11-13T01:24:48+0000",
       "pillar": "agentic-ai",
       "pillar_source": "label",
       "format": "tutorial-howto",
-      "likes": 26,
-      "comments": 8,
-      "shares": 7,
-      "views": 1829,
+      "likes": 31,
+      "comments": 10,
+      "shares": 4,
+      "views": 1953,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
-      "text": "Workflow cara automate meta ads campaign guna Ai. Hermes, Claude dan Codex pun boleh guna cara sama. Lepas kau dah train sekali, then tinggal bagi brief ja untuk start.",
+      "collected_at": "2026-11-13T19:00:49+00:00",
+      "text": "Tadi aku share 7 kelebihan pasang Hermes dekat VPS.\n\nPlot twist, Hermes utama aku sendiri jalan atas dedicated PC dengan Linux. Spec dia 16GB RAM, 256GB SSD.\n\nKenapa aku pilih PC sendiri? Ni 5 sebab dia.",
       "weighted": 63,
       "score": 85.8
     }
   ],
   "top_30d": [
-    {
-      "id": 2569,
-      "published_at": "2026-11-10T23:05:00+0000",
-      "pillar": "agentic-ai",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 1054,
-      "comments": 87,
-      "shares": 351,
-      "views": 40973,
-      "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
-      "text": "Korang tengah explore claude atau chatGPT? Maybe baru subs yang 20usd tu. Cuba buat ni.",
-      "weighted": 2281,
-      "score": 99.5
-    },
     {
       "id": 2442,
       "published_at": "2026-10-31T05:22:02+0000",
@@ -278,12 +262,28 @@
       "likes": 1435,
       "comments": 55,
       "shares": 271,
-      "views": 47995,
+      "views": 48024,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
+      "collected_at": "2026-11-13T19:00:49+00:00",
       "text": "Semalam aku decide untuk keluarkan ja high value sharing. Malas dah nak gatekeep.\n\nYg ni baru level surface je guys. Tu pun specific untuk threads sahaja. Follow kalau nak sharing yang lagi atas atas dia.",
       "weighted": 2358,
       "score": 99.5
+    },
+    {
+      "id": 2569,
+      "published_at": "2026-11-10T23:05:00+0000",
+      "pillar": "agentic-ai",
+      "pillar_source": "label",
+      "format": "commentary",
+      "likes": 1056,
+      "comments": 87,
+      "shares": 356,
+      "views": 41466,
+      "metric_source": "threads_api",
+      "collected_at": "2026-11-13T19:00:49+00:00",
+      "text": "Korang tengah explore claude atau chatGPT? Maybe baru subs yang 20usd tu. Cuba buat ni.",
+      "weighted": 2298,
+      "score": 99.4
     },
     {
       "id": 2526,
@@ -294,9 +294,9 @@
       "likes": 147,
       "comments": 85,
       "shares": 2,
-      "views": 14384,
+      "views": 14390,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
+      "collected_at": "2026-11-13T19:00:49+00:00",
       "text": "Aku dah decide nak beli Nintendo Switch 2 Zelda edition tu. Racun sikit supaya aku tak ubah fikiran.\n\nSila flex di reply.",
       "weighted": 323,
       "score": 97.2
@@ -310,12 +310,12 @@
       "likes": 172,
       "comments": 59,
       "shares": 46,
-      "views": 5746,
+      "views": 5780,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
+      "collected_at": "2026-11-13T19:00:49+00:00",
       "text": "Aku nak ajar korang cara pasang Hermes. Cara ni sapa2 pun boleh buat. Easy.\n\n1. Search Hermes Ai Agent, Download Hermes.\n2. Install dalam pc/laptop korang. Tunggu dia siap.\n3. Dah sial, bukak terminal/powershell, type \u201chermes model\u201d.\n4. Pilih Api key yang korang nak.\n\nTips \ud83d\udc49 aku rekomen korang subs ja chatgpt plus RM100 tu. Ambik no 8, Codex Auth > dia akan bagi link > copy paste dekat browser > m",
       "weighted": 428,
-      "score": 96.7
+      "score": 96.6
     },
     {
       "id": 2559,
@@ -326,12 +326,12 @@
       "likes": 91,
       "comments": 20,
       "shares": 19,
-      "views": 4789,
+      "views": 4800,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
+      "collected_at": "2026-11-13T19:00:49+00:00",
       "text": "Kau guna Hermes dan subs Claude Pro & ChatGPT Plus. Masalahnya Hermes boleh codex auth dengan ChatGPT Plus ja. Macam mana nak guna Claude Pro?\n\nGuna 9router.",
       "weighted": 188,
-      "score": 94.5
+      "score": 94.4
     },
     {
       "id": 2557,
@@ -339,15 +339,15 @@
       "pillar": "agentic-ai",
       "pillar_source": "label",
       "format": "tutorial-howto",
-      "likes": 113,
+      "likes": 114,
       "comments": 8,
       "shares": 18,
-      "views": 3899,
+      "views": 3918,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
+      "collected_at": "2026-11-13T19:00:49+00:00",
       "text": "Aku malas nak tulis balik. Nah cara untuk kau guna Codex tanpa perlu congek macbook kau atau hidupkan laptop 24/7.",
-      "weighted": 183,
-      "score": 94.0
+      "weighted": 184,
+      "score": 93.9
     },
     {
       "id": 2541,
@@ -358,12 +358,12 @@
       "likes": 96,
       "comments": 13,
       "shares": 4,
-      "views": 7193,
+      "views": 7199,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
+      "collected_at": "2026-11-13T19:00:49+00:00",
       "text": "Bukan susah pun nak ubah persepsi orang. Pernah dengar pasal Comformity Waiting Room Experiment? Meh aku cerita.",
       "weighted": 134,
-      "score": 93.8
+      "score": 93.7
     },
     {
       "id": 2435,
@@ -374,12 +374,12 @@
       "likes": 82,
       "comments": 41,
       "shares": 3,
-      "views": 3737,
+      "views": 3741,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
+      "collected_at": "2026-11-13T19:00:49+00:00",
       "text": "Kalau korang ada apa2 nak tahu pasal cara nak setup Hermes, nak setup certain workflow, nak setup ai agent atau agentic Ai, cara macam mana, apa kena setup\n\nTanya ja. Aku share free.",
       "weighted": 173,
-      "score": 93.7
+      "score": 93.6
     },
     {
       "id": 2566,
@@ -390,12 +390,12 @@
       "likes": 101,
       "comments": 14,
       "shares": 12,
-      "views": 3682,
+      "views": 3697,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
+      "collected_at": "2026-11-13T19:00:49+00:00",
       "text": "Bulan ni, sekarang, kau subscribe ja Claude Pro. Lepas subs cancel supaya dia tak caj hujung bulan. Lenjan claude code.\n- Mesti guna claude code \n- claude dekstop\n\nNanti kalau ChatGPT Plus pulak yg hype, kau tukar lah ke sana pulak.\n\nMasa nak migrate, pergi claude code cakap \u201cAku nak migrate, \u201ccompile semua memory kau untuk smooth transition dan takda satu pun yang tertinggal.\u201d",
       "weighted": 165,
-      "score": 93.5
+      "score": 93.3
     },
     {
       "id": 2523,
@@ -406,26 +406,26 @@
       "likes": 79,
       "comments": 18,
       "shares": 5,
-      "views": 5085,
+      "views": 5127,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-12T19:01:11+00:00",
+      "collected_at": "2026-11-13T19:00:49+00:00",
       "text": "Aku guna 3 model ni hari2. Claude, Codex, DeepSeek.\n\nRamai tanya mana satu best.\n\nJawapan dia: ikut kerja.",
       "weighted": 130,
-      "score": 93.1
+      "score": 93.0
     }
   ],
   "recommendations": [
     {
       "type": "pillar-mix",
       "title": "Pillar mix vs target 35/35/30",
-      "body": "google-ads-marketing 18% (target 20%) | agentic-ai 54% (target 70%) | engage 28% (target 10%)",
-      "metric": 335
+      "body": "google-ads-marketing 16% (target 20%) | agentic-ai 56% (target 70%) | engage 28% (target 10%)",
+      "metric": 344
     },
     {
       "type": "pillar-under",
       "title": "Pillar kurang: agentic-ai",
-      "body": "agentic-ai cuma 54% (target 70%). Naikkan volume je tak cukup. Kalau pillar ni engagement rendah, tukar bentuk: AI sebagai tool, masalah bisnes sebagai cerita.",
-      "metric": 54
+      "body": "agentic-ai cuma 56% (target 70%). Naikkan volume je tak cukup. Kalau pillar ni engagement rendah, tukar bentuk: AI sebagai tool, masalah bisnes sebagai cerita.",
+      "metric": 56
     },
     {
       "type": "pillar-over",
@@ -436,14 +436,14 @@
     {
       "type": "pillar-fix",
       "title": "Tingkatkan: google-ads-marketing",
-      "body": "google-ads-marketing avg score 40.2 dari 60 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
-      "metric": 40.2
+      "body": "google-ads-marketing avg score 39.2 dari 56 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
+      "metric": 39.2
     },
     {
       "type": "top-pillar-week",
       "title": "Pillar terbaik minggu ni: agentic-ai",
-      "body": "agentic-ai avg score 66.4 dari 46 posts. Kekalkan bentuk ni.",
-      "metric": 66.4
+      "body": "agentic-ai avg score 66.9 dari 54 posts. Kekalkan bentuk ni.",
+      "metric": 66.9
     }
   ]
 }
