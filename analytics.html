@@ -213,7 +213,7 @@ footer{text-align:center;font-size:11px;color:var(--text2);padding:18px 12px 30p
     <div class="top-list" id="repliesList"></div>
   </div>
 
-  <div class="section"><div class="section-hdr"><h2>Prestasi by Pillar</h2><span class="badge">30 hari</span></div><div id="pillarBars"></div></div>
+  <div class="section" id="pillarSec"><div class="section-hdr"><h2>Prestasi by Pillar</h2><span class="badge">30 hari</span></div><div id="pillarBars"></div></div>
   <div class="section"><div class="section-hdr"><h2>Prestasi by Format</h2><span class="badge">30 hari</span></div><div id="formatBars"></div></div>
 
   <div class="section"><div class="section-hdr"><h2>Cadangan</h2><span class="badge">auto</span></div><div class="rec-list" id="recList"></div></div>
@@ -274,9 +274,14 @@ function render() {
   const collected = d.last_collected ? new Date(d.last_collected).toLocaleString('en-GB', dateOptions) : 'tak diketahui';
   $('genInfo').textContent = 'Data: ' + collected + ' MYT · Jana: ' + gen.toLocaleString('en-GB', dateOptions) + ' MYT';
   renderNotice(d); renderKpis(d); renderContentBankHealth(DATA.content_bank_health); renderChart(d); renderWeekdayViews(d); renderGrowth(d); renderTop(d); renderReplies(d);
-  renderBars('pillarBars', d.by_pillar); renderBars('formatBars', d.by_format);
+  const hasPillar = !!(d.by_pillar && d.by_pillar.length);
+  $('pillarSec').hidden = !hasPillar;
+  if (hasPillar) renderBars('pillarBars', d.by_pillar);
+  renderBars('formatBars', d.by_format);
   renderRecs(d); renderPosts(d);
-  $('foot').textContent = 'Score = 0.7 x engagement (like 1, comment 2, share 3 lawan median 30 hari) + 0.3 x reach (views). Kalau views tak ada, engagement sahaja.';
+  $('foot').textContent = plat === 'threads'
+    ? 'Score = engagement sahaja (like 1, comment 2, share 3 lawan median 30 hari). Views dan pillar tak masuk skor.'
+    : 'Score = 0.7 x engagement (like 1, comment 2, share 3 lawan median 30 hari) + 0.3 x reach (views). Kalau views tak ada, engagement sahaja.';
   if (plat === 'threads') $('foot').textContent += ' Views dan interactions ialah nilai terkumpul bagi post diterbitkan dalam 30 hari, bukan aktiviti seluruh akaun dalam tempoh itu. Interactions = likes + replies + reposts + quotes + shares. Rekod scraping lama tidak dikira.';
   document.querySelectorAll('.section,.card').forEach(el => { el.classList.remove('fade'); void el.offsetWidth; el.classList.add('fade'); });
 }
@@ -393,7 +398,8 @@ function metaLine(p) {
   if (plat === 'threads') bits.push(`<span><b>${fmt(p.reposts)}</b> repost</span>`, `<span><b>${fmt(p.quotes)}</b> quote</span>`);
   bits.push(p.views_missing ? '<span>views n/a</span>' : `<span><b>${fmt(p.views)}</b> views</span>`);
   if (p.duration) bits.push(`<span>${Math.round(p.duration)}s</span>`);
-  bits.push(`<span>${esc(p.date.slice(5).split('-').reverse().join('/'))}</span>`, `<span>${esc(p.pillar)}</span>`);
+  bits.push(`<span>${esc(p.date.slice(5).split('-').reverse().join('/'))}</span>`);
+  if (p.pillar) bits.push(`<span>${esc(p.pillar)}</span>`);
   return bits.join('');
 }
 
@@ -429,10 +435,10 @@ function renderRecs(d) {
 }
 
 function renderPosts(d) {
-  const pillars = ['all', ...new Set(d.posts.map(p => p.pillar))];
+  const pillars = d.posts.some(p => p.pillar) ? ['all', ...new Set(d.posts.map(p => p.pillar))] : [];
   if (!pillars.includes(pillarFilter)) pillarFilter = 'all';
   $('postFilters').innerHTML = pillars.map(k => `<button type="button" class="pill ${k === pillarFilter ? 'active' : ''}" data-k="${esc(k)}">${k === 'all' ? 'Semua' : esc(k)}</button>`).join('');
-  const rows = d.posts.filter(p => pillarFilter === 'all' || p.pillar === pillarFilter);
+  const rows = d.posts.filter(p => !pillars.length || pillarFilter === 'all' || p.pillar === pillarFilter);
   $('postsBadge').textContent = rows.length + ' item';
   $('postList').innerHTML = rows.map(p => `<a class="pl" href="${esc(p.url)}" target="_blank" rel="noopener"><span class="pl-date">${esc(p.date.slice(5).split('-').reverse().join('/'))}</span>
     <span class="pl-text">${esc(p.text.replace(/\s+/g, ' '))}</span>
