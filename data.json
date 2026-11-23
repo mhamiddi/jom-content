@@ -1,86 +1,86 @@
 {
-  "generated_at": "2026-11-22T01:45:24.494338+00:00",
+  "generated_at": "2026-11-23T01:45:24.631259+00:00",
   "median_weighted_30d": 13,
-  "median_views_30d": 433.0,
+  "median_views_30d": 435.5,
   "weekly": {
-    "agentic-ai": {
-      "posts": 89,
-      "inter": 5337,
-      "shares": 1251,
-      "views": 121024,
-      "avg_score": 57.8,
-      "avg_inter": 60.0
-    },
     "google-ads-marketing": {
-      "posts": 14,
-      "inter": 292,
-      "shares": 22,
-      "views": 13310,
-      "avg_score": 47.6,
-      "avg_inter": 20.9
+      "posts": 17,
+      "inter": 329,
+      "shares": 23,
+      "views": 14345,
+      "avg_score": 48.1,
+      "avg_inter": 19.4
+    },
+    "agentic-ai": {
+      "posts": 96,
+      "inter": 5309,
+      "shares": 1275,
+      "views": 122670,
+      "avg_score": 56.6,
+      "avg_inter": 55.3
     },
     "engage": {
-      "posts": 25,
-      "inter": 379,
-      "shares": 15,
-      "views": 16290,
-      "avg_score": 47.1,
-      "avg_inter": 15.2
+      "posts": 29,
+      "inter": 424,
+      "shares": 20,
+      "views": 20307,
+      "avg_score": 44.2,
+      "avg_inter": 14.6
     }
   },
   "monthly": {
-    "agentic-ai": {
-      "posts": 261,
-      "inter": 11056,
-      "shares": 2060,
-      "views": 322469,
-      "avg_score": 54.8,
-      "avg_inter": 42.4
-    },
     "google-ads-marketing": {
-      "posts": 59,
-      "inter": 562,
-      "shares": 35,
-      "views": 29289,
-      "avg_score": 35.7,
-      "avg_inter": 9.5
+      "posts": 61,
+      "inter": 612,
+      "shares": 36,
+      "views": 30507,
+      "avg_score": 36.6,
+      "avg_inter": 10.0
+    },
+    "agentic-ai": {
+      "posts": 265,
+      "inter": 11205,
+      "shares": 2104,
+      "views": 326962,
+      "avg_score": 54.8,
+      "avg_inter": 42.3
     },
     "engage": {
-      "posts": 101,
-      "inter": 3078,
-      "shares": 300,
-      "views": 117863,
-      "avg_score": 41.0,
-      "avg_inter": 30.5
+      "posts": 103,
+      "inter": 3204,
+      "shares": 308,
+      "views": 124226,
+      "avg_score": 42.6,
+      "avg_inter": 31.1
     }
   },
   "pillars": [
     {
       "pillar": "google-ads-marketing",
-      "posts": 59,
+      "posts": 61,
       "pct": 14,
       "target": 20,
       "gap": -6,
-      "avg_score": 35.7,
-      "avg_inter": 9.5
+      "avg_score": 36.6,
+      "avg_inter": 10.0
     },
     {
       "pillar": "agentic-ai",
-      "posts": 261,
+      "posts": 265,
       "pct": 62,
       "target": 70,
       "gap": -8,
       "avg_score": 54.8,
-      "avg_inter": 42.4
+      "avg_inter": 42.3
     },
     {
       "pillar": "engage",
-      "posts": 101,
+      "posts": 103,
       "pct": 24,
       "target": 10,
       "gap": 14,
-      "avg_score": 41.0,
-      "avg_inter": 30.5
+      "avg_score": 42.6,
+      "avg_inter": 31.1
     }
   ],
   "pillar_targets": {
@@ -88,8 +88,8 @@
     "google-ads-marketing": 0.2,
     "engage": 0.1
   },
-  "posts_7d": 128,
-  "posts_30d": 421,
+  "posts_7d": 142,
+  "posts_30d": 429,
   "top_7d": [
     {
       "id": 2667,
@@ -97,14 +97,14 @@
       "pillar": "agentic-ai",
       "pillar_source": "label",
       "format": "commentary",
-      "likes": 2068,
+      "likes": 2069,
       "comments": 78,
-      "shares": 1003,
-      "views": 40916,
+      "shares": 1006,
+      "views": 41314,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
+      "collected_at": "2026-11-22T19:00:30+00:00",
       "text": "Edit video guna claude code untuk pemula.",
-      "weighted": 5233,
+      "weighted": 5243,
       "score": 99.8
     },
     {
@@ -116,28 +116,28 @@
       "likes": 182,
       "comments": 12,
       "shares": 22,
-      "views": 5956,
+      "views": 5962,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
+      "collected_at": "2026-11-22T19:00:30+00:00",
       "text": "Kalau korang boleh buat 5 benda ni, korang BUKAN BEGINNER user Claude Pro.\n\n1. Sambung Api.\n2. Setup webapp/website auto deploy.\n3. Guna github repo utk cari skills custom.\n4. Custom dan simpan skills sendiri.\n5. Boleh setup Ai automation workflow.",
       "weighted": 272,
       "score": 95.4
     },
     {
-      "id": 2657,
-      "published_at": "2026-11-15T02:59:49+0000",
+      "id": 2859,
+      "published_at": "2026-11-22T13:28:53+0000",
       "pillar": "agentic-ai",
       "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 168,
-      "comments": 6,
-      "shares": 21,
-      "views": 6747,
+      "format": "story-experience",
+      "likes": 64,
+      "comments": 13,
+      "shares": 31,
+      "views": 4098,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
-      "text": "Benda ni real guys. Lagi2 lepas ada Ai ni. Kalau lepas ada agentic Ai pun kau tak boleh buat aku tak tahu lah.\n\nSales RM150k+ dari May sampai okt aku start guna Ai tu semua zero cost, no ads.\n\nBila aku push korang belajar content engine dgn aku bukan aku cakap kosong. Dah 4 tahun dah business aku ni run pakai content ja. No ads. Kau rasa?\n\nBelajar sos rahsia aku + belajar cara setup Ai follow sos ",
-      "weighted": 243,
-      "score": 94.9
+      "collected_at": "2026-11-22T19:00:30+00:00",
+      "text": "Kalau nak Claude urus content Threads, ni kerja yang kau boleh serahkan.\n\nDalam Threads Engine, aku pecahkan kepada 7 agent.",
+      "weighted": 183,
+      "score": 93.4
     },
     {
       "id": 2786,
@@ -148,9 +148,9 @@
       "likes": 62,
       "comments": 8,
       "shares": 21,
-      "views": 2884,
+      "views": 2902,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
+      "collected_at": "2026-11-22T19:00:30+00:00",
       "text": "Buat benda ni kalau korang serius dengan Claude Code.\n\n1. Guna Api utk semua connection. Elakkan bergantung pada Connectors/MCP. Kalau perlu then guna cthnya Elementor MCP.\n2. Pasang Claude CLI & Guna Claude melalui Terminal.\n3. Sambung connection device lain melalui SSH.\n4. Guna other models dalam Claude Code. Contohnya panggil Codex CLI utk image. \n5. Guna tailscale, T3 Code.",
       "weighted": 141,
       "score": 91.6
@@ -164,9 +164,9 @@
       "likes": 65,
       "comments": 4,
       "shares": 16,
-      "views": 1821,
+      "views": 1834,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
+      "collected_at": "2026-11-22T19:00:30+00:00",
       "text": "Meh aku bocor macam mana aku run kerja marketing client sorang2 dengan Hermes.\n\nHampir semua kerja aku bagi dekat Hermes. Satu ja aku buat terus dalam Claude Code: edit video.\n\nTapi bukan semua aku serah. Aku bahagi kerja jadi dua: kerja yang berulang, dan kerja yang perlukan aku. Simple, tapi ramai buat terbalik.",
       "weighted": 121,
       "score": 90.3
@@ -180,12 +180,28 @@
       "likes": 55,
       "comments": 12,
       "shares": 14,
-      "views": 1437,
+      "views": 1443,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
+      "collected_at": "2026-11-22T19:00:30+00:00",
       "text": "Nak automate Threads guna Hermes? Pasang Hermes dan sambung model. Connect Threads dekat Zernio, tambah Zernio MCP ke Hermes.\n\nBukak Chromium, kau login sendiri. Guna persistent browser profile supaya tak perlu login setiap sesi.",
       "weighted": 121,
       "score": 90.3
+    },
+    {
+      "id": 2900,
+      "published_at": "2026-11-22T01:38:57+0000",
+      "pillar": "engage",
+      "pillar_source": "label",
+      "format": "story-experience",
+      "likes": 49,
+      "comments": 25,
+      "shares": 3,
+      "views": 4818,
+      "metric_source": "threads_api",
+      "collected_at": "2026-11-22T19:00:30+00:00",
+      "text": "Banyak pulak neon ni lalu homefeed aku. Kuat meracun diorang ni.",
+      "weighted": 108,
+      "score": 89.3
     },
     {
       "id": 2709,
@@ -196,9 +212,9 @@
       "likes": 57,
       "comments": 23,
       "shares": 2,
-      "views": 5890,
+      "views": 5930,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
+      "collected_at": "2026-11-22T19:00:30+00:00",
       "text": "Valid tak aku cakap marketer sekarang dah kena tahu dan boleh buat end to end. Dari content sampai ke paid ads & funnel after sales.\n\nAt least tu lah route yang aku nampak ramai marketer aku kenal ambik.\n\nTapi ada jugak special khas yang jadi specialist untuk certain niche.",
       "weighted": 109,
       "score": 89.3
@@ -212,44 +228,28 @@
       "likes": 28,
       "comments": 13,
       "shares": 18,
-      "views": 1155,
+      "views": 1164,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
+      "collected_at": "2026-11-22T19:00:30+00:00",
       "text": "5 cara korang boleh buat duit dengan Claude Code.\n\n1. Buat website atau landing page\n\nCari bisnes yang perlukan website. Kontraktor, workshop, SA kereta. Guna Claude Code untuk bantu build website dengan info servis, contoh kerja dan button WhatsApp.\n\nKorang caj untuk website yang siap berfungsi. Check dekat phone dan test semua form sebelum handover.",
       "weighted": 108,
       "score": 89.3
     },
     {
-      "id": 2790,
-      "published_at": "2026-11-19T00:46:58+0000",
+      "id": 2830,
+      "published_at": "2026-11-21T09:46:20+0000",
       "pillar": "agentic-ai",
       "pillar_source": "label",
       "format": "tutorial-howto",
-      "likes": 63,
-      "comments": 7,
-      "shares": 4,
-      "views": 2680,
+      "likes": 46,
+      "comments": 8,
+      "shares": 15,
+      "views": 1340,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
-      "text": "Manifesting 7,000 & 1 mil views \ud83d\udc86\u200d\u2642\ufe0f\n\nNak tips pasal Hermes, Claude Automation fokus pada marketing dari content sampai paid ads? Follow aku.\n\nAku tolong bisnes owner coach & setup Ai marketing untuk bisnes dia.",
-      "weighted": 89,
-      "score": 87.3
-    },
-    {
-      "id": 2692,
-      "published_at": "2026-11-17T06:59:21+0000",
-      "pillar": "google-ads-marketing",
-      "pillar_source": "label",
-      "format": "commentary",
-      "likes": 34,
-      "comments": 12,
-      "shares": 9,
-      "views": 1232,
-      "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
-      "text": "jeng jeng jeng. Coachee takda idea nak post apa, so kita buat satu scrapper khas untuk scrape posting2 yang high engagement dekat Threads.",
-      "weighted": 85,
-      "score": 86.7
+      "collected_at": "2026-11-22T19:00:30+00:00",
+      "text": "Aku baru explore ni, boleh ja nak gatekeep tapi aku share sebab aku care.\n\nKau subs claude pro tapi blur nak setup automation. Orang duk kata \u201ckena ada workflow\u201d masalahnya korang tak boleh bayang. Ikut cara ni \ud83d\udc47",
+      "weighted": 107,
+      "score": 89.2
     }
   ],
   "top_30d": [
@@ -259,14 +259,14 @@
       "pillar": "agentic-ai",
       "pillar_source": "label",
       "format": "commentary",
-      "likes": 2068,
+      "likes": 2069,
       "comments": 78,
-      "shares": 1003,
-      "views": 40916,
+      "shares": 1006,
+      "views": 41314,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
+      "collected_at": "2026-11-22T19:00:30+00:00",
       "text": "Edit video guna claude code untuk pemula.",
-      "weighted": 5233,
+      "weighted": 5243,
       "score": 99.8
     },
     {
@@ -275,14 +275,14 @@
       "pillar": "engage",
       "pillar_source": "label",
       "format": "story-experience",
-      "likes": 1434,
+      "likes": 1433,
       "comments": 55,
       "shares": 271,
-      "views": 48213,
+      "views": 48230,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
+      "collected_at": "2026-11-22T19:00:30+00:00",
       "text": "Semalam aku decide untuk keluarkan ja high value sharing. Malas dah nak gatekeep.\n\nYg ni baru level surface je guys. Tu pun specific untuk threads sahaja. Follow kalau nak sharing yang lagi atas atas dia.",
-      "weighted": 2357,
+      "weighted": 2356,
       "score": 99.5
     },
     {
@@ -294,9 +294,9 @@
       "likes": 1060,
       "comments": 87,
       "shares": 363,
-      "views": 42723,
+      "views": 42830,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
+      "collected_at": "2026-11-22T19:00:30+00:00",
       "text": "Korang tengah explore claude atau chatGPT? Maybe baru subs yang 20usd tu. Cuba buat ni.",
       "weighted": 2323,
       "score": 99.4
@@ -310,9 +310,9 @@
       "likes": 177,
       "comments": 59,
       "shares": 49,
-      "views": 6051,
+      "views": 6066,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
+      "collected_at": "2026-11-22T19:00:30+00:00",
       "text": "Aku nak ajar korang cara pasang Hermes. Cara ni sapa2 pun boleh buat. Easy.\n\n1. Search Hermes Ai Agent, Download Hermes.\n2. Install dalam pc/laptop korang. Tunggu dia siap.\n3. Dah sial, bukak terminal/powershell, type \u201chermes model\u201d.\n4. Pilih Api key yang korang nak.\n\nTips \ud83d\udc49 aku rekomen korang subs ja chatgpt plus RM100 tu. Ambik no 8, Codex Auth > dia akan bagi link > copy paste dekat browser > m",
       "weighted": 442,
       "score": 97.1
@@ -326,9 +326,9 @@
       "likes": 147,
       "comments": 85,
       "shares": 2,
-      "views": 14399,
+      "views": 14401,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
+      "collected_at": "2026-11-22T19:00:30+00:00",
       "text": "Aku dah decide nak beli Nintendo Switch 2 Zelda edition tu. Racun sikit supaya aku tak ubah fikiran.\n\nSila flex di reply.",
       "weighted": 323,
       "score": 96.1
@@ -342,9 +342,9 @@
       "likes": 182,
       "comments": 12,
       "shares": 22,
-      "views": 5956,
+      "views": 5962,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
+      "collected_at": "2026-11-22T19:00:30+00:00",
       "text": "Kalau korang boleh buat 5 benda ni, korang BUKAN BEGINNER user Claude Pro.\n\n1. Sambung Api.\n2. Setup webapp/website auto deploy.\n3. Guna github repo utk cari skills custom.\n4. Custom dan simpan skills sendiri.\n5. Boleh setup Ai automation workflow.",
       "weighted": 272,
       "score": 95.4
@@ -357,13 +357,13 @@
       "format": "tutorial-howto",
       "likes": 115,
       "comments": 15,
-      "shares": 34,
-      "views": 2727,
+      "shares": 35,
+      "views": 2744,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
+      "collected_at": "2026-11-22T19:00:30+00:00",
       "text": "Cara nak guna Ai Claude, ChatGPT, Hermes untuk automate social media korang.",
-      "weighted": 247,
-      "score": 95.0
+      "weighted": 250,
+      "score": 95.1
     },
     {
       "id": 2657,
@@ -374,9 +374,9 @@
       "likes": 168,
       "comments": 6,
       "shares": 21,
-      "views": 6747,
+      "views": 6752,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
+      "collected_at": "2026-11-22T19:00:30+00:00",
       "text": "Benda ni real guys. Lagi2 lepas ada Ai ni. Kalau lepas ada agentic Ai pun kau tak boleh buat aku tak tahu lah.\n\nSales RM150k+ dari May sampai okt aku start guna Ai tu semua zero cost, no ads.\n\nBila aku push korang belajar content engine dgn aku bukan aku cakap kosong. Dah 4 tahun dah business aku ni run pakai content ja. No ads. Kau rasa?\n\nBelajar sos rahsia aku + belajar cara setup Ai follow sos ",
       "weighted": 243,
       "score": 94.9
@@ -390,27 +390,27 @@
       "likes": 91,
       "comments": 20,
       "shares": 19,
-      "views": 4865,
+      "views": 4871,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
+      "collected_at": "2026-11-22T19:00:30+00:00",
       "text": "Kau guna Hermes dan subs Claude Pro & ChatGPT Plus. Masalahnya Hermes boleh codex auth dengan ChatGPT Plus ja. Macam mana nak guna Claude Pro?\n\nGuna 9router.",
       "weighted": 188,
       "score": 93.5
     },
     {
-      "id": 2614,
-      "published_at": "2026-11-13T08:43:42+0000",
+      "id": 2859,
+      "published_at": "2026-11-22T13:28:53+0000",
       "pillar": "agentic-ai",
       "pillar_source": "label",
-      "format": "tutorial-howto",
-      "likes": 70,
-      "comments": 11,
+      "format": "story-experience",
+      "likes": 64,
+      "comments": 13,
       "shares": 31,
-      "views": 3380,
+      "views": 4098,
       "metric_source": "threads_api",
-      "collected_at": "2026-11-21T19:00:39+00:00",
-      "text": "Cara nak setup Threads AI agent automation guna Claude.\n\nKalau kau selalu stuck fikir nak post apa, sistem ni boleh bantu dari cari idea, tulis draft sampai track performance.\n\nAku akan pecahkan flow dia satu-satu supaya kau nampak apa yang perlu disediakan.",
-      "weighted": 185,
+      "collected_at": "2026-11-22T19:00:30+00:00",
+      "text": "Kalau nak Claude urus content Threads, ni kerja yang kau boleh serahkan.\n\nDalam Threads Engine, aku pecahkan kepada 7 agent.",
+      "weighted": 183,
       "score": 93.4
     }
   ],
@@ -419,7 +419,7 @@
       "type": "pillar-mix",
       "title": "Pillar mix vs target 35/35/30",
       "body": "google-ads-marketing 14% (target 20%) | agentic-ai 62% (target 70%) | engage 24% (target 10%)",
-      "metric": 421
+      "metric": 429
     },
     {
       "type": "pillar-under",
@@ -436,14 +436,14 @@
     {
       "type": "pillar-fix",
       "title": "Tingkatkan: google-ads-marketing",
-      "body": "google-ads-marketing avg score 35.7 dari 59 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
-      "metric": 35.7
+      "body": "google-ads-marketing avg score 36.6 dari 61 posts. Jangan buang pillar ni. Tukar angle: situasi sebenar -> implikasi jelas -> baru benda teknikal. Jangan start dengan jargon.",
+      "metric": 36.6
     },
     {
       "type": "top-pillar-week",
       "title": "Pillar terbaik minggu ni: agentic-ai",
-      "body": "agentic-ai avg score 57.8 dari 89 posts. Kekalkan bentuk ni.",
-      "metric": 57.8
+      "body": "agentic-ai avg score 56.6 dari 96 posts. Kekalkan bentuk ni.",
+      "metric": 56.6
     }
   ]
 }
