@@ -1,21 +1,18 @@
 /* Jom Content shared login gate (Dashboard + Topic Bank share one session).
 
-   Two modes, chosen by GET /api/session:
-   - server: the API is locked (Pages env JOM_API_TOKEN is set). Login is checked by POST /api/login and kept in an
-             HttpOnly cookie. Nothing secret lives in this file.
-   - legacy: the API is still open. Login is checked here in the browser against the credentials below. This only
-             hides the UI; anyone can read them. They are deleted from this file once the server mode is on. */
+   Server mode only: login is checked by POST /api/login and kept in an HttpOnly cookie.
+   Nothing secret lives in this file. (The old in-browser "legacy" check and its hardcoded
+   credentials were removed on 2026-11-23, audit CNT-24-01; the API has been locked since.) */
 (function () {
-  var USER = 'jomdigital', PASS = 'Hakimi.1995';
-  var KEYS = ['jomContentSession', 'topicBankSession'];
-  var wired = false, mode = 'legacy', serverAuthed = false;
+  var KEYS = ['jomContentSession', 'topicBankSession'];  // only cleared on logout (old legacy flags)
+  var wired = false, mode = 'server', serverAuthed = false;
   var rawFetch = window.fetch.bind(window);
   function $(id) { return document.getElementById(id); }
 
   // Learn the mode once. Never block the page for more than ~3.5s.
   var session = rawFetch('/api/session', { credentials: 'same-origin', cache: 'no-store' })
     .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (j) { if (j && j.success && j.enforced) { mode = 'server'; serverAuthed = !!j.authed; } })
+    .then(function (j) { if (j && j.success) serverAuthed = !!j.authed; })
     .catch(function () {});
   var ready = Promise.race([session, new Promise(function (res) { setTimeout(res, 3500); })]);
 
@@ -43,12 +40,8 @@
     ready: ready,
     mode: function () { return mode; },
     onExpired: null,   // pages set this: called when the API answers 401 in server mode
-    isAuthed: function () {
-      return mode === 'server' ? serverAuthed : KEYS.some(function (k) { return localStorage.getItem(k) === '1'; });
-    },
-    check: function (u, p) { return u === USER && p === PASS; },
+    isAuthed: function () { return serverAuthed; },
     login: function (u, p) {
-      if (mode !== 'server') return Promise.resolve({ ok: api.check(u, p) });
       return rawFetch('/api/login', {
         method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: u, password: p })
@@ -58,7 +51,6 @@
       }).catch(function () { return { ok: false, error: 'Tak dapat hubungi server. Cuba lagi.' }; });
     },
     resetPassword: function (u, code, p) {
-      if (mode !== 'server') return Promise.resolve({ ok: false, error: 'Reset password hanya tersedia dalam server mode.' });
       return rawFetch('/api/password-reset', {
         method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: u, resetCode: code, newPassword: p })
@@ -69,13 +61,11 @@
         });
       }).catch(function () { return { ok: false, error: 'Tak dapat hubungi server. Cuba lagi.' }; });
     },
-    setAuthed: function () { if (mode !== 'server') KEYS.forEach(function (k) { localStorage.setItem(k, '1'); }); },
+    setAuthed: function () {},  // kept for page compatibility; the server cookie is the session
     clear: function () {
       KEYS.forEach(function (k) { localStorage.removeItem(k); });
-      if (mode === 'server') {
-        serverAuthed = false;
-        rawFetch('/api/logout', { method: 'POST', credentials: 'same-origin' }).catch(function () {});
-      }
+      serverAuthed = false;
+      rawFetch('/api/logout', { method: 'POST', credentials: 'same-origin' }).catch(function () {});
     },
     openLogin: function () {
       var m = $('loginModal'); if (!m) return;
@@ -104,7 +94,7 @@
   window.fetch = function (input, init) {
     return rawFetch(input, init).then(function (res) {
       var url = typeof input === 'string' ? input : (input && input.url) || '';
-      if (res.status === 401 && mode === 'server' && /^(\/|https?:\/\/[^/]+\/)api\//.test(url) && !/\/api\/(login|session|logout)/.test(url)) {
+      if (res.status === 401 && /^(\/|https?:\/\/[^/]+\/)api\//.test(url) && !/\/api\/(login|session|logout)/.test(url)) {
         serverAuthed = false;
         if (typeof api.onExpired === 'function') api.onExpired();
       }
