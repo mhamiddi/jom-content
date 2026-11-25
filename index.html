@@ -1830,9 +1830,14 @@ function buildPerfMap(platform) {
   const limit = addDays(todayStr(), 1);
   const pairs = [];
   state.posts.filter(p => p.platform === platform && p.status !== 'rejected' && p.date && p.date <= limit).forEach(p => {
-    const text = p.actualContent || p.caption || '';
-    const parts = text.split(/\n\s*---\s*\n/).map(perfTokens).filter(t => t.size);
-    if (text.trim()) parts.push(perfTokens(text));
+    // TikTok analytics text is the caption under the video, not the script, so postCaption is matched too.
+    const texts = [p.actualContent || p.caption || ''];
+    if (platform === 'tiktok' && p.postCaption) texts.push(p.postCaption);
+    const parts = [];
+    texts.filter(t => t.trim()).forEach(text => {
+      text.split(/\n\s*---\s*\n/).map(perfTokens).filter(t => t.size).forEach(t => parts.push(t));
+      parts.push(perfTokens(text));
+    });
     const m = String(p.postedUrl || '').match(/\/post\/([\w-]+)/) || String(p.postedUrl || '').match(/\/video\/(\d+)/);
     const code = m && m[1];
     const pd = parseLocalDate(p.date).getTime();
