@@ -1,13 +1,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { createRequire } from 'node:module';
+import { toolsRequire } from './helpers/tools.mjs';
 import { mkdtemp, rm } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
+import { tmpdir } from 'node:os';
 
-const require = createRequire('/home/hamiddi/.hermes/cache/scratch/threads-approval-tools/package.json');
-const { Miniflare } = require('miniflare');
+const { Miniflare } = toolsRequire('miniflare');
 const scriptPath = resolve('workers/threads-publish-guard/index.js');
-const scratch = process.env.TMPDIR || '/home/hamiddi/.hermes/cache/scratch';
+const scratch = tmpdir();
 const digest = 'sha256:123';
 const manifest = { text: 'approved', media: [{ hash: 'immutable' }] };
 

@@ -2,3 +2,5 @@
 .deploy/
 *.bak
 wrangler.toml
+preview/out/
+node_modules/

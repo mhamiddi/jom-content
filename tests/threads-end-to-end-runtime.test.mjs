@@ -1,10 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createRequire} from 'node:module';
+import {toolsRequire} from './helpers/tools.mjs';
 import {readFileSync,readdirSync} from 'node:fs';
 import {resolve} from 'node:path';
-const require=createRequire(process.env.THREADS_TEST_TOOLS || '/home/hamiddi/.hermes/cache/scratch/threads-approval-tools/package.json');
-const {Miniflare}=require('miniflare');
+const {Miniflare}=toolsRequire('miniflare');
 const root=resolve('.');
 const entry=`
 import {onRequest as publish} from '../functions/api/threads-publish.js';

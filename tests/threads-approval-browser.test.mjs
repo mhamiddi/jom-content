@@ -1,14 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createRequire} from 'node:module';
-import {resolve} from 'node:path';
-const require=createRequire(process.env.THREADS_TEST_TOOLS || '/home/hamiddi/.hermes/cache/scratch/threads-approval-tools/package.json');
-const {chromium}=require('playwright');
+import {toolsRequire,chromePath} from './helpers/tools.mjs';
+import {resolve,join} from 'node:path';
+import {tmpdir} from 'node:os';
+const {chromium}=toolsRequire('playwright-core');
 const frozen='https://app.invalid/api/threads-media?asset='+'a'.repeat(64)+'.png';
 import {readFileSync} from 'node:fs';
-const png=readFileSync('/home/hamiddi/.hermes/cache/scratch/threads-fixture.png');
+const png=readFileSync(new URL('./fixtures/threads-fixture.png', import.meta.url));
 test('owner sees frozen media before approval; cancel and image failure cannot approve',async()=>{
- const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH || '/home/hamiddi/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome',headless:true,args:['--no-sandbox']});
+ const browser=await chromium.launch({executablePath:chromePath(),headless:true,args:['--no-sandbox']});
  const page=await browser.newPage({viewport:{width:375,height:812}});
  try {
   await page.route('https://app.invalid/api/threads-media?**',r=>r.fulfill({body:png,contentType:'image/png'}));
@@ -25,7 +25,7 @@ test('owner sees frozen media before approval; cancel and image failure cannot a
   await page.locator('[data-threads-approve]:enabled').waitFor();
   assert.equal(await page.evaluate(()=>window.result),'pending');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
-  await page.screenshot({path:'/home/hamiddi/.hermes/cache/scratch/threads-frozen-review-mobile.png'});
+  await page.screenshot({path:join(tmpdir(),'threads-frozen-review-mobile.png')});
   await page.locator('[data-threads-cancel]').click();
   assert.equal(await page.evaluate(()=>window.result),null);
   await page.evaluate(()=>{window.result='pending';window.start();});

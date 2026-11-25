@@ -1,0 +1,13 @@
+{
+  "name": "jom-content",
+  "private": true,
+  "type": "module",
+  "description": "Dev-only test tools. Production is plain static files + Pages Functions; nothing here is deployed.",
+  "scripts": {
+    "test": "node --test --test-force-exit tests/*.test.mjs"
+  },
+  "devDependencies": {
+    "miniflare": "4.20260730.0",
+    "playwright-core": "1.65.1"
+  }
+}
