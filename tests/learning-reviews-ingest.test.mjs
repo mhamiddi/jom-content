@@ -75,7 +75,7 @@ test('invalid payloads are rejected without writing', async () => {
     [{ body: { records: [rec('ana 1')] } }, 'invalid_record'],
     [{ body: { records: [rec('ana-1'), rec('ana-1')] } }, 'invalid_record'],
     [{ body: { records: [{ id: 'ana-1', generatedPost: '  ' }] } }, 'invalid_record'],
-    [{ body: { records: [rec('ana-1', 'x'.repeat(4001))] } }, 'invalid_record'],
+    [{ body: { records: [rec('ana-1', 'x'.repeat(12001))] } }, 'invalid_record'],
     [{ body: { records: Array.from({ length: 201 }, (_, i) => rec('ana-' + i)) } }, 'too_many_records'],
   ];
   for (const [opts, error] of cases) {

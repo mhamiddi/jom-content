@@ -14,6 +14,23 @@ jobs:
       - name: Run offline tests
         run: node --test tests/maturity-core.test.mjs tests/social-publish.test.mjs tests/threads-publish.test.mjs tests/threads-search.test.mjs tests/meta-publish.test.mjs tests/threads-analytics.test.mjs tests/threads-account-analytics.test.mjs tests/analytics-freshness.test.mjs tests/analytics-api-only.test.mjs tests/threads-analysis-review.test.mjs tests/threads-analysis-approvals.test.mjs tests/learning-reviews-ingest.test.mjs
 
+      - name: Sync analysis review secrets
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          JOM_SESSION_SECRET: ${{ secrets.JOM_SESSION_SECRET }}
+          JOM_APPROVAL_PRIVATE_KEY: ${{ secrets.JOM_APPROVAL_PRIVATE_KEY }}
+          JOM_APPROVAL_PUBLIC_KEY: ${{ secrets.JOM_APPROVAL_PUBLIC_KEY }}
+          JOM_APPROVAL_KEY_ID: ${{ secrets.JOM_APPROVAL_KEY_ID }}
+        run: |
+          # Values live in GitHub secrets (set by ~/.hermes/scripts/jom-approval-keys-setup.py).
+          # Missing ones are skipped, so the review routes stay fail-closed (503) until all are set.
+          for NAME in JOM_SESSION_SECRET JOM_APPROVAL_PRIVATE_KEY JOM_APPROVAL_PUBLIC_KEY JOM_APPROVAL_KEY_ID; do
+            VALUE="${!NAME}"
+            if [ -z "$VALUE" ]; then echo "${NAME}: not set, skipped"; continue; fi
+            printf '%s' "$VALUE" | npx --yes wrangler@4 pages secret put "$NAME" --project-name=jom-content > /dev/null
+            echo "${NAME}: synced"
+          done
+
       - name: Stage public Pages files
         run: |
           rm -rf .deploy

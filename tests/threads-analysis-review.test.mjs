@@ -228,7 +228,7 @@ test('invalid requests fail closed and responses never leak extra record fields'
   assert.equal((await call(env, { method: 'POST', headers, body: { decision: 'approved', hash: 'short' } })).body.error, 'invalid_hash');
   assert.equal((await call(env, { method: 'POST', headers, body: { decision: 'approved', hash, note: 'x'.repeat(2000) } })).body.error, 'note_too_long');
   assert.equal((await call(env, { method: 'PATCH', headers, body: { generatedPost: '   ' } })).body.error, 'invalid_post');
-  assert.equal((await call(env, { method: 'PATCH', headers, body: { generatedPost: 'x'.repeat(4001) } })).body.error, 'post_too_long');
+  assert.equal((await call(env, { method: 'PATCH', headers, body: { generatedPost: 'x'.repeat(12001) } })).body.error, 'post_too_long');
   assert.equal((await call(env, { headers, id: 'missing-id' })).body.error, 'not_found');
 
   const listed = await call(env, { headers });
