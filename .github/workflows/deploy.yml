@@ -12,13 +12,13 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run offline tests
-        run: node --test tests/maturity-core.test.mjs tests/social-publish.test.mjs tests/threads-publish.test.mjs tests/threads-search.test.mjs tests/meta-publish.test.mjs tests/threads-analytics.test.mjs tests/threads-account-analytics.test.mjs tests/analytics-freshness.test.mjs tests/analytics-api-only.test.mjs
+        run: node --test tests/maturity-core.test.mjs tests/social-publish.test.mjs tests/threads-publish.test.mjs tests/threads-search.test.mjs tests/meta-publish.test.mjs tests/threads-analytics.test.mjs tests/threads-account-analytics.test.mjs tests/analytics-freshness.test.mjs tests/analytics-api-only.test.mjs tests/threads-analysis-review.test.mjs tests/threads-analysis-approvals.test.mjs tests/learning-reviews-ingest.test.mjs
 
       - name: Stage public Pages files
         run: |
           rm -rf .deploy
           mkdir -p .deploy
-          cp index.html topics.html analytics.html login.css dashboard-ui.css dashboard-ui.js auth.js carousel-template.js threads-approval-ui.js analytics-weekday.mjs analytics-data.json .deploy/
+          cp index.html topics.html analytics.html analysis-review.html analysis-review.js login.css dashboard-ui.css dashboard-ui.js auth.js carousel-template.js threads-approval-ui.js analytics-weekday.mjs analytics-data.json .deploy/
           cp -R functions .deploy/functions
 
       - name: Deploy to Cloudflare Pages
@@ -40,7 +40,7 @@ jobs:
             echo "Health not ready (attempt ${attempt}): ${HEALTH}"
             sleep 10
           done
-          for ROUTE in / /topics.html /analytics.html /api/health; do
+          for ROUTE in / /topics.html /analytics.html /analysis-review.html /api/health; do
             STATUS=$(curl -sS -L -o /dev/null -w "%{http_code}" "https://jom-content.pages.dev${ROUTE}?verify=${GITHUB_SHA}")
             echo "${ROUTE}: ${STATUS}"
             [ "$STATUS" = "200" ] || exit 1
@@ -51,12 +51,12 @@ jobs:
           printf '%s' "$HEALTH" | grep -q '"kv":true'
           # Scripts the pages import must be served as JavaScript. A missing file falls back to
           # HTML, which makes the browser drop the whole module and leaves the page stuck loading.
-          for ASSET in /analytics-weekday.mjs /dashboard-ui.js /auth.js; do
+          for ASSET in /analytics-weekday.mjs /dashboard-ui.js /auth.js /analysis-review.js; do
             TYPE=$(curl -fsS -L -o /dev/null -w "%{content_type}" "https://jom-content.pages.dev${ASSET}?verify=${GITHUB_SHA}")
             echo "${ASSET}: ${TYPE}"
             case "$TYPE" in *javascript*) ;; *) echo "asset not served as JavaScript: ${ASSET}"; exit 1 ;; esac
           done
-          for EXPOSED in /functions/api/posts.js /.github/workflows/deploy.yml /CLAUDE.md /tests/maturity-core.test.mjs; do
+          for EXPOSED in /functions/api/posts.js /.github/workflows/deploy.yml /CLAUDE.md /tests/maturity-core.test.mjs /preview/server.mjs; do
             BODY=$(curl -fsS -L "https://jom-content.pages.dev${EXPOSED}?verify=${GITHUB_SHA}")
             echo "${EXPOSED}: fetched"
             case "$EXPOSED" in
@@ -64,5 +64,6 @@ jobs:
               /.github/workflows/deploy.yml) if printf '%s' "$BODY" | grep -q 'name: Deploy to Cloudflare Pages'; then echo "source exposed: ${EXPOSED}"; exit 1; fi ;;
               /CLAUDE.md) if printf '%s' "$BODY" | grep -q '^# Jom Content'; then echo "source exposed: ${EXPOSED}"; exit 1; fi ;;
               /tests/maturity-core.test.mjs) if printf '%s' "$BODY" | grep -q "test('"; then echo "source exposed: ${EXPOSED}"; exit 1; fi ;;
+              /preview/server.mjs) if printf '%s' "$BODY" | grep -q '^import '; then echo "source exposed: ${EXPOSED}"; exit 1; fi ;;
             esac
           done

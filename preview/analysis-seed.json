@@ -1,0 +1,195 @@
+[
+  {
+    "id": "ana-2026-11-13-01",
+    "createdAt": "2026-11-13T01:15:00.000Z",
+    "generatedBy": "threads-learning-agent",
+    "classification": "performing",
+    "generatedPost": "RM3,000 sebulan untuk 12 lead. Bukan murah.\n\nTapi kalau closing rate 25%, kos satu customer jadi RM1,000. Kalau average sale RM4,800, masih untung.\n\nYang paling bahaya: tengok kos per lead je, tak tengok kos per customer.",
+    "source": {
+      "type": "threads",
+      "label": "@hamiddi_ · post sendiri",
+      "postId": "preview-perf-01",
+      "publishedAt": "2026-11-01T11:40:00+08:00",
+      "excerpt": "RM3,000 sebulan untuk 12 lead. Bukan murah. Tapi kalau closing rate 25%, kos satu customer jadi RM1,000."
+    },
+    "metrics": {
+      "views": 41200,
+      "likes": 1842,
+      "replies": 216,
+      "reposts": 318,
+      "quotes": 64,
+      "shares": 91
+    },
+    "comparison": {
+      "metric": "views",
+      "baselineMedian": 9000,
+      "deltaPct": 357.8,
+      "sampleDays": 30,
+      "note": "median post sendiri, 30 hari sebelum 1 Nov"
+    },
+    "evidence": [
+      {
+        "claim": "Views 4.6x median 30 hari",
+        "source": "Threads insights · post sendiri",
+        "url": "analytics.html#threads",
+        "value": 41200
+      },
+      {
+        "claim": "Replies tertinggi dalam tempoh 30 hari",
+        "source": "Threads insights · post sendiri",
+        "url": "analytics.html#threads",
+        "value": 216
+      },
+      {
+        "claim": "Tiga reply berulang menyebut 'kos per customer'",
+        "source": "Semakan reply manual, 2 Nov",
+        "url": "",
+        "value": 3
+      }
+    ],
+    "observation": "Post bermula dengan angka RM3,000 dan berakhir dengan satu risiko yang boleh diukur. Views 41,200 (4.6x median), replies 216, reposts 318. Nisbah reply/views 0.52% berbanding median 0.31%. Tiga reply teratas bertanya kos per customer.",
+    "hypotheses": [
+      "Angka kos di baris pertama menahan scroll lebih lama, tetapi tiada data impression untuk mengesahkannya.",
+      "Reply tinggi mungkin didorong oleh soalan kos, bukan kerana topik itu baharu.",
+      "Tiga blok pendek lebih mudah dibaca di Threads berbanding satu perenggan panjang."
+    ],
+    "confidence": {
+      "level": "high",
+      "score": 0.72,
+      "rationale": "Data API penuh untuk satu post sendiri dan median 30 hari. Tiada ujian A/B, jadi sebab-akibat belum terbukti."
+    },
+    "suggestion": "Uji struktur yang sama pada topik berbeza: mula dengan kos sebenar, terjemah ke kos per customer, tutup dengan satu risiko. Jangan ulang topik RM3,000.",
+    "binding": {
+      "candidateId": "tl-6be58799-0f85-4868-b38a-90caf84787f6-72h",
+      "candidateSha256": "f6c800f8f392fbd5de1e589589e8bb0ef5d045b3aa1d02ea40fac6fe23f8a3ff",
+      "analysisSha256": "40fcec59f3caac0de656aaad8f10e6bbce414f08c8e4028c72d80aac36988f73",
+      "postIds": [
+        "17911365021551542"
+      ]
+    }
+  },
+  {
+    "id": "ana-2026-11-13-02",
+    "createdAt": "2026-11-13T01:20:00.000Z",
+    "generatedBy": "threads-learning-agent",
+    "classification": "underperforming",
+    "generatedPost": "Ramai bisnes fikir Google Ads ni susah.\n\nSebenarnya bukan susah. Yang susah ialah kita tak tahu apa yang kita tak tahu.\n\nJadi hari ini saya nak share sedikit perkara tentang Google Ads yang mungkin boleh membantu bisnes anda untuk lebih memahami cara ia berfungsi.",
+    "source": {
+      "type": "threads",
+      "label": "@jomdigital.my · post sendiri",
+      "postId": "preview-under-01",
+      "publishedAt": "2026-11-06T09:10:00+08:00",
+      "excerpt": "Ramai bisnes fikir Google Ads ni susah. Sebenarnya bukan susah. Yang susah ialah kita tak tahu apa yang kita tak tahu."
+    },
+    "metrics": {
+      "views": 1480,
+      "likes": 23,
+      "replies": 2,
+      "reposts": 3,
+      "quotes": 0,
+      "shares": 1
+    },
+    "comparison": {
+      "metric": "views",
+      "baselineMedian": 9000,
+      "deltaPct": -83.6,
+      "sampleDays": 30,
+      "note": "median post sendiri, 30 hari sebelum 6 Nov"
+    },
+    "evidence": [
+      {
+        "claim": "Views 84% bawah median 30 hari",
+        "source": "Threads insights · post sendiri",
+        "url": "analytics.html#threads",
+        "value": 1480
+      },
+      {
+        "claim": "Dua reply, kedua-duanya soalan harga",
+        "source": "Semakan reply manual, 7 Nov",
+        "url": "",
+        "value": 2
+      },
+      {
+        "claim": "Baris pertama tiada angka, nama, atau contoh khusus",
+        "source": "Teks post penuh",
+        "url": "",
+        "value": ""
+      }
+    ],
+    "observation": "Tiga baris pembukaan bersifat umum sebelum sebarang angka atau contoh. Views 1,480 (-84% vs median), likes 23, replies 2. Nisbah reply/views 0.14% berbanding 0.52% pada post performing 1 Nov. Tiada repost melebihi 3.",
+    "hypotheses": [
+      "Pembukaan umum menyebabkan pembaca berhenti awal, tetapi data API tiada kadar berhenti atau impression, jadi ini belum diuji.",
+      "Topik 'Google Ads susah' terlalu luas untuk mencetuskan soalan atau perdebatan.",
+      "Ketiadaan angka konkrit dalam dua baris pertama mengurangkan sebab untuk terus membaca."
+    ],
+    "confidence": {
+      "level": "medium",
+      "score": 0.58,
+      "rationale": "Perbandingan dengan post sendiri yang lengkap, tetapi tiada data scroll/impression. Punca tidak boleh dipisahkan daripada faktor topik dan masa posting."
+    },
+    "suggestion": "Tulis semula dengan satu angka dan satu contoh sebenar dalam baris pertama. Uji hanya pembukaan 120 aksara, jangan tukar topik dan masa posting sekali gus."
+  },
+  {
+    "id": "ana-2026-11-13-03",
+    "createdAt": "2026-11-13T01:24:00.000Z",
+    "generatedBy": "threads-learning-agent",
+    "classification": "borderline",
+    "generatedPost": "Saya belanja RM12,000 dalam Google Ads bulan lepas.\n\n3 benda yang saya belajar:\n\n1. Keyword murah boleh jadi paling mahal.\n2. Landing page yang sama tak sesuai untuk semua campaign.\n3. Tracking yang salah buat semua angka nampak cantik.\n\nYang mana paling sakit?",
+    "source": {
+      "type": "threads",
+      "label": "@jomdigital.my · post sendiri",
+      "postId": "preview-border-01",
+      "publishedAt": "2026-11-09T20:05:00+08:00",
+      "excerpt": "Saya belanja RM12,000 dalam Google Ads bulan lepas. 3 benda yang saya belajar..."
+    },
+    "metrics": {
+      "views": 7380,
+      "likes": 211,
+      "replies": 18,
+      "reposts": 22,
+      "quotes": 5,
+      "shares": 7
+    },
+    "comparison": {
+      "metric": "views",
+      "baselineMedian": 9000,
+      "deltaPct": -18,
+      "sampleDays": 30,
+      "note": "median post sendiri, 30 hari sebelum 9 Nov"
+    },
+    "evidence": [
+      {
+        "claim": "Views 18% bawah median, dalam julat biasa",
+        "source": "Threads insights · post sendiri",
+        "url": "analytics.html#threads",
+        "value": 7380
+      },
+      {
+        "claim": "Nisbah reply/views 0.24%, hampir median 0.31%",
+        "source": "Threads insights · post sendiri",
+        "url": "analytics.html#threads",
+        "value": 18
+      }
+    ],
+    "observation": "Angka RM12,000 ada di baris pertama, tetapi soalan hanya di baris terakhir. Views 7,380, replies 18, reposts 22. Prestasi berada dalam julat median, bukan outlier.",
+    "hypotheses": [
+      "Format senarai mungkin mengekalkan bacaan tetapi tidak mencetuskan reply sebanyak post kos-per-customer.",
+      "Hook berbentuk soalan di hujung mungkin tidak membantu viewer yang berhenti di awal.",
+      "Saiz sampel terlalu kecil; perbezaan 18% boleh jadi variasi biasa."
+    ],
+    "confidence": {
+      "level": "low",
+      "score": 0.41,
+      "rationale": "Satu post, tiada kawalan, dan kesan berada dalam julat variasi. Bukti belum cukup untuk mengubah gaya penulisan."
+    },
+    "suggestion": "Kumpul dua minggu lagi post senarai sebelum membuat perubahan struktur. Buat satu ujian hook soalan di baris pertama sahaja.",
+    "binding": {
+      "candidateId": "tl-dailycal-7aa25be93a23defb185a8d98-72h",
+      "candidateSha256": "8039a6b77a52afcb528c9a49263ef5d1236b90f9e0b8c7b0b609abe9436f77c2",
+      "analysisSha256": "3098fa1237b40718e4396a5924a668082fc705e9a436a53a8b356c9670afcd9f",
+      "postIds": [
+        "17950000000000001"
+      ]
+    }
+  }
+]
