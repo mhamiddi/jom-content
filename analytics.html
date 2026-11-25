@@ -12,7 +12,7 @@
   --bg:#f4f6fa; --surface:#fff; --surface2:#f8f9fc;
   --text:#1a1d23; --text2:#5f6779; --border:#e2e6ef;
   --primary:#2563EB; --primary-dark:#1E40AF; --primary-bg:#EFF6FF;
-  --green:#16a34a; --green-bg:#dcfce7; --amber:#d97706; --amber-bg:#fef3c7; --red:#dc2626; --red-bg:#fee2e2;
+  --green:#15803d; --green-bg:#dcfce7; --amber:#d97706; --amber-bg:#fef3c7; --red:#dc2626; --red-bg:#fee2e2;
   --tiktok:#fe2c55; --threads:#111827;
   --shadow:0 1px 3px rgba(15,23,42,.08),0 4px 14px rgba(15,23,42,.04);
   --radius:12px; --radius-sm:8px; --ease:cubic-bezier(0.22,1,0.36,1); --accent:var(--primary);
@@ -94,6 +94,7 @@ header::after{content:'';position:absolute;right:-40px;top:-40px;width:200px;hei
 .weekday-track{height:100%;display:flex;align-items:center;justify-content:center;background:rgba(37,99,235,var(--weekday-alpha,.08));border:1px solid rgba(37,99,235,.10);border-radius:10px;overflow:visible;transition:background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease);box-shadow:0 3px 10px rgba(15,23,42,.04)}
 .weekday-track.hot{color:#fff;border-color:rgba(30,64,175,.18);box-shadow:0 5px 14px rgba(37,99,235,.16)}
 .weekday-value{font-size:11px;font-weight:800;color:inherit;white-space:nowrap}
+.weekday-track.hot .weekday-value{background:#1e40af;padding:2px 6px;border-radius:99px}
 .weekday-label{font-size:12px;font-weight:800;color:var(--text);align-self:end}
 .weekday-meta{font-size:10px;color:var(--text2);white-space:nowrap}
 .weekday-note{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:10px;font-size:11px;color:var(--text2)}
@@ -127,7 +128,7 @@ header::after{content:'';position:absolute;right:-40px;top:-40px;width:200px;hei
 .rec-list{display:grid;grid-template-columns:1fr;gap:12px}
 .rec-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;border-left:4px solid var(--primary)}
 .rec-card.win{border-left-color:var(--green)}.rec-card.fix{border-left-color:var(--red)}.rec-card.volume{border-left-color:var(--amber)}
-.rec-card h4{font-size:13px;font-weight:700;margin-bottom:4px}.rec-card p{font-size:12px;color:var(--text2)}
+.rec-card h3{font-size:13px;font-weight:700;margin-bottom:4px}.rec-card p{font-size:12px;color:var(--text2)}
 
 /* POST LIST */
 .filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
@@ -175,7 +176,7 @@ footer{text-align:center;font-size:11px;color:var(--text2);padding:18px 12px 30p
   </div>
 </header>
 
-<div class="wrap analytics-loading" id="app">
+<main class="wrap analytics-loading" id="app">
   <div class="notice" id="notice" role="status"></div>
   <div class="load-state" id="loadState" role="status" aria-live="polite"><span class="load-spinner" aria-hidden="true"></span><span id="loadStateText">Memuatkan analytics Threads…</span></div>
   <div class="kpis" id="kpis"></div>
@@ -227,7 +228,7 @@ footer{text-align:center;font-size:11px;color:var(--text2);padding:18px 12px 30p
   </div>
 
   <footer id="foot"></footer>
-</div>
+</main>
 
 <script type="module">
 import { weekdayAverages } from './analytics-weekday.mjs';
@@ -236,7 +237,8 @@ const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const fmt = n => (n == null ? '-' : Number(n).toLocaleString('en-US'));
 const short = n => n >= 10000 ? (n/1000).toFixed(n >= 100000 ? 0 : 1).replace(/\.0$/,'') + 'k' : fmt(n);
-const scoreColor = s => s >= 80 ? '#16a34a' : s >= 60 ? '#0ea5e9' : s >= 45 ? '#f59e0b' : '#ef4444';
+// WCAG 1.4.3: these shades pass 4.5:1 as text on the panels and with white text on the score rings.
+const scoreColor = s => s >= 80 ? '#15803d' : s >= 60 ? '#0369a1' : s >= 45 ? '#b45309' : '#dc2626';
 const ICON = {
   link: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>'
 };
@@ -342,7 +344,7 @@ function renderChart(d) {
     out += `<rect x="${x0.toFixed(1)}" y="${H - h}" width="${(bw * .7).toFixed(1)}" height="${h}" rx="2" fill="var(--accent)" opacity=".85"><title>${x.date}: ${fmt(x.views)} views, ${x.items} post</title></rect>`;
   });
   const pts = days.map((x, i) => `${(pad + i * bw + bw / 2).toFixed(1)},${(H - 4 - (x.interactions / maxI) * (H - 24)).toFixed(1)}`).join(' ');
-  out += `<polyline points="${pts}" fill="none" stroke="#f59e0b" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>`;
+  out += `<polyline points="${pts}" fill="none" stroke="#d97706" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>`;
   svg.innerHTML = out;
   $('trendBadge').textContent = 'puncak ' + short(maxV) + ' views';
 }
@@ -433,7 +435,7 @@ function renderBars(id, rows) {
 }
 
 function renderRecs(d) {
-  $('recList').innerHTML = (d.recommendations || []).map(r => `<div class="rec-card ${esc(r.type)}"><h4>${esc(r.title)}</h4><p>${esc(r.body)}</p></div>`).join('') || '<div class="empty">Belum cukup data untuk cadangan</div>';
+  $('recList').innerHTML = (d.recommendations || []).map(r => `<div class="rec-card ${esc(r.type)}"><h3>${esc(r.title)}</h3><p>${esc(r.body)}</p></div>`).join('') || '<div class="empty">Belum cukup data untuk cadangan</div>';
 }
 
 function renderPosts(d) {
