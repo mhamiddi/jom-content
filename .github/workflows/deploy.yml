@@ -35,7 +35,7 @@ jobs:
         run: |
           rm -rf .deploy
           mkdir -p .deploy
-          cp index.html topics.html analytics.html analysis-review.html analysis-review.js login.css dashboard-ui.css dashboard-ui.js auth.js carousel-template.js threads-approval-ui.js analytics-weekday.mjs analytics-data.json .deploy/
+          cp index.html topics.html analytics.html analysis-review.html analysis-review.js login.css dashboard-ui.css dashboard-ui.js auth.js carousel-template.js threads-approval-ui.js analytics-weekday.mjs analytics-range.mjs analytics-data.json .deploy/
           cp -R functions .deploy/functions
 
       - name: Deploy to Cloudflare Pages

@@ -3,15 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <title>Jom Digital · Social Analytics</title>
+<script>if (/^(www\.)?jom-content\.com$/.test(location.hostname) && window.self===window.top) location.replace('https://os.jomdigitalos.my/hub/content-analytics/'+location.hash);</script>
 <style>
 :root{
-  --bg:#f4f6fa; --surface:#fff; --surface2:#f8f9fc;
-  --text:#1a1d23; --text2:#5f6779; --border:#e2e6ef;
-  --primary:#2563EB; --primary-dark:#1E40AF; --primary-bg:#EFF6FF;
+  --bg:#fdf6f0; --surface:#fff; --surface2:#fff8f1;
+  --text:#323231; --text2:#655a52; --border:#e7d8cc;
+  --primary:#a23e00; --primary-dark:#323231; --primary-bg:#fff0e3;
   --green:#15803d; --green-bg:#dcfce7; --amber:#d97706; --amber-bg:#fef3c7; --red:#dc2626; --red-bg:#fee2e2;
   --tiktok:#fe2c55; --threads:#111827;
   --shadow:0 1px 3px rgba(15,23,42,.08),0 4px 14px rgba(15,23,42,.04);
@@ -19,13 +18,13 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{overflow-x:hidden}
-body{background:var(--bg);color:var(--text);font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.5}
-h1,h2,h3,h4{font-family:'Montserrat','DM Sans',sans-serif}
+body{background:var(--bg);color:var(--text);font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.5}
+h1,h2,h3,h4{font-family:'Poppins',sans-serif}
 svg{display:block}
 .wrap{max-width:1100px;margin:0 auto;padding:16px}
 
 /* HEADER */
-header{background:linear-gradient(135deg,#2563EB,#1E40AF);color:#fff;padding:22px 16px 20px;position:relative;overflow:hidden}
+header{background:linear-gradient(135deg,#fdf6f0,#ffe4cc);color:#323231;padding:22px 16px 20px;position:relative;overflow:hidden}
 header::after{content:'';position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.06)}
 .h-in{max-width:1100px;margin:0 auto;position:relative;z-index:1}
 .eyebrow{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;opacity:.85;display:flex;align-items:center;gap:8px}
@@ -33,9 +32,9 @@ header::after{content:'';position:absolute;right:-40px;top:-40px;width:200px;hei
 .h-title{font-size:24px;font-weight:800;line-height:1.2;margin-top:8px}
 .h-sub{font-size:12px;opacity:.85;margin-top:4px}
 .switch{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
-.switch button,.switch a{width:auto;display:inline-flex;align-items:center;gap:8px;font:600 13px 'DM Sans',sans-serif;padding:9px 16px;border-radius:999px;border:1.5px solid rgba(255,255,255,.55);background:transparent;color:#fff;cursor:pointer;text-decoration:none;transition:background .3s var(--ease),color .3s var(--ease),transform .3s var(--ease)}
+.switch button,.switch a{width:auto;display:inline-flex;align-items:center;gap:8px;font:600 13px 'Poppins',sans-serif;padding:9px 16px;border-radius:999px;border:1.5px solid #323231;background:transparent;color:#323231;cursor:pointer;text-decoration:none;transition:background .3s var(--ease),color .3s var(--ease),transform .3s var(--ease)}
 .switch button:hover,.switch a:hover{background:rgba(255,255,255,.14)}
-.switch button[aria-pressed="true"]{background:#fff;color:var(--primary-dark);border-color:#fff}
+.switch button[aria-pressed="true"]{background:#323231;color:#fff;border-color:#323231}
 .switch button:focus-visible,.switch a:focus-visible{outline:3px solid #fff;outline-offset:2px}
 
 /* NOTICE */
@@ -79,7 +78,7 @@ header::after{content:'';position:absolute;right:-40px;top:-40px;width:200px;hei
 .section-hdr h2{font-size:16px;font-weight:700}
 .badge{font-size:11px;background:var(--primary-bg);color:var(--primary);padding:3px 10px;border-radius:12px;font-weight:600;white-space:nowrap}
 .seg{display:flex;gap:6px;flex-wrap:wrap}
-.seg button,.pill{width:auto;font:600 11px 'DM Sans',sans-serif;padding:5px 12px;border-radius:14px;border:1px solid var(--border);background:transparent;cursor:pointer;color:var(--text);transition:background .3s var(--ease)}
+.seg button,.pill{width:auto;font:600 11px 'Poppins',sans-serif;padding:5px 12px;border-radius:14px;border:1px solid var(--border);background:transparent;cursor:pointer;color:var(--text);transition:background .3s var(--ease)}
 .seg button[aria-pressed="true"],.pill.active{background:var(--primary);color:#fff;border-color:transparent}
 .empty{text-align:center;color:var(--text2);font-size:13px;padding:26px 10px}
 
@@ -157,6 +156,14 @@ footer{text-align:center;font-size:11px;color:var(--text2);padding:18px 12px 30p
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
+
+/* Shared brand font and responsive period picker. */
+@font-face{font-family:Poppins;src:url('https://os.jomdigitalos.my/_jd/fonts/poppins-400.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:Poppins;src:url('https://os.jomdigitalos.my/_jd/fonts/poppins-600.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:Poppins;src:url('https://os.jomdigitalos.my/_jd/fonts/poppins-700.woff2') format('woff2');font-weight:700;font-display:swap}
+.analytics-controls{background:#fff;border:1px solid var(--border);border-radius:18px;padding:16px;margin-bottom:16px;display:grid;gap:12px}
+.analytics-controls h2{font-size:15px;font-weight:700}.period-buttons{display:flex;flex-wrap:wrap;gap:8px}.period-buttons button,.custom-dates button{border:1px solid #323231;border-radius:999px;padding:9px 13px;background:#fff;color:#323231;font:600 12px Poppins,sans-serif;min-height:40px;cursor:pointer}.period-buttons button[aria-pressed=true],.custom-dates button{background:#323231;color:#fff}.period-buttons button:focus-visible,.custom-dates input:focus-visible,.custom-dates button:focus-visible{outline:3px solid #a23e00;outline-offset:2px}.custom-dates{display:flex;flex-wrap:wrap;gap:8px;align-items:end}.custom-dates[hidden]{display:none}.custom-dates label{font-size:12px;font-weight:600;display:grid;gap:4px}.custom-dates input{max-width:100%;min-height:40px;border:1px solid #b5a59b;border-radius:8px;padding:6px;color:#323231;background:white;font:inherit}.range-description{font-size:12px;color:#655a52}.range-error{font-size:12px;color:#9b291b}.analytics-controls .switch{margin:0}.analytics-controls .switch button,.analytics-controls .switch a{color:#323231;border-color:#323231}.analytics-controls .switch button[aria-pressed=true]{background:#323231;color:#fff}
+@media(max-width:420px){.analytics-controls{padding:12px}.period-buttons button{flex:1 1 27%;padding:8px 6px}.custom-dates label{flex:1 1 45%;min-width:0}.custom-dates button{width:100%}.switch button,.switch a{font-size:12px;padding:8px 10px}.card .value{overflow-wrap:anywhere}}
 </style>
 </head>
 <body>
@@ -170,13 +177,22 @@ footer{text-align:center;font-size:11px;color:var(--text2);padding:18px 12px 30p
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17.5 10.5c-.5-3-2.6-4.5-5.5-4.5-3.3 0-5.5 2.4-5.5 6s2.2 6 5.5 6c2.7 0 4.5-1.4 4.5-3.2 0-2-1.8-3-4.2-3-1.7 0-2.8.6-2.8 1.6 0 .9.9 1.6 2.2 1.6 2 0 3.3-1.4 3.3-4"/></svg>Threads</button>
       <button type="button" data-p="tiktok" aria-pressed="false">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 4c.4 2.4 2 4 4.5 4.2"/></svg>TikTok</button>
-      <a href="analysis-review.html">
+      <a href="https://jom-content.com/analysis-review">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>Review analisis</a>
     </div>
   </div>
 </header>
 
 <main class="wrap analytics-loading" id="app">
+  <section class="analytics-controls" aria-label="Analytics filters">
+    <div id="platformControls"></div>
+    <h2>Statistik mengikut tempoh</h2>
+    <div class="period-buttons" id="periodButtons" role="group" aria-label="Tempoh statistik">
+      <button type="button" data-period="today" aria-pressed="false">Today</button><button type="button" data-period="yesterday" aria-pressed="false">Yesterday</button><button type="button" data-period="7" aria-pressed="false">Past 7 days</button><button type="button" data-period="14" aria-pressed="false">Past 14 days</button><button type="button" data-period="30" aria-pressed="true">Past 30 days</button><button type="button" data-period="custom" aria-pressed="false">Custom</button>
+    </div>
+    <form class="custom-dates" id="customDates" hidden><label>From<input type="date" id="rangeFrom" required></label><label>To<input type="date" id="rangeTo" required></label><button type="submit">Apply</button></form>
+    <p class="range-description" id="rangeDescription" aria-live="polite"></p><p class="range-error" id="rangeError" role="status"></p>
+  </section>
   <div class="notice" id="notice" role="status"></div>
   <div class="load-state" id="loadState" role="status" aria-live="polite"><span class="load-spinner" aria-hidden="true"></span><span id="loadStateText">Memuatkan analytics Threads…</span></div>
   <div class="kpis" id="kpis"></div>
@@ -187,7 +203,7 @@ footer{text-align:center;font-size:11px;color:var(--text2);padding:18px 12px 30p
   </div>
 
   <div class="section">
-    <div class="section-hdr"><h2>Trend 30 Hari</h2><span class="badge" id="trendBadge"></span></div>
+    <div class="section-hdr"><h2 id="trendTitle">Trend tempoh</h2><span class="badge" id="trendBadge"></span></div>
     <svg class="chart" id="chart" viewBox="0 0 600 150" preserveAspectRatio="none" role="img" aria-label="Views terkumpul mengikut tarikh post"></svg>
     <div class="chart-legend"><span><i style="background:var(--accent)"></i>Views ikut tarikh post</span><span><i style="background:#f59e0b"></i>Interactions ikut tarikh post</span></div>
   </div>
@@ -206,18 +222,18 @@ footer{text-align:center;font-size:11px;color:var(--text2);padding:18px 12px 30p
 
   <div class="section">
     <div class="section-hdr"><h2>Best Performing</h2>
-      <div class="seg" id="topSeg"><button type="button" data-r="top_week" aria-pressed="true">Minggu ini</button><button type="button" data-r="top_month" aria-pressed="false">30 hari</button><button type="button" data-r="top_all_time" aria-pressed="false">Views tertinggi</button></div>
+      <div class="seg" id="topSeg"><button type="button" data-r="top_selected" aria-pressed="true">Score tertinggi</button><button type="button" data-r="top_selected_views" aria-pressed="false">Views tertinggi</button></div>
     </div>
     <div class="top-list" id="topList"></div>
   </div>
 
   <div class="section" id="repliesSec">
-    <div class="section-hdr"><h2>Top Replies · 30 Hari</h2><span class="badge" id="repliesBadge"></span></div>
+    <div class="section-hdr"><h2>Top Replies · Tempoh dipilih</h2><span class="badge" id="repliesBadge"></span></div>
     <div class="top-list" id="repliesList"></div>
   </div>
 
-  <div class="section" id="pillarSec"><div class="section-hdr"><h2>Prestasi by Pillar</h2><span class="badge">30 hari</span></div><div id="pillarBars"></div></div>
-  <div class="section"><div class="section-hdr"><h2>Prestasi by Format</h2><span class="badge">30 hari</span></div><div id="formatBars"></div></div>
+  <div class="section" id="pillarSec"><div class="section-hdr"><h2>Prestasi by Pillar</h2><span class="badge range-badge">Tempoh</span></div><div id="pillarBars"></div></div>
+  <div class="section"><div class="section-hdr"><h2>Prestasi by Format</h2><span class="badge range-badge">Tempoh</span></div><div id="formatBars"></div></div>
 
   <div class="section"><div class="section-hdr"><h2>Cadangan</h2><span class="badge">auto</span></div><div class="rec-list" id="recList"></div></div>
 
@@ -232,6 +248,7 @@ footer{text-align:center;font-size:11px;color:var(--text2);padding:18px 12px 30p
 
 <script type="module">
 import { weekdayAverages } from './analytics-weekday.mjs';
+import { resolveRange, selectAnalytics, mytToday } from './analytics-range.mjs';
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -244,7 +261,7 @@ const ICON = {
 };
 const PLATFORM = {threads: {name: 'Threads', accent: '#111827'}, tiktok: {name: 'TikTok', accent: '#fe2c55'}};
 
-let DATA = null, plat = 'threads', topRange = 'top_week', pillarFilter = 'all';
+let DATA = null, selected = null, plat = 'threads', topRange = 'top_selected', pillarFilter = 'all', range = resolveRange('30');
 
 function trend(v, suffix) {
   if (v == null) return '<span class="sub">tiada perbandingan lengkap</span>';
@@ -270,8 +287,11 @@ function load() {
 }
 
 function render() {
-  const d = DATA.platforms[plat];
-  document.documentElement.style.setProperty('--accent', PLATFORM[plat].accent === '#111827' ? '#2563EB' : PLATFORM[plat].accent);
+  const d = selected = selectAnalytics(DATA.platforms[plat], range, plat);
+  document.documentElement.style.setProperty('--accent', '#a23e00');
+  $('rangeDescription').textContent = `${range.from} – ${range.to} · ${range.days} hari · MYT. Views terkumpul untuk post diterbitkan dalam tempoh ini (bukan views seluruh akaun dalam tempoh).`;
+  $('rangeFrom').min = d.historyStart || ''; $('rangeFrom').max = mytToday(); $('rangeTo').min = d.historyStart || ''; $('rangeTo').max = mytToday();
+  $('trendTitle').textContent = 'Trend · ' + range.label; document.querySelectorAll('.range-badge').forEach(el=>el.textContent=range.label);
   $('handleLine').textContent = '@' + d.handle + (plat === 'threads' ? ' · Threads API-only' : ' · TikTok public snapshot') + ' · Auto-update harian';
   const gen = new Date(DATA.generated_at);
   const dateOptions = {timeZone:'Asia/Kuala_Lumpur', day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'};
@@ -286,7 +306,7 @@ function render() {
   $('foot').textContent = plat === 'threads'
     ? 'Score = engagement sahaja (like 1, comment 2, share 3 lawan median 30 hari). Views dan pillar tak masuk skor.'
     : 'Score = 0.7 x engagement (like 1, comment 2, share 3 lawan median 30 hari) + 0.3 x reach (views). Kalau views tak ada, engagement sahaja.';
-  if (plat === 'threads') $('foot').textContent += ' Views dan interactions ialah nilai terkumpul bagi post diterbitkan dalam 30 hari, bukan aktiviti seluruh akaun dalam tempoh itu. Interactions = likes + replies + reposts + quotes + shares. Rekod scraping lama tidak dikira.';
+  if (plat === 'threads') $('foot').textContent += ' Views dan interactions ialah nilai terkumpul bagi post diterbitkan dalam tempoh dipilih, bukan aktiviti seluruh akaun dalam tempoh itu. Interactions = likes + replies + reposts + quotes + shares. Rekod scraping lama tidak dikira.';
   document.querySelectorAll('.section,.card').forEach(el => { el.classList.remove('fade'); void el.offsetWidth; el.classList.add('fade'); });
 }
 
@@ -296,28 +316,32 @@ function renderNotice(d) {
   if (age == null || age > 48) msgs.push('Data ' + PLATFORM[plat].name + ' last collected ' + (age == null ? 'tak diketahui' : Math.round(age / 24) + ' hari lepas') + '. Semak cron collector.');
   if (d.followers && (Date.now() - new Date(d.followers.collected_at || d.followers.as_of)) / 3600000 > 36) msgs.push('Followers snapshot belum dikemas kini. Last direkod ' + d.followers.as_of + '. Semak account insights collector.');
   if (d.metric_source === 'threads_api' && d.month?.partial_insights) msgs.push(d.month.partial_insights + ' post mempunyai insights tidak lengkap. Jumlah hanya merangkumi metrik yang API sediakan; tiada fallback scraping.');
-  if (d.metric_source === 'threads_api' && d.coverage?.comparison_complete === false) msgs.push('Liputan API bagi tempoh perbandingan 30 hari sebelum ini tidak lengkap; peratus perbandingan 30 hari disembunyikan.');
+  if (d.metric_source === 'threads_api' && d.coverage?.comparison_complete === false) msgs.push('Liputan API bagi tempoh perbandingan tidak lengkap; peratus perbandingan disembunyikan.');
+  if (d.range && !d.rangeComplete) msgs.push('Liputan snapshot untuk tempoh dipilih tidak lengkap. Data tersedia: ' + (d.historyStart || 'tidak diketahui') + ' hingga ' + (d.historyEnd || 'tidak diketahui') + '.');
   const n = $('notice'); n.textContent = msgs.join(' '); n.classList.toggle('show', msgs.length > 0);
 }
 
 function card(label, value, sub, cls) { return `<div class="card ${cls || ''}"><div class="label">${label}</div><div class="value">${value}</div><div class="sub">${sub}</div></div>`; }
 
 function renderKpis(d) {
-  const m = d.month, w = d.week, perWeek = (m.items / (30 / 7)).toFixed(1);
+  const m = d.month, days=d.range?.days||30, perWeek = (m.items / (days / 7)).toFixed(1), label=d.range?.label||'30 hari';
   const inter = m.interactions ?? (m.likes + m.comments + m.shares);
+  const views = m.items && m.views_observed===0 ? null : m.views;
+  const visible = value => d.rangeComplete===false && !m.items ? '-' : fmt(value);
   const cards = [
-    card('Views post (30 hari)', fmt(m.views), (plat === 'threads' ? 'Terkumpul bagi post diterbitkan 30 hari<br>' : '') + trend(m.trend_views_pct, 'vs 30 hari sebelum'), 'hero'),
-    card('Interactions', fmt(inter), `${fmt(m.likes)} likes · ${fmt(m.comments)} replies · ${fmt(m.shares)} share` + (plat === 'tiktok' ? ` · ${fmt(m.saves)} saves` : ` · ${fmt(m.reposts)} repost · ${fmt(m.quotes)} quote`)),
-    `<div class="card"><div class="label">Avg Score (30 hari)</div><div class="ring-row"><div class="ring" style="background:${scoreColor(m.avg_score || 0)}">${m.avg_score == null ? '-' : Math.round(m.avg_score)}</div><div><div style="font-weight:700;font-size:15px">${m.items} post</div><div class="sub">${trend(m.trend_score_pct, 'vs sebelum')}</div></div></div></div>`,
-    `<div class="card"><div class="label">Minggu Ini</div><div class="ring-row"><div class="ring" style="background:${scoreColor(w.avg_score || 0)}">${w.avg_score == null ? '-' : Math.round(w.avg_score)}</div><div><div style="font-weight:700;font-size:15px">${w.items} post</div><div class="sub">${trend(w.trend_score_pct, 'vs minggu lepas')}</div></div></div></div>`,
-    card('Kadar Posting', perWeek, 'post seminggu (purata 30 hari)')
+    card('Views post · '+label, visible(views), 'Views terkumpul · '+trend(m.trend_views_pct, 'vs tempoh sebelumnya'), 'hero'),
+    card('Interactions', visible(inter), `${fmt(m.likes)} likes · ${fmt(m.comments)} replies · ${fmt(m.shares)} share` + (plat === 'tiktok' ? ` · ${fmt(m.saves)} saves` : ` · ${fmt(m.reposts)} repost · ${fmt(m.quotes)} quote`)),
+    card('Avg score', m.avg_score==null?'-':fmt(m.avg_score), trend(m.trend_score_pct, 'vs tempoh sebelumnya')),
+    card('Posts diterbitkan', visible(m.items), 'Dalam tempoh dipilih'),
+    card('Kadar posting', d.rangeComplete===false?'-':perWeek, 'Post seminggu (purata tempoh)')
   ];
   if (d.followers) {
-    const c = d.followers.change;
-    const sub = c ? `<span class="${c.delta >= 0 ? 'up' : 'down'}">${c.delta >= 0 ? '+' : ''}${fmt(c.delta)}${c.pct != null ? ' (' + (c.pct >= 0 ? '+' : '') + c.pct + '%)' : ''}</span> sejak ${esc(c.since)}` : 'rekod bermula ' + esc(d.followers.as_of);
-    const source = d.followers.source === 'threads_api' ? 'Threads API' : 'Snapshot';
-    cards.push(card('Followers', fmt(d.followers.latest), sub + '<br>' + source + ' · ' + esc(d.followers.as_of), 'hero'));
-  } else cards.push(card('Replies (30 hari)', fmt(d.replies_30d && d.replies_30d.items), 'reply dihantar'));
+    const f=d.followers, history=f.history||[], before=d.range?history.filter(x=>x.date<=d.range.to):history, last=before.at(-1)||(!d.range&&f.as_of?{date:f.as_of,value:f.latest}:null);
+    const base=d.range?history.filter(x=>x.date<d.range.from).at(-1):null;
+    const delta=last&&base?last.value-base.value:null;
+    const sub=last?'Snapshot '+esc(last.date)+(delta!=null?'<br>'+ (delta>=0?'+':'')+fmt(delta)+' sejak '+esc(base.date):' · tiada baseline perbandingan'):'Tiada snapshot dalam atau sebelum tempoh';
+    cards.push(card('Followers', last?fmt(last.value):'-', sub+'<br>'+(f.source==='threads_api'?'Threads API':'Snapshot'), 'hero'));
+  } else cards.push(card('Replies', fmt(d.replies_30d && d.replies_30d.items), 'Reply dihantar'));
   $('kpis').innerHTML = cards.join('');
 }
 
@@ -333,10 +357,9 @@ function renderContentBankHealth(h) {
 }
 
 function renderChart(d) {
-  const svg = $('chart'), days = [], W = 600, H = 150, pad = 4;
-  const byDate = Object.fromEntries(d.daily.map(x => [x.date, x]));
-  for (let i = 29; i >= 0; i--) { const t = new Date(Date.now() + 8 * 3600000 - i * 86400000).toISOString().slice(0, 10); days.push(byDate[t] || {date: t, views: 0, interactions: 0, items: 0}); }
-  const maxV = Math.max(1, ...days.map(x => x.views)), maxI = Math.max(1, ...days.map(x => x.interactions));
+  const svg = $('chart'), days = d.daily || [], W = 600, H = 150, pad = 4;
+  if(!days.length){svg.innerHTML='';$('trendBadge').textContent='Tiada data';return;}
+  const peak = Math.max(0, ...days.map(x => x.views)); const maxV = Math.max(1, peak), maxI = Math.max(1, ...days.map(x => x.interactions));
   const bw = (W - pad * 2) / days.length;
   let out = '';
   days.forEach((x, i) => {
@@ -346,7 +369,7 @@ function renderChart(d) {
   const pts = days.map((x, i) => `${(pad + i * bw + bw / 2).toFixed(1)},${(H - 4 - (x.interactions / maxI) * (H - 24)).toFixed(1)}`).join(' ');
   out += `<polyline points="${pts}" fill="none" stroke="#d97706" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>`;
   svg.innerHTML = out;
-  $('trendBadge').textContent = 'puncak ' + short(maxV) + ' views';
+  $('trendBadge').textContent = 'puncak ' + short(peak) + ' views';
 }
 
 function renderWeekdayViews(d) {
@@ -367,12 +390,14 @@ function renderWeekdayViews(d) {
   }).join('');
   $('weekdayBadge').textContent = best ? 'tertinggi ' + best.label : 'tiada data';
   $('weekdayNote').innerHTML = best
-    ? `<span class="weekday-key"><i></i>Gelap = purata views lebih tinggi</span><span><strong>${esc(best.label)}</strong> paling tinggi: ${fmt(best.avgViews)} purata views</span><span>30 hari · ${available.reduce((sum, row) => sum + row.items, 0)} post dengan data views</span>`
+    ? `<span class="weekday-key"><i></i>Gelap = purata views lebih tinggi</span><span><strong>${esc(best.label)}</strong> paling tinggi: ${fmt(best.avgViews)} purata views</span><span>${esc(d.range?.label||'30 hari')} · ${available.reduce((sum, row) => sum + row.items, 0)} post dengan data views</span>`
     : '<span>Belum ada post dengan data views yang boleh dibandingkan.</span>';
 }
 
 function renderGrowth(d) {
-  const f = d.followers, svg = $('growthChart'), note = $('growthNote');
+  const original = d.followers, svg = $('growthChart'), note = $('growthNote');
+  const hist = original && d.range ? original.history.filter(x=>x.date>=d.range.from&&x.date<=d.range.to) : original?.history;
+  const f = original && hist?.length ? {...original,history:hist,latest:hist.at(-1).value,as_of:hist.at(-1).date,change:d.range?null:original.change} : null;
   if (!f || f.history.length < 2) {
     svg.innerHTML = '';
     svg.style.display = 'none';
@@ -423,7 +448,7 @@ function renderReplies(d) {
   const sec = $('repliesSec'), list = d.top_replies || [];
   sec.style.display = d.replies_30d ? '' : 'none';
   $('repliesBadge').textContent = d.replies_30d ? fmt(d.replies_30d.items) + ' reply' : '';
-  $('repliesList').innerHTML = list.map(topItem).join('') || '<div class="empty">Tiada reply dalam 30 hari</div>';
+  $('repliesList').innerHTML = list.map(topItem).join('') || '<div class="empty">Tiada reply dalam tempoh dipilih</div>';
 }
 
 function renderBars(id, rows) {
@@ -460,13 +485,16 @@ $('topSeg').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
   topRange = b.dataset.r;
   document.querySelectorAll('#topSeg button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
-  renderTop(DATA.platforms[plat]);
+  if(selected) renderTop(selected);
 });
 $('postFilters').addEventListener('click', e => {
   const b = e.target.closest('.pill'); if (!b) return;
-  pillarFilter = b.dataset.k; renderPosts(DATA.platforms[plat]);
+  pillarFilter = b.dataset.k; if(selected) renderPosts(selected);
 });
 
+function applyPeriod(next){range=next;pillarFilter='all';$('rangeError').textContent='';document.querySelectorAll('[data-period]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.period===next.preset)));if(DATA)render();}
+$('periodButtons').addEventListener('click',e=>{const b=e.target.closest('[data-period]');if(!b)return;const p=b.dataset.period;$('customDates').hidden=p!=='custom';if(p==='custom'){$('rangeFrom').value=range.from;$('rangeTo').value=range.to;return;}applyPeriod(resolveRange(p));});
+$('customDates').addEventListener('submit',e=>{e.preventDefault();try{applyPeriod(resolveRange('custom',$('rangeFrom').value,$('rangeTo').value));}catch(err){$('rangeError').textContent=err.message;}});
 if (location.hash === '#tiktok') { plat = 'tiktok'; document.querySelectorAll('.switch button').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.p === 'tiktok'))); }
 load();
 </script>

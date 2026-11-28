@@ -51,3 +51,12 @@ test('anonymous visitors, other paths and the kill switch get the page untouched
   assert.ok(!(await off.get('/',{Cookie:off.cookie})).html.includes('data-jd'));
  }finally{await off.mf.dispose();}
 });
+
+test('legacy direct analytics navigation redirects to OS, planner iframe remains available', async()=>{
+ const {mf,cookie}=await setup();try{
+  const direct=await mf.dispatchFetch('https://jom-content.com/analytics',{headers:{'Sec-Fetch-Dest':'document'},redirect:'manual'});
+  assert.equal(direct.status,302);assert.equal(direct.headers.get('Location'),'https://os.jomdigitalos.my/hub/content-analytics/');
+  const embed=await mf.dispatchFetch('https://jom-content.com/analytics.html',{headers:{Cookie:cookie,'Sec-Fetch-Dest':'iframe'}});
+  assert.equal(embed.status,200);
+ }finally{await mf.dispose();}
+});

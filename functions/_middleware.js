@@ -44,6 +44,11 @@ async function withShell(context, slug) {
 export async function onRequest(context) {
   const { request, env } = context;
   const { pathname } = new URL(request.url);
+  const hostname = new URL(request.url).hostname;
+  // Preserve the existing cross-domain planner iframe; direct analytics visits use the OS owner session.
+  if (['jom-content.com','www.jom-content.com'].includes(hostname) && ['/analytics','/analytics.html'].includes(pathname) && request.method === 'GET' && request.headers.get('Sec-Fetch-Dest') === 'document') {
+    return Response.redirect('https://os.jomdigitalos.my/hub/content-analytics/',302);
+  }
   const jdSlug = JD_PAGES[pathname];
   if (jdSlug && request.method === 'GET' && env.JD_SHELL !== 'off' && enforced(env) && await authorised(request, env)) {
     return withShell(context, jdSlug);
